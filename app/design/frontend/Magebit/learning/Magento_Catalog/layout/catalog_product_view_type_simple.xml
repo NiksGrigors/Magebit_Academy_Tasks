@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- Removed unnecessary blocks -->
+        <referenceBlock name="product.info.description" remove="true"/>
+        <referenceBlock name="reviews.tab" remove="true" />
+        <referenceBlock name="catalog.product.related" remove="true"/>
+        <referenceBlock name="view.addto.wishlist" remove="true" />
+        <referenceBlock name="view.addto.compare" remove="true" />
+
+        <referenceContainer name="product.info.main">
+            <!-- product attributes block -->
+            <block class="Magento\Catalog\Block\Product\View"
+                   name="product.attributes"
+                   template="Magento_Catalog::product/attributes.phtml"
+                   after="product.info.price"/>
+
+            <!-- upsell products block -->
+            <block class="Magento\Catalog\Block\Product\ProductList\Upsell"
+                   name="product.info.upsell"
+                   template="Magento_Catalog::product/list/upsell.phtml">
+                <arguments>
+                    <argument name="type" xsi:type="string">upsell</argument>
+                    <argument name="limit" xsi:type="number">4</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+        <referenceContainer name="content">
+            <!-- Related products block -->
+            <block class="Magento\Catalog\Block\Product\ProductList\Related"
+                   name="product.info.related"
+                   template="Magento_Catalog::product/list/related.phtml"
+                   after="product.info.">
+                <arguments>
+                    <argument name="type" xsi:type="string">related</argument>
+                    <argument name="limit" xsi:type="number">4</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

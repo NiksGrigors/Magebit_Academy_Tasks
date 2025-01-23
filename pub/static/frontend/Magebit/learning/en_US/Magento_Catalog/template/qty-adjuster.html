@@ -1,0 +1,17 @@
+<div class="quantity-adjuster" id="product-quantity-adjuster">
+    <div data-bind="scope: 'quantityAdjuster'" class="qty-adjuster-group">
+        <!-- Quantity Decrease Button -->
+        <button type="button" class="qty-minus" data-bind="click: decreaseQty">-</button>
+        <!-- Quantity Input Field -->
+        <input type="text" class="qty-input" data-bind="value: qty, valueUpdate: 'input'" />
+        <!-- Quantity Increase Button -->
+        <button type="button" class="qty-plus" data-bind="click: increaseQty">+</button>
+        <!-- Stock Information -->
+        <span class="stock-info" data-bind="visible: stockAvailable">
+            <strong>IN STOCK</strong>
+            <span data-bind="text: availableStock"></span>
+            <span class="stock-info-items-available"> items available</span>
+        </span>
+    </div>
+</div>
+

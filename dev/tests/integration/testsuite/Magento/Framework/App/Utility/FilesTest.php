@@ -173,7 +173,7 @@ class FilesTest extends \PHPUnit\Framework\TestCase
                 $this->model->getStaticPreProcessingFiles('*.less'),
                 function ($resource) {
                     return $resource[3] === 'Module_Third_Party'
-                        && $resource[4] === 'css/source/_module.less';
+                        && $resource[4] === 'css/source/_custom.less';
                 }
             )
         );

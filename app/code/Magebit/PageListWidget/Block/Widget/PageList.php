@@ -8,15 +8,11 @@ use Magento\Widget\Block\BlockInterface;
 
 class PageList extends Template implements BlockInterface
 {
+    protected $pageCollectionFactory;
     protected $_template = 'widget/pagelist.phtml';
-
     private const DISPLAY_MODE_ALL = 'all';
     private const DISPLAY_MODE_SPECIFIC = 'specific';
 
-    /**
-     * @var CollectionFactory
-     */
-    protected $pageCollectionFactory;
 
     /**
      * PageList constructor.

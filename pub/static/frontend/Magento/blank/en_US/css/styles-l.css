@@ -6,6 +6,13 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+.product-info-stock-sku .configurable-variation-qty {
+  display: none;
+}
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
 /**
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
@@ -84,13 +91,6 @@
 .cart-summary .google-pay {
   margin-bottom: 14px;
 }
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
-.product-info-stock-sku .configurable-variation-qty {
-  display: none;
-}
 @media only screen and (max-width: 768px) {
   .field-tooltip .field-tooltip-content {
     left: auto;
@@ -108,7 +108,7 @@
     width: 0;
   }
   .field-tooltip .field-tooltip-content::before {
-    border-bottom-color: #999999;
+    border-bottom-color: #999;
   }
   .field-tooltip .field-tooltip-content::after {
     border-bottom-color: #f4f4f4;
@@ -144,6 +144,7 @@
     float: left;
     margin: 0 10px 5px 0;
   }
+  .abs-product-options-list-desktop dt:after,
   .block-giftregistry-shared .item-options dt:after {
     content: ': ';
   }
@@ -166,6 +167,7 @@
   .sales-guest-view .column.main .block:not(.widget) .block-content .box {
     width: 48.8%;
   }
+  .abs-blocks-2columns:nth-child(odd),
   .column .block-addbysku .block-content .box:nth-child(odd),
   .login-container .block:nth-child(odd),
   .account .column.main .block:not(.widget) .block-content .box:nth-child(odd),
@@ -175,6 +177,7 @@
     clear: left;
     float: left;
   }
+  .abs-blocks-2columns:nth-child(even),
   .column .block-addbysku .block-content .box:nth-child(even),
   .login-container .block:nth-child(even),
   .account .column.main .block:not(.widget) .block-content .box:nth-child(even),
@@ -207,6 +210,7 @@
     margin-left: 75.8%;
     top: 6px;
   }
+  .abs-add-fields-desktop .fieldset .field:not(.choice) .control,
   .form-giftregistry-share .fieldset .field:not(.choice) .control,
   .form-giftregistry-edit .fieldset .field:not(.choice) .control,
   .form-add-invitations .fieldset .field:not(.choice) .control,
@@ -362,6 +366,8 @@
   .product-add-form .fieldset .fields > .field.no-label:before {
     display: none;
   }
+  .abs-revert-field-type-desktop .fieldset > .field:not(:first-child):last-of-type,
+  .abs-revert-field-type-desktop .fieldset .fields > .field:not(:first-child):last-of-type,
   .product-add-form .fieldset > .field:not(:first-child):last-of-type,
   .product-add-form .fieldset .fields > .field:not(:first-child):last-of-type {
     margin-bottom: 0;
@@ -418,6 +424,8 @@
   .cart-container .cart-gift-item .actions {
     text-align: right;
   }
+  .abs-shopping-cart-items-desktop .action.clear,
+  .abs-shopping-cart-items-desktop .action.update,
   .block-cart-failed .action.clear,
   .block-cart-failed .action.update,
   .cart-container .form-cart .action.clear,
@@ -426,6 +434,7 @@
   .cart-container .cart-gift-item .action.update {
     margin-left: 10px;
   }
+  .abs-shopping-cart-items-desktop .action.continue,
   .block-cart-failed .action.continue,
   .cart-container .form-cart .action.continue,
   .cart-container .cart-gift-item .action.continue {
@@ -629,7 +638,7 @@
   }
   .navigation .level0 > .level-top:hover,
   .navigation .level0 > .level-top.ui-state-focus {
-    color: #333333;
+    color: #333;
     text-decoration: none;
   }
   .navigation .level0.active > .level-top,
@@ -637,7 +646,7 @@
     border-color: #ff5501;
     border-style: solid;
     border-width: 0 0 3px;
-    color: #333333;
+    color: #333;
     text-decoration: none;
     display: inline-block;
   }
@@ -679,7 +688,7 @@
     text-align: center;
   }
   .navigation .level0 .submenu {
-    background: #ffffff;
+    background: #fff;
     border: 1px solid #d1d1d1;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.19);
     font-weight: 700;
@@ -703,13 +712,13 @@
     position: absolute;
   }
   .navigation .level0 .submenu > ul:before {
-    color: #ffffff;
+    color: #fff;
     left: 20px;
     top: -20px;
     border: 10px solid transparent;
     height: 0;
     width: 0;
-    border-bottom-color: #ffffff;
+    border-bottom-color: #fff;
     z-index: 4;
   }
   .navigation .level0 .submenu > ul:after {
@@ -741,7 +750,7 @@
   .navigation .level0 .submenu a:hover,
   .navigation .level0 .submenu a.ui-state-focus {
     background: #e8e8e8;
-    color: #333333;
+    color: #333;
     text-decoration: none;
   }
   .navigation .level0 .submenu .active > a {
@@ -938,7 +947,7 @@
     text-decoration: none;
   }
   .product.data.items > .item.title > .switch:active {
-    color: #333333;
+    color: #333;
     text-decoration: none;
   }
   .product.data.items > .item.title:not(.disabled) > .switch:focus,
@@ -950,7 +959,7 @@
   .product.data.items > .item.title.active > .switch:focus,
   .product.data.items > .item.title.active > .switch:hover {
     background: #ffffff;
-    color: #333333;
+    color: #333;
     text-decoration: none;
   }
   .product.data.items > .item.title.active > .switch,
@@ -1367,7 +1376,7 @@
     opacity: 0.5;
   }
   .block-search .action.search:focus:before {
-    color: #333333;
+    color: #333;
   }
   .search-autocomplete {
     margin-top: 0;
@@ -1512,7 +1521,7 @@
     display: none;
   }
   .authentication-dropdown {
-    background-color: #ffffff;
+    background-color: #fff;
     border: 1px solid #aeaeae;
     -webkit-transform: scale(1, 0);
     -webkit-transform-origin: 0 0;
@@ -1522,7 +1531,7 @@
     top: 100%;
     transform: scale(1, 0);
     transform-origin: 0 0;
-    transition: transform linear .1s, visibility 0s linear .1s;
+    transition: transform linear 0.1s, visibility 0s linear 0.1s;
     visibility: hidden;
     width: 100%;
   }
@@ -1531,7 +1540,7 @@
     -webkit-transform: scale(1, 1);
     -webkit-transition: -webkit-transform linear 0.1s, visibility 0s linear 0s;
     transform: scale(1, 1);
-    transition: transform linear .1s, visibility 0s linear 0s;
+    transition: transform linear 0.1s, visibility 0s linear 0s;
     visibility: visible;
   }
   .authentication-wrapper {
@@ -2197,7 +2206,7 @@
     width: 33.33333333%;
   }
   .opc-wrapper .shipping-address-item:before {
-    background: #cccccc;
+    background: #ccc;
     height: calc(100% - 20px);
     content: '';
     left: 0;
@@ -2268,3 +2277,4 @@
     margin-left: 85px;
   }
 }
+/*# sourceMappingURL=styles-l.css.map */
