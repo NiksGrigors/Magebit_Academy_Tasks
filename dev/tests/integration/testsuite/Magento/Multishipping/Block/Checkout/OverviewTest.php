@@ -61,8 +61,8 @@ class OverviewTest extends TestCase
                 'checkout_overview',
                 [
                     'data' => [
-                        'renderer_template' => 'Magento_Multishipping::checkout/item/default.phtml',
-                        'row_renderer_template' => 'Magento_Multishipping::checkout/overview/item.phtml',
+                        'renderer_template' => 'Magento_Multishipping::checkout/Item/default.phtml',
+                        'row_renderer_template' => 'Magento_Multishipping::checkout/overview/Item.phtml',
                     ],
                 ]
             );
@@ -73,7 +73,7 @@ class OverviewTest extends TestCase
         )->addChild(
             'default',
             Renderer::class,
-            ['template' => 'cart/item/default.phtml']
+            ['template' => 'cart/Item/default.phtml']
         );
         $this->quote = $this->objectManager->create(Quote::class);
         $this->product = $this->objectManager->create(ProductRepository::class);

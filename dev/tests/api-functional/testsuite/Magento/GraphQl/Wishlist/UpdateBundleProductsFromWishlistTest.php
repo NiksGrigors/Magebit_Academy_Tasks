@@ -48,7 +48,7 @@ class UpdateBundleProductsFromWishlistTest extends GraphQlAbstract
     }
 
     /**
-     * Test that a wishlist item bundle product is properly updated.
+     * Test that a wishlist Item bundle product is properly updated.
      *
      * This includes the selected options for the bundle product.
      *
@@ -68,7 +68,7 @@ class UpdateBundleProductsFromWishlistTest extends GraphQlAbstract
         $wishlistItemId = (int) $wishlist['addProductsToWishlist']['wishlist']['items_v2']['items'][0]['id'];
         $previousItemsCount = $wishlist['addProductsToWishlist']['wishlist']['items_count'];
 
-        // Set the new values to update the wishlist item with
+        // Set the new values to update the wishlist Item with
         $newQuantity = 5;
         $newDescription = 'This is a test.';
         $newBundleOptionUid = $this->getBundleProductOptionUid(
@@ -76,7 +76,7 @@ class UpdateBundleProductsFromWishlistTest extends GraphQlAbstract
             'simple2'
         );
 
-        // Update the newly added wishlist item as the fixture customer
+        // Update the newly added wishlist Item as the fixture customer
         $query = $this->getUpdateQuery(
             $wishlistItemId,
             $newQuantity,
@@ -90,16 +90,16 @@ class UpdateBundleProductsFromWishlistTest extends GraphQlAbstract
         self::assertArrayHasKey('updateProductsInWishlist', $response);
         self::assertArrayHasKey('wishlist', $response['updateProductsInWishlist']);
 
-        // Assert that the wishlist item count is unchanged
+        // Assert that the wishlist Item count is unchanged
         $responseWishlist = $response['updateProductsInWishlist']['wishlist'];
         self::assertEquals($previousItemsCount, $responseWishlist['items_count']);
 
-        // Assert that the wishlist item quantity and description are updated
+        // Assert that the wishlist Item quantity and description are updated
         $responseWishlistItem = $responseWishlist['items_v2']['items'][0];
         self::assertEquals($newQuantity, $responseWishlistItem['quantity']);
         self::assertEquals($newDescription, $responseWishlistItem['description']);
 
-        // Assert that the bundle option for this wishlist item is accurate
+        // Assert that the bundle option for this wishlist Item is accurate
         self::assertNotEmpty($responseWishlistItem['bundle_options']);
         $responseBundleOption = $responseWishlistItem['bundle_options'][0];
         self::assertEquals('Dropdown Options', $responseBundleOption['label']);
@@ -201,7 +201,7 @@ MUTATION;
     }
 
     /**
-     * Returns the GraphQl mutation for adding an item to the wishlist.
+     * Returns the GraphQl mutation for adding an Item to the wishlist.
      *
      * @param string $sku
      * @param int $qty

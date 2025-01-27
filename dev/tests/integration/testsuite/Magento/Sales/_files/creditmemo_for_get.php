@@ -23,7 +23,7 @@ $creditmemo->save();
 
 /** @var \Magento\Sales\Model\Order\Item $orderItem */
 $orderItem = current($order->getAllItems());
-$orderItem->setName('Test item')
+$orderItem->setName('Test Item')
     ->setQtyRefunded(1)
     ->setQtyInvoiced(10)
     ->setOriginalPrice(20);
@@ -31,7 +31,7 @@ $orderItem->setName('Test item')
 /** @var \Magento\Sales\Model\Order\Creditmemo\Item $creditItem */
 $creditItem = $objectManager->get(\Magento\Sales\Model\Order\Creditmemo\Item::class);
 $creditItem->setCreditmemo($creditmemo)
-    ->setName('Creditmemo item')
+    ->setName('Creditmemo Item')
     ->setOrderItemId($orderItem->getId())
     ->setQty(1)
     ->setPrice(20)

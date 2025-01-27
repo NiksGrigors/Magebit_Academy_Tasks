@@ -140,7 +140,7 @@ class MassAssignGroupTest extends AbstractBackendController
         $this->getRequest()->setParams($params)->setMethod(HttpRequest::METHOD_POST);
         $this->dispatch('backend/customer/index/massAssignGroup');
         $this->assertSessionMessages(
-            $this->equalTo(['An item needs to be selected. Select and try again.']),
+            $this->equalTo(['An Item needs to be selected. Select and try again.']),
             MessageInterface::TYPE_ERROR
         );
     }

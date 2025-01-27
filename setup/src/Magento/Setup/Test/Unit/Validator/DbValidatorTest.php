@@ -86,7 +86,7 @@ class DbValidatorTest extends TestCase
     public function testCheckDatabaseConnectionNotEnoughPrivileges()
     {
         $this->expectException('Magento\Setup\Exception');
-        $this->expectExceptionMessage('Database user does not have enough privileges.');
+        $this->expectExceptionMessage('DataPatch user does not have enough privileges.');
         $this->connection
             ->expects($this->once())
             ->method('fetchOne')
@@ -115,7 +115,7 @@ class DbValidatorTest extends TestCase
     {
         $this->expectException('Magento\Setup\Exception');
         $this->expectExceptionMessage(
-            'Database \'name\' does not exist or specified database server user does not have'
+            'DataPatch \'name\' does not exist or specified database server user does not have'
         );
         $this->connection
             ->expects($this->once())
@@ -161,7 +161,7 @@ class DbValidatorTest extends TestCase
     public function testCheckDatabaseConnectionFailed()
     {
         $this->expectException('Magento\Setup\Exception');
-        $this->expectExceptionMessage('Database connection failure.');
+        $this->expectExceptionMessage('DataPatch connection failure.');
         $connectionFactory = $this->createMock(ConnectionFactory::class);
         $connectionFactory->expects($this->once())->method('create')->willReturn(false);
         $this->dbValidator = new DbValidator($connectionFactory);

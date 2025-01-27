@@ -54,7 +54,7 @@ QUERY;
                 'storeConfig' => [
                     'order_cancellation_reasons' => [
                         [
-                            'description' => 'The item(s) are no longer needed'
+                            'description' => 'The Item(s) are no longer needed'
                         ],
                         [
                             'description' => 'The order was placed by mistake'

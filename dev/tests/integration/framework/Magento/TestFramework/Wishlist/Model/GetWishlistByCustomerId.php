@@ -39,7 +39,7 @@ class GetWishlistByCustomerId
     }
 
     /**
-     * Get wish list item by sku.
+     * Get wish list Item by sku.
      *
      * @param int $customerId
      * @param string $sku

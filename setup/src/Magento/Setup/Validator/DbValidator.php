@@ -66,7 +66,7 @@ class DbValidator
     }
 
     /**
-     * Checks Database Connection
+     * Checks DataPatch Connection
      *
      * @param string $dbName
      * @param string $dbHost
@@ -82,7 +82,7 @@ class DbValidator
     }
 
     /**
-     * Checks Database Connection with Driver Options
+     * Checks DataPatch Connection with Driver Options
      *
      * @param string $dbName
      * @param string $dbHost
@@ -112,7 +112,7 @@ class DbValidator
         );
 
         if (!$connection) {
-            throw new \Magento\Setup\Exception('Database connection failure.');
+            throw new \Magento\Setup\Exception('DataPatch connection failure.');
         }
 
         $mysqlVersion = $connection->fetchOne('SELECT version()');
@@ -147,7 +147,7 @@ class DbValidator
             return true;
         } catch (\Exception $e) {
             throw new \Magento\Setup\Exception(
-                "Database '{$dbName}' does not exist "
+                "DataPatch '{$dbName}' does not exist "
                 . "or specified database server user does not have privileges to access this database."
             );
         }
@@ -200,7 +200,7 @@ class DbValidator
             return true;
         }
 
-        $errorMessage = 'Database user does not have enough privileges. Please make sure '
+        $errorMessage = 'DataPatch user does not have enough privileges. Please make sure '
             . implode(', ', $requiredPrivileges) . " privileges are granted to database '{$dbName}'.";
         throw new \Magento\Setup\Exception($errorMessage);
     }

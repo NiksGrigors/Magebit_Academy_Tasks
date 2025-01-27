@@ -19,11 +19,11 @@ class ArgumentParserTest extends TestCase
         $parser = new ArgumentParser();
         $actual = $parser->parse($document->getElementsByTagName('argument')->item(0));
         $expected = [
-            'item' => [
+            'Item' => [
                 'one' => ['name' => 'one', 'value' => 'value1'],
                 'nested' => [
                     'name' => 'nested',
-                    'item' => [
+                    'Item' => [
                         'two' => ['name' => 'two', 'value' => 'value2'],
                         'three' => ['name' => 'three', 'value' => 'value3'],
                     ],

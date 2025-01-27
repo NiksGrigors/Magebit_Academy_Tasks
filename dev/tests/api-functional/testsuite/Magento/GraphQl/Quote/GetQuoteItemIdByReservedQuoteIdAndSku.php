@@ -13,7 +13,7 @@ use Magento\Quote\Model\ResourceModel\Quote as QuoteResource;
 use Magento\Quote\Model\QuoteFactory;
 
 /**
- * Get quote item id by reserved order id and product sku
+ * Get quote Item id by reserved order id and product sku
  */
 class GetQuoteItemIdByReservedQuoteIdAndSku
 {
@@ -48,7 +48,7 @@ class GetQuoteItemIdByReservedQuoteIdAndSku
     }
 
     /**
-     * Get quote item id by reserved order id and product sku
+     * Get quote Item id by reserved order id and product sku
      *
      * @param string $reservedOrderId
      * @param string $sku

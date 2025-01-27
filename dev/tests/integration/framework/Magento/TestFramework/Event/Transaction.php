@@ -7,7 +7,7 @@
 namespace Magento\TestFramework\Event;
 
 /**
- * Database transaction events manager
+ * DataPatch transaction events manager
  */
 class Transaction
 {

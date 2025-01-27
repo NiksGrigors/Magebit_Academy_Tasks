@@ -77,21 +77,21 @@ class ConfigOptionsListTest extends TestCase
         $this->assertInstanceOf(TextConfigOption::class, $options[0]);
         $this->assertSame('Encryption key', $options[0]->getDescription());
         $this->assertInstanceOf(TextConfigOption::class, $options[1]);
-        $this->assertSame('Database server host', $options[1]->getDescription());
+        $this->assertSame('DataPatch server host', $options[1]->getDescription());
         $this->assertInstanceOf(TextConfigOption::class, $options[2]);
-        $this->assertSame('Database name', $options[2]->getDescription());
+        $this->assertSame('DataPatch name', $options[2]->getDescription());
         $this->assertInstanceOf(TextConfigOption::class, $options[3]);
-        $this->assertSame('Database server username', $options[3]->getDescription());
+        $this->assertSame('DataPatch server username', $options[3]->getDescription());
         $this->assertInstanceOf(TextConfigOption::class, $options[4]);
-        $this->assertSame('Database server engine', $options[4]->getDescription());
+        $this->assertSame('DataPatch server engine', $options[4]->getDescription());
         $this->assertInstanceOf(TextConfigOption::class, $options[5]);
-        $this->assertSame('Database server password', $options[5]->getDescription());
+        $this->assertSame('DataPatch server password', $options[5]->getDescription());
         $this->assertInstanceOf(TextConfigOption::class, $options[6]);
-        $this->assertSame('Database table prefix', $options[6]->getDescription());
+        $this->assertSame('DataPatch table prefix', $options[6]->getDescription());
         $this->assertInstanceOf(TextConfigOption::class, $options[7]);
-        $this->assertSame('Database type', $options[7]->getDescription());
+        $this->assertSame('DataPatch type', $options[7]->getDescription());
         $this->assertInstanceOf(TextConfigOption::class, $options[8]);
-        $this->assertSame('Database  initial set of commands', $options[8]->getDescription());
+        $this->assertSame('DataPatch  initial set of commands', $options[8]->getDescription());
         $this->assertInstanceOf(FlagConfigOption::class, $options[9]);
         $this->assertSame(
             'If specified, then db connection validation will be skipped',

@@ -72,7 +72,7 @@ class Uses implements ParserInterface
     }
 
     /**
-     * Append part of uses into last item
+     * Append part of uses into last Item
      *
      * @param string $value
      */

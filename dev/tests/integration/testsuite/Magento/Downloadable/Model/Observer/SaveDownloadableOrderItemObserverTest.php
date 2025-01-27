@@ -58,7 +58,7 @@ class SaveDownloadableOrderItemObserverTest extends \PHPUnit\Framework\TestCase
             $orderItem->getStoreId()
         );
 
-        /** Remove downloadable links from order item to create them from scratch */
+        /** Remove downloadable links from order Item to create them from scratch */
         $removeLinkPurchasedByOrderIncrementId = $this->objectManager->get(
             RemoveLinkPurchasedByOrderIncrementId::class
         );
@@ -68,7 +68,7 @@ class SaveDownloadableOrderItemObserverTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(OrderItem::STATUS_INVOICED, $orderItem->getStatusId());
         $this->assertEquals(OrderItem::STATUS_INVOICED, $orderItemStatusToEnableDownload);
 
-        /** Save order item to trigger observers */
+        /** Save order Item to trigger observers */
         $orderItemRepository = $this->objectManager->get(ItemRepository::class);
         $orderItemRepository->save($orderItem);
 
@@ -76,7 +76,7 @@ class SaveDownloadableOrderItemObserverTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Assert that order item link status is expected.
+     * Assert that order Item link status is expected.
      *
      * @param int $orderItemId
      * @param string $linkStatus

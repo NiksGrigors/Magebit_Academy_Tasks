@@ -122,7 +122,7 @@ class UpdateCartItemsTest extends GraphQlAbstract
         $maskedQuoteId = $this->quoteIdToMaskedId->execute((int)$quote->getId());
         $notExistentItemId = 999;
 
-        $this->expectExceptionMessage("Could not find cart item with id: {$notExistentItemId}.");
+        $this->expectExceptionMessage("Could not find cart Item with id: {$notExistentItemId}.");
 
         $query = $this->getQuery($maskedQuoteId, $notExistentItemId, 2);
         $this->graphQlMutation($query, [], '', $this->getHeaderMap());
@@ -150,7 +150,7 @@ class UpdateCartItemsTest extends GraphQlAbstract
             ->getItemByProduct($this->productRepository->get('virtual-product'))
             ->getId();
 
-        $this->expectExceptionMessage("Could not find cart item with id: {$secondQuoteItemId}.");
+        $this->expectExceptionMessage("Could not find cart Item with id: {$secondQuoteItemId}.");
 
         $query = $this->getQuery($firstQuoteMaskedId, $secondQuoteItemId, 2);
         $this->graphQlMutation($query, [], '', $this->getHeaderMap());

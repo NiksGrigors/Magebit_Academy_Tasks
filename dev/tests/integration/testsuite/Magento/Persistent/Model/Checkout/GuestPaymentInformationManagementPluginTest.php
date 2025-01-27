@@ -147,7 +147,7 @@ class GuestPaymentInformationManagementPluginTest extends \PHPUnit\Framework\Tes
         $product->setOptions(null);
         $productRepository->save($product);
 
-        //Add item to newly created customer cart
+        //Add Item to newly created customer cart
         $cartId = $this->cartManagement->createEmptyCartForCustomer($customer->getId());
         /** @var \Magento\Quote\Api\Data\CartItemInterface $quoteItem */
         $quoteItem = $this->objectManager->create(\Magento\Quote\Api\Data\CartItemInterface::class);

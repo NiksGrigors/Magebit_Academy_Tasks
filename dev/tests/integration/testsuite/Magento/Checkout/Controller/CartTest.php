@@ -92,7 +92,7 @@ class CartTest extends \Magento\TestFramework\TestCase\AbstractController
         $product = $productRepository->get('simple');
 
         $quoteItem = $this->_getQuoteItemIdByProductId($session->getQuote(), $product->getId());
-        $this->assertNotNull($quoteItem, 'Cannot get quote item for simple product');
+        $this->assertNotNull($quoteItem, 'Cannot get quote Item for simple product');
 
         $this->dispatch(
             'checkout/cart/configure/id/' . $quoteItem->getId() . '/product_id/' . $quoteItem->getProduct()->getId()
@@ -128,7 +128,7 @@ class CartTest extends \Magento\TestFramework\TestCase\AbstractController
         $product = $productRepository->get('simple_with_custom_options');
 
         $quoteItem = $this->_getQuoteItemIdByProductId($quote, $product->getId());
-        $this->assertNotNull($quoteItem, 'Cannot get quote item for simple product with custom option');
+        $this->assertNotNull($quoteItem, 'Cannot get quote Item for simple product with custom option');
 
         $this->dispatch(
             'checkout/cart/configure/id/' . $quoteItem->getId() . '/product_id/' . $quoteItem->getProduct()->getId()
@@ -173,7 +173,7 @@ class CartTest extends \Magento\TestFramework\TestCase\AbstractController
         $product = $productRepository->get('bundle-product');
 
         $quoteItem = $this->_getQuoteItemIdByProductId($session->getQuote(), $product->getId());
-        $this->assertNotNull($quoteItem, 'Cannot get quote item for bundle product');
+        $this->assertNotNull($quoteItem, 'Cannot get quote Item for bundle product');
 
         $this->dispatch(
             'checkout/cart/configure/id/' . $quoteItem->getId() . '/product_id/' . $quoteItem->getProduct()->getId()
@@ -208,7 +208,7 @@ class CartTest extends \Magento\TestFramework\TestCase\AbstractController
         $product = $productRepository->get('downloadable-product');
 
         $quoteItem = $this->_getQuoteItemIdByProductId($session->getQuote(), $product->getId());
-        $this->assertNotNull($quoteItem, 'Cannot get quote item for downloadable product');
+        $this->assertNotNull($quoteItem, 'Cannot get quote Item for downloadable product');
 
         $this->dispatch(
             'checkout/cart/configure/id/' . $quoteItem->getId() . '/product_id/' . $quoteItem->getProduct()->getId()
@@ -270,11 +270,11 @@ class CartTest extends \Magento\TestFramework\TestCase\AbstractController
         $customerSession = $this->_objectManager->create(\Magento\Customer\Model\Session::class);
         $customerSession->setCustomerId($customerFromFixture);
 
-        $this->assertNotNull($quoteItem, 'Cannot get quote item for simple product');
+        $this->assertNotNull($quoteItem, 'Cannot get quote Item for simple product');
         $this->assertEquals(
             $originalQuantity,
             $quoteItem->getQty(),
-            "Precondition failed: invalid quote item quantity"
+            "Precondition failed: invalid quote Item quantity"
         );
 
         /** Execute SUT */
@@ -285,7 +285,7 @@ class CartTest extends \Magento\TestFramework\TestCase\AbstractController
         $quote = $this->_objectManager->create(\Magento\Quote\Model\Quote::class);
         $quote->load($checkoutSession->getQuote()->getId());
         $quoteItem = $this->_getQuoteItemIdByProductId($quote, $product->getId());
-        $this->assertEquals($updatedQuantity, $quoteItem->getQty(), "Invalid quote item quantity");
+        $this->assertEquals($updatedQuantity, $quoteItem->getQty(), "Invalid quote Item quantity");
     }
 
     /**

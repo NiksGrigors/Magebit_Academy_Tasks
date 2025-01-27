@@ -80,7 +80,7 @@ class CartPromotionsTest extends GraphQlAbstract
         $response = $this->graphQlMutation($query);
         $this->assertCount(2, $response['cart']['items']);
         $productsInCart = [$prod1, $prod2];
-        //validating the line item prices, quantity and discount
+        //validating the line Item prices, quantity and discount
         $this->assertLineItemDiscountPrices($response, $productsInCart, $qty, $ruleLabels);
         //total discount on the cart which is the sum of the individual row discounts
         $this->assertEquals($response['cart']['prices']['discounts'][0]['amount']['value'], 21.98);
@@ -162,7 +162,7 @@ class CartPromotionsTest extends GraphQlAbstract
         $response = $this->graphQlMutation($query);
         $this->assertCount(2, $response['cart']['items']);
 
-        //validating the individual discounts per line item and total discounts per line item
+        //validating the individual discounts per line Item and total discounts per line Item
         $productsInResponse = array_map(null, $response['cart']['items'], $productsInCart);
         $count = count($productsInCart);
         for ($itemIndex = 0; $itemIndex < $count; $itemIndex++) {
@@ -313,7 +313,7 @@ class CartPromotionsTest extends GraphQlAbstract
                 [
                     'quantity' => $qty,
                     'prices' => [
-                        // row_total is the line item price without the tax
+                        // row_total is the line Item price without the tax
                         'row_total' => ['value' => $productsInCart[$itemIndex]->getSpecialPrice()*$qty],
                         // row_total including tax is the price + price * tax rate
                         'row_total_including_tax' => ['value' => $rowTotalIncludingTax],
@@ -431,7 +431,7 @@ class CartPromotionsTest extends GraphQlAbstract
         $response = $this->graphQlMutation($query);
         //total items added to cart
         $this->assertCount(2, $response['cart']['items']);
-        //checking the default label for individual line item when cart rule doesn't have a label set
+        //checking the default label for individual line Item when cart rule doesn't have a label set
         foreach ($response['cart']['items'] as $cartItem) {
             $this->assertEquals('Discount', $cartItem['prices']['discounts'][0]['label']);
         }

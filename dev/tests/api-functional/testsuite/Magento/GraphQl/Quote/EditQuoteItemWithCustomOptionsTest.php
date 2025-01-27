@@ -232,7 +232,7 @@ QUERY;
     }
 
     /**
-     * Returns quote item id by product's SKU
+     * Returns quote Item id by product's SKU
      *
      * @param string $sku
      * @return int

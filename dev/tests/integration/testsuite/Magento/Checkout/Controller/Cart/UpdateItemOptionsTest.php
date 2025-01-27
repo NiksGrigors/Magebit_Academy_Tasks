@@ -86,7 +86,7 @@ class UpdateItemOptionsTest extends AbstractController
         $this->dispatchUpdateItemOptionsRequest($postData);
         $this->assertTrue($this->getResponse()->isRedirect());
         $this->assertRedirect($this->stringContains('/checkout/cart/'));
-        $message = (string)__('The quote item isn&#039;t found. Verify the item and try again.');
+        $message = (string)__('The quote Item isn&#039;t found. Verify the Item and try again.');
         $this->assertSessionMessages(
             $this->containsEqual($message),
             MessageInterface::TYPE_ERROR
@@ -106,14 +106,14 @@ class UpdateItemOptionsTest extends AbstractController
             'product' => $product->getId(),
             'selected_configurable_option' => '',
             'related_product' => '',
-            'item' => $quoteItem->getId(),
+            'Item' => $quoteItem->getId(),
             'form_key' => $this->formKey->getFormKey(),
             'qty' => '2',
         ];
     }
 
     /**
-     * Perform request for updating product options in a quote item.
+     * Perform request for updating product options in a quote Item.
      *
      * @param array $postData
      * @return void
@@ -122,6 +122,6 @@ class UpdateItemOptionsTest extends AbstractController
     {
         $this->getRequest()->setPostValue($postData);
         $this->getRequest()->setMethod(HttpRequest::METHOD_POST);
-        $this->dispatch('checkout/cart/updateItemOptions/id/' . $postData['item']);
+        $this->dispatch('checkout/cart/updateItemOptions/id/' . $postData['Item']);
     }
 }

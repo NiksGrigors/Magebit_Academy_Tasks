@@ -100,7 +100,7 @@ class WishlistTest extends TestCase
         $customerId = 1;
         $product = $this->productRepository->get($productSku);
         $wishlist = $this->getWishlistByCustomerId->execute($customerId);
-        $this->expectExceptionObject(new \InvalidArgumentException('Invalid wishlist item configuration.'));
+        $this->expectExceptionObject(new \InvalidArgumentException('Invalid wishlist Item configuration.'));
         $wishlist->addNewItem($product, '{"qty":2');
     }
 
@@ -225,7 +225,7 @@ class WishlistTest extends TestCase
     }
 
     /**
-     * Update description of wishlist item
+     * Update description of wishlist Item
      *
      * @magentoDataFixture Magento/Wishlist/_files/wishlist.php
      *
@@ -250,7 +250,7 @@ class WishlistTest extends TestCase
      */
     public function testUpdateNotExistingItemInWishList(): void
     {
-        $this->expectExceptionObject(new LocalizedException(__('We can\'t specify a wish list item.')));
+        $this->expectExceptionObject(new LocalizedException(__('We can\'t specify a wish list Item.')));
         $this->wishlistFactory->create()->updateItem(989, []);
     }
 
@@ -291,7 +291,7 @@ class WishlistTest extends TestCase
     }
 
     /**
-     * Assert item in wish list.
+     * Assert Item in wish list.
      *
      * @param Item $item
      * @param string $itemSku

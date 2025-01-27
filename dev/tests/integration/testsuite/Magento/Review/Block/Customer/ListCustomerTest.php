@@ -83,7 +83,7 @@ class ListCustomerTest extends TestCase
         $this->assertEquals(
             1,
             Xpath::getElementsCountForXpath(
-                sprintf("//td[contains(@class, 'item')]//a[contains(text(), '%s')]", $review->getName()),
+                sprintf("//td[contains(@class, 'Item')]//a[contains(text(), '%s')]", $review->getName()),
                 $blockHtml
             ),
             'Product name wasn\'t found.'

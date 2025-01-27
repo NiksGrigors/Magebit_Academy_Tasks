@@ -102,7 +102,7 @@ if ($configurableProduct->getExtensionAttributes()
     /** @var \Magento\Catalog\Api\Data\ProductInterface $simpleProduct */
     $simpleProduct = $productRepository->getById($simpleProductId);
     $requestInfo['product'] = $simpleProductId;
-    $requestInfo['item'] = $simpleProduct;
+    $requestInfo['Item'] = $simpleProduct;
     $orderConfigurableItem->setProductOptions(['info_buyRequest' => $requestInfo]);
 }
 

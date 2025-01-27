@@ -216,12 +216,12 @@ class QuoteGenerator
 
         foreach ([Configurable::TYPE_CODE, QuoteConfiguration::BIG_CONFIGURABLE_TYPE] as $type) {
             for ($i = 0; $i < $productCount[$type]; $i++) {
-                // Generate parent item
+                // Generate parent Item
                 $parentItemId = $itemIdSequence->current();
                 $this->saveParentItemConfigurableData($entityId, $i, $parentItemId, $type, $quote);
                 $itemIdSequence->next();
 
-                // Generate child item
+                // Generate child Item
                 $itemId = $itemIdSequence->current();
                 $this->saveChildItemConfigurable($entityId, $i, $itemId, $parentItemId, $type, $quote);
                 $itemIdSequence->next();
@@ -230,7 +230,7 @@ class QuoteGenerator
     }
 
     /**
-     * Prepare and save quote item with simple product.
+     * Prepare and save quote Item with simple product.
      *
      * @param int $entityId
      * @param int $index
@@ -261,7 +261,7 @@ class QuoteGenerator
     }
 
     /**
-     * Prepare and save parent quote item for configurable product.
+     * Prepare and save parent quote Item for configurable product.
      *
      * @param int $entityId
      * @param int $index
@@ -302,7 +302,7 @@ class QuoteGenerator
     }
 
     /**
-     * Prepare and save child quote item for configurable product.
+     * Prepare and save child quote Item for configurable product.
      *
      * @param int $entityId
      * @param int $index
@@ -336,7 +336,7 @@ class QuoteGenerator
     }
 
     /**
-     * Get store id for quote item by product index.
+     * Get store id for quote Item by product index.
      *
      * @param int $entityId
      * @return int
@@ -347,7 +347,7 @@ class QuoteGenerator
     }
 
     /**
-     * Get store name for quote item by product index.
+     * Get store name for quote Item by product index.
      *
      * @param int $entityId
      * @return string
@@ -358,7 +358,7 @@ class QuoteGenerator
     }
 
     /**
-     * Get product id for quote item by product index.
+     * Get product id for quote Item by product index.
      *
      * @param int $entityId
      * @param int $index
@@ -371,7 +371,7 @@ class QuoteGenerator
     }
 
     /**
-     * Get product SKU for quote item by product index.
+     * Get product SKU for quote Item by product index.
      *
      * @param int $entityId
      * @param int $index
@@ -384,7 +384,7 @@ class QuoteGenerator
     }
 
     /**
-     * Get product name for quote item by product index.
+     * Get product name for quote Item by product index.
      *
      * @param int $entityId
      * @param int $index
@@ -397,7 +397,7 @@ class QuoteGenerator
     }
 
     /**
-     * Get product buy request for quote item by product index.
+     * Get product buy request for quote Item by product index.
      *
      * @param int $entityId
      * @param int $index
@@ -410,7 +410,7 @@ class QuoteGenerator
     }
 
     /**
-     * Get configurable product child id for quote item by product index.
+     * Get configurable product child id for quote Item by product index.
      *
      * @param int $entityId
      * @param int $index
@@ -423,7 +423,7 @@ class QuoteGenerator
     }
 
     /**
-     * Get configurable product child id for quote item by product index.
+     * Get configurable product child id for quote Item by product index.
      *
      * @param int $entityId
      * @param int $index
@@ -436,7 +436,7 @@ class QuoteGenerator
     }
 
     /**
-     * Get index of item in product stub array.
+     * Get index of Item in product stub array.
      *
      * @param int $entityId
      * @return int

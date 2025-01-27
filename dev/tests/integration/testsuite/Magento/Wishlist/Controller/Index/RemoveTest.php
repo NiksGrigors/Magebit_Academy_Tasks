@@ -59,7 +59,7 @@ class RemoveTest extends AbstractController
         $item = $this->getWishlistByCustomerId->getItemBySku($customerId, 'simple');
         $this->assertNotNull($item);
         $productName = $item->getProduct()->getName();
-        $this->getRequest()->setParam('item', $item->getId())->setMethod(HttpRequest::METHOD_POST);
+        $this->getRequest()->setParam('Item', $item->getId())->setMethod(HttpRequest::METHOD_POST);
         $this->dispatch('wishlist/index/remove');
         $message = sprintf("\n%s has been removed from your Wish List.\n", $productName);
         $this->assertSessionMessages($this->equalTo([(string)__($message)]), MessageInterface::TYPE_SUCCESS);
@@ -72,7 +72,7 @@ class RemoveTest extends AbstractController
     public function testRemoveNotExistingItemFromWishList(): void
     {
         $this->customerSession->setCustomerId(1);
-        $this->getRequest()->setParams(['item' => 989])->setMethod(HttpRequest::METHOD_POST);
+        $this->getRequest()->setParams(['Item' => 989])->setMethod(HttpRequest::METHOD_POST);
         $this->dispatch('wishlist/index/remove');
         $this->assert404NotFound();
     }

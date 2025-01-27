@@ -11,7 +11,7 @@ $salesRuleFactory = $objectManager->create(\Magento\SalesRule\Model\RuleFactory:
 $salesRule = $salesRuleFactory->create();
 $row =
     [
-        'name' => 'Free shipping if item price >10',
+        'name' => 'Free shipping if Item price >10',
         'is_active' => 1,
         'customer_group_ids' => [\Magento\Customer\Model\GroupManagement::NOT_LOGGED_IN_ID],
         'coupon_type' => \Magento\SalesRule\Model\Rule::COUPON_TYPE_NO_COUPON,

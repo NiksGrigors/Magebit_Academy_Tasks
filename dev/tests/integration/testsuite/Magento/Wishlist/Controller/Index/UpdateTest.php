@@ -14,7 +14,7 @@ use Magento\TestFramework\TestCase\AbstractController;
 use Magento\TestFramework\Wishlist\Model\GetWishlistByCustomerId;
 
 /**
- * Test for update wish list item.
+ * Test for update wish list Item.
  *
  * @magentoDbIsolation disabled
  * @magentoAppArea frontend
@@ -85,7 +85,7 @@ class UpdateTest extends AbstractController
     }
 
     /**
-     * Perform update wish list item request.
+     * Perform update wish list Item request.
      *
      * @param array $params
      * @return void

@@ -19,7 +19,7 @@ use Magento\Wishlist\Block\Customer\Wishlist\Items;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test wish list item column.
+ * Test wish list Item column.
  *
  * @magentoDbIsolation disabled
  * @magentoAppArea frontend
@@ -98,11 +98,11 @@ class ColumnTest extends TestCase
         $buttons = [
             "Add to Cart button" => "//button[contains(@class, 'tocart')]/span[contains(text(), 'Add to Cart')]",
             "Edit button" => "//a[contains(@class, 'edit')]/span[contains(text(), 'Edit')]",
-            "Remove item button" => "//a[contains(@class, 'delete')]/span[contains(text(), 'Remove item')]",
+            "Remove Item button" => "//a[contains(@class, 'delete')]/span[contains(text(), 'Remove Item')]",
         ];
         $item = $this->getWishlistItemsByCustomerId->getItemBySku(1, 'simple');
         $this->assertNotNull($item);
-        $block = $this->getWishListItemsBlock()->getChildBlock('customer.wishlist.item.inner');
+        $block = $this->getWishListItemsBlock()->getChildBlock('customer.wishlist.Item.inner');
         $blockHtml = $block->setItem($item)->toHtml();
         foreach ($buttons as $buttonName => $xpath) {
             $this->assertEquals(

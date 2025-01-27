@@ -442,7 +442,7 @@ class ViewTest extends AbstractController
         $content = $this->getResponse()->getContent();
 
         $this->assertStringContainsString(
-            '<div class="data item title active"
+            '<div class="data Item title active"
                      data-role="collapsible" id="tab-label-description">',
             $content
         );

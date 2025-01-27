@@ -362,7 +362,7 @@ class MultishippingTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Check product parent item id in order item
+     * Check product parent Item id in order Item
      *
      * @magentoDataFixture Magento/Multishipping/Fixtures/quote_with_configurable_product.php
      */

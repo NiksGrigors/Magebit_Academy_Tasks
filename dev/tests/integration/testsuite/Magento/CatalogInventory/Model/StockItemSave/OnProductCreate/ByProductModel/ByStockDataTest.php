@@ -70,7 +70,7 @@ class ByStockDataTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test saving of stock item on product save by 'setStockData' method (deprecated) via product model (deprecated)
+     * Test saving of stock Item on product save by 'setStockData' method (deprecated) via product model (deprecated)
      */
     public function testSaveBySetStockData()
     {
@@ -84,7 +84,7 @@ class ByStockDataTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test saving of stock item on product save by 'setData' method with 'stock_data' key (deprecated)
+     * Test saving of stock Item on product save by 'setData' method with 'stock_data' key (deprecated)
      * via product model (deprecated)
      */
     public function testSaveBySetData()

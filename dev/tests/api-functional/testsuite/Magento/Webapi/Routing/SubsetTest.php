@@ -38,7 +38,7 @@ class SubsetTest extends \Magento\Webapi\Routing\BaseService
 
     /**
      * @Override
-     * Test get item
+     * Test get Item
      */
     public function testItem()
     {

@@ -39,7 +39,7 @@ define(['Magento_Bundle/js/components/bundle-checkbox', 'uiRegistry'], function 
                 expect(unit.clearValues).not.toHaveBeenCalled();
             });
 
-            it('Do not clear values for "radio" select type if item not checked', function () {
+            it('Do not clear values for "radio" select type if Item not checked', function () {
                 spyOn(registry, 'get').and.returnValue(typeMap);
                 spyOn(unit, 'checked').and.returnValue(false);
 

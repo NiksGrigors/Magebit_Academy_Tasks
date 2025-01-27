@@ -35,7 +35,7 @@ class CustomerTest extends \PHPUnit\Framework\TestCase
         /** Ensure that search results are correct */
         $this->assertCount(count($expectedResult), $searchResults, 'Quantity of search result items is invalid.');
         foreach ($expectedResult as $itemIndex => $expectedItem) {
-            /** Validate URL to item */
+            /** Validate URL to Item */
             $customerId = substr($expectedItem['id'], 11); // 'customer/1/' is added to all actual customer IDs
             $this->assertStringContainsString(
                 "customer/index/edit/id/$customerId",
@@ -44,8 +44,8 @@ class CustomerTest extends \PHPUnit\Framework\TestCase
             );
             unset($searchResults[$itemIndex]['url']);
 
-            /** Validate other item data */
-            $this->assertEquals($expectedItem, $searchResults[$itemIndex], "Data of item #$itemIndex is invalid.");
+            /** Validate other Item data */
+            $this->assertEquals($expectedItem, $searchResults[$itemIndex], "Data of Item #$itemIndex is invalid.");
         }
     }
 
@@ -84,7 +84,7 @@ class CustomerTest extends \PHPUnit\Framework\TestCase
                     ]
                 ],
             ],
-            'Search by last name, second item only' => [
+            'Search by last name, second Item only' => [
                 'Lastname2',
                 10, // Items on page
                 1, // Page number
@@ -103,7 +103,7 @@ class CustomerTest extends \PHPUnit\Framework\TestCase
                 1, // Page number
                 [],
             ],
-            'Search by company name, first item only' => [
+            'Search by company name, first Item only' => [
                 'CompanyName',
                 10, // Items on page
                 1, // Page number

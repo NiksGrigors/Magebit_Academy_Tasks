@@ -222,7 +222,7 @@ class AbstractExtensibleModelTest extends TestCase
             $this->assertEquals(
                 $value,
                 $this->model->getData($field),
-                "Model data item '{$field}' was retrieved incorrectly."
+                "Model data Item '{$field}' was retrieved incorrectly."
             );
         }
     }

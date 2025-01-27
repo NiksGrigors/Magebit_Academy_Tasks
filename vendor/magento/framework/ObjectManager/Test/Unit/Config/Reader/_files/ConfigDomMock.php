@@ -20,7 +20,7 @@ class ConfigDomMock extends TestCase
      */
     public function __construct($initialContents, $validationState, $idAttributes, $typeAttribute, $perFileSchema)
     {
-        $this->assertEquals('first content item', $initialContents);
+        $this->assertEquals('first content Item', $initialContents);
         $this->assertEquals('xsi:type', $typeAttribute);
     }
 

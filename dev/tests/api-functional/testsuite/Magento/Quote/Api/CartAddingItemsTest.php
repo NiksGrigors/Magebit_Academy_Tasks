@@ -144,7 +144,7 @@ class CartAddingItemsTest extends WebapiAbstract
         $quoteId = $this->_webApiCall($serviceInfo, ['customerId' => 999]); // customerId 999 will get overridden
         $this->assertGreaterThan(0, $quoteId);
 
-        // Adding item to the cart
+        // Adding Item to the cart
         $requestData = [
             'cartItem' => [
                 'quote_id' => $quoteId,
@@ -209,7 +209,7 @@ class CartAddingItemsTest extends WebapiAbstract
         $quoteId = $this->_webApiCall($serviceInfo, ['customerId' => 999]); // customerId 999 will get overridden
         $this->assertGreaterThan(0, $quoteId);
 
-        // Adding item to the cart
+        // Adding Item to the cart
         $productOptionData = [
             'extension_attributes' => [
                 'grouped_options' => [
@@ -269,7 +269,7 @@ class CartAddingItemsTest extends WebapiAbstract
         $quoteId = $this->_webApiCall($serviceInfo, ['customerId' => 999]); // customerId 999 will get overridden
         $this->assertGreaterThan(0, $quoteId);
 
-        // Adding item to the cart
+        // Adding Item to the cart
         $requestData = [
             'cartItem' => [
                 'quote_id' => $quoteId,

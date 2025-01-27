@@ -82,7 +82,7 @@ define([
             }
         };
 
-    // Show notification description when corresponding item is clicked
+    // Show notification description when corresponding Item is clicked
     $('.notifications-wrapper .admin__action-dropdown-menu .notifications-entry').on(
         'click.showNotification',
         function (event) {

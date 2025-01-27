@@ -47,7 +47,7 @@ abstract class AbstractItemTest extends TestCase
     }
 
     /**
-     * Check item block rendering
+     * Check Item block rendering
      *
      * @return void
      */
@@ -93,7 +93,7 @@ abstract class AbstractItemTest extends TestCase
     }
 
     /**
-     * Get item options and their xpath expression
+     * Get Item options and their xpath expression
      *
      * @param Item $quoteItem
      * @return array
@@ -102,7 +102,7 @@ abstract class AbstractItemTest extends TestCase
     {
         $options = $this->productConfiguration->getOptions($quoteItem);
         foreach ($options as $key => $option) {
-            $options[$key]['xpath'] = "//dl[contains(@class, 'item-options')]"
+            $options[$key]['xpath'] = "//dl[contains(@class, 'Item-options')]"
                 . "/dt[contains(text(), '{$option['label']}')]"
                 . "/following-sibling::dd[1]";
 

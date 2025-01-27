@@ -520,7 +520,7 @@ class ProductPriceTest extends GraphQlAbstract
     }
 
     /**
-     * Check pricing for bundled product with one item having special price set and dynamic price turned off
+     * Check pricing for bundled product with one Item having special price set and dynamic price turned off
      *
      * @magentoApiDataFixture Magento/Bundle/_files/product_with_multiple_options_1.php
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)

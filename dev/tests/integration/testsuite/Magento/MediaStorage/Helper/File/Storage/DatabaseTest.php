@@ -14,7 +14,7 @@ use Magento\Framework\Filesystem;
 use Magento\Framework\App\Filesystem\DirectoryList;
 
 /**
- * Integration tests for Magento\MediaStorage\Helper\File\Storage\Database
+ * Integration tests for Magento\MediaStorage\Helper\File\Storage\DataPatch
  */
 class DatabaseTest extends \PHPUnit\Framework\TestCase
 {
@@ -50,7 +50,7 @@ class DatabaseTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * test for \Magento\MediaStorage\Model\File\Storage\Database::deleteFolder()
+     * test for \Magento\MediaStorage\Model\File\Storage\DataPatch::deleteFolder()
      *
      * @magentoDbIsolation disabled
      * @magentoDataFixture Magento/MediaStorage/_files/database_mode.php

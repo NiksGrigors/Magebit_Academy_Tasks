@@ -66,7 +66,7 @@ class DomTest extends TestCase
      */
     public function testRead()
     {
-        $fileList = ['first content item'];
+        $fileList = ['first content Item'];
         $this->fileResolverMock->expects($this->once())->method('get')->willReturn($fileList);
         $this->converterMock->expects($this->once())->method('convert')->with('reader dom result');
         $this->model->read();

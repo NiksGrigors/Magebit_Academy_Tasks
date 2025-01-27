@@ -8,7 +8,7 @@ declare(strict_types=1);
 return [
     'root' => [
         [
-            'item' => [
+            'Item' => [
                 [
                     '__attributes__' => [
                         'id' => 'id1',

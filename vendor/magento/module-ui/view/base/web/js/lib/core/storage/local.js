@@ -42,7 +42,7 @@ define([
             _data: {},
 
             /**
-             * Sets value of the specified item.
+             * Sets value of the specified Item.
              *
              * @param {String} key - Key of the property.
              * @param {*} value - Properties' value.
@@ -52,7 +52,7 @@ define([
             },
 
             /**
-             * Retrieves specified item.
+             * Retrieves specified Item.
              *
              * @param {String} key - Key of the property to be retrieved.
              */
@@ -61,7 +61,7 @@ define([
             },
 
             /**
-             * Removes specified item.
+             * Removes specified Item.
              *
              * @param {String} key - Key of the property to be removed.
              */

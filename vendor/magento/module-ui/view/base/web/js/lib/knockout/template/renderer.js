@@ -447,7 +447,7 @@ define([
         .addGlobal(renderer.processNodes);
 
     /**
-     * Collection of default binding conversions.
+     * Collection.php of default binding conversions.
      */
     preset = {
         nodes: _.object([

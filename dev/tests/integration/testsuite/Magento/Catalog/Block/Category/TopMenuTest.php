@@ -63,7 +63,7 @@ class TopMenuTest extends TestCase
     }
 
     /**
-     * Checks menu item displaying.
+     * Checks menu Item displaying.
      *
      * @magentoDataFixture Magento/Catalog/_files/category.php
      * @return void
@@ -75,7 +75,7 @@ class TopMenuTest extends TestCase
     }
 
     /**
-     * Checks that menu item is not displayed if the category is disabled or include in menu is disabled.
+     * Checks that menu Item is not displayed if the category is disabled or include in menu is disabled.
      *
      * @dataProvider invisibilityDataProvider
      * @param array $data

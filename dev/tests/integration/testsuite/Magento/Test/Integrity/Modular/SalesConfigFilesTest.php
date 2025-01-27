@@ -20,8 +20,8 @@ class SalesConfigFilesTest extends AbstractMergedConfigTest
         return [
             '/config/section' => 'name',
             '/config/section/group' => 'name',
-            '/config/section/group/item' => 'name',
-            '/config/section/group/item/renderer' => 'name',
+            '/config/section/group/Item' => 'name',
+            '/config/section/group/Item/renderer' => 'name',
             '/config/order/available_product_type' => 'name',
         ];
     }

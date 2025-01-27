@@ -84,7 +84,7 @@ class MassUnsubscribeTest extends AbstractBackendController
         $this->dispatch('backend/customer/index/massUnsubscribe');
         $this->assertRedirect($this->stringContains('backend/customer/index/index'));
         $this->assertSessionMessages(
-            $this->equalTo([(string)__('An item needs to be selected. Select and try again.')]),
+            $this->equalTo([(string)__('An Item needs to be selected. Select and try again.')]),
             MessageInterface::TYPE_ERROR
         );
     }

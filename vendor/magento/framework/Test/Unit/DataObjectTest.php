@@ -222,16 +222,16 @@ string',
     {
         $this->dataObject->setData('key1', 'value1');
         $this->dataObject->setData('key2', 'value2');
-        $xml = '<item>
+        $xml = '<Item>
 <key1><![CDATA[value1]]></key1>
 <key2><![CDATA[value2]]></key2>
-</item>
+</Item>
 ';
         $this->assertEquals($xml, $this->dataObject->toXml());
 
-        $xml = '<item>
+        $xml = '<Item>
 <key2><![CDATA[value2]]></key2>
-</item>
+</Item>
 ';
         $this->assertEquals($xml, $this->dataObject->toXml(['key2']));
 
@@ -248,20 +248,20 @@ string',
         $this->assertEquals($xml, $this->dataObject->toXml([], false));
 
         $xml = '<?xml version="1.0" encoding="UTF-8"?>
-<item>
+<Item>
 <key1><![CDATA[value1]]></key1>
 <key2><![CDATA[value2]]></key2>
-</item>
+</Item>
 ';
-        $this->assertEquals($xml, $this->dataObject->toXml([], 'item', true));
+        $this->assertEquals($xml, $this->dataObject->toXml([], 'Item', true));
 
         $xml = '<?xml version="1.0" encoding="UTF-8"?>
-<item>
+<Item>
 <key1>value1</key1>
 <key2>value2</key2>
-</item>
+</Item>
 ';
-        $this->assertEquals($xml, $this->dataObject->convertToXml([], 'item', true, false));
+        $this->assertEquals($xml, $this->dataObject->convertToXml([], 'Item', true, false));
     }
 
     /**

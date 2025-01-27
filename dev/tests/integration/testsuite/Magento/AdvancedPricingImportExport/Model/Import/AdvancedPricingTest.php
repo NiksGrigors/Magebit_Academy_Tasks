@@ -473,8 +473,8 @@ class AdvancedPricingTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(0, $errors->getErrorsCount(), 'Product import validation error');
         $this->model->importData();
 
-        $this->assertEquals(64, $this->model->getCreatedItemsCount(), 'Products create item count');
-        $this->assertEquals(0, $this->model->getUpdatedItemsCount(), 'Products update item count');
+        $this->assertEquals(64, $this->model->getCreatedItemsCount(), 'Products create Item count');
+        $this->assertEquals(0, $this->model->getUpdatedItemsCount(), 'Products update Item count');
 
         // Import advance pricing data from CSV file
         $this->model = $this->objectManager->create(

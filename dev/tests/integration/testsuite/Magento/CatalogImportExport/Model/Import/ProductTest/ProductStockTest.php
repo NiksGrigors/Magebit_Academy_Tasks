@@ -44,7 +44,7 @@ class ProductStockTest extends ProductTestBase
     }
 
     /**
-     * Test if stock item quantity properly saved after import
+     * Test if stock Item quantity properly saved after import
      *
      * @magentoDataFixture Magento/Catalog/_files/multiple_products.php
      */
@@ -74,7 +74,7 @@ class ProductStockTest extends ProductTestBase
     }
 
     /**
-     * Test that is_in_stock set to 0 when item quantity is 0
+     * Test that is_in_stock set to 0 when Item quantity is 0
      *
      * @magentoDataFixture Magento/Catalog/_files/multiple_products.php
      *

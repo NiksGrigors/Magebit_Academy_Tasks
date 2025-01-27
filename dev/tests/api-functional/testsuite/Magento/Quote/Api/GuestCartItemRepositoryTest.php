@@ -243,7 +243,7 @@ class GuestCartItemRepositoryTest extends WebapiAbstract
     }
 
     /**
-     * Verifies that store id for quote and quote item is being changed accordingly to the requested store code
+     * Verifies that store id for quote and quote Item is being changed accordingly to the requested store code
      *
      * @magentoApiDataFixture Magento/Checkout/_files/quote_with_items_saved.php
      * @magentoApiDataFixture Magento/Store/_files/second_store.php

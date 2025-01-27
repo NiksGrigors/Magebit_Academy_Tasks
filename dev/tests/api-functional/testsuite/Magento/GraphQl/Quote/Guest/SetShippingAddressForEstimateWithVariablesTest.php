@@ -84,7 +84,7 @@ class SetShippingAddressForEstimateWithVariablesTest extends GraphQlAbstract
     }
 
     /**
-     * Returns GraphQl mutation for adding item to cart
+     * Returns GraphQl mutation for adding Item to cart
      *
      * @return string
      */
@@ -134,7 +134,7 @@ MUTATION;
     }
 
     /**
-     * Returns GraphQl mutation for adding item to cart
+     * Returns GraphQl mutation for adding Item to cart
      *
      * @return string
      */

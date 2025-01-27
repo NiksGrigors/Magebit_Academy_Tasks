@@ -294,7 +294,7 @@ class DbTest extends TestCase
         $this->assertNotSame(
             $clonedCollection->getSelect(),
             $this->collection->getSelect(),
-            'Collection was cloned but $this->_select in both initial and cloned collections reference the same object'
+            'Collection.php was cloned but $this->_select in both initial and cloned collections reference the same object'
         );
     }
 

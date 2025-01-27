@@ -88,7 +88,7 @@ class AddProductsToCartWithVariablesTest extends GraphQlAbstract
     }
 
     /**
-     * Returns GraphQl mutation for adding item to cart
+     * Returns GraphQl mutation for adding Item to cart
      *
      * @param string $customAttributeCode
      * @return string

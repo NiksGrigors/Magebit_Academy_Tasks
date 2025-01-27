@@ -42,7 +42,7 @@ class OrderTest extends \PHPUnit\Framework\TestCase
         /** Ensure that search results are correct */
         $this->assertCount(count($expectedResult), $searchResults, 'Quantity of search result items is invalid.');
         foreach ($expectedResult as $itemIndex => $expectedItem) {
-            /** Validate URL to item */
+            /** Validate URL to Item */
             $orderIncrementId = substr($expectedItem['id'], strlen('order/1/#'));
             $this->assertStringContainsString(
                 "order/view/order_id/{$orderIdByIncrementId[$orderIncrementId]}",
@@ -52,12 +52,12 @@ class OrderTest extends \PHPUnit\Framework\TestCase
             $expectedItem['id'] = 'order/1/' . $orderIdByIncrementId[$orderIncrementId];
             unset($searchResults[$itemIndex]['url']);
 
-            /** Validate other item data */
+            /** Validate other Item data */
             foreach ($expectedItem as $field => $value) {
                 $this->assertEquals(
                     $value,
                     (string)$searchResults[$itemIndex][$field],
-                    "Data of item #$itemIndex is invalid."
+                    "Data of Item #$itemIndex is invalid."
                 );
             }
         }
@@ -98,7 +98,7 @@ class OrderTest extends \PHPUnit\Framework\TestCase
                     ]
                 ],
             ],
-            'Search by first name, first item only' => [
+            'Search by first name, first Item only' => [
                 'First',
                 10, // Items on page
                 1, // Page number
@@ -117,7 +117,7 @@ class OrderTest extends \PHPUnit\Framework\TestCase
                 1, // Page number
                 [],
             ],
-            'Search by last name, first item only' => [
+            'Search by last name, first Item only' => [
                 'last',
                 10, // Items on page
                 1, // Page number

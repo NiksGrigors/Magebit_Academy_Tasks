@@ -17,7 +17,7 @@ use Magento\Wishlist\Model\Item\OptionFactory;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Tests for wish list item model.
+ * Tests for wish list Item model.
  *
  * @magentoDbIsolation enabled
  * @magentoAppIsolation disabled

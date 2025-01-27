@@ -203,8 +203,8 @@ define('globalNavigation', [
         },
 
         /**
-         * Remove active class from current menu item
-         * Turn back active class to current page menu item
+         * Remove active class from current menu Item
+         * Turn back active class to current page menu Item
          */
         _blur: function (e) {
             var selectors = this.options.selectors,
@@ -216,7 +216,7 @@ define('globalNavigation', [
         },
 
         /**
-         * Add focus to active menu item
+         * Add focus to active menu Item
          */
         _keyboard: function (e) {
             var selectors = this.options.selectors,

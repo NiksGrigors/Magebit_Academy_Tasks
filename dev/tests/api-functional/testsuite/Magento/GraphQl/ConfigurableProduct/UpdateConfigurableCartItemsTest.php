@@ -128,7 +128,7 @@ QUERY;
     }
 
     /**
-     * Returns quote item by product SKU
+     * Returns quote Item by product SKU
      *
      * @param string $sku
      * @return Item|bool

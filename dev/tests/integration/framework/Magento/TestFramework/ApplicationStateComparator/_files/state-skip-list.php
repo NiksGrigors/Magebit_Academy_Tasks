@@ -40,8 +40,8 @@ return [
         Magento\SalesSequence\Model\ResourceModel\Meta::class => null,
         Magento\SalesSequence\Model\SequenceFactory::class => null,
         Magento\SalesSequence\Model\Manager::class => null,
-//        Magento\Quote\Model\ResourceModel\Collection\Interceptor::class => null,
-//        Magento\Quote\Model\ResourceModel\Quote\Collection\Interceptor::class => null,
+//        Magento\Quote\Model\ResourceModel\Collection.php\Interceptor::class => null,
+//        Magento\Quote\Model\ResourceModel\Quote\Collection.php\Interceptor::class => null,
 //        Magento\Quote\Api\Data\ProductOptionInterfaceFactory::class => null,
         Magento\Quote\Model\Quote\Item\Interceptor::class => null, // FIXME
         Magento\Quote\Model\Quote\Address\Interceptor::class => null, // FIXME
@@ -65,7 +65,7 @@ return [
 //        Magento\Catalog\Model\ResourceModel\Product\Indexer\Price\TierPrice::class => null,
 //        Magento\Catalog\Model\ResourceModel\Product\Indexer\Price\CompositeProductBatchSizeAdjuster::class => null,
 //        Magento\Catalog\Model\ResourceModel\Product\Indexer\Price\BatchSizeCalculator::class => null,
-//        Magento\Catalog\Model\ResourceModel\Product\Attribute\Collection::class => null,
+//        Magento\Catalog\Model\ResourceModel\Product\Attribute\Collection.php::class => null,
 //        Magento\Catalog\Model\Product\Attribute\Repository::class => null,
         Magento\Catalog\Model\ResourceModel\Product::class => null,
 //        Magento\Catalog\Model\ProductRepository::class => null,

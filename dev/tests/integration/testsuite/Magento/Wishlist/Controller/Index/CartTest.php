@@ -82,7 +82,7 @@ class CartTest extends AbstractController
         $this->customerSession->setCustomerId(1);
         $item = $this->getWishlistByCustomerId->getItemBySku(1, 'simple-1');
         $this->assertNotNull($item);
-        $this->performAddToCartRequest(['item' => $item->getId(), 'qty' => 3]);
+        $this->performAddToCartRequest(['Item' => $item->getId(), 'qty' => 3]);
         $message = sprintf("\n" . 'You added %s to your ' .
             '<a href="http://localhost/index.php/checkout/cart/">shopping cart</a>.', $item->getName());
         $this->assertSessionMessages($this->equalTo([(string)__($message)]), MessageInterface::TYPE_SUCCESS);
@@ -102,10 +102,10 @@ class CartTest extends AbstractController
         $this->customerSession->setCustomerId(1);
         $item = $this->getWishlistByCustomerId->getItemBySku(1, 'Configurable product');
         $this->assertNotNull($item);
-        $this->performAddToCartRequest(['item' => $item->getId(), 'qty' => 1]);
+        $this->performAddToCartRequest(['Item' => $item->getId(), 'qty' => 1]);
         $redirectUrl = sprintf("wishlist/index/configure/id/%s/product_id/%s", $item->getId(), $item->getProductId());
         $this->assertRedirect($this->stringContains($redirectUrl));
-        $message = 'You need to choose options for your item.';
+        $message = 'You need to choose options for your Item.';
         $this->assertSessionMessages($this->equalTo([(string)__($message)]), MessageInterface::TYPE_NOTICE);
     }
 
@@ -117,12 +117,12 @@ class CartTest extends AbstractController
     public function testAddNotExistingItemToCart(): void
     {
         $this->customerSession->setCustomerId(1);
-        $this->performAddToCartRequest(['item' => 989]);
+        $this->performAddToCartRequest(['Item' => 989]);
         $this->assertRedirect($this->stringContains('wishlist/index/'));
     }
 
     /**
-     * Add wishlist item with related Products to Cart.
+     * Add wishlist Item with related Products to Cart.
      *
      * @return void
      * @magentoDataFixture Magento/Wishlist/_files/wishlist_with_simple_product.php
@@ -142,7 +142,7 @@ class CartTest extends AbstractController
         $this->assertNotNull($item);
 
         $this->performAddToCartRequest([
-            'item' => $item->getId(),
+            'Item' => $item->getId(),
             'qty' => 1,
             'related_product' => implode(',', $relatedIds),
         ]);

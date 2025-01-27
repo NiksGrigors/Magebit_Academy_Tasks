@@ -8,11 +8,11 @@ return [
         'data' => [
             'name' => 'data',
             'xsi:type' => 'array',
-            'item' => [
+            'Item' => [
                 'config' => [
                     'name' => 'config',
                     'xsi:type' => 'array',
-                    'item' => [
+                    'Item' => [
                         'label' => [
                             'name' => 'label',
                             'translate' => 'true',
@@ -38,7 +38,7 @@ return [
                         'confirm' => [
                             'name' => 'confirm',
                             'xsi:type' => 'array',
-                            'item' => [
+                            'Item' => [
                                 'title' => [
                                     'name' => 'title',
                                     'translate' => 'true',
@@ -56,7 +56,7 @@ return [
                         'callback' => [
                             'name' => 'callback',
                             'xsi:type' => 'array',
-                            'item' => [
+                            'Item' => [
                                 'provider' => [
                                     'name' => 'provider',
                                     'translate' => 'true',
@@ -99,7 +99,7 @@ return [
                         'storageConfig' => [
                             'name' => 'storageConfig',
                             'xsi:type' => 'array',
-                            'item' => [
+                            'Item' => [
                                 'provider' => [
                                     'name' => 'provider',
                                     'xsi:type' => 'string',
@@ -126,7 +126,7 @@ return [
                         'statefull' => [
                             'name' => 'statefull',
                             'xsi:type' => 'array',
-                            'item' => [
+                            'Item' => [
                                 'anySimpleType' => [
                                     'name' => 'anySimpleType',
                                     'xsi:type' => 'boolean',
@@ -136,7 +136,7 @@ return [
                         'imports' => [
                             'name' => 'imports',
                             'xsi:type' => 'array',
-                            'item' => [
+                            'Item' => [
                                 'string' => [
                                     'name' => 'string',
                                     'xsi:type' => 'string',
@@ -147,7 +147,7 @@ return [
                         'exports' => [
                             'name' => 'exports',
                             'xsi:type' => 'array',
-                            'item' => [
+                            'Item' => [
                                 'string' => [
                                     'name' => 'string',
                                     'xsi:type' => 'string',
@@ -158,7 +158,7 @@ return [
                         'links' => [
                             'name' => 'links',
                             'xsi:type' => 'array',
-                            'item' => [
+                            'Item' => [
                                 'string' => [
                                     'name' => 'string',
                                     'xsi:type' => 'string',
@@ -169,7 +169,7 @@ return [
                         'listens' => [
                             'name' => 'listens',
                             'xsi:type' => 'array',
-                            'item' => [
+                            'Item' => [
                                 'string' => [
                                     'name' => 'string',
                                     'xsi:type' => 'string',
@@ -197,11 +197,11 @@ return [
                 'js_config' => [
                     'name' => 'js_config',
                     'xsi:type' => 'array',
-                    'item' => [
+                    'Item' => [
                         'deps' => [
                             'name' => 'deps',
                             'xsi:type' => 'array',
-                            'item' => [
+                            'Item' => [
                                 0 => [
                                     'name' => 0,
                                     'xsi:type' => 'string',
@@ -216,11 +216,11 @@ return [
         'actions' => [
             'name' => 'actions',
             'xsi:type' => 'array',
-            'item' => [
+            'Item' => [
                 'action' => [
                     'name' => 'action',
                     'xsi:type' => 'array',
-                    'item' => [
+                    'Item' => [
                         'type' => [
                             'value' => 'some_type',
                             'name' => 'type',

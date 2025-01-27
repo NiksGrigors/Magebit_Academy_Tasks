@@ -51,7 +51,7 @@ define([
             });
         });
 
-        describe('Check remove mini-cart item callback.', function () {
+        describe('Check remove mini-cart Item callback.', function () {
             beforeEach(function () {
                 spyOn(jQuery.fn, 'trigger');
                 spyOn(mocks['Magento_Customer/js/customer-data'], 'get').and.returnValue(cart);
@@ -61,8 +61,8 @@ define([
                 expect(sidebar._removeItemAfter).toBeDefined();
             });
 
-            it('Cart item is exists', function () {
-                var elem = $('<input>').data('cart-item', 5);
+            it('Cart Item is exists', function () {
+                var elem = $('<input>').data('cart-Item', 5);
 
                 sidebar._removeItemAfter(elem);
                 expect(mocks['Magento_Customer/js/customer-data'].get).toHaveBeenCalledWith('cart');
@@ -73,15 +73,15 @@ define([
                 });
             });
 
-            it('Cart item doesn\'t exists', function () {
-                var elem = $('<input>').data('cart-item', 100);
+            it('Cart Item doesn\'t exists', function () {
+                var elem = $('<input>').data('cart-Item', 100);
 
                 sidebar._removeItemAfter(elem);
                 expect(jQuery('body').trigger).not.toHaveBeenCalled();
             });
         });
 
-        describe('Check update item quantity callback.', function () {
+        describe('Check update Item quantity callback.', function () {
             beforeEach(function () {
                 spyOn(jQuery.fn, 'trigger');
                 spyOn(mocks['Magento_Customer/js/customer-data'], 'get').and.returnValue(cart);
@@ -91,8 +91,8 @@ define([
                 expect(sidebar._updateItemQtyAfter).toBeDefined();
             });
 
-            it('Cart item is exists', function () {
-                var elem = $('<input>').data('cart-item', 5);
+            it('Cart Item is exists', function () {
+                var elem = $('<input>').data('cart-Item', 5);
 
                 spyOn(sidebar, '_hideItemButton');
 
@@ -102,8 +102,8 @@ define([
                 expect(sidebar._hideItemButton).toHaveBeenCalledWith(elem);
             });
 
-            it('Cart item doesn\'t exists', function () {
-                var elem = $('<input>').data('cart-item', 100);
+            it('Cart Item doesn\'t exists', function () {
+                var elem = $('<input>').data('cart-Item', 100);
 
                 spyOn(sidebar, '_hideItemButton');
 

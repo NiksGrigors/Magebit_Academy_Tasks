@@ -24,11 +24,11 @@ class ParserTest extends TestCase
                 'param1' => ['name' => 'param1', 'value' => 'Param Value 1'],
                 'param2' => ['name' => 'param2', 'value' => 'Param Value 2'],
             ],
-            'item' => [
+            'Item' => [
                 'item1' => ['name' => 'item1', 'value' => 'Item Value 1'],
                 'item2' => [
                     'name' => 'item2',
-                    'item' => ['item3' => ['name' => 'item3', 'value' => 'Item Value 2.3']],
+                    'Item' => ['item3' => ['name' => 'item3', 'value' => 'Item Value 2.3']],
                 ],
             ],
         ];

@@ -60,7 +60,7 @@ class DataTest extends \Magento\TestFramework\TestCase\AbstractController
         $json = $this->_wishlistHelper->getMoveFromCartParams(11);
         $params = (array)json_decode($json);
         $data = (array)$params['data'];
-        $this->assertEquals('11', $data['item']);
+        $this->assertEquals('11', $data['Item']);
         $this->assertArrayHasKey('uenc', $data);
         $this->assertStringEndsWith('wishlist/index/fromcart/', $params['action']);
     }

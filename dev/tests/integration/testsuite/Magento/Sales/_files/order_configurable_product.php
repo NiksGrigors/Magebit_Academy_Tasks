@@ -63,7 +63,7 @@ $orderConfigurableItem->setProductType('configurable');
 $orderConfigurableItem->setOrder($order);
 /** @var \Magento\Sales\Api\OrderItemRepositoryInterface $orderItemsRepository */
 $orderItemsRepository = $objectManager->create(\Magento\Sales\Api\OrderItemRepositoryInterface::class);
-// Configurable item must be present in database to have its real ID to set parent id of simple product.
+// Configurable Item must be present in database to have its real ID to set parent id of simple product.
 $orderItemsRepository->save($orderConfigurableItem);
 
 if ($configurableProduct->getExtensionAttributes()

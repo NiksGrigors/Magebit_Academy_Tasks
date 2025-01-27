@@ -108,7 +108,7 @@ class ConfigTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Magento\CatalogGraphQl\Model\Config\AttributeReader has mutable state in
-     * Magento\CatalogGraphQl\Model\Resolver\Products\Attributes\Collection $collection, so we must reset it.
+     * Magento\CatalogGraphQl\Model\Resolver\Products\Attributes\Collection.php $collection, so we must reset it.
      *
      * @param $objectManager
      * @return void

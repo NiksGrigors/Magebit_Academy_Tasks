@@ -329,7 +329,7 @@ class ServiceInputProcessorTest extends TestCase
 
     public function testAssociativeArrayPropertiesWithItem()
     {
-        $data = ['associativeArray' => ['item' => 'value']];
+        $data = ['associativeArray' => ['Item' => 'value']];
         $result = $this->serviceInputProcessor->process(
             TestService::class,
             'associativeArray',
@@ -346,7 +346,7 @@ class ServiceInputProcessorTest extends TestCase
 
     public function testAssociativeArrayPropertiesWithItemArray()
     {
-        $data = ['associativeArray' => ['item' => ['value1','value2']]];
+        $data = ['associativeArray' => ['Item' => ['value1','value2']]];
         $result = $this->serviceInputProcessor->process(
             TestService::class,
             'associativeArray',

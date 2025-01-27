@@ -210,7 +210,7 @@ QUERY;
     }
 
     /**
-     * Returns GraphQl mutation for adding item to cart
+     * Returns GraphQl mutation for adding Item to cart
      *
      * @param string $maskedQuoteId
      * @param int $qty

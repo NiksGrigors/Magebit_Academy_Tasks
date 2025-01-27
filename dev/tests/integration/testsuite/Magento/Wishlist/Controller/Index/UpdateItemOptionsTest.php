@@ -19,7 +19,7 @@ use Magento\TestFramework\Wishlist\Model\GetWishlistByCustomerId;
 use Magento\Wishlist\Model\Item;
 
 /**
- * Test for update wish list item.
+ * Test for update wish list Item.
  *
  * @magentoDbIsolation enabled
  * @magentoAppArea frontend
@@ -148,7 +148,7 @@ class UpdateItemOptionsTest extends AbstractController
         $product = $this->productRepository->get('simple_ms_out_of_stock');
         $this->customerSession->setCustomerId(1);
         $this->performUpdateWishListItemRequest(['product' => $product->getId()]);
-        $message = $this->escaper->escapeHtml("We can't specify a wish list item.");
+        $message = $this->escaper->escapeHtml("We can't specify a wish list Item.");
         $this->assertSessionMessages($this->equalTo([(string)__($message)]), MessageInterface::TYPE_ERROR);
         $this->assertRedirect($this->stringContains('wishlist/index/index/wishlist_id/'));
     }
@@ -181,7 +181,7 @@ class UpdateItemOptionsTest extends AbstractController
     }
 
     /**
-     * Perform request update wish list item.
+     * Perform request update wish list Item.
      *
      * @param array $params
      * @return void
@@ -193,7 +193,7 @@ class UpdateItemOptionsTest extends AbstractController
     }
 
     /**
-     * Assert updated item in wish list.
+     * Assert updated Item in wish list.
      *
      * @param Item $item
      * @param array $expectedData

@@ -14,7 +14,7 @@ use Magento\Store\Model\StoreManagerInterface;
 use Magento\TestFramework\TestCase\AbstractBackendController;
 
 /**
- * Tests for configure quote item in customer shopping cart.
+ * Tests for configure quote Item in customer shopping cart.
  *
  * @magentoAppArea adminhtml
  */
@@ -123,7 +123,7 @@ class ConfigureTest extends AbstractBackendController
     }
 
     /**
-     * Dispatch configure quote item in customer shopping cart
+     * Dispatch configure quote Item in customer shopping cart
      * using backend/customer/cart_product_composite_cart/configure action.
      *
      * @param array $params

@@ -75,7 +75,7 @@ $orderItem->setProductId($product->getId())
     ->setProductType('simple')
     ->setName($product->getName())
     ->setSku($product->getSku())
-    ->setName('Test item');
+    ->setName('Test Item');
 /** @var  OrderInterface $order */
 $order = $objectManager->get(OrderInterfaceFactory::class)->create();
 $order->setIncrementId('100000333')

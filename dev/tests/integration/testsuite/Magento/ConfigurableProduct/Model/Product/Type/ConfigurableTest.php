@@ -431,7 +431,7 @@ class ConfigurableTest extends TestCase
     public function testGetSpecifyOptionMessage()
     {
         $this->assertEquals(
-            'You need to choose options for your item.',
+            'You need to choose options for your Item.',
             (string)$this->model->getSpecifyOptionMessage()
         );
     }

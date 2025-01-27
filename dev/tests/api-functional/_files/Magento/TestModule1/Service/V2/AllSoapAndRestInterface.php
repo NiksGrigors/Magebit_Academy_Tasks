@@ -10,7 +10,7 @@ use Magento\TestModule1\Service\V2\Entity\Item;
 interface AllSoapAndRestInterface
 {
     /**
-     * Get item.
+     * Get Item.
      *
      * @param int $id
      * @return \Magento\TestModule1\Service\V2\Entity\Item
@@ -18,7 +18,7 @@ interface AllSoapAndRestInterface
     public function item($id);
 
     /**
-     * Create item.
+     * Create Item.
      *
      * @param string $name
      * @return \Magento\TestModule1\Service\V2\Entity\Item
@@ -26,7 +26,7 @@ interface AllSoapAndRestInterface
     public function create($name);
 
     /**
-     * Update item.
+     * Update Item.
      *
      * @param \Magento\TestModule1\Service\V2\Entity\Item $entityItem
      * @return \Magento\TestModule1\Service\V2\Entity\Item
@@ -43,7 +43,7 @@ interface AllSoapAndRestInterface
     public function items($filters = [], $sortOrder = 'ASC');
 
     /**
-     * Delete an item.
+     * Delete an Item.
      *
      * @param int $id
      * @return \Magento\TestModule1\Service\V2\Entity\Item

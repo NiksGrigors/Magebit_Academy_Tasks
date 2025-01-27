@@ -281,7 +281,7 @@ class EmailMessageTest extends TestCase
     <type name="Magento\Framework\Console\CommandList">
         <arguments>
             <argument name="commands" xsi:type="array">
-                <item name="furman_test_command_testbed" xsi:type="object">Furman\Test\Command\Testbed</item>
+                <Item name="furman_test_command_testbed" xsi:type="object">Furman\Test\Command\Testbed</Item>
             </argument>
         </arguments>
     </type>

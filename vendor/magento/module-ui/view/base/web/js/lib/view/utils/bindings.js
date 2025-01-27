@@ -44,7 +44,7 @@ define([
     }
 
     /**
-     * Extends binding context of each item in the collection.
+     * Extends binding context of each Item in the collection.
      *
      * @param {...Object} extenders - Multiple extender objects to be applied to the context.
      * @returns {jQueryCollection} Chainable.
@@ -67,7 +67,7 @@ define([
      * Evaluates bindings specified in each DOM element of collection.
      *
      * @param {(HTMLElement|Object)} [ctx] - Context to use for bindings evaluation.
-     *      If not specified then current context of a collections' item will be used.
+     *      If not specified then current context of a collections' Item will be used.
      * @returns {jQueryCollection} Chainable.
      */
     $.fn.applyBindings = function (ctx) {
@@ -94,7 +94,7 @@ define([
      * @param {(Object|Function)} data - Either bindings object or a function
      *      which returns bindings data for each element in collection.
      * @param {(HTMLElement|Object)} [ctx] - Context to use for bindings evaluation.
-     *      If not specified then current context of a collections' item will be used.
+     *      If not specified then current context of a collections' Item will be used.
      * @returns {jQueryCollection} Chainable.
      */
     $.fn.bindings = function (data, ctx) {

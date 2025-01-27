@@ -117,7 +117,7 @@ class MassSubscribeTest extends \Magento\TestFramework\TestCase\AbstractBackendC
 
         $this->assertRedirect($this->stringStartsWith($this->baseControllerUrl));
         $this->assertSessionMessages(
-            self::equalTo(['An item needs to be selected. Select and try again.']),
+            self::equalTo(['An Item needs to be selected. Select and try again.']),
             MessageInterface::TYPE_ERROR
         );
     }

@@ -18,7 +18,7 @@ define([
         },
         defaultContext = require.s.contexts._,
         menuItem = $(
-            '<li class="level0 category-item">' +
+            '<li class="level0 category-Item">' +
             '<a href="http://localhost.com/cat1.html">Cat1</a>' +
             '</li>'
         )[0],

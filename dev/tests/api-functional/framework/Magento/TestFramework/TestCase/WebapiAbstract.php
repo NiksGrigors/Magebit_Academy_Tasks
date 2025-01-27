@@ -485,7 +485,7 @@ abstract class WebapiAbstract extends \PHPUnit\Framework\TestCase
      * Update application config data
      *
      * @param string $path Config path with the form "section/group/node"
-     * @param string|int|null $value Value of config item
+     * @param string|int|null $value Value of config Item
      * @param bool $cleanAppCache If TRUE application cache will be refreshed
      * @param bool $updateLocalConfig If TRUE local config object will be updated too
      * @param bool $restore If TRUE config value will be restored after test run

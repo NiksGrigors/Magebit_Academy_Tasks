@@ -134,7 +134,7 @@ define([
             expect(instance.data('mage-multiselect2').setCurrentPage).toHaveBeenCalledWith(2);
         });
 
-        it('multiselect2 item click', function () {
+        it('multiselect2 Item click', function () {
             var option = '<div><label><input type="checkbox" value="1"/><span>Label</span></label></div>',
                 checkbox;
 

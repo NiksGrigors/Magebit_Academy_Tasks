@@ -316,7 +316,7 @@ class ProductTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Verify that all stock item attribute values are exported (aren't equal to empty string)
+     * Verify that all stock Item attribute values are exported (aren't equal to empty string)
      *
      * @magentoAppIsolation enabled
      * @magentoDbIsolation enabled
@@ -354,7 +354,7 @@ class ProductTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Verify header columns (that stock item attributes column headers are present)
+     * Verify header columns (that stock Item attributes column headers are present)
      *
      * @param array $headerColumns
      * @return void
@@ -365,13 +365,13 @@ class ProductTest extends \PHPUnit\Framework\TestCase
             $this->assertStringContainsString(
                 $stockItemAttribute,
                 $headerColumns,
-                "Stock item attribute {$stockItemAttribute} is absent among header columns"
+                "Stock Item attribute {$stockItemAttribute} is absent among header columns"
             );
         }
     }
 
     /**
-     * Verify row data (stock item attribute values)
+     * Verify row data (stock Item attribute values)
      *
      * @param array $rowData
      * @return void
@@ -382,7 +382,7 @@ class ProductTest extends \PHPUnit\Framework\TestCase
             $this->assertNotSame(
                 '',
                 $rowData[$stockItemAttribute],
-                "Stock item attribute {$stockItemAttribute} value is empty string"
+                "Stock Item attribute {$stockItemAttribute} value is empty string"
             );
         }
     }

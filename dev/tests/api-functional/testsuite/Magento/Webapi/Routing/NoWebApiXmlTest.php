@@ -27,7 +27,7 @@ class NoWebApiXmlTest extends \Magento\Webapi\Routing\BaseService
     }
 
     /**
-     *  Test get item
+     *  Test get Item
      */
     public function testItem()
     {
@@ -59,7 +59,7 @@ class NoWebApiXmlTest extends \Magento\Webapi\Routing\BaseService
     }
 
     /**
-     *  Test create item
+     *  Test create Item
      */
     public function testCreate()
     {
@@ -76,7 +76,7 @@ class NoWebApiXmlTest extends \Magento\Webapi\Routing\BaseService
     }
 
     /**
-     *  Test update item
+     *  Test update Item
      */
     public function testUpdate()
     {
@@ -93,7 +93,7 @@ class NoWebApiXmlTest extends \Magento\Webapi\Routing\BaseService
     }
 
     /**
-     *  Test remove item
+     *  Test remove Item
      */
     public function testRemove()
     {

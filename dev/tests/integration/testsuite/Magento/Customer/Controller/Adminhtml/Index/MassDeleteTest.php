@@ -134,7 +134,7 @@ class MassDeleteTest extends AbstractBackendController
         return [
             [
                 'ids' => [],
-                'constraint' => self::equalTo(['An item needs to be selected. Select and try again.']),
+                'constraint' => self::equalTo(['An Item needs to be selected. Select and try again.']),
                 'messageType' => MessageInterface::TYPE_ERROR,
             ],
             [
@@ -144,7 +144,7 @@ class MassDeleteTest extends AbstractBackendController
             ],
             [
                 'ids' => null,
-                'constraint' => self::equalTo(['An item needs to be selected. Select and try again.']),
+                'constraint' => self::equalTo(['An Item needs to be selected. Select and try again.']),
                 'messageType' => MessageInterface::TYPE_ERROR,
             ]
         ];

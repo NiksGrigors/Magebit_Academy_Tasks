@@ -23,7 +23,7 @@ use Magento\TestFramework\Helper\Bootstrap;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Tests for stock item resource model
+ * Tests for stock Item resource model
  *
  * @see \Magento\CatalogInventory\Model\ResourceModel\Stock\Item
  */
@@ -251,7 +251,7 @@ class ItemTest extends TestCase
     }
 
     /**
-     * Update products stock item
+     * Update products stock Item
      *
      * @param array $productsStockData
      * @return void
@@ -267,7 +267,7 @@ class ItemTest extends TestCase
     }
 
     /**
-     * Assert products stock item
+     * Assert products stock Item
      *
      * @param array $expectedStockItems
      * @return void
@@ -278,12 +278,12 @@ class ItemTest extends TestCase
         foreach ($expectedStockItems as $sku => $expectedData) {
             $product = $this->productRepository->get($sku, false, null, true);
             $stockItem = $product->getExtensionAttributes()->getStockItem();
-            $this->assertEmpty(array_diff_assoc($expectedData, $stockItem->getData()), 'Actual stock item data not equals expected data.');
+            $this->assertEmpty(array_diff_assoc($expectedData, $stockItem->getData()), 'Actual stock Item data not equals expected data.');
         }
     }
 
     /**
-     * Assert low_stock_date value of products stock item
+     * Assert low_stock_date value of products stock Item
      *
      * @param array $expectedLowStockDate
      * @return void

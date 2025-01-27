@@ -19,7 +19,7 @@ use Magento\TestFramework\Quote\Model\GetQuoteByReservedOrderId;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test for quote item persister model.
+ * Test for quote Item persister model.
  *
  * @see \Magento\Quote\Model\Quote\Item\CartItemPersister
  * @magentoDbIsolation enabled
@@ -145,7 +145,7 @@ class CartItemPersisterTest extends TestCase
         $item->setItemId(989)->setQty(1);
         $this->expectExceptionObject(
             new NoSuchEntityException(
-                __('The %1 Cart doesn\'t contain the %2 item.', null, 989)
+                __('The %1 Cart doesn\'t contain the %2 Item.', null, 989)
             )
         );
         $this->model->save($quote, $item);

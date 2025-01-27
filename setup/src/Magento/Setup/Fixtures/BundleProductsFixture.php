@@ -184,7 +184,7 @@ class BundleProductsFixture extends Fixture
     }
 
     /**
-     * Get sku pattern for bundle product option item
+     * Get sku pattern for bundle product option Item
      *
      * @param string $bundleOptionSuffix
      * @return string

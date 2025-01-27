@@ -58,13 +58,13 @@ class AddToPackageTest extends TestCase
     public function testGetCommentsHtml(): void
     {
         $expectedNeedle = "packaging.setItemQtyCallback(function(itemId){
-            var item = $$('[name=\"shipment[items]['+itemId+']\"]')[0],
+            var Item = $$('[name=\"shipment[items]['+itemId+']\"]')[0],
                 itemTitle = $('order_item_' + itemId + '_title');
-            if (!itemTitle && !item) {
+            if (!itemTitle && !Item) {
                 return 0;
             }
-            if (item && !isNaN(item.value)) {
-                return item.value;
+            if (Item && !isNaN(Item.value)) {
+                return Item.value;
             }
         });";
         $this->assertStringContainsString($expectedNeedle, $this->getHtml());

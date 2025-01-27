@@ -197,7 +197,7 @@ class LoadBlockTest extends AbstractBackendController
         $this->session->setQuoteId($quote->getId());
         $post = $this->hydratePost([
             'update_items' => '1',
-            'item' => [
+            'Item' => [
                 $quote->getItemsCollection()->getFirstItem()->getId() => [
                     'qty' => '1',
                     'use_discount' => '1',
@@ -215,7 +215,7 @@ class LoadBlockTest extends AbstractBackendController
     }
 
     /**
-     * Check that Wishlist item is deleted after it has been added to Order.
+     * Check that Wishlist Item is deleted after it has been added to Order.
      *
      * @return void
      * @magentoDataFixture Magento/Wishlist/_files/wishlist_with_simple_product.php

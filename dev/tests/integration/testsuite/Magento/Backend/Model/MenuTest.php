@@ -38,7 +38,7 @@ class MenuTest extends \PHPUnit\Framework\TestCase
         /* @var $itemFactory \Magento\Backend\Model\Menu\Item\Factory */
         $itemFactory = $this->objectManager->create(\Magento\Backend\Model\Menu\Item\Factory::class);
 
-        // Add new item in top level
+        // Add new Item in top level
         $menu->add(
             $itemFactory->create(
                 [
@@ -64,17 +64,17 @@ class MenuTest extends \PHPUnit\Framework\TestCase
             'Magento_Backend::system2'
         );
 
-        // Modify existing menu item
+        // Modify existing menu Item
         $menu->get('Magento_Backend::system2')->setTitle('Base system')->setAction('admin/backend/system/base');
         // remove dependency from config
 
         // Change sort order
         $menu->reorder('Magento_Backend::system', 40);
 
-        // Remove menu item
+        // Remove menu Item
         $menu->remove('Magento_Backend::catalog_attribute');
 
-        // Move menu item
+        // Move menu Item
         $menu->move('Magento_Catalog::catalog_products', 'Magento_Backend::system2');
     }
 
@@ -88,7 +88,7 @@ class MenuTest extends \PHPUnit\Framework\TestCase
         /* @var \Magento\Backend\Model\Menu\Item\Factory $itemFactory */
         $itemFactory = $this->objectManager->create(\Magento\Backend\Model\Menu\Item\Factory::class);
 
-        // Add new item in top level
+        // Add new Item in top level
         $menu->add(
             $itemFactory->create(
                 [

@@ -18,7 +18,7 @@ use Magento\TestFramework\Helper\Bootstrap;
 class CreditmemoFactoryTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * Placeholder for order item id field.
+     * Placeholder for order Item id field.
      */
     const ORDER_ITEM_ID_PLACEHOLDER = 'id_item_';
 
@@ -119,7 +119,7 @@ class CreditmemoFactoryTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Prepare order item key.
+     * Prepare order Item key.
      *
      * @param string $key
      * @return int

@@ -247,7 +247,7 @@ class ShipmentTest extends \PHPUnit\Framework\TestCase
 
         $tracks = $block->getShipment()->getTracksCollection()->getItems();
         $this->assertEquals(1, count($tracks),
-            'There should be only one Tracking item in collection');
+            'There should be only one Tracking Item in collection');
 
         $track = array_pop($tracks);
         $this->assertEquals($shipment->getId(), $track->getParentId(),

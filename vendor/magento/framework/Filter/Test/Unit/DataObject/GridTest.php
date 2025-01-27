@@ -61,12 +61,12 @@ class GridTest extends TestCase
         $this->assertEquals(
             ['field1' => '(value11)', 'field2' => '[(value12)]'],
             $filteredGrid[0]->getData(),
-            'First grid item was filtered incorrectly.'
+            'First grid Item was filtered incorrectly.'
         );
         $this->assertEquals(
             ['field3' => '(value23)', 'field2' => '[(value22)]'],
             $filteredGrid[1]->getData(),
-            'Second grid item was filtered incorrectly.'
+            'Second grid Item was filtered incorrectly.'
         );
     }
 }

@@ -15,11 +15,11 @@ Resolver::getInstance()->requireDataFixture('Magento/SalesRule/_files/cart_rule_
 
 $objectManager = Bootstrap::getObjectManager();
 $salesRule = $objectManager->get(CollectionFactory::class)->create()
-    ->addFieldToFilter('name', 'Free shipping if item price >10')
+    ->addFieldToFilter('name', 'Free shipping if Item price >10')
     ->getFirstItem();
 $row =
     [
-        'name' => 'Free shipping for cart if item price >10',
+        'name' => 'Free shipping for cart if Item price >10',
         'is_active' => 1,
         'customer_group_ids' => [\Magento\Customer\Model\GroupManagement::NOT_LOGGED_IN_ID],
         'coupon_type' => Rule::COUPON_TYPE_NO_COUPON,

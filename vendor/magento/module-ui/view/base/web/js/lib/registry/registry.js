@@ -15,7 +15,7 @@ define([
     var privateData = new WeakMap();
 
     /**
-     * Extracts private item storage associated
+     * Extracts private Item storage associated
      * with a provided registry instance.
      *
      * @param {Object} container
@@ -184,21 +184,21 @@ define([
         constructor: Registry,
 
         /**
-         * Retrieves item from registry which matches specified search criteria.
+         * Retrieves Item from registry which matches specified search criteria.
          *
          * @param {(Object|String|Function|Array)} query - Search condition (see examples).
          * @param {Function} [callback] - Callback that will be invoked when
          *      all of the requested items are available.
          * @returns {*}
          *
-         * @example Requesting item by it's name.
+         * @example Requesting Item by it's name.
          *      var obj = {index: 'test', sample: true};
          *
          *      registry.set('first', obj);
          *      registry.get('first') === obj;
          *      => true
          *
-         * @example Requesting item with a specific properties.
+         * @example Requesting Item with a specific properties.
          *      registry.get('sample = 1, index = test') === obj;
          *      => true
          *      registry.get('sample = 0, index = foo') === obj;
@@ -209,11 +209,11 @@ define([
          *      => true;
          *
          * @example Providing custom search handler.
-         *      registry.get(function (item) { return item.sample === true; }) === obj;
+         *      registry.get(function (Item) { return Item.sample === true; }) === obj;
          *      => true
          *
          * @example Sample asynchronous request declaration.
-         *      registry.get('index = test', function (item) {});
+         *      registry.get('index = test', function (Item) {});
          *
          * @example Requesting multiple elements.
          *      registry.set('second', {index: 'test2'});
@@ -228,7 +228,7 @@ define([
         },
 
         /**
-         * Sets provided item to the registry.
+         * Sets provided Item to the registry.
          *
          * @param {String} id - Item's identifier.
          * @param {*} item - Item's data.
@@ -243,7 +243,7 @@ define([
         },
 
         /**
-         * Removes specified item from registry.
+         * Removes specified Item from registry.
          * Note that search query is not applicable.
          *
          * @param {String} id - Item's identifier.
@@ -280,7 +280,7 @@ define([
         },
 
         /**
-         * Checks that registry contains a provided item.
+         * Checks that registry contains a provided Item.
          *
          * @param {*} item - Item to be checked.
          * @returns {Boolean}
@@ -290,7 +290,7 @@ define([
         },
 
         /**
-         * Extracts identifier of an item if it's present in registry.
+         * Extracts identifier of an Item if it's present in registry.
          *
          * @param {*} item - Item whose identifier will be extracted.
          * @returns {String|Undefined}
@@ -337,7 +337,7 @@ define([
          *      module(function (component) {});
          *      => registry.get('name', function (component) {});
          *
-         * @example Requesting item and invoking it's method with specified parameters.
+         * @example Requesting Item and invoking it's method with specified parameters.
          *      module('trigger', true);
          *      => registry.get('name', function (component) {
          *          component.trigger(true);

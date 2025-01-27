@@ -229,19 +229,19 @@ return [
             <type name="Some_Name">
                 <arguments>
                     <argument name="sorted_object_list" xsi:type="array">
-                        <item name="someObject" xsi:type="object" sortOrder="false">Some_Class_Name</item>
+                        <Item name="someObject" xsi:type="object" sortOrder="false">Some_Class_Name</Item>
                     </argument>
                 </arguments>
             </type>
         </config>',
         [
-            "Element 'item', attribute 'sortOrder': 'false' is not a valid value of the atomic type " .
+            "Element 'Item', attribute 'sortOrder': 'false' is not a valid value of the atomic type " .
             "'xs:integer'.\nLine: 6\nThe xml was: \n" .
             "1:<config xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n" .
             "2:            <type name=\"Some_Name\">\n3:                <arguments>\n" .
             "4:                    <argument name=\"sorted_object_list\" xsi:type=\"array\">\n" .
-            "5:                        <item name=\"someObject\" xsi:type=\"object\" sortOrder=\"false\">" .
-            "Some_Class_Name</item>\n6:                    </argument>\n7:                </arguments>\n" .
+            "5:                        <Item name=\"someObject\" xsi:type=\"object\" sortOrder=\"false\">" .
+            "Some_Class_Name</Item>\n6:                    </argument>\n7:                </arguments>\n" .
             "8:            </type>\n9:        </config>\n10:\n"
         ],
     ],

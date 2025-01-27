@@ -65,7 +65,7 @@ define([
         $('<form>' +
             '<div id="media_gallery_content" class="gallery">' +
                 '<script id="media_gallery_content-template" data-template="image" type="text/x-magento-template">' +
-                    '<div class="image item <% if(data.disabled == 1){ %>hidden-for-front<% } %>" data-role="image">' +
+                    '<div class="image Item <% if(data.disabled == 1){ %>hidden-for-front<% } %>" data-role="image">' +
                         '<input type="hidden" name="product[media_gallery][images][<%- data.file_id %>][position]"' +
                         ' value="<%- data.position %>" data-form-part="product_form" class="position"/>' +
                         '<input type="hidden" name="product[media_gallery][images][<%- data.file_id %>][file]"' +

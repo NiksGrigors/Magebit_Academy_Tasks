@@ -117,14 +117,14 @@ class ServiceVersionV2Test extends \Magento\Webapi\Routing\BaseService
                 ],
                 [$firstItem, $secondItem],
             ],
-            'First item filter' => [[['field' => 'id', 'conditionType' => 'eq','value' => 1]], [$firstItem]],
-            'Second item filter' => [[['field' => 'id', 'conditionType' => 'eq','value' => 2]], [$secondItem]],
+            'First Item filter' => [[['field' => 'id', 'conditionType' => 'eq','value' => 1]], [$firstItem]],
+            'Second Item filter' => [[['field' => 'id', 'conditionType' => 'eq','value' => 2]], [$secondItem]],
             'Empty filter' => [[], [$firstItem, $secondItem]],
         ];
     }
 
     /**
-     *  Test update item
+     *  Test update Item
      */
     public function testUpdate()
     {

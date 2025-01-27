@@ -49,7 +49,7 @@ class ArrayTypeTest extends TestCase
     public function evaluateExceptionDataProvider()
     {
         return [
-            'non-array item' => [['item' => 'non-array']],
+            'non-array Item' => [['Item' => 'non-array']],
         ];
     }
 
@@ -77,7 +77,7 @@ class ArrayTypeTest extends TestCase
     {
         return [
             'empty array items' => [
-                ['item' => []],
+                ['Item' => []],
                 [],
             ],
             'absent array items' => [
@@ -86,7 +86,7 @@ class ArrayTypeTest extends TestCase
             ],
             'present array items' => [
                 [
-                    'item' => [
+                    'Item' => [
                         'key1' => ['value' => 'value 1'],
                         'key2' => ['value' => 'value 2'],
                         'key3' => ['value' => 'value 3'],
@@ -100,7 +100,7 @@ class ArrayTypeTest extends TestCase
             ],
             'sorted array items' => [
                 [
-                    'item' => [
+                    'Item' => [
                         'key1' => ['value' => 'value 1', 'sortOrder' => 50],
                         'key2' => ['value' => 'value 2'],
                         'key3' => ['value' => 'value 3', 'sortOrder' => 10],
@@ -116,7 +116,7 @@ class ArrayTypeTest extends TestCase
             ],
             'pre-sorted array items' => [
                 [
-                    'item' => [
+                    'Item' => [
                         'key1' => ['value' => 'value 1'],
                         'key4' => ['value' => 'value 4'],
                         'key2' => ['value' => 'value 2', 'sortOrder' => 10],
@@ -132,7 +132,7 @@ class ArrayTypeTest extends TestCase
             ],
             'sort order edge case values' => [
                 [
-                    'item' => [
+                    'Item' => [
                         'key1' => ['value' => 'value 1', 'sortOrder' => 101],
                         'key4' => ['value' => 'value 4'],
                         'key2' => ['value' => 'value 2', 'sortOrder' => -10],

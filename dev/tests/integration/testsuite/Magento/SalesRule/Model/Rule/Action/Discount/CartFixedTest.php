@@ -179,7 +179,7 @@ class CartFixedTest extends TestCase
     }
 
     /**
-     * Applies fixed discount amount on whole cart and quote and checks the quote model for item discounts
+     * Applies fixed discount amount on whole cart and quote and checks the quote model for Item discounts
      *
      * @magentoDbIsolation disabled
      * @magentoAppIsolation enabled

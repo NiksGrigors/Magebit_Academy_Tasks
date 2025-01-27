@@ -92,7 +92,7 @@ class ByStockItemTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test saving of stock item by product data via product repository
+     * Test saving of stock Item by product data via product repository
      */
     public function testSave()
     {
@@ -107,7 +107,7 @@ class ByStockItemTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test saving of manually created stock item (and set by extension attributes object) on product save via product
+     * Test saving of manually created stock Item (and set by extension attributes object) on product save via product
      * repository
      */
     public function testSaveManuallyCreatedStockItem()
@@ -126,7 +126,7 @@ class ByStockItemTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test automatically stock item creating on product save via product repository
+     * Test automatically stock Item creating on product save via product repository
      */
     public function testAutomaticallyStockItemCreating()
     {

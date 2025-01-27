@@ -69,7 +69,7 @@ foreach ($producLinks as $key => $variationId) {
 
     $info = $requestInfo[$key];
     $info['product'] = $simpleProductId;
-    $info['item'] = $simpleProduct;
+    $info['Item'] = $simpleProduct;
 
     $orderConfigurableParentItem = clone $orderConfigurableItem;
     $orderConfigurableParentItem->setProductOptions(['info_buyRequest' => $info]);

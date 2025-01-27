@@ -221,7 +221,7 @@ MUTATION;
     }
 
     /**
-     *  Query the cart to get the cart item id
+     *  Query the cart to get the cart Item id
      *
      * @param string $cartId
      * @return string

@@ -24,7 +24,7 @@ class CartTest extends \Magento\TestFramework\TestCase\AbstractController
         $session = $this->_objectManager->create(\Magento\Checkout\Model\Session::class);
 
         $quoteItem = $this->_getQuoteItemIdByProductId($session->getQuote(), 1);
-        $this->assertNotNull($quoteItem, 'Cannot get quote item for configurable product');
+        $this->assertNotNull($quoteItem, 'Cannot get quote Item for configurable product');
 
         $this->dispatch(
             'checkout/cart/configure/id/' . $quoteItem->getId() . '/product_id/' . $quoteItem->getProduct()->getId()

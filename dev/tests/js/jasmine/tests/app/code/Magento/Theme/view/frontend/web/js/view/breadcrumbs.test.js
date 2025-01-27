@@ -56,7 +56,7 @@ define([
             htmlContainer.breadcrumbs();
 
             expect($(htmlContainer).find('li').length).toBe(1);
-            expect($(htmlContainer).html()).toContain('<li class="item home">');
+            expect($(htmlContainer).html()).toContain('<li class="Item home">');
         });
     });
 });

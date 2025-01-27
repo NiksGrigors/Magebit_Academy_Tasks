@@ -232,7 +232,7 @@ QUERY;
     }
 
     /**
-     * Add out of stock product to cart with disabled quote item check
+     * Add out of stock product to cart with disabled quote Item check
      *
      * @magentoConfigFixture cataloginventory/options/enable_inventory_check 0
      * @magentoApiDataFixture Magento/GraphQl/Catalog/_files/simple_product.php
@@ -260,7 +260,7 @@ QUERY;
     }
 
     /**
-     * Add out of stock simple product to cart with disabled quote item check
+     * Add out of stock simple product to cart with disabled quote Item check
      *
      * @magentoConfigFixture cataloginventory/options/enable_inventory_check 1
      * @magentoApiDataFixture Magento/GraphQl/Quote/_files/guest/create_empty_cart.php
@@ -288,7 +288,7 @@ QUERY;
     }
 
     /**
-     * Add out of stock simple product to cart with disabled quote item check
+     * Add out of stock simple product to cart with disabled quote Item check
      *
      * @magentoConfigFixture cataloginventory/options/enable_inventory_check 0
      * @magentoApiDataFixture Magento/GraphQl/Quote/_files/guest/create_empty_cart.php

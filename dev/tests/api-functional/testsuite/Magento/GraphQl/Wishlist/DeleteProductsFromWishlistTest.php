@@ -54,11 +54,11 @@ class DeleteProductsFromWishlistTest extends GraphQlAbstract
         $this->assertEmpty($response['removeProductsFromWishlist']['user_errors'], 'User error is not empty');
         $wishlistResponse = $response['removeProductsFromWishlist']['wishlist'];
         $this->assertEquals(0, $wishlistResponse['items_count']);
-        $this->assertEmpty($wishlistResponse['items_v2']['items'], 'Wishlist item is not removed');
+        $this->assertEmpty($wishlistResponse['items_v2']['items'], 'Wishlist Item is not removed');
     }
 
     /**
-     * Test deleting the wishlist item of another customer
+     * Test deleting the wishlist Item of another customer
      *
      * @magentoConfigFixture default_store wishlist/general/active 1
      * @magentoApiDataFixture Magento/Wishlist/_files/two_wishlists_for_two_diff_customers.php
@@ -80,7 +80,7 @@ class DeleteProductsFromWishlistTest extends GraphQlAbstract
         self::assertNotEmpty($response['removeProductsFromWishlist']['wishlist']['items_v2']['items'], 'empty wish list items');
         self::assertCount(1, $response['removeProductsFromWishlist']['wishlist']['items_v2']['items']);
         self::assertEquals(
-            'The wishlist item with ID "' . $wishlistItem[0]['id'] . '" does not belong to the wishlist',
+            'The wishlist Item with ID "' . $wishlistItem[0]['id'] . '" does not belong to the wishlist',
             $response['removeProductsFromWishlist']['user_errors'][0]['message']
         );
     }

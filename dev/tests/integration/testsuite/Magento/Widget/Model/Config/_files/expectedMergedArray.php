@@ -16,7 +16,7 @@ return [
                 'value' => 'all_products',
                 'values' => [
                     'default' => ['value' => 'all_products', 'label' => 'All products'],
-                    'item' => ['value' => 'new_products', 'label' => 'New products'],
+                    'Item' => ['value' => 'new_products', 'label' => 'New products'],
                 ],
                 'visible' => '1',
                 'required' => '1',

@@ -286,7 +286,7 @@ class AddTest extends AbstractController
     }
 
     /**
-     * Perform request add item to wish list.
+     * Perform request add Item to wish list.
      *
      * @param array $params
      * @return void

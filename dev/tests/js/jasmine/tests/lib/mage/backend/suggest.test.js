@@ -355,7 +355,7 @@ define([
             expect(suggestInstance.valueField.val()[0]).toBe(uiHash.item.id.toString());
         });
 
-        it('Check suggest read item data', function () {
+        it('Check suggest read Item data', function () {
             var suggestInstance = $(suggestSelector).suggest({
                     template: '#test-template',
                     choiceTemplate: '<li/>'

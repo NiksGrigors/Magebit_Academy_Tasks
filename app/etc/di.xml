@@ -544,7 +544,7 @@
         </arguments>
     </virtualType>
     <!--
-    Array item can be of any type just like an argument, including array type itself, which creates circular dependency.
+    Array Item can be of any type just like an argument, including array type itself, which creates circular dependency.
     Proxy is used to resolve the circular dependency, so that array items undergo the same interpretation as arguments.
     -->
     <virtualType name="layoutArrayArgumentReaderInterpreterProxy" type="Magento\Framework\Data\Argument\InterpreterInterface\Proxy">

@@ -6,7 +6,7 @@
 namespace Magento\CatalogSearch\Model\ResourceModel\Fulltext;
 
 /**
- * Test class for \Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection.
+ * Test class for \Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection.php.
  * @magentoDbIsolation disabled
  */
 class CollectionTest extends \PHPUnit\Framework\TestCase

@@ -33,7 +33,7 @@ class DefaultAttributesTest extends AbstractEavTest
     public function testModifyData(): void
     {
         $expectedData = include __DIR__ . '/../_files/eav_expected_data_output.php';
-        // force load: ProductRepositoryInterface::getList does not add stock item, prices, categories to product
+        // force load: ProductRepositoryInterface::getList does not add stock Item, prices, categories to product
         $this->callModifyDataAndAssert($this->getProduct(true), $expectedData);
     }
 

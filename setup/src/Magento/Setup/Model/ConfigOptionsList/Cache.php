@@ -123,7 +123,7 @@ class Cache implements ConfigOptionsListInterface
                 self::INPUT_KEY_CACHE_BACKEND_REDIS_DATABASE,
                 TextConfigOption::FRONTEND_WIZARD_TEXT,
                 self::CONFIG_PATH_CACHE_BACKEND_DATABASE,
-                'Database number for the cache'
+                'DataPatch number for the cache'
             ),
             new TextConfigOption(
                 self::INPUT_KEY_CACHE_BACKEND_REDIS_PORT,

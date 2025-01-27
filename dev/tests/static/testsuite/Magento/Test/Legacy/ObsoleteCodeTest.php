@@ -384,7 +384,7 @@ class ObsoleteCodeTest extends \PHPUnit\Framework\TestCase
             '#->_setActiveMenu\([\'"]([\w\d/_]+)[\'"]\)#Ui',
             $content,
             'Backwards-incompatible change: method _setActiveMenu()' .
-            ' must be invoked with menu item identifier than xpath for menu item'
+            ' must be invoked with menu Item identifier than xpath for menu Item'
         );
     }
 

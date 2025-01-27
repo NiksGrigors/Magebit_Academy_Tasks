@@ -63,10 +63,10 @@ class MenuTest extends \PHPUnit\Framework\TestCase
         $menu = new \SimpleXMLElement($menuHtml);
 
         $item = $menu->xpath('/ul/li/a/span')[0];
-        $this->assertEquals('System', (string)$item, '"System" item is absent or located on wrong menu level.');
+        $this->assertEquals('System', (string)$item, '"System" Item is absent or located on wrong menu level.');
 
         $item = $menu->xpath('/ul//ul/li/strong/span')[0];
-        $this->assertEquals('Report', (string)$item, '"Report" item is absent or located on wrong menu level.');
+        $this->assertEquals('Report', (string)$item, '"Report" Item is absent or located on wrong menu level.');
 
         $liTitles = [
             'Private Sales',
@@ -80,7 +80,7 @@ class MenuTest extends \PHPUnit\Framework\TestCase
             $this->assertEquals(
                 $liTitles[$sortOrder],
                 (string)$item,
-                '"' . $liTitles[$sortOrder] . '" item is absent or located on wrong menu level.'
+                '"' . $liTitles[$sortOrder] . '" Item is absent or located on wrong menu level.'
             );
         }
         // test column break if submenu contain more than 12 node

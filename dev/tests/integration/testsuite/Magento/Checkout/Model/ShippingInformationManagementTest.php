@@ -91,7 +91,7 @@ class ShippingInformationManagementTest extends \PHPUnit\Framework\TestCase
             ->setQty(1)
             ->setQuoteId($quoteId);
 
-        // Add item to cart
+        // Add Item to cart
         $this->cartItemRepository->save($cartItem);
 
         $billingAddress = $shippingAddress = null;

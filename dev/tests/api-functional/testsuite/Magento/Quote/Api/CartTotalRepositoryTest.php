@@ -234,7 +234,7 @@ class CartTotalRepositoryTest extends WebapiAbstract
     }
 
     /**
-     * Fetch quote item totals data from quote
+     * Fetch quote Item totals data from quote
      *
      * @param \Magento\Quote\Model\Quote $quote
      * @return array

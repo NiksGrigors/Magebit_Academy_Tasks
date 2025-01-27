@@ -60,7 +60,7 @@ class UpdateProductsFromWishlistTest extends GraphQlAbstract
     }
 
     /**
-     * Test updating the wishlist item of another customer
+     * Test updating the wishlist Item of another customer
      *
      * @magentoConfigFixture default_store wishlist/general/active 1
      * @magentoApiDataFixture Magento/Customer/_files/two_customers.php
@@ -87,7 +87,7 @@ class UpdateProductsFromWishlistTest extends GraphQlAbstract
         self::assertCount(1, $response['updateProductsInWishlist']['wishlist']['items_v2']);
         self::assertNotEmpty($response['updateProductsInWishlist']['user_errors'], 'No user errors');
         self::assertEquals(
-            'The wishlist item with ID "' . $wishlistItem['id'] . '" does not belong to the wishlist',
+            'The wishlist Item with ID "' . $wishlistItem['id'] . '" does not belong to the wishlist',
             $response['updateProductsInWishlist']['user_errors'][0]['message']
         );
     }
@@ -114,7 +114,7 @@ class UpdateProductsFromWishlistTest extends GraphQlAbstract
         self::assertCount(1, $response['updateProductsInWishlist']['wishlist']['items_v2']);
         self::assertArrayHasKey('user_errors', $response['updateProductsInWishlist']);
         self::assertCount(1, $response['updateProductsInWishlist']['user_errors']);
-        $message = 'The quantity of a wishlist item cannot be 0';
+        $message = 'The quantity of a wishlist Item cannot be 0';
         self::assertEquals(
             $message,
             $response['updateProductsInWishlist']['user_errors'][0]['message']

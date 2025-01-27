@@ -121,7 +121,7 @@ class OrderRepositoryTest extends \PHPUnit\Framework\TestCase
         $this->giftMessageOrderRepository->save($order->getEntityId(), $this->message);
 
         $this->expectExceptionMessage(
-            "Gift messages can't be used for an empty order. Create an order, add an item, and try again."
+            "Gift messages can't be used for an empty order. Create an order, add an Item, and try again."
         );
     }
 

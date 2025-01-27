@@ -118,7 +118,7 @@ class MassDeleteTest extends AbstractBackendController
         $this->markTestSkipped('Test is blocked by issue MC-34495');
         $this->dispatchMassDeleteAction();
         $this->assertSessionMessages(
-            $this->equalTo('An item needs to be selected. Select and try again.'),
+            $this->equalTo('An Item needs to be selected. Select and try again.'),
             MessageInterface::TYPE_ERROR
         );
         $this->assertRedirect($this->stringContains('backend/catalog/product/index'));

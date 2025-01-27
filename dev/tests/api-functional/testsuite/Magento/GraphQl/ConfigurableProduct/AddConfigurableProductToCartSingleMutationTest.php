@@ -126,7 +126,7 @@ class AddConfigurableProductToCartSingleMutationTest extends GraphQlAbstract
         $response =  $this->graphQlMutation($query);
 
         self::assertEquals(
-            'You need to choose options for your item.',
+            'You need to choose options for your Item.',
             $response['addProductsToCart']['user_errors'][0]['message']
         );
     }

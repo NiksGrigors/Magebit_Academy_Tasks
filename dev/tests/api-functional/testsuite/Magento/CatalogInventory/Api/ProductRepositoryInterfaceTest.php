@@ -161,7 +161,7 @@ class ProductRepositoryInterfaceTest extends WebapiAbstract
     }
 
     /**
-     * Tests updating product stock item data when previously product was created without specified stock_item
+     * Tests updating product stock Item data when previously product was created without specified stock_item
      */
     public function testUpdatingQuantity()
     {

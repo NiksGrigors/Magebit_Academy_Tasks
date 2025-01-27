@@ -10,7 +10,7 @@ use Magento\TestModule2\Service\V1\Entity\Item;
 interface NoWebApiXmlInterface
 {
     /**
-     * Get an item.
+     * Get an Item.
      *
      * @param int $id
      * @return \Magento\TestModule2\Service\V1\Entity\Item
@@ -18,7 +18,7 @@ interface NoWebApiXmlInterface
     public function item($id);
 
     /**
-     * Create an item.
+     * Create an Item.
      *
      * @param string $name
      * @return \Magento\TestModule2\Service\V1\Entity\Item
@@ -26,7 +26,7 @@ interface NoWebApiXmlInterface
     public function create($name);
 
     /**
-     * Update an item.
+     * Update an Item.
      *
      * @param \Magento\TestModule2\Service\V1\Entity\Item $item
      * @return \Magento\TestModule2\Service\V1\Entity\Item

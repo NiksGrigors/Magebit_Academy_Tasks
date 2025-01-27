@@ -119,7 +119,7 @@ QUERY;
     }
 
     /**
-     * Returns quote item ID by product's SKU
+     * Returns quote Item ID by product's SKU
      *
      * @param string $sku
      * @return string

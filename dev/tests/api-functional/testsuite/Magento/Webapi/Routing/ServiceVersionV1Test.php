@@ -54,7 +54,7 @@ class ServiceVersionV1Test extends \Magento\Webapi\Routing\BaseService
     }
 
     /**
-     *  Test get item
+     *  Test get Item
      */
     public function testItem()
     {
@@ -72,7 +72,7 @@ class ServiceVersionV1Test extends \Magento\Webapi\Routing\BaseService
     }
 
     /**
-     *  Test get item with any type
+     *  Test get Item with any type
      * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
     public function testItemAnyType()
@@ -155,7 +155,7 @@ class ServiceVersionV1Test extends \Magento\Webapi\Routing\BaseService
     }
 
     /**
-     *  Test create item
+     *  Test create Item
      */
     public function testCreate()
     {
@@ -173,7 +173,7 @@ class ServiceVersionV1Test extends \Magento\Webapi\Routing\BaseService
     }
 
     /**
-     *  Test create item with missing proper resources
+     *  Test create Item with missing proper resources
      */
     public function testCreateWithoutResources()
     {
@@ -201,7 +201,7 @@ class ServiceVersionV1Test extends \Magento\Webapi\Routing\BaseService
     }
 
     /**
-     *  Test update item
+     *  Test update Item
      */
     public function testUpdate()
     {

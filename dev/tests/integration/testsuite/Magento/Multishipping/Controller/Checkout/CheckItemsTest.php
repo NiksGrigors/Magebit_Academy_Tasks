@@ -84,7 +84,7 @@ class CheckItemsTest extends \Magento\TestFramework\TestCase\AbstractController
         }
 
         $quoteItem = $this->quote->getItemByProduct($product);
-        $this->assertNotFalse($quoteItem, 'Cannot get quote item for simple product');
+        $this->assertNotFalse($quoteItem, 'Cannot get quote Item for simple product');
 
         $request = [];
         if (!empty($requestQuantity) && is_array($requestQuantity)) {

@@ -8,15 +8,15 @@ return [
         'data' => [
             'name' => 'data',
             'xsi:type' => 'array',
-            'item' => [
+            'Item' => [
                 'config' => [
                     'name' => 'config',
                     'xsi:type' => 'array',
-                    'item' => [
+                    'Item' => [
                         'childDefaults' => [
                             'name' => 'childDefaults',
                             'xsi:type' => 'array',
-                            'item' => [
+                            'Item' => [
                                 'anySimpleType' => [
                                     'name' => 'anySimpleType',
                                     'xsi:type' => 'boolean',
@@ -63,7 +63,7 @@ return [
                         'storageConfig' => [
                             'name' => 'storageConfig',
                             'xsi:type' => 'array',
-                            'item' => [
+                            'Item' => [
                                 'provider' => [
                                     'name' => 'provider',
                                     'xsi:type' => 'string',
@@ -90,7 +90,7 @@ return [
                         'statefull' => [
                             'name' => 'statefull',
                             'xsi:type' => 'array',
-                            'item' => [
+                            'Item' => [
                                 'anySimpleType' => [
                                     'name' => 'anySimpleType',
                                     'xsi:type' => 'boolean',
@@ -101,7 +101,7 @@ return [
                         'imports' => [
                             'name' => 'imports',
                             'xsi:type' => 'array',
-                            'item' => [
+                            'Item' => [
                                 'string' => [
                                     'name' => 'string',
                                     'xsi:type' => 'string',
@@ -112,7 +112,7 @@ return [
                         'exports' => [
                             'name' => 'exports',
                             'xsi:type' => 'array',
-                            'item' => [
+                            'Item' => [
                                 'string' => [
                                     'name' => 'string',
                                     'xsi:type' => 'string',
@@ -123,7 +123,7 @@ return [
                         'links' => [
                             'name' => 'links',
                             'xsi:type' => 'array',
-                            'item' => [
+                            'Item' => [
                                 'string' => [
                                     'name' => 'string',
                                     'xsi:type' => 'string',
@@ -134,7 +134,7 @@ return [
                         'listens' => [
                             'name' => 'listens',
                             'xsi:type' => 'array',
-                            'item' => [
+                            'Item' => [
                                 'string' => [
                                     'name' => 'string',
                                     'xsi:type' => 'string',
@@ -162,11 +162,11 @@ return [
                 'js_config' => [
                     'name' => 'js_config',
                     'xsi:type' => 'array',
-                    'item' => [
+                    'Item' => [
                         'deps' => [
                             'name' => 'deps',
                             'xsi:type' => 'array',
-                            'item' => [
+                            'Item' => [
                                 0 => [
                                     'name' => 0,
                                     'xsi:type' => 'string',

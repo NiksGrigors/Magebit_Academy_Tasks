@@ -189,7 +189,7 @@ QUERY;
             $addToWishlistResponse['addProductsToWishlist']['wishlist']['items_count'],
             'Count is greater than 0'
         );
-        $message = 'The quantity of a wish list item cannot be 0';
+        $message = 'The quantity of a wish list Item cannot be 0';
         $this->assertEquals(
             $message,
             $addToWishlistResponse['addProductsToWishlist']['user_errors'][0]['message']

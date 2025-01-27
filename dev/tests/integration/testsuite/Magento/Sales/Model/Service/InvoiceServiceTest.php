@@ -165,7 +165,7 @@ class InvoiceServiceTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Associate product qty to invoice to order item id.
+     * Associate product qty to invoice to order Item id.
      *
      * @param Order $order
      * @param array $qtyToInvoice

@@ -252,7 +252,7 @@ define([
 
                     ko.utils.setOptionNodeSelectionState(newOptions.value, isSelected);
 
-                    // If this option was changed from being selected during a single-item update, notify the change
+                    // If this option was changed from being selected during a single-Item update, notify the change
                     if (itemUpdate && !isSelected) {
                         ko.dependencyDetection.ignore(ko.utils.triggerEvent, null, [element, 'change']);
                     }

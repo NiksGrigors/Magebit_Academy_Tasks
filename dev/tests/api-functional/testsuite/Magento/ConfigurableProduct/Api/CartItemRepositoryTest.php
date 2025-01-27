@@ -75,7 +75,7 @@ class CartItemRepositoryTest extends WebapiAbstract
     public function testAddProductWithIncorrectOptions()
     {
         $this->expectException(\Exception::class);
-        $this->expectExceptionMessage('You need to choose options for your item.');
+        $this->expectExceptionMessage('You need to choose options for your Item.');
 
         /** @var \Magento\Quote\Model\Quote $quote */
         $quote = $this->objectManager->create(\Magento\Quote\Model\Quote::class);
@@ -110,7 +110,7 @@ class CartItemRepositoryTest extends WebapiAbstract
     public function testUpdateIncorrectItem()
     {
         $this->expectException(\Exception::class);
-        $this->expectExceptionMessage('The %1 Cart doesn\'t contain the %2 item.');
+        $this->expectExceptionMessage('The %1 Cart doesn\'t contain the %2 Item.');
 
         $qty = 1;
         /** @var \Magento\Quote\Model\Quote  $quote */

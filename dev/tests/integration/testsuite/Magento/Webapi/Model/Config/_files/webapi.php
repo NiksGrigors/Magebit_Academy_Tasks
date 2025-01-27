@@ -7,12 +7,12 @@ return [
     'services' => [\Magento\TestModuleMSC\Api\AllSoapAndRestInterface::class => [
             'V1' => [
                 'methods' => [
-                    'item' => [
+                    'Item' => [
                         'resources' => [
                             'Magento_TestModuleMSC::resource1',
                         ],
                         'secure' => false,
-                        'realMethod' => 'item',
+                        'realMethod' => 'Item',
                         'parameters' => [],
                         'input-array-size-limit' => null,
                     ],
@@ -44,12 +44,12 @@ return [
         ], \Magento\TestModule1\Service\V1\AllSoapAndRestInterface::class => [
             'V1' => [
                 'methods' => [
-                    'item' => [
+                    'Item' => [
                         'resources' => [
                             'Magento_Test1::resource1',
                         ],
                         'secure' => false,
-                        'realMethod' => 'item',
+                        'realMethod' => 'Item',
                         'parameters' => [],
                         'input-array-size-limit' => null,
                     ],
@@ -58,7 +58,7 @@ return [
                             'Magento_Test1::default',
                         ],
                         'secure' => false,
-                        'realMethod' => 'item',
+                        'realMethod' => 'Item',
                         'parameters' => [
                             'id' => [
                                 'force' => true,
@@ -86,13 +86,13 @@ return [
         ], \Magento\TestModule1\Service\V2\AllSoapAndRestInterface::class => [
             'V2' => [
                 'methods' => [
-                    'item' => [
+                    'Item' => [
                         'resources' => [
                             'Magento_Test1::resource1',
                             'Magento_Test1::resource2',
                         ],
                         'secure' => false,
-                        'realMethod' => 'item',
+                        'realMethod' => 'Item',
                         'parameters' => [],
                         'input-array-size-limit' => null,
                     ],
@@ -141,7 +141,7 @@ return [
                 'secure' => false,
                 'service' => [
                     'class' => \Magento\TestModuleMSC\Api\AllSoapAndRestInterface::class,
-                    'method' => 'item',
+                    'method' => 'Item',
                 ],
                 'resources' => [
                     'Magento_TestModuleMSC::resource1' => true,
@@ -169,7 +169,7 @@ return [
                 'secure' => false,
                 'service' => [
                     'class' => \Magento\TestModule1\Service\V1\AllSoapAndRestInterface::class,
-                    'method' => 'item',
+                    'method' => 'Item',
                 ],
                 'resources' => [
                     'Magento_Test1::resource1' => true,
@@ -183,7 +183,7 @@ return [
                 'secure' => false,
                 'service' => [
                     'class' => \Magento\TestModule1\Service\V1\AllSoapAndRestInterface::class,
-                    'method' => 'item',
+                    'method' => 'Item',
                 ],
                 'resources' => [
                     'Magento_Test1::default' => true,
@@ -219,7 +219,7 @@ return [
                 'secure' => false,
                 'service' => [
                     'class' => \Magento\TestModule1\Service\V2\AllSoapAndRestInterface::class,
-                    'method' => 'item',
+                    'method' => 'Item',
                 ],
                 'resources' => [
                     'Magento_Test1::resource1' => true,

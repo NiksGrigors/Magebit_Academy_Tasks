@@ -237,7 +237,7 @@ class BundleProductGenerator
     }
 
     /**
-     * Generate value of simple product id which is used for $entityNumber bundle product as option item
+     * Generate value of simple product id which is used for $entityNumber bundle product as option Item
      *
      * @param int $previousProductId
      * @param int $entityNumber

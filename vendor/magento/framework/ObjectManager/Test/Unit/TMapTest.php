@@ -79,7 +79,7 @@ class TMapTest extends TestCase
     public function testEdit()
     {
         $expectedKeysOrder = [
-            'item',
+            'Item',
             4,
             'item2',
             5
@@ -122,13 +122,13 @@ class TMapTest extends TestCase
         /**
             [
                 0 => ['TClass', 'TClass', 'TClass'],
-                'item' => ['TClassVirtual', 'TClassVirtual', 'TClass'],
+                'Item' => ['TClassVirtual', 'TClassVirtual', 'TClass'],
                 3 => ['TInterface', 'TClassVirtual', 'TClass']
             ];
         */
         $testClasses = [
             0 => 'TClass',
-            'item' => 'TClassVirtual',
+            'Item' => 'TClassVirtual',
             3 => 'TInterface'
         ];
 

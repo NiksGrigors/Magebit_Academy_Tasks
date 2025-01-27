@@ -7,11 +7,11 @@
 define([
     'underscore',
     'uiRegistry',
-    'Magento_Ui/js/form/components/collection/item'
+    'Magento_Ui/js/form/components/collection/Item'
 ], function (_, registry, Constr) {
     'use strict';
 
-    describe('Magento_Ui/js/form/components/collection/item', function () {
+    describe('Magento_Ui/js/form/components/collection/Item', function () {
         var obj = new Constr({
             provider: 'provName',
             name: '',

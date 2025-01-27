@@ -110,13 +110,13 @@ class EditTest extends TestCase
             $this->assertEquals(
                 'Product:',
                 $productLinkBlock->getLabel(),
-                'Child block with product link has invalid item label'
+                'Child block with product link has invalid Item label'
             );
 
             $this->assertEquals(
                 $expected['product_link']['name'],
                 $productLinkBlock->getItemName(),
-                'Child block with product link has invalid item name'
+                'Child block with product link has invalid Item name'
             );
 
             $this->assertMatchesRegularExpression(
@@ -141,13 +141,13 @@ class EditTest extends TestCase
             $this->assertEquals(
                 'Category:',
                 $categoryLinkBlock->getLabel(),
-                'Child block with category link has invalid item label'
+                'Child block with category link has invalid Item label'
             );
 
             $this->assertEquals(
                 $expected['category_link']['name'],
                 $categoryLinkBlock->getItemName(),
-                'Child block with category link has invalid item name'
+                'Child block with category link has invalid Item name'
             );
 
             $this->assertMatchesRegularExpression(

@@ -118,23 +118,23 @@ QUERY;
             "there are should be $totalCount products in price range $priceFilter"
         );
 
-        // prepare first and last item from response for assertions
+        // prepare first and last Item from response for assertions
         $responseFirstItem = reset($response['products']['items']);
         $responseLastItem = end($response['products']['items']);
-        // check are there price in the first item
-        self::assertArrayHasKey('price', $responseFirstItem, 'product item must have price');
-        // check are there price in for the last item
-        self::assertArrayHasKey('price', $responseLastItem, 'product item must have price');
+        // check are there price in the first Item
+        self::assertArrayHasKey('price', $responseFirstItem, 'product Item must have price');
+        // check are there price in for the last Item
+        self::assertArrayHasKey('price', $responseLastItem, 'product Item must have price');
 
-        // prepare first and last item price value from response for assertions
+        // prepare first and last Item price value from response for assertions
         $responseFirstItemPriceValue = $responseFirstItem['price']['minimalPrice']['amount']['value'] ?? null;
         $responseLastItemPriceValue = $responseLastItem['price']['minimalPrice']['amount']['value'] ?? null;
-        // check are there price value in for the first item
-        self::assertNotNull($responseFirstItemPriceValue, 'first product item must have price value');
-        // check are there price value in for the first item
-        self::assertNotNull($responseLastItemPriceValue, 'last product item must have price value');
+        // check are there price value in for the first Item
+        self::assertNotNull($responseFirstItemPriceValue, 'first product Item must have price value');
+        // check are there price value in for the first Item
+        self::assertNotNull($responseLastItemPriceValue, 'last product Item must have price value');
 
-        // check price value for the first item in return
+        // check price value for the first Item in return
         self::assertEquals(
             $expectedFirstItemPriceValue,
             $responseFirstItemPriceValue,
@@ -144,7 +144,7 @@ QUERY;
             )
         );
 
-        // check price value for the last item in return
+        // check price value for the last Item in return
         self::assertEquals(
             $expectedLastItemPriceValue,
             $responseLastItemPriceValue,

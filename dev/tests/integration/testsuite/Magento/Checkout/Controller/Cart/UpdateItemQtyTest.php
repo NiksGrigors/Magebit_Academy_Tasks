@@ -70,7 +70,7 @@ class UpdateItemQtyTest extends \Magento\TestFramework\TestCase\AbstractControll
             ->getQuote()
             ->getItemByProduct($product);
 
-        $this->assertNotNull($quoteItem, 'Cannot get quote item for simple product');
+        $this->assertNotNull($quoteItem, 'Cannot get quote Item for simple product');
 
         $request = [];
         if (!empty($requestQuantity) && is_array($requestQuantity)) {

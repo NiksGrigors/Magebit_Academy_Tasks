@@ -42,7 +42,7 @@ class RetrieveOrdersWithBundleProductOptionsTest extends GraphQlAbstract
     }
 
     /**
-     * Test customer order details for bundle product single child item
+     * Test customer order details for bundle product single child Item
      *
      * @magentoApiDataFixture Magento/Customer/_files/customer.php
      * @magentoApiDataFixture Magento/Bundle/_files/bundle_product_single_dropdown_option.php

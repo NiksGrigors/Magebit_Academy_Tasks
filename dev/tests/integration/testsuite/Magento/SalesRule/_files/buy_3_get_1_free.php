@@ -25,7 +25,7 @@ $salesRule->setData(
         'discount_amount' => 1,
         'discount_step' => 3,
         'stop_rules_processing' => 0,
-        'store_labels' => [0 => ' Get 1 item free for every 3 you buy'],
+        'store_labels' => [0 => ' Get 1 Item free for every 3 you buy'],
         'website_ids' => [
             $objectManager->get(StoreManagerInterface::class)->getWebsite()->getId(),
         ],

@@ -29,14 +29,14 @@ $creditmemo->setIncrementId('100000002');
 $creditmemo->save();
 
 $orderItem = current($order->getAllItems());
-$orderItem->setName('Test item')
+$orderItem->setName('Test Item')
     ->setQtyRefunded(1)
     ->setQtyInvoiced(10)
     ->setOriginalPrice(20);
 
 $creditItem = $objectManager->get(Item::class);
 $creditItem->setCreditmemo($creditmemo)
-    ->setName('Creditmemo item')
+    ->setName('Creditmemo Item')
     ->setOrderItemId($orderItem->getId())
     ->setQty(1)
     ->setPrice(20)

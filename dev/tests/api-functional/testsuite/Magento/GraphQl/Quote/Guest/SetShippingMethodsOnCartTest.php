@@ -319,7 +319,7 @@ QUERY;
     {
         $this->expectException(\Exception::class);
         $this->expectExceptionMessage(
-            'The shipping method can\'t be set for an empty cart. Add an item to cart and try again.'
+            'The shipping method can\'t be set for an empty cart. Add an Item to cart and try again.'
         );
 
         $maskedQuoteId = $this->getMaskedQuoteIdByReservedOrderId->execute('test_quote');

@@ -15,7 +15,7 @@ $registry = $objectManager->get(\Magento\Framework\Registry::class);
 $salesRule = $registry->registry('cart_rule_free_shipping');
 $row =
     [
-        'name' => 'Free shipping if item weight <= 1',
+        'name' => 'Free shipping if Item weight <= 1',
         'conditions' => [
             1 =>
                 [

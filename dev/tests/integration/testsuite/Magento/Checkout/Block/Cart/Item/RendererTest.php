@@ -102,15 +102,15 @@ class RendererTest extends TestCase
         $product = $this->productRepository->get('simple_with_custom_option_text_area');
 
         $quoteItem = $this->_getQuoteItemIdByProductId($quote, $product->getId());
-        $this->assertNotNull($quoteItem, 'Cannot get quote item for simple product with custom option text area');
+        $this->assertNotNull($quoteItem, 'Cannot get quote Item for simple product with custom option text area');
 
-        $template = 'Magento_Checkout::cart/item/default.phtml';
+        $template = 'Magento_Checkout::cart/Item/default.phtml';
         $this->renderer->setTemplate($template);
         $this->renderer->setItem($quoteItem);
 
         $priceBlock = $this->objectManager->create(\Magento\Checkout\Block\Item\Price\Renderer::class);
-        $this->renderer->getLayout()->setBlock('checkout.item.price.unit', $priceBlock);
-        $this->renderer->getLayout()->setBlock('checkout.item.price.row', $priceBlock);
+        $this->renderer->getLayout()->setBlock('checkout.Item.price.unit', $priceBlock);
+        $this->renderer->getLayout()->setBlock('checkout.Item.price.row', $priceBlock);
         $html = $this->renderer->toHtml();
 
         $this->assertMatchesRegularExpression(<<<EOT

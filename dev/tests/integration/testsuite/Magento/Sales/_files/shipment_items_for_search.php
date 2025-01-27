@@ -29,35 +29,35 @@ $payment->setBlockMock($paymentInfoBlock);
 
 $items = [
     [
-        'name' => 'item 1',
+        'name' => 'Item 1',
         'base_price' => 10,
         'price' => 10,
         'row_total' => 10,
         'product_type' => 'simple',
     ],
     [
-        'name' => 'item 2',
+        'name' => 'Item 2',
         'base_price' => 20,
         'price' => 20,
         'row_total' => 20,
         'product_type' => 'simple',
     ],
     [
-        'name' => 'item 3',
+        'name' => 'Item 3',
         'base_price' => 30,
         'price' => 30,
         'row_total' => 30,
         'product_type' => 'simple',
     ],
     [
-        'name' => 'item 4',
+        'name' => 'Item 4',
         'base_price' => 40,
         'price' => 40,
         'row_total' => 40,
         'product_type' => 'simple',
     ],
     [
-        'name' => 'item 5',
+        'name' => 'Item 5',
         'base_price' => 50,
         'price' => 50,
         'row_total' => 50,

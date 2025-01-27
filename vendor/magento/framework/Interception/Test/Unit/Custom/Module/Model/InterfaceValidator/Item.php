@@ -14,6 +14,6 @@ class Item
      */
     public function getItem()
     {
-        return 'item';
+        return 'Item';
     }
 }

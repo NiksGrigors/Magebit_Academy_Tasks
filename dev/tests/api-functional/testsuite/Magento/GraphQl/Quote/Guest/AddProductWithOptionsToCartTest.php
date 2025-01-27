@@ -73,7 +73,7 @@ class AddProductWithOptionsToCartTest extends GraphQlAbstract
             'custom-option' . '/' . $option[0]->getData()['option_id']
         );
 
-        // Assert if product options for item added to the cart
+        // Assert if product options for Item added to the cart
         // are present in mutation response after product with selected option was added
         $mutation = $this->getAddProductWithOptionMutation($cartId, $sku, $productOptions[0]['uid']);
         $response = $this->graphQlMutation($mutation);
@@ -87,7 +87,7 @@ class AddProductWithOptionsToCartTest extends GraphQlAbstract
             $this->getExpectedResponse($optionUid, $productOptions)
         );
 
-        // Assert if product options for item in the cart are present in the response
+        // Assert if product options for Item in the cart are present in the response
         $query = $this->getCartQuery($cartId);
         $response = $this->graphQlQuery($query);
         $this->assertEquals(
@@ -264,7 +264,7 @@ QRY;
     }
 
     /**
-     * Returns query to get cart with information about item and associated product with options
+     * Returns query to get cart with information about Item and associated product with options
      *
      * @param string $cartId
      * @return string

@@ -175,7 +175,7 @@ class RetrieveOrdersByOrderNumberTest extends GraphQlAbstract
         $this->assertResponseFields($customerOrderResponse[0]["payment_methods"], $paymentMethodAssertionMap);
         $this->assertEquals(10.75, $customerOrderResponse[0]['items'][0]['product_sale_price']['value']);
         $this->assertEquals(7.5, $customerOrderResponse[0]['total']['taxes'][0]['rate']);
-        // Asserting discounts on order item level
+        // Asserting discounts on order Item level
         $this->assertEquals(4, $customerOrderResponse[0]['items'][0]['discounts'][0]['amount']['value']);
         $this->assertEquals('USD', $customerOrderResponse[0]['items'][0]['discounts'][0]['amount']['currency']);
         $this->assertEquals(
@@ -252,7 +252,7 @@ class RetrieveOrdersByOrderNumberTest extends GraphQlAbstract
         $this->setPaymentMethod($cartId, $paymentMethod);
         $orderNumber = $this->placeOrder($cartId);
         $customerOrderResponse = $this->getCustomerOrderQuery($orderNumber);
-        // Asserting discounts on order item level
+        // Asserting discounts on order Item level
         $this->assertEquals(4, $customerOrderResponse[0]['items'][0]['discounts'][0]['amount']['value']);
         $this->assertEquals('USD', $customerOrderResponse[0]['items'][0]['discounts'][0]['amount']['currency']);
         $this->assertEquals(

@@ -386,7 +386,7 @@ class OrdersFixture extends Fixture
 
                 foreach ([Configurable::TYPE_CODE, self::BIG_CONFIGURABLE_TYPE] as $type) {
                     for ($i = 0; $i < $productCount[$type]; $i++) {
-                        // Generate parent item
+                        // Generate parent Item
                         $parentItemId = $itemIdSequence->current();
                         $itemData = [
                             '%productId%' => $productId($entityId, $i, $type),
@@ -418,7 +418,7 @@ class OrdersFixture extends Fixture
                         ]);
                         $itemIdSequence->next();
 
-                        // Generate child item
+                        // Generate child Item
                         $itemData = [
                             '%productId%' => $productChildId($entityId, $i, $type),
                             '%sku%' => $productSku($entityId, $i, $type),

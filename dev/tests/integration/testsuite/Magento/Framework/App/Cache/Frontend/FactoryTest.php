@@ -44,7 +44,7 @@ class FactoryTest extends TestCase
 
     /**
      * Check RemoteSynchronizedCache
-     * Removing any cache item in the RemoteSynchronizedCache must invalidate all cache items
+     * Removing any cache Item in the RemoteSynchronizedCache must invalidate all cache items
      *
      * @magentoAppIsolation enabled
      * @magentoDbIsolation enabled

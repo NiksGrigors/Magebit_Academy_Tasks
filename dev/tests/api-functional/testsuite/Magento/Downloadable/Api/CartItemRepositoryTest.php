@@ -135,7 +135,7 @@ class CartItemRepositoryTest extends WebapiAbstract
         $cartId = $quote->getId();
         $product = $this->objectManager->create(\Magento\Catalog\Model\Product::class);
         $product->load($product->getIdBySku('downloadable-product'));
-        // use ID of the first quote item
+        // use ID of the first quote Item
         $itemId = $quote->getAllItems()[0]->getId();
         $serviceInfo = [
             'rest' => [
@@ -194,7 +194,7 @@ class CartItemRepositoryTest extends WebapiAbstract
         $cartId = $quote->getId();
         $product = $this->objectManager->create(\Magento\Catalog\Model\Product::class);
         $product->load($product->getIdBySku('downloadable-product'));
-        // use ID of the first quote item
+        // use ID of the first quote Item
         $itemId = $quote->getAllItems()[0]->getId();
         $serviceInfo = [
             'soap' => [
@@ -288,7 +288,7 @@ class CartItemRepositoryTest extends WebapiAbstract
         $product = $this->objectManager->create(\Magento\Catalog\Model\Product::class);
         $product->load($product->getIdBySku('downloadable-product'));
         $cartId = $quote->getId();
-        // use ID of the first quote item
+        // use ID of the first quote Item
         $itemId = $quote->getAllItems()[0]->getId();
         $serviceInfo = [
             'rest' => [

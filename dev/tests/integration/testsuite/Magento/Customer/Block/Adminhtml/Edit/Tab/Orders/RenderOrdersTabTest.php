@@ -118,7 +118,7 @@ class RenderOrdersTabTest extends TestCase
 
     /**
      * Assert that customer orders tab renders without message "We couldn't find any records."
-     * and contains rendered order item when customer has one order.
+     * and contains rendered order Item when customer has one order.
      *
      * @magentoDataFixture Magento/Sales/_files/order_with_customer.php
      *

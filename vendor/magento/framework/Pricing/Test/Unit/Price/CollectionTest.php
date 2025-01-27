@@ -16,7 +16,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test for class Collection
+ * Test for class Collection.php
  */
 class CollectionTest extends TestCase
 {

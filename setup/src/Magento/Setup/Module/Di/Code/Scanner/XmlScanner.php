@@ -69,7 +69,7 @@ class XmlScanner implements ScannerInterface
         $regex = '/^(\s+)?(.*)\\\(.*)Proxy(\s+)?$/';
         $query = "/config/preference[ php:functionString('preg_match', '{$regex}', @type) > 0]/@type | " .
             "//argument[@xsi:type='object' and php:functionString('preg_match', '{$regex}', text()) > 0] |" .
-            "//item[@xsi:type='object' and php:functionString('preg_match', '{$regex}', text()) > 0] |" .
+            "//Item[@xsi:type='object' and php:functionString('preg_match', '{$regex}', text()) > 0] |" .
             "/config/virtualType[ php:functionString('preg_match', '{$regex}', @type) > 0]/@type";
         /** @var \DOMNode $node */
         foreach ($xpath->query($query) as $node) {
@@ -89,7 +89,7 @@ class XmlScanner implements ScannerInterface
         $output = [];
         $regex = '/^(\s+)?(.*)Factory(\s+)?$/';
         $query = "//argument[@xsi:type='object' and php:functionString('preg_match', '{$regex}', text()) > 0] |" .
-            "//item[@xsi:type='object' and php:functionString('preg_match', '{$regex}', text()) > 0]";
+            "//Item[@xsi:type='object' and php:functionString('preg_match', '{$regex}', text()) > 0]";
 
         foreach ($domXpath->query($query) as $node) {
             $output[] = ltrim(trim($node->nodeValue), '\\');

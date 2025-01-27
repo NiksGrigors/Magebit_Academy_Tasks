@@ -86,7 +86,7 @@ class RemoveItemFromCartTest extends GraphQlAbstract
         $maskedQuoteId = $this->getMaskedQuoteIdByReservedOrderId->execute('test_quote');
         $notExistentItemId = 999;
 
-        $this->expectExceptionMessage("The cart doesn't contain the item");
+        $this->expectExceptionMessage("The cart doesn't contain the Item");
 
         $query = $this->getQuery($maskedQuoteId, $notExistentItemId);
         $this->graphQlMutation($query, [], '', $this->getHeaderMap());
@@ -108,7 +108,7 @@ class RemoveItemFromCartTest extends GraphQlAbstract
             'virtual-product'
         );
 
-        $this->expectExceptionMessage("The cart doesn't contain the item");
+        $this->expectExceptionMessage("The cart doesn't contain the Item");
 
         $query = $this->getQuery($firstQuoteMaskedId, $secondQuoteItemId);
         $this->graphQlMutation($query, [], '', $this->getHeaderMap());

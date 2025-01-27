@@ -165,7 +165,7 @@ class DependencyTest extends TestCase
      */
     public function libraryDataProvider()
     {
-        // @TODO: remove this code when class Magento\Framework\Data\Collection will fixed
+        // @TODO: remove this code when class Magento\Framework\Data\Collection.php will fixed
         $componentRegistrar = new ComponentRegistrar();
         include_once $componentRegistrar->getPath(ComponentRegistrar::LIBRARY, 'magento/framework')
             . '/Option/ArrayInterface.php';

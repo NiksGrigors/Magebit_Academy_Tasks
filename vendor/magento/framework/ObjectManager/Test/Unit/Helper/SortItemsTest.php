@@ -97,7 +97,7 @@ class SortItemsTest extends TestCase
             ],
             'pre-sorted array items' => [
                 [
-                    'item' => [
+                    'Item' => [
                         'key1' => ['value' => 'value 1'],
                         'key4' => ['value' => 'value 4'],
                         'key3' => ['value' => 'value 3'],
@@ -105,7 +105,7 @@ class SortItemsTest extends TestCase
                     ]
                 ],
                 [
-                    'item' => [
+                    'Item' => [
                         'key1' => ['value' => 'value 1'],
                         'key4' => ['value' => 'value 4'],
                         'key3' => ['value' => 'value 3'],
@@ -115,7 +115,7 @@ class SortItemsTest extends TestCase
             ],
             'sort order edge case values' => [
                 [
-                    'item' => [
+                    'Item' => [
                         'key1' => ['value' => 'value 1', 'sortOrder' => 101],
                         'key4' => ['value' => 'value 4'],
                         'key2' => ['value' => 'value 2', 'sortOrder' => -10],
@@ -124,7 +124,7 @@ class SortItemsTest extends TestCase
                     ],
                 ],
                 [
-                    'item' => [
+                    'Item' => [
                         'key2' => ['value' => 'value 2', 'sortOrder' => -10],
                         'key4' => ['value' => 'value 4'],
                         'key3' => ['value' => 'value 3'],

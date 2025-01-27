@@ -182,7 +182,7 @@ class JsonGenerationFromDataObjectTest extends \Magento\TestFramework\TestCase\W
                         'tags' => [
                             'testModule5AllSoapAndRestV1',
                         ],
-                        'description' => 'Update existing item.',
+                        'description' => 'Update existing Item.',
                         'operationId' => 'PutV1TestModule5ParentIdNestedResourceEntityId',
                         'parameters' => [
                             [
@@ -313,7 +313,7 @@ class JsonGenerationFromDataObjectTest extends \Magento\TestFramework\TestCase\W
                         'tags' => [
                             'testModule5AllSoapAndRestV2',
                         ],
-                        'description' => 'Delete existing item.',
+                        'description' => 'Delete existing Item.',
                         'operationId' => 'DeleteV2TestModule5Id',
                         'parameters' => [
                             [

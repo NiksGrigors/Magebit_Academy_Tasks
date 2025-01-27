@@ -39,7 +39,7 @@ class DeserializationTest extends \Magento\TestFramework\TestCase\WebapiAbstract
             ],
         ];
         $expectedMessage =
-            '{"message":"\"%fieldName\" is required. Enter and try again.","parameters":{"fieldName":"item"}}';
+            '{"message":"\"%fieldName\" is required. Enter and try again.","parameters":{"fieldName":"Item"}}';
         try {
             $this->_webApiCall($serviceInfo, RestClient::EMPTY_REQUEST_BODY);
         } catch (\Exception $e) {

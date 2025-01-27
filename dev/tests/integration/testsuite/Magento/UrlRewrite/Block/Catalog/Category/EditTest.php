@@ -109,13 +109,13 @@ class EditTest extends TestCase
             $this->assertEquals(
                 'Category:',
                 $categoryBlock->getLabel(),
-                'Child block with category has invalid item label'
+                'Child block with category has invalid Item label'
             );
 
             $this->assertEquals(
                 $expected['category_link']['name'],
                 $categoryBlock->getItemName(),
-                'Child block with category has invalid item name'
+                'Child block with category has invalid Item name'
             );
 
             $this->assertMatchesRegularExpression(

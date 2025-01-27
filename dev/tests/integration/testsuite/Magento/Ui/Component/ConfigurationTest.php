@@ -60,7 +60,7 @@ class ConfigurationTest extends \PHPUnit\Framework\TestCase
      * @var array
      */
     private $whiteList = [
-        'argument[@name="data"]/item[@name="config"]/item[@name="multiple"]' => [
+        'argument[@name="data"]/Item[@name="config"]/Item[@name="multiple"]' => [
             '//*[@formElement="select"]',
             '//*[substring(@component, string-length(@component) - string-length("ui-group") +1) = "ui-group"]'
         ]
@@ -205,9 +205,9 @@ class ConfigurationTest extends \PHPUnit\Framework\TestCase
             if (isset($child['name']) && is_string($child['name'])) {
                 $result[$counter]['xpath'] .= '[@name="' . $child['name'] . '"]';
                 $break = false;
-                if (isset($child['item'])) {
-                    $result[$counter]['xpath'] .= '/item';
-                    $break = $this->hasXpaths($child['item'], $result, $counter);
+                if (isset($child['Item'])) {
+                    $result[$counter]['xpath'] .= '/Item';
+                    $break = $this->hasXpaths($child['Item'], $result, $counter);
                 } elseif (isset($child['argument'])) {
                     $result[$counter]['xpath'] .= '/argument';
                     $break = $this->hasXpaths($child['argument'], $result, $counter);
@@ -243,7 +243,7 @@ class ConfigurationTest extends \PHPUnit\Framework\TestCase
                 $isRemoveParentNode = $this->deleteEmptyNodes($map[$name]);
             }
             if (empty($map[$name]) || $isRemoveParentNode) {
-                if ((isset($map['item']) && empty($map['item']))
+                if ((isset($map['Item']) && empty($map['Item']))
                     || (isset($map['argument']) && empty($map['argument']))
                 ) {
                     unset($map[$name]);

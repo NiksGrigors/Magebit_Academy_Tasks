@@ -40,7 +40,7 @@ class ConfigTest extends \PHPUnit\Framework\TestCase
         /** Ensure that search results are correct */
         $this->assertCount(count($expectedResult), $searchResults, 'Quantity of search result items is invalid.');
         foreach ($expectedResult as $itemIndex => $expectedItem) {
-            /** Validate URL to item */
+            /** Validate URL to Item */
             $elementPathParts = explode('/', $expectedItem['id']);
             // filter empty values
             $elementPathParts = array_values(array_filter($elementPathParts));
@@ -53,8 +53,8 @@ class ConfigTest extends \PHPUnit\Framework\TestCase
             }
             unset($searchResults[$itemIndex]['url']);
 
-            /** Validate other item data */
-            $this->assertEquals($expectedItem, $searchResults[$itemIndex], "Data of item #$itemIndex is invalid.");
+            /** Validate other Item data */
+            $this->assertEquals($expectedItem, $searchResults[$itemIndex], "Data of Item #$itemIndex is invalid.");
         }
     }
 

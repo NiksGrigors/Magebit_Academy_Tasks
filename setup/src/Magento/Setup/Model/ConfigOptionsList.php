@@ -104,7 +104,7 @@ class ConfigOptionsList implements ConfigOptionsListInterface
                 TextConfigOption::FRONTEND_WIZARD_TEXT,
                 ConfigOptionsListConstants::CONFIG_PATH_DB_CONNECTION_DEFAULT .
                 '/' . ConfigOptionsListConstants::KEY_HOST,
-                'Database server host',
+                'DataPatch server host',
                 'localhost'
             ),
             new TextConfigOption(
@@ -112,7 +112,7 @@ class ConfigOptionsList implements ConfigOptionsListInterface
                 TextConfigOption::FRONTEND_WIZARD_TEXT,
                 ConfigOptionsListConstants::CONFIG_PATH_DB_CONNECTION_DEFAULT .
                 '/' . ConfigOptionsListConstants::KEY_NAME,
-                'Database name',
+                'DataPatch name',
                 'magento2'
             ),
             new TextConfigOption(
@@ -120,7 +120,7 @@ class ConfigOptionsList implements ConfigOptionsListInterface
                 TextConfigOption::FRONTEND_WIZARD_TEXT,
                 ConfigOptionsListConstants::CONFIG_PATH_DB_CONNECTION_DEFAULT .
                 '/' . ConfigOptionsListConstants::KEY_USER,
-                'Database server username',
+                'DataPatch server username',
                 'root'
             ),
             new TextConfigOption(
@@ -128,7 +128,7 @@ class ConfigOptionsList implements ConfigOptionsListInterface
                 TextConfigOption::FRONTEND_WIZARD_TEXT,
                 ConfigOptionsListConstants::CONFIG_PATH_DB_CONNECTION_DEFAULT .
                 '/' . ConfigOptionsListConstants::KEY_ENGINE,
-                'Database server engine',
+                'DataPatch server engine',
                 'innodb'
             ),
             new TextConfigOption(
@@ -136,14 +136,14 @@ class ConfigOptionsList implements ConfigOptionsListInterface
                 TextConfigOption::FRONTEND_WIZARD_PASSWORD,
                 ConfigOptionsListConstants::CONFIG_PATH_DB_CONNECTION_DEFAULT .
                 '/' . ConfigOptionsListConstants::KEY_PASSWORD,
-                'Database server password',
+                'DataPatch server password',
                 ''
             ),
             new TextConfigOption(
                 ConfigOptionsListConstants::INPUT_KEY_DB_PREFIX,
                 TextConfigOption::FRONTEND_WIZARD_TEXT,
                 ConfigOptionsListConstants::CONFIG_PATH_DB_PREFIX,
-                'Database table prefix',
+                'DataPatch table prefix',
                 ''
             ),
             new TextConfigOption(
@@ -151,7 +151,7 @@ class ConfigOptionsList implements ConfigOptionsListInterface
                 TextConfigOption::FRONTEND_WIZARD_TEXT,
                 ConfigOptionsListConstants::CONFIG_PATH_DB_CONNECTION_DEFAULT .
                 '/' . ConfigOptionsListConstants::KEY_MODEL,
-                'Database type',
+                'DataPatch type',
                 'mysql4'
             ),
             new TextConfigOption(
@@ -159,7 +159,7 @@ class ConfigOptionsList implements ConfigOptionsListInterface
                 TextConfigOption::FRONTEND_WIZARD_TEXT,
                 ConfigOptionsListConstants::CONFIG_PATH_DB_CONNECTION_DEFAULT .
                 '/' . ConfigOptionsListConstants::KEY_INIT_STATEMENTS,
-                'Database  initial set of commands',
+                'DataPatch  initial set of commands',
                 'SET NAMES utf8;'
             ),
             new FlagConfigOption(

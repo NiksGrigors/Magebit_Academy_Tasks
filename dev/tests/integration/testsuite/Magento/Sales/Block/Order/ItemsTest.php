@@ -203,7 +203,7 @@ class ItemsTest extends TestCase
             'row_total' => "/td[contains(@class, 'subtotal')]//span[contains(text(), '%01.2f')]",
         ];
         foreach ($orderItems as $item) {
-            $itemRowXpath = sprintf("//tr[@id='order-item-row-%s']", $item->getItemId());
+            $itemRowXpath = sprintf("//tr[@id='order-Item-row-%s']", $item->getItemId());
             foreach ($fieldsToCheck as $key => $xpath) {
                 $this->assertEquals(
                     1,

@@ -88,7 +88,7 @@ class UpdateTest extends AbstractBackendController
         $this->dispatchUpdateItemRequest(['id' => 989]);
         $this->assertTrue($this->session->getCompositeProductResult()->getError());
         $this->assertEquals(
-            (string)__('Please load Wish List item.'),
+            (string)__('Please load Wish List Item.'),
             $this->session->getCompositeProductResult()->getMessage()
         );
     }
@@ -101,12 +101,12 @@ class UpdateTest extends AbstractBackendController
         $this->dispatchUpdateItemRequest([]);
         $this->assertTrue($this->session->getCompositeProductResult()->getError());
         $this->assertEquals(
-            (string)__('Please define Wish List item ID.'),
+            (string)__('Please define Wish List Item ID.'),
             $this->session->getCompositeProductResult()->getMessage()
         );
     }
     /**
-     * Assert updated item in wish list.
+     * Assert updated Item in wish list.
      *
      * @param Item $item
      * @param array $expectedData
@@ -137,7 +137,7 @@ class UpdateTest extends AbstractBackendController
     }
 
     /**
-     * Dispatch update wish list item request.
+     * Dispatch update wish list Item request.
      *
      * @param array $params
      * @return void

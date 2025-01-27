@@ -22,7 +22,7 @@ class SuggestionsTest extends \PHPUnit\Framework\TestCase
     {
         $suggestedQueries = $this->createMock(SuggestedQueriesInterface::CLASS);
         $suggestedQueries->expects($this->any())->method('getItems')->willReturn([
-            new QueryResult('test item', 1),
+            new QueryResult('test Item', 1),
             new QueryResult("<script>alert('Test');</script>", 1)
         ]);
 
@@ -36,8 +36,8 @@ class SuggestionsTest extends \PHPUnit\Framework\TestCase
     {
         $html = $this->block->toHtml();
 
-        $this->assertStringContainsString('test+item', $html);
-        $this->assertStringContainsString('test item', $html);
+        $this->assertStringContainsString('test+Item', $html);
+        $this->assertStringContainsString('test Item', $html);
 
         $this->assertStringNotContainsString('<script>', $html);
         $this->assertStringContainsString('%3Cscript%3Ealert%28%27Test%27%29%3B%3C%2Fscript%3E', $html);

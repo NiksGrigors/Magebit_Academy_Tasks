@@ -44,7 +44,7 @@ class CustomHandler
             if (!($simpleDataItem instanceof AsyncTestData)) {
                 file_put_contents(
                     $simpleDataItem->getTextFilePath(),
-                    'Invalid data item given. Was expected instance of ' . AsyncTestData::class . PHP_EOL,
+                    'Invalid data Item given. Was expected instance of ' . AsyncTestData::class . PHP_EOL,
                     FILE_APPEND
                 );
                 continue;

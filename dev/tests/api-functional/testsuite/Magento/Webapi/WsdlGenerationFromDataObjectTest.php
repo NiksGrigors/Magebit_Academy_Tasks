@@ -229,7 +229,7 @@ RESPONSE_ELEMENT;
             $requestType = <<< REQUEST_TYPE
 <xsd:complexType name="TestModule5AllSoapAndRestV2ItemRequest">
     <xsd:annotation>
-        <xsd:documentation>Retrieve existing item.</xsd:documentation>
+        <xsd:documentation>Retrieve existing Item.</xsd:documentation>
         <xsd:appinfo xmlns:inf="{$this->_soapUrl}"/>
     </xsd:annotation>
     <xsd:sequence>
@@ -253,7 +253,7 @@ REQUEST_TYPE;
             $requestType = <<< REQUEST_TYPE
 <xsd:complexType name="TestModule5AllSoapAndRestV1ItemRequest">
     <xsd:annotation>
-        <xsd:documentation>Retrieve an item.</xsd:documentation>
+        <xsd:documentation>Retrieve an Item.</xsd:documentation>
         <xsd:appinfo xmlns:inf="{$this->_soapUrl}"/>
     </xsd:annotation>
     <xsd:sequence>
@@ -732,7 +732,7 @@ MESSAGES_DECLARATION;
         $this->assertStringContainsString(
             $this->_convertXmlToString($itemMessagesDeclaration),
             $wsdlContent,
-            'Messages section for "item" operation is invalid'
+            'Messages section for "Item" operation is invalid'
         );
         $itemsMessagesDeclaration = <<< MESSAGES_DECLARATION
 <message name="testModule5AllSoapAndRestV2ItemsRequest">
@@ -948,9 +948,9 @@ WRAPPED_ERROR_COMPLEX_TYPE;
         <xsd:appinfo xmlns:inf="{$this->_soapUrl}"/>
     </xsd:annotation>
     <xsd:sequence>
-        <xsd:element name="item" minOccurs="0" maxOccurs="unbounded" type="tns:GenericFaultParameter">
+        <xsd:element name="Item" minOccurs="0" maxOccurs="unbounded" type="tns:GenericFaultParameter">
             <xsd:annotation>
-                <xsd:documentation>An item of ArrayOfGenericFaultParameter.</xsd:documentation>
+                <xsd:documentation>An Item of ArrayOfGenericFaultParameter.</xsd:documentation>
                 <xsd:appinfo xmlns:inf="{$this->_soapUrl}"/>
             </xsd:annotation>
         </xsd:element>
@@ -973,9 +973,9 @@ PARAMETERS_COMPLEX_TYPE;
         <xsd:appinfo xmlns:inf="{$this->_baseUrl}/soap/{$this->_storeCode}?services=testModule5AllSoapAndRestV2"/>
     </xsd:annotation>
     <xsd:sequence>
-        <xsd:element name="item" minOccurs="0" maxOccurs="unbounded" type="tns:WrappedError">
+        <xsd:element name="Item" minOccurs="0" maxOccurs="unbounded" type="tns:WrappedError">
             <xsd:annotation>
-                <xsd:documentation>An item of ArrayOfWrappedError.</xsd:documentation>
+                <xsd:documentation>An Item of ArrayOfWrappedError.</xsd:documentation>
                 <xsd:appinfo xmlns:inf="{$this->_baseUrl}/soap/{$this->_storeCode}?services=testModule5AllSoapAndRestV2"/>
             </xsd:annotation>
         </xsd:element>
@@ -990,9 +990,9 @@ WRAPPED_ERRORS_COMPLEX_TYPE;
         <xsd:appinfo xmlns:inf="{$this->_baseUrl}/soap/{$this->_storeCode}?services=testModule5AllSoapAndRestV1%2CtestModule5AllSoapAndRestV2"/>
     </xsd:annotation>
     <xsd:sequence>
-        <xsd:element name="item" minOccurs="0" maxOccurs="unbounded" type="tns:WrappedError">
+        <xsd:element name="Item" minOccurs="0" maxOccurs="unbounded" type="tns:WrappedError">
             <xsd:annotation>
-                <xsd:documentation>An item of ArrayOfWrappedError.</xsd:documentation>
+                <xsd:documentation>An Item of ArrayOfWrappedError.</xsd:documentation>
                 <xsd:appinfo xmlns:inf="{$this->_baseUrl}/soap/{$this->_storeCode}?services=testModule5AllSoapAndRestV1%2CtestModule5AllSoapAndRestV2"/>
             </xsd:annotation>
         </xsd:element>

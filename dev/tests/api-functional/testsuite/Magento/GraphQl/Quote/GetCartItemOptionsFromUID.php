@@ -8,12 +8,12 @@ declare(strict_types=1);
 namespace Magento\GraphQl\Quote;
 
 /**
- * Extracts cart item options from UID
+ * Extracts cart Item options from UID
  */
 class GetCartItemOptionsFromUID
 {
     /**
-     * Gets an array of encoded item options with UID, extracts and decodes the values
+     * Gets an array of encoded Item options with UID, extracts and decodes the values
      *
      * @param array $encodedCustomOptions
      * @return array

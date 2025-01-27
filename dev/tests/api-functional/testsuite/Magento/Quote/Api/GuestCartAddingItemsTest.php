@@ -73,7 +73,7 @@ class GuestCartAddingItemsTest extends WebapiAbstract
         ];
         $quoteId = $this->_webApiCall($serviceInfoForCreatingEmptyCart);
 
-        // Adding item to the cart
+        // Adding Item to the cart
         $serviceInfoForAddingProduct = [
             'rest' => [
                 'resourcePath' => self::RESOURCE_PATH . $quoteId . '/items',
@@ -116,7 +116,7 @@ class GuestCartAddingItemsTest extends WebapiAbstract
             ]
         ];
 
-        // Update the item for the cart
+        // Update the Item for the cart
         $serviceInfoForUpdateProduct = [
             'rest' => [
                 'resourcePath' => self::RESOURCE_PATH . $quoteId . '/items/' . $item['item_id'],
@@ -150,7 +150,7 @@ class GuestCartAddingItemsTest extends WebapiAbstract
         ];
         $quoteId = $this->_webApiCall($serviceInfoForCreatingEmptyCart);
 
-        // Adding item to the cart
+        // Adding Item to the cart
         $serviceInfoForAddingProduct = [
             'rest' => [
                 'resourcePath' => self::RESOURCE_PATH . $quoteId . '/items',
@@ -172,7 +172,7 @@ class GuestCartAddingItemsTest extends WebapiAbstract
         $item = $this->_webApiCall($serviceInfoForAddingProduct, $requestData);
         $this->assertNotEmpty($item);
 
-        // Delete the item for the cart
+        // Delete the Item for the cart
         $serviceInfoForDeleteProduct = [
             'rest' => [
                 'resourcePath' => self::RESOURCE_PATH . $quoteId . '/items/' . $item['item_id'],
@@ -189,7 +189,7 @@ class GuestCartAddingItemsTest extends WebapiAbstract
             : $this->_webApiCall($serviceInfoForDeleteProduct);
         $this->assertTrue($response);
 
-        // Add one more item and check price for this item
+        // Add one more Item and check price for this Item
         $serviceInfoForAddingProduct = [
             'rest' => [
                 'resourcePath' => self::RESOURCE_PATH . $quoteId . '/items',

@@ -481,7 +481,7 @@ class QuoteTest extends TestCase
     }
 
     /**
-     * Provides order- and item-level gift message Id.
+     * Provides order- and Item-level gift message Id.
      *
      * @return array
      */
@@ -812,12 +812,12 @@ class QuoteTest extends TestCase
             $this->assertEquals(
                 1,
                 $quote->getIsMultiShipping(),
-                "Multi-shipping mode is disabled after quote item removal"
+                "Multi-shipping mode is disabled after quote Item removal"
             );
         } else {
             $this->assertTrue(
                 !is_null($idToDelete),
-                "No Simple Product item with qty 1 to delete exists"
+                "No Simple Product Item with qty 1 to delete exists"
             );
         }
     }

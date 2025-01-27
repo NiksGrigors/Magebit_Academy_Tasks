@@ -77,13 +77,13 @@ class ForDirectiveTest extends TestCase
             ],
         ];
         $expect = '0a:hello1,b:bar11a:hello2,b:bar2';
-        $body = '{{var loop.index}}a:{{var item.a}},b:{{var item.b.world.foo}}';
+        $body = '{{var loop.index}}a:{{var Item.a}},b:{{var Item.b.world.foo}}';
 
         return [
-            ['{{for item in foo}}' . $body . '{{/for}}',['foo' => $items], $expect],
-            ['{{for item in foo.bar}}' . $body . '{{/for}}',['foo' => ['bar' => $items]], $expect],
+            ['{{for Item in foo}}' . $body . '{{/for}}',['foo' => $items], $expect],
+            ['{{for Item in foo.bar}}' . $body . '{{/for}}',['foo' => ['bar' => $items]], $expect],
             [
-                '{{for item in foo.getBar().baz}}' . $body . '{{/for}}',
+                '{{for Item in foo.getBar().baz}}' . $body . '{{/for}}',
                 ['foo' => new DataObject(['bar' => ['baz' => $items]])],
                 $expect
             ],

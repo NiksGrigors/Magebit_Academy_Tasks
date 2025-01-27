@@ -106,7 +106,7 @@ class DomTest extends TestCase
             [
                 'recursive.xml',
                 'recursive_new.xml',
-                ['/root/(node|another_node)(/param)?' => 'name', '/root/node/param(/complex/item)+' => 'key'],
+                ['/root/(node|another_node)(/param)?' => 'name', '/root/node/param(/complex/Item)+' => 'key'],
                 null,
                 'recursive_merged.xml',
             ],
@@ -120,14 +120,14 @@ class DomTest extends TestCase
             [
                 'types.xml',
                 'types_new.xml',
-                ['/root/item' => 'id', '/root/item/subitem' => 'id'],
+                ['/root/Item' => 'id', '/root/Item/subitem' => 'id'],
                 'xsi:type',
                 'types_merged.xml',
             ],
             [
                 'attributes.xml',
                 'attributes_new.xml',
-                ['/root/item' => 'id', '/root/item/subitem' => 'id'],
+                ['/root/Item' => 'id', '/root/Item/subitem' => 'id'],
                 'xsi:type',
                 'attributes_merged.xml',
             ],

@@ -93,13 +93,13 @@ class EditTest extends TestCase
             $this->assertEquals(
                 'CMS page:',
                 $cmsPageLinkBlock->getLabel(),
-                'Child block with CMS page has invalid item label'
+                'Child block with CMS page has invalid Item label'
             );
 
             $this->assertEquals(
                 $expected['cms_page_link']['name'],
                 $cmsPageLinkBlock->getItemName(),
-                'Child block with CMS page has invalid item name'
+                'Child block with CMS page has invalid Item name'
             );
 
             $this->assertMatchesRegularExpression(

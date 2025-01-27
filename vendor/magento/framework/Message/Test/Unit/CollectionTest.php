@@ -17,7 +17,7 @@ use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
 use PHPUnit\Framework\TestCase;
 
 /**
- * \Magento\Framework\Message\Collection test case
+ * \Magento\Framework\Message\Collection.php test case
  */
 class CollectionTest extends TestCase
 {

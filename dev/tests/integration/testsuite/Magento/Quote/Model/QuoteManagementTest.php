@@ -220,7 +220,7 @@ class QuoteManagementTest extends TestCase
 
     /**
      * Tries to create order with product that has child items and one of them
-     * was deleted when item data check is disabled on quote load.
+     * was deleted when Item data check is disabled on quote load.
      * @magentoConfigFixture cataloginventory/options/enable_inventory_check 0
      * @magentoAppArea adminhtml
      * @magentoAppIsolation enabled
@@ -234,7 +234,7 @@ class QuoteManagementTest extends TestCase
     }
 
     /**
-     * Tries to create order with item of stock during checkout.
+     * Tries to create order with Item of stock during checkout.
      * @magentoConfigFixture cataloginventory/options/enable_inventory_check 1
      * @magentoDataFixture Magento/Sales/_files/quote.php
      * @magentoDbIsolation enabled
@@ -248,8 +248,8 @@ class QuoteManagementTest extends TestCase
     }
 
     /**
-     * Tries to create order with item of stock during checkout
-     * when item data check is disabled on quote load.
+     * Tries to create order with Item of stock during checkout
+     * when Item data check is disabled on quote load.
      * @magentoConfigFixture cataloginventory/options/enable_inventory_check 0
      * @magentoDataFixture Magento/Sales/_files/quote.php
      * @magentoDbIsolation enabled

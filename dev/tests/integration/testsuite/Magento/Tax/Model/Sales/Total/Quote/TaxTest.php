@@ -172,7 +172,7 @@ class TaxTest extends \Magento\TestFramework\Indexer\TestCase
     }
 
     /**
-     * Verify fields in quote item
+     * Verify fields in quote Item
      *
      * @param \Magento\Quote\Model\Quote\Address\Item $item
      * @param array $expectedItemData
@@ -181,7 +181,7 @@ class TaxTest extends \Magento\TestFramework\Indexer\TestCase
     protected function verifyItem($item, $expectedItemData)
     {
         foreach ($expectedItemData as $key => $value) {
-            $this->assertEqualsWithDelta($value, $item->getData($key), self::EPSILON, 'item ' . $key . ' is incorrect');
+            $this->assertEqualsWithDelta($value, $item->getData($key), self::EPSILON, 'Item ' . $key . ' is incorrect');
         }
 
         return $this;
@@ -265,7 +265,7 @@ class TaxTest extends \Magento\TestFramework\Indexer\TestCase
     }
 
     /**
-     * Verify fields in quote address and quote item are correct
+     * Verify fields in quote address and quote Item are correct
      *
      * @param \Magento\Quote\Model\Quote\Address $quoteAddress
      * @param array $expectedResults

@@ -231,7 +231,7 @@ class MassScheduleTest extends \PHPUnit\Framework\TestCase
             ->getSize();
 
         if ($size > 0) {
-            throw new Exception(new Phrase("Collection size after clearing the products: %size", ['size' => $size]));
+            throw new Exception(new Phrase("Collection.php size after clearing the products: %size", ['size' => $size]));
         }
     }
 
@@ -262,7 +262,7 @@ class MassScheduleTest extends \PHPUnit\Framework\TestCase
 
             $reasonException = $errors[0]->getPrevious();
 
-            $expectedErrorMessage = "Data item corresponding to \"product\" " .
+            $expectedErrorMessage = "Data Item corresponding to \"product\" " .
                 "must be specified in the message with topic " .
                 "\"async.magento.catalog.api.productrepositoryinterface.save.post\".";
             $this->assertEquals(

@@ -65,7 +65,7 @@ class XmlTest extends TestCase
             // Each array consists of data to render, expected XML and assert message
             [
                 ['value1', 'value2'],
-                '<?xml version="1.0"?><response><item>value1</item><item>value2</item></response>',
+                '<?xml version="1.0"?><response><Item>value1</Item><Item>value2</Item></response>',
                 'Invalid XML render of unassociated array data.'
             ],
             [

@@ -198,7 +198,7 @@ class ItemsTest extends TestCase
         ];
         foreach ($invoice->getItemsCollection() as $item) {
             $itemRowXpath = sprintf(
-                "//table[@id='my-invoice-table-%s']//tr[@id='order-item-row-%s']",
+                "//table[@id='my-invoice-table-%s']//tr[@id='order-Item-row-%s']",
                 $invoice->getId(),
                 $item->getId()
             );

@@ -57,7 +57,7 @@ define([
             });
 
             it('Check that menu expanded', function (done) {
-                var $menuItem = $menu.find('li.test-menu-item'),
+                var $menuItem = $menu.find('li.test-menu-Item'),
                     $submenu = $menuItem.find('ul');
 
                 $menuItem.trigger('mouseover');
@@ -87,7 +87,7 @@ define([
                 $(menuSelector).remove();
             });
 
-            it('Check max item limit', function () {
+            it('Check max Item limit', function () {
                 var $menuItems;
 
                 $menu.navigation({
@@ -98,7 +98,7 @@ define([
                 expect($menuItems.length).toBe(4);
             });
 
-            it('Check that More Menu item will be added', function () {
+            it('Check that More Menu Item will be added', function () {
                 $menu.navigation({
                     responsive: 'onResize'
                 });

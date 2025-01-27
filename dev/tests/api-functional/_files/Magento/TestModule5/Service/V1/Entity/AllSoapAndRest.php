@@ -26,7 +26,7 @@ class AllSoapAndRest extends \Magento\Framework\Api\AbstractExtensibleObject
     const HAS_ORDERS = 'orders';
 
     /**
-     * Retrieve item ID.
+     * Retrieve Item ID.
      *
      * @return int Item ID
      */
@@ -36,7 +36,7 @@ class AllSoapAndRest extends \Magento\Framework\Api\AbstractExtensibleObject
     }
 
     /**
-     * Set item ID.
+     * Set Item ID.
      *
      * @param int $entityId
      * @return $this
@@ -47,7 +47,7 @@ class AllSoapAndRest extends \Magento\Framework\Api\AbstractExtensibleObject
     }
 
     /**
-     * Retrieve item Name.
+     * Retrieve Item Name.
      *
      * @return string|null Item name
      */
@@ -57,7 +57,7 @@ class AllSoapAndRest extends \Magento\Framework\Api\AbstractExtensibleObject
     }
 
     /**
-     * Set item Name.
+     * Set Item Name.
      *
      * @param string $name
      * @return $this

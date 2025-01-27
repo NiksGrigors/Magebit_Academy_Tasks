@@ -53,7 +53,7 @@ class ByStockItemRepositoryTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test stock item saving via stock item repository
+     * Test stock Item saving via stock Item repository
      *
      * @magentoDataFixture Magento/Catalog/_files/product_simple.php
      * @magentoDbIsolation disabled

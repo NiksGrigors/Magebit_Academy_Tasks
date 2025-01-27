@@ -527,7 +527,7 @@ abstract class CombinationAbstract extends TestCase
     {
         [$qty, $price, $percent] = array_values($expectedMessage);
         $liPaths = [
-            "contains(@class, 'item') and contains(text(), 'Buy {$qty} for')",
+            "contains(@class, 'Item') and contains(text(), 'Buy {$qty} for')",
             sprintf("//span[contains(@class, 'price') and text()='$%01.2f']", $price),
             "//span[contains(@class, 'percent') and contains(text(), '{$percent}')]",
         ];

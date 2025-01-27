@@ -287,7 +287,7 @@ class CreateTest extends \PHPUnit\Framework\TestCase
         );
         self::assertEquals(0, $wishlist->getItemsCount(), 'New Wish List must be empty just after creation.');
 
-        /** Add new item to wishlist and try to get it using getCustomerWishlist once again */
+        /** Add new Item to wishlist and try to get it using getCustomerWishlist once again */
         $wishlist->addNewItem($productIdFromFixture)->save();
         $updatedWishlist = $this->model->getCustomerWishlist(true);
         self::assertEquals(
@@ -708,8 +708,8 @@ class CreateTest extends \PHPUnit\Framework\TestCase
         $item = $customerQuote->getAllVisibleItems()[0];
 
         $this->model->moveQuoteItem($item, 'cart', 3);
-        self::assertEquals(4, $item->getQty(), 'Number of Qty isn\'t correct for Quote item.');
-        self::assertEquals(3, $item->getQtyToAdd(), 'Number of added qty isn\'t correct for Quote item.');
+        self::assertEquals(4, $item->getQty(), 'Number of Qty isn\'t correct for Quote Item.');
+        self::assertEquals(3, $item->getQtyToAdd(), 'Number of added qty isn\'t correct for Quote Item.');
     }
 
     /**

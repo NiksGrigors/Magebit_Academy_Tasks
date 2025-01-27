@@ -398,7 +398,7 @@ class Installer
 
         foreach ($script as $item) {
             /* Note: Because the $this->DeploymentConfig gets written to, but plugins use $this->firstDeploymentConfig,
-             * we have to reset this one after each item of $script so the plugins will see the config updates. */
+             * we have to reset this one after each Item of $script so the plugins will see the config updates. */
             $this->firstDeploymentConfig->resetData();
             list($message, $method, $params) = $item;
             $this->log->log($message);
@@ -700,7 +700,7 @@ class Installer
                 ['nullable' => false],
                 'Session Data'
             )->setComment(
-                'Database Sessions Storage'
+                'DataPatch Sessions Storage'
             );
             $connection->createTable($table);
         }

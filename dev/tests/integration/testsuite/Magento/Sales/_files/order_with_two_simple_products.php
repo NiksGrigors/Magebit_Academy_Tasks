@@ -64,7 +64,7 @@ $orderItem->setProductOptions(['info_buyRequest' => $requestInfo]);
 $orderItem->setName($product->getName());
 $orderItem->setSku($product->getSku());
 $orderItem->setStoreId(0);
-// create second order item
+// create second order Item
 
 $orderItem2 = $objectManager->create(\Magento\Sales\Model\Order\Item::class);
 $requestInfo = [

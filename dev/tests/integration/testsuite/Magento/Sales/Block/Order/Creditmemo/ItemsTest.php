@@ -203,7 +203,7 @@ class ItemsTest extends TestCase
         ];
         foreach ($creditmemo->getItemsCollection() as $item) {
             $rowXpath = sprintf(
-                "//table[@id='my-refund-table-%s']//tr[@id='order-item-row-%s']",
+                "//table[@id='my-refund-table-%s']//tr[@id='order-Item-row-%s']",
                 $creditmemo->getId(),
                 $item->getId()
             );

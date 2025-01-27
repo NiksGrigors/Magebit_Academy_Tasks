@@ -128,7 +128,7 @@ abstract class AbstractCartTest extends TestCase
     }
 
     /**
-     * Get shopping cart quote item identifiers by customer id.
+     * Get shopping cart quote Item identifiers by customer id.
      *
      * @param int $customerId
      * @return array

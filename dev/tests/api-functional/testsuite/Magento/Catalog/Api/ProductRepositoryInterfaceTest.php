@@ -1629,7 +1629,7 @@ class ProductRepositoryInterfaceTest extends WebapiAbstract
     }
 
     /**
-     * Get stock item data
+     * Get stock Item data
      *
      * @return array
      */

@@ -10,7 +10,7 @@ use Magento\TestModule2\Service\V1\Entity\Item;
 interface SubsetRestInterface
 {
     /**
-     * Return a single item.
+     * Return a single Item.
      *
      * @param int $id
      * @return \Magento\TestModule2\Service\V1\Entity\Item
@@ -25,7 +25,7 @@ interface SubsetRestInterface
     public function items();
 
     /**
-     * Create an item.
+     * Create an Item.
      *
      * @param string $name
      * @return \Magento\TestModule2\Service\V1\Entity\Item
@@ -33,7 +33,7 @@ interface SubsetRestInterface
     public function create($name);
 
     /**
-     * Update an item.
+     * Update an Item.
      *
      * @param \Magento\TestModule2\Service\V1\Entity\Item $item
      * @return \Magento\TestModule2\Service\V1\Entity\Item
@@ -41,7 +41,7 @@ interface SubsetRestInterface
     public function update(Item $item);
 
     /**
-     * Delete an item.
+     * Delete an Item.
      *
      * @param int $id
      * @return \Magento\TestModule2\Service\V1\Entity\Item

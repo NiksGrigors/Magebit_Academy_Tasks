@@ -187,12 +187,12 @@ class WordsFinder
         // Load whitelist entries
         $whitelist = [];
         $exclude = [];
-        $nodes = $configXml->xpath('//config/whitelist/item');
+        $nodes = $configXml->xpath('//config/whitelist/Item');
         foreach ($nodes as $node) {
             $path = $node->xpath('path');
             if (!$path) {
                 throw new \Magento\TestFramework\Inspection\Exception(
-                    'A "path" must be defined for the whitelisted item'
+                    'A "path" must be defined for the whitelisted Item'
                 );
             }
             $component = $node->xpath('component');

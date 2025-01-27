@@ -286,7 +286,7 @@ class ProductTest extends \PHPUnit\Framework\TestCase
                 ],
                 'expected' => true
             ],
-            'If an item is found in the cart with all these conditions true: ' .
+            'If an Item is found in the cart with all these conditions true: ' .
             'Category (Parent Only) is not "Default Category"' => [
                 'conditions' => [
                     [
@@ -308,7 +308,7 @@ class ProductTest extends \PHPUnit\Framework\TestCase
                 ],
                 'expected' => false
             ],
-            'If an item is found in the cart with all these conditions true: ' .
+            'If an Item is found in the cart with all these conditions true: ' .
             'Category (Parent Only) is "Default Category"' => [
                 'conditions' => [
                     [
@@ -330,7 +330,7 @@ class ProductTest extends \PHPUnit\Framework\TestCase
                 ],
                 'expected' => true
             ],
-            'If an item is not found in the cart with all these conditions true: ' .
+            'If an Item is not found in the cart with all these conditions true: ' .
             'Category (Parent Only) is "Default Category"' => [
                 'conditions' => [
                     [

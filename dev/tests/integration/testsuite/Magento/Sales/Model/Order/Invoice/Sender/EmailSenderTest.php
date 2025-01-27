@@ -61,7 +61,7 @@ class EmailSenderTest extends TestCase
     }
 
     /**
-     * Test that order item(s) present in email
+     * Test that order Item(s) present in email
      *
      * @magentoAppArea frontend
      * @return void

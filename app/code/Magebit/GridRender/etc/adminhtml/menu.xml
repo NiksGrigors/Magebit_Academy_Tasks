@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Magebit_GridRender::content_elements"
+             title="Grid Render"
+             translate="title"
+             module="Magebit_GridRender"
+             sortOrder="10"
+             parent="Magento_Backend::content"
+             resource="Magento_Backend::admin"/>
+
+        <add id="Magebit_GridRender::post"
+             title="Grid Render"
+             translate="title"
+             module="Magebit_GridRender"
+             sortOrder="0"
+             parent="Magebit_GridRender::content_elements"
+             action="magebit_gridrender/post"
+             resource="Magento_Backend::admin"/>
+    </menu>
+</config>

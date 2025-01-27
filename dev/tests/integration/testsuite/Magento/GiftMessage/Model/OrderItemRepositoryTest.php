@@ -64,7 +64,7 @@ class OrderItemRepositoryTest extends \PHPUnit\Framework\TestCase
     public function testGetNoProvidedItemId()
     {
         $this->expectException(\Magento\Framework\Exception\NoSuchEntityException::class);
-        $this->expectExceptionMessage('No item with the provided ID was found in the Order. Verify the ID and try again.');
+        $this->expectExceptionMessage('No Item with the provided ID was found in the Order. Verify the ID and try again.');
 
         /** @var \Magento\Sales\Model\Order $order */
         $order = $this->objectManager->create(\Magento\Sales\Model\Order::class)->loadByIncrementId('100000001');
@@ -148,7 +148,7 @@ class OrderItemRepositoryTest extends \PHPUnit\Framework\TestCase
     public function testSaveMessageNoProvidedItemId()
     {
         $this->expectException(\Magento\Framework\Exception\NoSuchEntityException::class);
-        $this->expectExceptionMessage('No item with the provided ID was found in the Order. Verify the ID and try again.');
+        $this->expectExceptionMessage('No Item with the provided ID was found in the Order. Verify the ID and try again.');
 
         /** @var \Magento\Sales\Model\Order $order */
         $order = $this->objectManager->create(\Magento\Sales\Model\Order::class)->loadByIncrementId('100000001');

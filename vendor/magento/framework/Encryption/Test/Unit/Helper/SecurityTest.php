@@ -1,6 +1,6 @@
 <?php
 /**
- * Collection of various useful functions
+ * Collection.php of various useful functions
  *
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.

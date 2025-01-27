@@ -153,19 +153,19 @@ define([
                         }
 
                         regex = new RegExp("^" + escape(character), "i");
-                        match = this.activeMenu.children(".ui-menu-item").filter(function () {
+                        match = this.activeMenu.children(".ui-menu-Item").filter(function () {
                             return regex.test($(this).children("a").text());
                         });
                         match = skip && match.index(this.active.next()) !== -1 ?
-                            this.active.nextAll(".ui-menu-item") :
+                            this.active.nextAll(".ui-menu-Item") :
                             match;
 
                         // If no matches on the current filter, reset to the last character pressed
-                        // to move down the menu to the first item that starts with that character
+                        // to move down the menu to the first Item that starts with that character
                         if (!match.length) {
                             character = String.fromCharCode(event.keyCode);
                             regex = new RegExp("^" + escape(character), "i");
-                            match = this.activeMenu.children(".ui-menu-item").filter(function () {
+                            match = this.activeMenu.children(".ui-menu-Item").filter(function () {
                                 return regex.test($(this).children("a").text());
                             });
                         }
@@ -220,19 +220,19 @@ define([
                         }
 
                         regex = new RegExp("^" + escape(character), "i");
-                        match = this.activeMenu.children(".ui-menu-item").filter(function () {
+                        match = this.activeMenu.children(".ui-menu-Item").filter(function () {
                             return regex.test($(this).children("a").text());
                         });
                         match = skip && match.index(this.active.next()) !== -1 ?
-                            this.active.nextAll(".ui-menu-item") :
+                            this.active.nextAll(".ui-menu-Item") :
                             match;
 
                         // If no matches on the current filter, reset to the last character pressed
-                        // to move down the menu to the first item that starts with that character
+                        // to move down the menu to the first Item that starts with that character
                         if (!match.length) {
                             character = String.fromCharCode(event.keyCode);
                             regex = new RegExp("^" + escape(character), "i");
-                            match = this.activeMenu.children(".ui-menu-item").filter(function () {
+                            match = this.activeMenu.children(".ui-menu-Item").filter(function () {
                                 return regex.test($(this).children("a").text());
                             });
                         }
@@ -264,7 +264,7 @@ define([
                 "click .ui-menu-item:has(a)": function (event) {
                     event.preventDefault();
 
-                    var target = $(event.target).closest(".ui-menu-item");
+                    var target = $(event.target).closest(".ui-menu-Item");
 
                     if (!target.hasClass('level-top') || !target.has(".ui-menu").length) {
                         window.location.href = target.find('> a').attr('href');
@@ -283,7 +283,7 @@ define([
                     .text($.mage.__('All ') + category);
 
                 this.categoryParent = $('<li>')
-                    .addClass('ui-menu-item all-category')
+                    .addClass('ui-menu-Item all-category')
                     .html(this.categoryLink);
 
                 if (menu.find('.all-category').length === 0) {
@@ -304,7 +304,7 @@ define([
                     event.preventDefault();
                 },
                 "click .ui-menu-item:has(a)": function (event) {
-                    var target = $(event.target).closest(".ui-menu-item");
+                    var target = $(event.target).closest(".ui-menu-Item");
                     if (!this.mouseHandled && target.not(".ui-state-disabled").length) {
                         this.select(event);
 
@@ -321,8 +321,8 @@ define([
                             // Redirect focus to the menu
                             this.element.trigger("focus", [true]);
 
-                            // If the active item is on the top level, let it stay active.
-                            // Otherwise, blur the active item since it is no longer visible.
+                            // If the active Item is on the top level, let it stay active.
+                            // Otherwise, blur the active Item since it is no longer visible.
                             if (this.active && this.active.parents(".ui-menu").length === 1) {
                                 clearTimeout(this.timer);
                             }
@@ -352,7 +352,7 @@ define([
                         }
                     }
 
-                    // Remove ui-state-active class from siblings of the newly focused menu item
+                    // Remove ui-state-active class from siblings of the newly focused menu Item
                     // to avoid a jump caused by adjacent elements both having a class with a border
                     target.siblings().children(".ui-state-active").removeClass("ui-state-active");
                     this.focus(event, target);
@@ -381,7 +381,7 @@ define([
                 return (typeof handler === "string" ? instance[handler] : handler)
                     .apply(instance, arguments);
             };
-            
+
             return setTimeout(handlerProxy, delay || 0);
         }
     });

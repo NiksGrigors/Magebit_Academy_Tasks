@@ -75,7 +75,7 @@ class AddWishlistItemsToCartTest extends GraphQlAbstract
         $this->assertArrayHasKey('addWishlistItemsToCart', $response);
         $wishlistAfterAddingToCart = $response['addWishlistItemsToCart']['wishlist'];
         $userErrors = $response['addWishlistItemsToCart']['add_wishlist_items_to_cart_user_errors'];
-        $this->assertEquals($userErrors[0]['message'], 'You need to choose options for your item.');
+        $this->assertEquals($userErrors[0]['message'], 'You need to choose options for your Item.');
         $this->assertEquals($userErrors[0]['code'], 'UNDEFINED');
         $this->assertEquals($userErrors[0]['wishlistId'], $wishlistId);
         $this->assertEquals($userErrors[0]['wishlistItemId'], $itemId);
@@ -198,7 +198,7 @@ class AddWishlistItemsToCartTest extends GraphQlAbstract
         $itemId = '9999';
 
         $this->expectException(Exception::class);
-        $this->expectExceptionMessage('The wishlist item ids "9999" were not found.');
+        $this->expectExceptionMessage('The wishlist Item ids "9999" were not found.');
 
         $wishlist = $this->getWishlist();
         $customerWishlist = $wishlist['customer']['wishlists'][0];

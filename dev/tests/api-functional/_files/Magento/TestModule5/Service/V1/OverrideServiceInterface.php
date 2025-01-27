@@ -9,7 +9,7 @@ namespace Magento\TestModule5\Service\V1;
 interface OverrideServiceInterface
 {
     /**
-     * Update existing item.
+     * Update existing Item.
      *
      * @param string $entityId
      * @param string $name

@@ -106,7 +106,7 @@ return [
         '<?xml version="1.0"?><arguments xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
         <argument name="a" xsi:type="array"><child>v</child></argument></arguments>',
         [
-            "Element 'child': This element is not expected. Expected is ( item ).\nLine: 2\nThe xml was: \n" .
+            "Element 'child': This element is not expected. Expected is ( Item ).\nLine: 2\nThe xml was: \n" .
             "0:<?xml version=\"1.0\"?>\n1:<arguments xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n" .
             "2:        <argument name=\"a\" xsi:type=\"array\"><child>v</child></argument></arguments>\n3:\n"
         ],
@@ -114,63 +114,63 @@ return [
     'array with 2 same items' => [
         '<?xml version="1.0"?><arguments xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
         <argument name="a" xsi:type="array">
-            <item name="name" xsi:type="string">v1</item>
-            <item name="name" xsi:type="string">v2</item>
+            <Item name="name" xsi:type="string">v1</Item>
+            <Item name="name" xsi:type="string">v2</Item>
         </argument></arguments>',
         [
-            "Element 'item': Duplicate key-sequence ['name'] in key identity-constraint 'argumentItemName'.\n" .
+            "Element 'Item': Duplicate key-sequence ['name'] in key identity-constraint 'argumentItemName'.\n" .
             "Line: 4\nThe xml was: \n0:<?xml version=\"1.0\"?>\n1:<arguments " .
             "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n2:        <argument name=\"a\" " .
-            "xsi:type=\"array\">\n3:            <item name=\"name\" xsi:type=\"string\">v1</item>\n" .
-            "4:            <item name=\"name\" xsi:type=\"string\">v2</item>\n5:        </argument>" .
+            "xsi:type=\"array\">\n3:            <Item name=\"name\" xsi:type=\"string\">v1</Item>\n" .
+            "4:            <Item name=\"name\" xsi:type=\"string\">v2</Item>\n5:        </argument>" .
             "</arguments>\n6:\n"
         ],
     ],
-    'array item without name' => [
+    'array Item without name' => [
         '<?xml version="1.0"?><arguments xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-        <argument name="a" xsi:type="array"><item xsi:type="string">v</item></argument></arguments>',
+        <argument name="a" xsi:type="array"><Item xsi:type="string">v</Item></argument></arguments>',
         [
-            "Element 'item': The attribute 'name' is required but missing.\nLine: 2\nThe xml was: \n" .
+            "Element 'Item': The attribute 'name' is required but missing.\nLine: 2\nThe xml was: \n" .
             "0:<?xml version=\"1.0\"?>\n1:<arguments xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n" .
-            "2:        <argument name=\"a\" xsi:type=\"array\"><item xsi:type=\"string\">v</item></argument>" .
+            "2:        <argument name=\"a\" xsi:type=\"array\"><Item xsi:type=\"string\">v</Item></argument>" .
             "</arguments>\n3:\n",
-            "Element 'item': Not all fields of key identity-constraint 'argumentItemName' evaluate to a node.\n" .
+            "Element 'Item': Not all fields of key identity-constraint 'argumentItemName' evaluate to a node.\n" .
             "Line: 2\nThe xml was: \n0:<?xml version=\"1.0\"?>\n1:<arguments " .
             "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n2:        <argument name=\"a\" " .
-            "xsi:type=\"array\"><item xsi:type=\"string\">v</item></argument></arguments>\n3:\n"
+            "xsi:type=\"array\"><Item xsi:type=\"string\">v</Item></argument></arguments>\n3:\n"
         ],
     ],
-    'array item with forbidden child' => [
+    'array Item with forbidden child' => [
         '<?xml version="1.0"?><arguments xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
         <argument name="a" xsi:type="array">
-            <item name="item" xsi:type="string"><child>v</child></item>
+            <Item name="Item" xsi:type="string"><child>v</child></Item>
         </argument></arguments>',
         [
             "Element 'child': This element is not expected.\nLine: 3\nThe xml was: \n0:<?xml version=\"1.0\"?>\n" .
             "1:<arguments xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n2:        <argument " .
-            "name=\"a\" xsi:type=\"array\">\n3:            <item name=\"item\" xsi:type=\"string\">" .
-            "<child>v</child></item>\n4:        </argument></arguments>\n5:\n"
+            "name=\"a\" xsi:type=\"array\">\n3:            <Item name=\"Item\" xsi:type=\"string\">" .
+            "<child>v</child></Item>\n4:        </argument></arguments>\n5:\n"
         ],
     ],
     'nested array with same named items' => [
         '<?xml version="1.0"?><arguments xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
         <argument name="a" xsi:type="array">
-            <item name="item1" xsi:type="string">v</item>
-            <item name="item2" xsi:type="array">
-                <item name="item1" xsi:type="string">v</item>
-            </item>
-            <item name="item3" xsi:type="array">
-                <item name="item4" xsi:type="string">v</item>
-                <item name="item4" xsi:type="string">v</item>
-            </item>
+            <Item name="item1" xsi:type="string">v</Item>
+            <Item name="item2" xsi:type="array">
+                <Item name="item1" xsi:type="string">v</Item>
+            </Item>
+            <Item name="item3" xsi:type="array">
+                <Item name="item4" xsi:type="string">v</Item>
+                <Item name="item4" xsi:type="string">v</Item>
+            </Item>
         </argument></arguments>',
         [
-            "Element 'item': Duplicate key-sequence ['item4'] in key identity-constraint 'itemName'.\n" .
-            "Line: 9\nThe xml was: \n4:            <item name=\"item2\" xsi:type=\"array\">\n" .
-            "5:                <item name=\"item1\" xsi:type=\"string\">v</item>\n6:            </item>\n" .
-            "7:            <item name=\"item3\" xsi:type=\"array\">\n8:                <item name=\"item4\" " .
-            "xsi:type=\"string\">v</item>\n9:                <item name=\"item4\" xsi:type=\"string\">v</item>\n" .
-            "10:            </item>\n11:        </argument></arguments>\n12:\n"
+            "Element 'Item': Duplicate key-sequence ['item4'] in key identity-constraint 'itemName'.\n" .
+            "Line: 9\nThe xml was: \n4:            <Item name=\"item2\" xsi:type=\"array\">\n" .
+            "5:                <Item name=\"item1\" xsi:type=\"string\">v</Item>\n6:            </Item>\n" .
+            "7:            <Item name=\"item3\" xsi:type=\"array\">\n8:                <Item name=\"item4\" " .
+            "xsi:type=\"string\">v</Item>\n9:                <Item name=\"item4\" xsi:type=\"string\">v</Item>\n" .
+            "10:            </Item>\n11:        </argument></arguments>\n12:\n"
         ],
     ]
 ];

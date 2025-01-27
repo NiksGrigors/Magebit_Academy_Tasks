@@ -12,7 +12,7 @@ namespace Magento\TestModule5\Service\V1;
 interface AllSoapAndRestInterface
 {
     /**
-     * Retrieve an item.
+     * Retrieve an Item.
      *
      * @param int $entityId
      * @return \Magento\TestModule5\Service\V1\Entity\AllSoapAndRest
@@ -28,7 +28,7 @@ interface AllSoapAndRestInterface
     public function items();
 
     /**
-     * Create a new item.
+     * Create a new Item.
      *
      * @param \Magento\TestModule5\Service\V1\Entity\AllSoapAndRest $item
      * @return \Magento\TestModule5\Service\V1\Entity\AllSoapAndRest
@@ -36,7 +36,7 @@ interface AllSoapAndRestInterface
     public function create(\Magento\TestModule5\Service\V1\Entity\AllSoapAndRest $item);
 
     /**
-     * Update existing item.
+     * Update existing Item.
      *
      * @param \Magento\TestModule5\Service\V1\Entity\AllSoapAndRest $entityItem
      * @return \Magento\TestModule5\Service\V1\Entity\AllSoapAndRest
@@ -44,7 +44,7 @@ interface AllSoapAndRestInterface
     public function update(\Magento\TestModule5\Service\V1\Entity\AllSoapAndRest $entityItem);
 
     /**
-     * Update existing item.
+     * Update existing Item.
      *
      * @param string $parentId
      * @param string $entityId

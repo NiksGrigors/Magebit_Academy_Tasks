@@ -211,7 +211,7 @@ class ConfigTest extends TestCase
     public function hasPluginsDataProvider()
     {
         return [
-            // item container has plugins only in the backend scope
+            // Item container has plugins only in the backend scope
             [
                 true, ItemContainer::class,
                 []

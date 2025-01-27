@@ -27,7 +27,7 @@ use Magento\TestFramework\TestCase\AbstractBackendController;
 use PHPUnit\Framework\MockObject\MockObject;
 
 /**
- * Tests for update quote item in customer shopping cart.
+ * Tests for update quote Item in customer shopping cart.
  *
  * @magentoAppArea adminhtml
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
@@ -199,13 +199,13 @@ class UpdateTest extends AbstractBackendController
         $this->assertEquals($expectedUpdateResult, $updateResult->getData());
 
         $quoteItem = $this->getQuoteItemBySku($quote, $expectedData['sku']);
-        $this->assertNotNull($quoteItem, 'Missing expected shopping cart item after update.');
+        $this->assertNotNull($quoteItem, 'Missing expected shopping cart Item after update.');
         $this->assertQuoteItemOptions($quoteItem, $expectedParams);
         $this->assertRedirect($this->stringContains('catalog/product/showUpdateResult'));
     }
 
     /**
-     * Tests updating bundle item quantity in the customer's shopping cart.
+     * Tests updating bundle Item quantity in the customer's shopping cart.
      *
      * @magentoDataFixture Magento/Customer/_files/customer.php
      * @magentoDataFixture Magento/Checkout/_files/quote_with_bundle_product.php
@@ -284,7 +284,7 @@ class UpdateTest extends AbstractBackendController
     }
 
     /**
-     * Prepare quote item options and sku for update.
+     * Prepare quote Item options and sku for update.
      *
      * @param QuoteItem $quoteItem
      * @return array
@@ -349,7 +349,7 @@ class UpdateTest extends AbstractBackendController
     }
 
     /**
-     * Get quote item by sku.
+     * Get quote Item by sku.
      *
      * @param Quote $quote
      * @param string $sku
@@ -366,7 +366,7 @@ class UpdateTest extends AbstractBackendController
     }
 
     /**
-     * Verify that the quote item options are saved successfully.
+     * Verify that the quote Item options are saved successfully.
      *
      * @param QuoteItem $quoteItem
      * @param array $expectedParams
@@ -390,7 +390,7 @@ class UpdateTest extends AbstractBackendController
     }
 
     /**
-     * Dispatch update quote item in customer shopping cart
+     * Dispatch update quote Item in customer shopping cart
      * using backend/customer/cart_product_composite_cart/update action.
      *
      * @param array $params

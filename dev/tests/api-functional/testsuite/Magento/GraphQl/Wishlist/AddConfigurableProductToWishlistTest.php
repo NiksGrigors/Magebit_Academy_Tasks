@@ -179,7 +179,7 @@ class AddConfigurableProductToWishlistTest extends GraphQlAbstract
         $this->assertArrayHasKey('addProductsToWishlist', $response);
         $this->assertNotEmpty($response['addProductsToWishlist']['user_errors']);
         $this->assertEquals(
-            'Some of the selected item options are not currently available.',
+            'Some of the selected Item options are not currently available.',
             $response['addProductsToWishlist']['user_errors'][0]['message']
         );
     }

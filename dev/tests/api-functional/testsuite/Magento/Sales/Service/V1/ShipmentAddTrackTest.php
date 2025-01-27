@@ -48,7 +48,7 @@ class ShipmentAddTrackTest extends WebapiAbstract
     }
 
     /**
-     * Creates shipment track item.
+     * Creates shipment track Item.
      *
      * @magentoApiDataFixture Magento/Sales/_files/shipment.php
      */

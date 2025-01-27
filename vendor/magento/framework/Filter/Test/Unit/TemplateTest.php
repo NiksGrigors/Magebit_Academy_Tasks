@@ -144,12 +144,12 @@ class TemplateTest extends TestCase
             case 'noBodyTag':
                 $template = <<<TEMPLATE
 <ul>
-{{for item in order.all_visible_items}}{{/for}}
+{{for Item in order.all_visible_items}}{{/for}}
 </ul>
 TEMPLATE;
                 $expected = <<<TEMPLATE
 <ul>
-{{for item in order.all_visible_items}}{{/for}}
+{{for Item in order.all_visible_items}}{{/for}}
 </ul>
 TEMPLATE;
                 break;
@@ -208,10 +208,10 @@ TEMPLATE;
             default:
                 $template = <<<TEMPLATE
 <ul>
-    {{for item in order.all_visible_items}}
+    {{for Item in order.all_visible_items}}
     <li>
-        index: {{var loop.index}} sku: {{var item.sku}}
-        name: {{var item.name}} price: {{var item.price}} quantity: {{var item.ordered_qty}}
+        index: {{var loop.index}} sku: {{var Item.sku}}
+        name: {{var Item.name}} price: {{var Item.price}} quantity: {{var Item.ordered_qty}}
     </li>
     {{/for}}
 </ul>

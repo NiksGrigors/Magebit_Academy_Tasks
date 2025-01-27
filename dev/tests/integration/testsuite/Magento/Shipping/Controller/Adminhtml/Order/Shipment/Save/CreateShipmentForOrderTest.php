@@ -190,7 +190,7 @@ class CreateShipmentForOrderTest extends AbstractShipmentControllerTest
     }
 
     /**
-     * Assert that if we send POST data with wrong order item ids we got error message.
+     * Assert that if we send POST data with wrong order Item ids we got error message.
      *
      * @magentoDataFixture Magento/Sales/_files/order_with_customer.php
      *
@@ -216,7 +216,7 @@ class CreateShipmentForOrderTest extends AbstractShipmentControllerTest
     }
 
     /**
-     * Assert that if we send POST data with alphabet order item count we got error message.
+     * Assert that if we send POST data with alphabet order Item count we got error message.
      *
      * @magentoDataFixture Magento/Sales/_files/order_with_customer.php
      *

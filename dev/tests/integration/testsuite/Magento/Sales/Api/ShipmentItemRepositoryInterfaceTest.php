@@ -33,16 +33,16 @@ class ShipmentItemRepositoryInterfaceTest extends \PHPUnit\Framework\TestCase
         $filterBuilder = Bootstrap::getObjectManager()->create(FilterBuilder::class);
 
         $filter1 = $filterBuilder->setField(ShipmentItemInterface::NAME)
-            ->setValue('item 2')
+            ->setValue('Item 2')
             ->create();
         $filter2 = $filterBuilder->setField(ShipmentItemInterface::NAME)
-            ->setValue('item 3')
+            ->setValue('Item 3')
             ->create();
         $filter3 = $filterBuilder->setField(ShipmentItemInterface::NAME)
-            ->setValue('item 4')
+            ->setValue('Item 4')
             ->create();
         $filter4 = $filterBuilder->setField(ShipmentItemInterface::NAME)
-            ->setValue('item 5')
+            ->setValue('Item 5')
             ->create();
         $filter5 = $filterBuilder->setField(ShipmentItemInterface::PRICE)
             ->setValue(45)
@@ -73,6 +73,6 @@ class ShipmentItemRepositoryInterfaceTest extends \PHPUnit\Framework\TestCase
 
         $items = array_values($searchResult->getItems());
         $this->assertCount(1, $items);
-        $this->assertEquals('item 2', $items[0][ShipmentItemInterface::NAME]);
+        $this->assertEquals('Item 2', $items[0][ShipmentItemInterface::NAME]);
     }
 }
