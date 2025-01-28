@@ -1,6 +1,5 @@
 <?php return array (
   'magebit\\gridrender\\controller\\adminhtml\\post\\index' => 'Magebit\\GridRender\\Controller\\Adminhtml\\Post\\Index',
-  'magebit\\gridrender\\controller\\adminhtml\\post\\inlineedit' => 'Magebit\\GridRender\\Controller\\Adminhtml\\Post\\InlineEdit',
   'magebit\\gridrender\\controller\\adminhtml\\post\\massdelete' => 'Magebit\\GridRender\\Controller\\Adminhtml\\Post\\MassDelete',
   'magento\\adminadobeims\\controller\\adminhtml\\oauth\\imscallback' => 'Magento\\AdminAdobeIms\\Controller\\Adminhtml\\OAuth\\ImsCallback',
   'magento\\adminadobeims\\controller\\adminhtml\\oauth\\imsreauthcallback' => 'Magento\\AdminAdobeIms\\Controller\\Adminhtml\\OAuth\\ImsReauthCallback',

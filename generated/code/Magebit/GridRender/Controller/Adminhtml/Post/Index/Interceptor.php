@@ -17,7 +17,7 @@ class Interceptor extends \Magebit\GridRender\Controller\Adminhtml\Post\Index im
     /**
      * {@inheritdoc}
      */
-    public function execute() : \Magento\Framework\View\Result\Page
+    public function execute()
     {
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'execute');
         return $pluginInfo ? $this->___callPlugins('execute', func_get_args(), $pluginInfo) : parent::execute();

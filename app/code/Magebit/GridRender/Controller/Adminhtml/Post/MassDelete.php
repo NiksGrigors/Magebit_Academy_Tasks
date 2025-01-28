@@ -5,33 +5,52 @@ namespace Magebit\GridRender\Controller\Adminhtml\Post;
 use Magento\Backend\App\Action;
 use Magento\Ui\Component\MassAction\Filter;
 use Magebit\GridRender\Model\ResourceModel\Post\CollectionFactory;
+use Psr\Log\LoggerInterface;
+
 
 class MassDelete extends Action
 {
-    protected $filter;
-    protected $collectionFactory;
-
     public function __construct(
         Action\Context $context,
-        Filter $filter,
-        CollectionFactory $collectionFactory
+        protected Filter $filter,
+        protected CollectionFactory $collectionFactory,
+        protected LoggerInterface $logger
     ) {
-        $this->filter = $filter;
-        $this->collectionFactory = $collectionFactory;
         parent::__construct($context);
     }
 
     public function execute()
     {
-        $collection = $this->filter->getCollection($this->collectionFactory->create());
-        $deleted = 0;
+        $collection = $this->collectionFactory->create();
 
-        foreach ($collection as $item) {
-            $item->delete();
-            $deleted++;
+        $productDeleted = 0;
+        $productDeletedError = 0;
+        /** @var \Magento\Catalog\Model\Product $product */
+        foreach ($collection->getItems() as $product) {
+            try {
+                $product->delete();
+                $productDeleted++;
+            } catch (LocalizedException $exception) {
+                $this->logger->error($exception->getLogMessage());
+                $productDeletedError++;
+            }
         }
 
-        $this->messageManager->addSuccessMessage(__('A total of %1 record(s) have been deleted.', $deleted));
+        if ($productDeleted) {
+            $this->messageManager->addSuccessMessage(
+                __('A total of %1 record(s) have been deleted.', $productDeleted)
+            );
+        }
+
+        if ($productDeletedError) {
+            $this->messageManager->addErrorMessage(
+                __(
+                    'A total of %1 record(s) haven\'t been deleted. Please see server logs for more details.',
+                    $productDeletedError
+                )
+            );
+        }
+
         return $this->_redirect('*/*/');
     }
 }

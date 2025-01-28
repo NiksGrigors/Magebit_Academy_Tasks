@@ -7,7 +7,6 @@ namespace Magebit\GridRender\Controller\Adminhtml\Post;
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\Controller\ResultFactory;
-use Magento\Framework\View\Result\Page;
 
 class Index extends Action implements HttpGetActionInterface
 {

@@ -5779,6 +5779,10 @@
       array (
         '_i_' => 'Magebit\\GridRender\\Model\\ResourceModel\\Post\\CollectionFactory',
       ),
+      'logger' => 
+      array (
+        '_i_' => 'Magento\\Framework\\Logger\\LoggerProxy',
+      ),
     ),
     'Magebit\\GridRender\\Model\\Post' => 
     array (

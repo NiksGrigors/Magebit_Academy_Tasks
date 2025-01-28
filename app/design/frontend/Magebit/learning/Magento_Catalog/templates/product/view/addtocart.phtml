@@ -21,6 +21,7 @@
 
 <!-- Add to Cart Button -->
 <div class="actions-toolbar">
+    <?php echo $block->escapeUrl($block->getAddToCartUrl($block->getProduct())); ?>
     <form method="post"
           action="<?php echo $block->escapeUrl($block->getAddToCartUrl($block->getProduct())); ?>"
           class="add-to-cart-form">

@@ -8,10 +8,10 @@ class Interceptor extends \Magebit\GridRender\Controller\Adminhtml\Post\MassDele
 {
     use \Magento\Framework\Interception\Interceptor;
 
-    public function __construct(\Magento\Backend\App\Action\Context $context, \Magento\Ui\Component\MassAction\Filter $filter, \Magebit\GridRender\Model\ResourceModel\Post\CollectionFactory $collectionFactory)
+    public function __construct(\Magento\Backend\App\Action\Context $context, \Magento\Ui\Component\MassAction\Filter $filter, \Magebit\GridRender\Model\ResourceModel\Post\CollectionFactory $collectionFactory, \Psr\Log\LoggerInterface $logger)
     {
         $this->___init();
-        parent::__construct($context, $filter, $collectionFactory);
+        parent::__construct($context, $filter, $collectionFactory, $logger);
     }
 
     /**
