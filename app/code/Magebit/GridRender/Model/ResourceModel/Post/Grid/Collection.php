@@ -24,16 +24,17 @@ class Collection extends PostCollection implements SearchResultInterface
      */
     protected $aggregations;
 
+
     public function __construct(
         \Magento\Framework\Data\Collection\EntityFactoryInterface $entityFactory,
         \Psr\Log\LoggerInterface $logger,
         \Magento\Framework\Data\Collection\Db\FetchStrategyInterface $fetchStrategy,
         ManagerInterface $eventManager,
-        $mainTable,
-        $eventPrefix,
-        $eventObject,
-        $resourceModel,
-        $model = \Magento\Framework\View\Element\UiComponent\DataProvider\Document::class,
+        private $mainTable,
+        private $eventPrefix,
+        private $eventObject,
+        private $resourceModel,
+        private $model = \Magento\Framework\View\Element\UiComponent\DataProvider\Document::class,
         \Magento\Framework\DB\Adapter\AdapterInterface $connection = null,
         \Magento\Framework\Model\ResourceModel\Db\AbstractDb $resource = null
     ) {
@@ -41,12 +42,11 @@ class Collection extends PostCollection implements SearchResultInterface
         parent::__construct($entityFactory, $logger, $fetchStrategy, $eventManager, $connection, $resource);
 
         // Initialize additional properties for the child class
-        $this->_eventPrefix = $eventPrefix;
-        $this->_eventObject = $eventObject;
-        $this->_init($model, $resourceModel);
-        $this->setMainTable($mainTable);
+        $this->_init($this->model, $this->resourceModel);
+        $this->_eventPrefix = $this->eventPrefix;
+        $this->_eventObject = $this->eventObject;
+        $this->setMainTable($this->mainTable);
     }
-
 
 
     /**
@@ -54,7 +54,7 @@ class Collection extends PostCollection implements SearchResultInterface
      *
      * @return AggregationInterface
      */
-    public function getAggregations()
+    public function getAggregations(): AggregationInterface
     {
         return $this->aggregations;
     }
@@ -65,7 +65,7 @@ class Collection extends PostCollection implements SearchResultInterface
      * @param AggregationInterface $aggregations
      * @return $this
      */
-    public function setAggregations($aggregations)
+    public function setAggregations($aggregations): static
     {
         $this->aggregations = $aggregations;
         return $this;
@@ -76,7 +76,7 @@ class Collection extends PostCollection implements SearchResultInterface
      *
      * @return \Magento\Framework\Api\SearchCriteriaInterface|null
      */
-    public function getSearchCriteria()
+    public function getSearchCriteria(): ?\Magento\Framework\Api\SearchCriteriaInterface
     {
         return null;
     }
@@ -88,7 +88,7 @@ class Collection extends PostCollection implements SearchResultInterface
      * @return $this
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function setSearchCriteria(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria = null)
+    public function setSearchCriteria(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria = null): static
     {
         return $this;
     }
@@ -98,7 +98,7 @@ class Collection extends PostCollection implements SearchResultInterface
      *
      * @return int
      */
-    public function getTotalCount()
+    public function getTotalCount(): int
     {
         return $this->getSize();
     }
@@ -110,7 +110,7 @@ class Collection extends PostCollection implements SearchResultInterface
      * @return $this
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function setTotalCount($totalCount)
+    public function setTotalCount($totalCount): static
     {
         return $this;
     }
@@ -122,7 +122,7 @@ class Collection extends PostCollection implements SearchResultInterface
      * @return $this
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function setItems(array $items = null)
+    public function setItems(array $items = null): static
     {
         return $this;
     }

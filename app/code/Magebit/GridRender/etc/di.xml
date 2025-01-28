@@ -13,6 +13,7 @@
             <argument name="eventPrefix" xsi:type="string">magebit_gridrender_post_grid_collection</argument>
             <argument name="eventObject" xsi:type="string">post_grid_collection</argument>
             <argument name="resourceModel" xsi:type="string">Magebit\GridRender\Model\ResourceModel\Post</argument>
+            <argument name="logger" xsi:type="object">Psr\Log\LoggerInterface</argument>
         </arguments>
     </type>
 </config>
