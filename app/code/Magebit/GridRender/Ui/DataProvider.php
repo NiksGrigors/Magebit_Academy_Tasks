@@ -6,13 +6,13 @@ use Magento\Ui\DataProvider\AbstractDataProvider;
 
 class DataProvider extends AbstractDataProvider
 {
+    protected $collection;
 
     public function __construct(
         $name,
         $primaryFieldName,
         $requestFieldName,
         $collectionFactory,
-        protected $collection,
         array $meta = [],
         array $data = []
     ) {
