@@ -6,17 +6,16 @@ use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\Controller\ResultInterface;
 use Magebit\GridRender\Model\PostFactory;
+use Magento\Framework\Event\ManagerInterface as EventManager;
 
 class Save extends Action
 {
-    private PostFactory $postFactory;
-
     public function __construct(
         Context $context,
-        PostFactory $postFactory
+        private PostFactory $postFactory,
+        private EventManager $eventManager
     ) {
         parent::__construct($context);
-        $this->postFactory = $postFactory;
     }
 
     public function execute(): ResultInterface
@@ -27,6 +26,12 @@ class Save extends Action
             $post = $this->postFactory->create();
             $post->setData($postData)
                 ->save();
+
+            // Event call when new post have been saved
+            $this->eventManager->dispatch(
+                'magebit_gridrender_post_save_after',
+                ['post' => $post, 'post_data' => $postData]
+            );
 
             $this->messageManager->addSuccessMessage(__('Post has been saved successfully.'));
         } catch (\Exception $e) {
