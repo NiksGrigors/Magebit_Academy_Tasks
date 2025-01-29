@@ -5,7 +5,7 @@
 
 /**
  @version 0.0.1
- @requires jQuery & jQuery UI
+ @requires jQuery & jQuery Ui
  */
 define([
     'jquery',

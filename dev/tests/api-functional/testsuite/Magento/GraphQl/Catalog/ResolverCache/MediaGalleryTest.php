@@ -145,7 +145,7 @@ class MediaGalleryTest extends ResolverCacheAbstract
                 return strpos($key, 'video') === false;
             }, ARRAY_FILTER_USE_KEY);
 
-            // client UI converts null values to empty string due to behavior of HTML encoding;
+            // client Ui converts null values to empty string due to behavior of HTML encoding;
             // match this behavior before posting to the controller
             foreach ($image as &$value) {
                 if ($value === null) {

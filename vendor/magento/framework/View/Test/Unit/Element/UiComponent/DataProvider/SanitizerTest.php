@@ -114,7 +114,7 @@ class SanitizerTest extends TestCase
     }
 
     /**
-     * Full UI component data sets to sanitize.
+     * Full Ui component data sets to sanitize.
      *
      * @return array
      */

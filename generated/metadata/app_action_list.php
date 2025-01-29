@@ -1,4 +1,6 @@
 <?php return array (
+  'magebit\\gridrender\\controller\\adminhtml\\item\\newaction' => 'Magebit\\GridRender\\Controller\\Adminhtml\\Item\\NewAction',
+  'magebit\\gridrender\\controller\\adminhtml\\item\\save' => 'Magebit\\GridRender\\Controller\\Adminhtml\\Item\\Save',
   'magebit\\gridrender\\controller\\adminhtml\\post\\index' => 'Magebit\\GridRender\\Controller\\Adminhtml\\Post\\Index',
   'magebit\\gridrender\\controller\\adminhtml\\post\\massdelete' => 'Magebit\\GridRender\\Controller\\Adminhtml\\Post\\MassDelete',
   'magento\\adminadobeims\\controller\\adminhtml\\oauth\\imscallback' => 'Magento\\AdminAdobeIms\\Controller\\Adminhtml\\OAuth\\ImsCallback',
