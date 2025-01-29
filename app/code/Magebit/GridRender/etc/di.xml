@@ -16,4 +16,7 @@
             <argument name="logger" xsi:type="object">Psr\Log\LoggerInterface</argument>
         </arguments>
     </type>
+    <type name="Magebit\GridRender\Controller\Adminhtml\Item\Save">
+        <plugin name="magebit_gridrender_save_action_plugin" type="Magebit\GridRender\Plugin\SaveActionPlugin"/>
+    </type>
 </config>
