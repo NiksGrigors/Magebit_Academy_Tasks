@@ -56,7 +56,7 @@ define(function () {
         }
 
         /**
-         * Get form key from UI input hidden
+         * Get form key from Ui input hidden
          * @private
          */
         function getFormKeyFromUI() {

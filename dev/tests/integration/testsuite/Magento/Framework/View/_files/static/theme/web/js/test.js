@@ -11,7 +11,7 @@ define([
     'use strict';
 
     /**
-     * Menu Widget - this widget is a wrapper for the jQuery UI Menu
+     * Menu Widget - this widget is a wrapper for the jQuery Ui Menu
      */
     $.widget('mage.menu', $.ui.menu, {
         options: {

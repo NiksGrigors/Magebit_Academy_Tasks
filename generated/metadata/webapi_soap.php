@@ -5086,6 +5086,24 @@
         '_i_' => 'Magento\\Cms\\Api\\Data\\PageInterfaceFactory',
       ),
     ),
+    'Magebit\\GridRender\\Controller\\Adminhtml\\Item\\NewAction\\Interceptor' => 
+    array (
+      'context' => 
+      array (
+        '_i_' => 'Magento\\Backend\\App\\Action\\Context',
+      ),
+    ),
+    'Magebit\\GridRender\\Controller\\Adminhtml\\Item\\Save\\Interceptor' => 
+    array (
+      'context' => 
+      array (
+        '_i_' => 'Magento\\Backend\\App\\Action\\Context',
+      ),
+      'postFactory' => 
+      array (
+        '_i_' => 'Magebit\\GridRender\\Model\\PostFactory',
+      ),
+    ),
     'Magebit\\GridRender\\Controller\\Adminhtml\\Post\\Index\\Interceptor' => 
     array (
       'context' => 
@@ -5135,6 +5153,17 @@
         '_v_' => 
         array (
         ),
+      ),
+    ),
+    'Magebit\\GridRender\\Model\\PostFactory' => 
+    array (
+      'objectManager' => 
+      array (
+        '_i_' => 'Magento\\Framework\\ObjectManagerInterface',
+      ),
+      'instanceName' => 
+      array (
+        '_v_' => '\\Magebit\\GridRender\\Model\\Post',
       ),
     ),
     'Magebit\\GridRender\\Model\\ResourceModel\\Post' => 
@@ -5231,6 +5260,37 @@
       'resource' => 
       array (
         '_vn_' => true,
+      ),
+    ),
+    'Magebit\\GridRender\\Ui\\DataProvider' => 
+    array (
+      'name' => 
+      array (
+        '_vn_' => true,
+      ),
+      'primaryFieldName' => 
+      array (
+        '_vn_' => true,
+      ),
+      'requestFieldName' => 
+      array (
+        '_vn_' => true,
+      ),
+      'collectionFactory' => 
+      array (
+        '_vn_' => true,
+      ),
+      'meta' => 
+      array (
+        '_v_' => 
+        array (
+        ),
+      ),
+      'data' => 
+      array (
+        '_v_' => 
+        array (
+        ),
       ),
     ),
     'Magebit\\PageListWidget\\Block\\Widget\\PageList' => 
@@ -261965,6 +262025,8 @@ Line: %line%
     'Cm\\RedisSession\\Handler\\ConfigInterface' => 'Magento\\Framework\\Session\\SaveHandler\\Redis\\Config',
     'Cm\\RedisSession\\Handler\\LoggerInterface' => 'Magento\\Framework\\Session\\SaveHandler\\Redis\\Logger',
     'DateTimeInterface' => 'DateTime',
+    'Magebit\\GridRender\\Controller\\Adminhtml\\Item\\NewAction' => 'Magebit\\GridRender\\Controller\\Adminhtml\\Item\\NewAction\\Interceptor',
+    'Magebit\\GridRender\\Controller\\Adminhtml\\Item\\Save' => 'Magebit\\GridRender\\Controller\\Adminhtml\\Item\\Save\\Interceptor',
     'Magebit\\GridRender\\Controller\\Adminhtml\\Post\\Index' => 'Magebit\\GridRender\\Controller\\Adminhtml\\Post\\Index\\Interceptor',
     'Magebit\\GridRender\\Controller\\Adminhtml\\Post\\MassDelete' => 'Magebit\\GridRender\\Controller\\Adminhtml\\Post\\MassDelete\\Interceptor',
     'Magebit\\GridRender\\Model\\ResourceModel\\Post\\Collection' => 'Magebit\\GridRender\\Model\\ResourceModel\\Post\\Collection\\Interceptor',
