@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework/View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Magebit_Faq::css/source/faq.css"/>
+    </head>
+    <body>
+        <referenceBlock name="catalog.compare.sidebar" remove="true" />
+        <referenceBlock name="wishlist_sidebar" remove="true" />
+        <referenceContainer name="content">
+            <block class="Magento\Framework\View\Element\Template" name="faq.list" template="Magebit_Faq::faq.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

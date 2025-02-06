@@ -97,7 +97,7 @@ class ColumnTest extends TestCase
     {
         $buttons = [
             "Add to Cart button" => "//button[contains(@class, 'tocart')]/span[contains(text(), 'Add to Cart')]",
-            "Edit button" => "//a[contains(@class, 'edit')]/span[contains(text(), 'Edit')]",
+            "NewAction button" => "//a[contains(@class, 'edit')]/span[contains(text(), 'NewAction')]",
             "Remove Item button" => "//a[contains(@class, 'delete')]/span[contains(text(), 'Remove Item')]",
         ];
         $item = $this->getWishlistItemsByCustomerId->getItemBySku(1, 'simple');

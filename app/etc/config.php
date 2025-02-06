@@ -374,6 +374,7 @@ return [
         'Magento_WishlistGraphQl' => 1,
         'Magento_WishlistSampleData' => 1,
         'Magebit_DataPatch' => 1,
+        'Magebit_Faq' => 1,
         'Magebit_GridRender' => 1,
         'Magebit_PageListWidget' => 1,
         'PayPal_Braintree' => 1,

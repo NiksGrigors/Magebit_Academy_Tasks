@@ -5,7 +5,7 @@
  */
 
 /**
- * Test class for \Magento\ImportExport\Block\Adminhtml\Import\Edit\Before
+ * Test class for \Magento\ImportExport\Block\Adminhtml\Import\NewAction\Before
  */
 namespace Magento\ImportExport\Block\Adminhtml\Import\Edit;
 

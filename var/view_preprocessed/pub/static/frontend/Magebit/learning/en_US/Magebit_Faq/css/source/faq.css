@@ -1,0 +1,23 @@
+.faq-container {
+  width: 100%;
+}
+.faq-collapsible {
+  width: 100%;
+}
+.faq-title {
+  background-color: #f0f0f0;
+  padding: 10px;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  font-weight: bold;
+}
+.faq-content {
+  padding: 10px;
+  display: none;
+}
+.faq-item.ui-accordion .faq-content {
+  display: block;
+}
+.column.main {
+  width: 100% !important;
+}

@@ -1,0 +1,13 @@
+<?php $faqCollection = $this->helper(\Magebit\Faq\Helper\Data::class)->getFaqCollection(); ?> <div id="faq-container" class="faq-container"><?php foreach ($faqCollection as $faq): ?> <div class="faq-collapsible" data-role="collapsible"><div class="faq-title" data-role="trigger"><span class="faq-title-span"><?= $faq->getQuestion(); ?></span></div><div class="faq-content" data-role="content"><p><?= nl2br($faq->getAnswer()); ?></p></div></div><?php endforeach; ?></div><script type="text/javascript">
+    require([
+        'jquery',
+        'mage/accordion'
+    ], function ($) {
+        
+        $("#faq-container").accordion({
+            active: false,  
+            collapsible: true,
+            header: ".faq-title",  
+            heightStyle: "content"  
+        });
+    });</script>

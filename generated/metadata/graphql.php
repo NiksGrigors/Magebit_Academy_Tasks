@@ -3388,6 +3388,7 @@
           'retriable_operation_listing_data_source' => 'Magento\\AsynchronousOperations\\Ui\\Component\\DataProvider\\Operation\\Retriable\\SearchResult',
           'failed_operation_modal_listing_data_source' => 'Magento\\AsynchronousOperations\\Ui\\Component\\DataProvider\\Operation\\Failed\\SearchResult',
           'retriable_operation_modal_listing_data_source' => 'Magento\\AsynchronousOperations\\Ui\\Component\\DataProvider\\Operation\\Retriable\\SearchResult',
+          'faq_listing_data_source' => 'Magebit\\Faq\\Model\\ResourceModel\\Faq\\Grid\\Collection',
           'magebit_gridrender_post_listing_data_source' => 'Magebit\\GridRender\\Model\\ResourceModel\\Post\\Grid\\Collection',
           'braintree_report_data_source' => 'PayPal\\Braintree\\Model\\Report\\TransactionsCollection',
         ),
@@ -5150,6 +5151,389 @@
       'pageInterfaceFactory' => 
       array (
         '_i_' => 'Magento\\Cms\\Api\\Data\\PageInterfaceFactory',
+      ),
+    ),
+    'Magebit\\Faq\\Api\\Data\\FaqInterfaceFactory' => 
+    array (
+      'faqFactory' => 
+      array (
+        '_i_' => 'Magebit\\Faq\\Model\\FaqFactory',
+      ),
+    ),
+    'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\Delete\\Interceptor' => 
+    array (
+      'context' => 
+      array (
+        '_i_' => 'Magento\\Backend\\App\\Action\\Context',
+      ),
+      'faqFactory' => 
+      array (
+        '_i_' => 'Magebit\\Faq\\Model\\FaqFactory',
+      ),
+    ),
+    'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\Edit\\Interceptor' => 
+    array (
+      'context' => 
+      array (
+        '_i_' => 'Magento\\Backend\\App\\Action\\Context',
+      ),
+      'resultPageFactory' => 
+      array (
+        '_i_' => 'Magento\\Framework\\View\\Result\\PageFactory',
+      ),
+      'faqFactory' => 
+      array (
+        '_i_' => 'Magebit\\Faq\\Model\\FaqFactory',
+      ),
+      'coreRegistry' => 
+      array (
+        '_i_' => 'Magento\\Framework\\Registry',
+      ),
+    ),
+    'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\InlineEdit\\Interceptor' => 
+    array (
+      'context' => 
+      array (
+        '_i_' => 'Magento\\Backend\\App\\Action\\Context',
+      ),
+      'faqRepository' => 
+      array (
+        '_i_' => 'Magebit\\Faq\\Model\\FaqRepository',
+      ),
+    ),
+    'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\MassDelete\\Interceptor' => 
+    array (
+      'context' => 
+      array (
+        '_i_' => 'Magento\\Backend\\App\\Action\\Context',
+      ),
+      'filter' => 
+      array (
+        '_i_' => 'Magento\\Ui\\Component\\MassAction\\Filter',
+      ),
+      'collectionFactory' => 
+      array (
+        '_i_' => 'Magebit\\Faq\\Model\\ResourceModel\\Faq\\CollectionFactory',
+      ),
+    ),
+    'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\MassDisable\\Interceptor' => 
+    array (
+      'context' => 
+      array (
+        '_i_' => 'Magento\\Backend\\App\\Action\\Context',
+      ),
+      'filter' => 
+      array (
+        '_i_' => 'Magento\\Ui\\Component\\MassAction\\Filter',
+      ),
+      'collectionFactory' => 
+      array (
+        '_i_' => 'Magebit\\Faq\\Model\\ResourceModel\\Faq\\CollectionFactory',
+      ),
+    ),
+    'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\MassEnable\\Interceptor' => 
+    array (
+      'context' => 
+      array (
+        '_i_' => 'Magento\\Backend\\App\\Action\\Context',
+      ),
+      'filter' => 
+      array (
+        '_i_' => 'Magento\\Ui\\Component\\MassAction\\Filter',
+      ),
+      'collectionFactory' => 
+      array (
+        '_i_' => 'Magebit\\Faq\\Model\\ResourceModel\\Faq\\CollectionFactory',
+      ),
+    ),
+    'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\NewAction\\Interceptor' => 
+    array (
+      'context' => 
+      array (
+        '_i_' => 'Magento\\Backend\\App\\Action\\Context',
+      ),
+    ),
+    'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\Save\\Interceptor' => 
+    array (
+      'context' => 
+      array (
+        '_i_' => 'Magento\\Backend\\App\\Action\\Context',
+      ),
+      'faqRepository' => 
+      array (
+        '_i_' => 'Magebit\\Faq\\Model\\FaqRepository',
+      ),
+      'faqFactory' => 
+      array (
+        '_i_' => 'Magebit\\Faq\\Api\\Data\\FaqInterfaceFactory',
+      ),
+      'eventManager' => 
+      array (
+        '_i_' => 'Magento\\Framework\\Event\\Manager\\Proxy',
+      ),
+    ),
+    'Magebit\\Faq\\Controller\\Adminhtml\\Index\\Index\\Interceptor' => 
+    array (
+      'context' => 
+      array (
+        '_i_' => 'Magento\\Backend\\App\\Action\\Context',
+      ),
+      'resultPageFactory' => 
+      array (
+        '_i_' => 'Magento\\Framework\\View\\Result\\PageFactory',
+      ),
+    ),
+    'Magebit\\Faq\\Controller\\Index\\Index\\Interceptor' => 
+    array (
+      'context' => 
+      array (
+        '_i_' => 'Magento\\Framework\\App\\Action\\Context',
+      ),
+      'pageFactory' => 
+      array (
+        '_i_' => 'Magento\\Framework\\View\\Result\\PageFactory',
+      ),
+      'faqCollectionFactory' => 
+      array (
+        '_i_' => 'Magebit\\Faq\\Model\\ResourceModel\\Faq\\CollectionFactory',
+      ),
+    ),
+    'Magebit\\Faq\\Helper\\Data' => 
+    array (
+      'faqCollectionFactory' => 
+      array (
+        '_i_' => 'Magebit\\Faq\\Model\\ResourceModel\\Faq\\CollectionFactory',
+      ),
+    ),
+    'Magebit\\Faq\\Model\\Faq' => 
+    array (
+      'context' => 
+      array (
+        '_i_' => 'Magento\\Framework\\Model\\Context',
+      ),
+      'registry' => 
+      array (
+        '_i_' => 'Magento\\Framework\\Registry',
+      ),
+      'resource' => 
+      array (
+        '_vn_' => true,
+      ),
+      'resourceCollection' => 
+      array (
+        '_vn_' => true,
+      ),
+      'data' => 
+      array (
+        '_v_' => 
+        array (
+        ),
+      ),
+    ),
+    'Magebit\\Faq\\Model\\FaqFactory' => 
+    array (
+      'objectManager' => 
+      array (
+        '_i_' => 'Magento\\Framework\\ObjectManagerInterface',
+      ),
+      'instanceName' => 
+      array (
+        '_v_' => '\\Magebit\\Faq\\Model\\Faq',
+      ),
+    ),
+    'Magebit\\Faq\\Model\\FaqManagement' => 
+    array (
+      'faqRepository' => 
+      array (
+        '_i_' => 'Magebit\\Faq\\Model\\FaqRepository',
+      ),
+    ),
+    'Magebit\\Faq\\Model\\FaqRepository' => 
+    array (
+      'resource' => 
+      array (
+        '_i_' => 'Magebit\\Faq\\Model\\ResourceModel\\Faq',
+      ),
+      'faqFactory' => 
+      array (
+        '_i_' => 'Magebit\\Faq\\Api\\Data\\FaqInterfaceFactory',
+      ),
+      'collectionFactory' => 
+      array (
+        '_i_' => 'Magebit\\Faq\\Model\\ResourceModel\\Faq\\CollectionFactory',
+      ),
+      'searchResultsFactory' => 
+      array (
+        '_i_' => 'Magento\\Framework\\Api\\SearchResultsInterfaceFactory',
+      ),
+    ),
+    'Magebit\\Faq\\Model\\Faq\\Source\\Status' => NULL,
+    'Magebit\\Faq\\Model\\ResourceModel\\Faq' => 
+    array (
+      'context' => 
+      array (
+        '_i_' => 'Magento\\Framework\\Model\\ResourceModel\\Db\\Context',
+      ),
+      'connectionName' => 
+      array (
+        '_vn_' => true,
+      ),
+    ),
+    'Magebit\\Faq\\Model\\ResourceModel\\Faq\\CollectionFactory' => 
+    array (
+      'objectManager' => 
+      array (
+        '_i_' => 'Magento\\Framework\\ObjectManagerInterface',
+      ),
+      'instanceName' => 
+      array (
+        '_v_' => '\\Magebit\\Faq\\Model\\ResourceModel\\Faq\\Collection',
+      ),
+    ),
+    'Magebit\\Faq\\Model\\ResourceModel\\Faq\\Collection\\Interceptor' => 
+    array (
+      'entityFactory' => 
+      array (
+        '_i_' => 'Magento\\Framework\\Data\\Collection\\EntityFactory',
+      ),
+      'logger' => 
+      array (
+        '_i_' => 'Magento\\Framework\\Logger\\LoggerProxy',
+      ),
+      'fetchStrategy' => 
+      array (
+        '_i_' => 'Magento\\Framework\\Data\\Collection\\Db\\FetchStrategy\\Query',
+      ),
+      'eventManager' => 
+      array (
+        '_i_' => 'Magento\\Framework\\Event\\Manager\\Proxy',
+      ),
+      'connection' => 
+      array (
+        '_vn_' => true,
+      ),
+      'resource' => 
+      array (
+        '_vn_' => true,
+      ),
+    ),
+    'Magebit\\Faq\\Model\\ResourceModel\\Faq\\Grid\\Collection\\Interceptor' => 
+    array (
+      'entityFactory' => 
+      array (
+        '_i_' => 'Magento\\Framework\\Data\\Collection\\EntityFactory',
+      ),
+      'logger' => 
+      array (
+        '_i_' => 'Magento\\Framework\\Logger\\LoggerProxy',
+      ),
+      'fetchStrategy' => 
+      array (
+        '_i_' => 'Magento\\Framework\\Data\\Collection\\Db\\FetchStrategy\\Query',
+      ),
+      'eventManager' => 
+      array (
+        '_i_' => 'Magento\\Framework\\Event\\Manager\\Proxy',
+      ),
+      'mainTable' => 
+      array (
+        '_v_' => 'magebit_faq',
+      ),
+      'eventPrefix' => 
+      array (
+        '_v_' => 'faq_listing_grid_collection',
+      ),
+      'eventObject' => 
+      array (
+        '_v_' => 'faq_grid_collection',
+      ),
+      'resourceModel' => 
+      array (
+        '_v_' => 'Magebit\\Faq\\Model\\ResourceModel\\Faq',
+      ),
+      'model' => 
+      array (
+        '_v_' => 'Magento\\Framework\\View\\Element\\UiComponent\\DataProvider\\Document',
+      ),
+      'connection' => 
+      array (
+        '_vn_' => true,
+      ),
+      'resource' => 
+      array (
+        '_vn_' => true,
+      ),
+    ),
+    'Magebit\\Faq\\Ui\\Component\\Form\\Button\\Back' => 
+    array (
+      'context' => 
+      array (
+        '_i_' => 'Magento\\Backend\\Block\\Widget\\Context',
+      ),
+    ),
+    'Magebit\\Faq\\Ui\\Component\\Form\\Button\\Save' => 
+    array (
+      'context' => 
+      array (
+        '_i_' => 'Magento\\Backend\\Block\\Widget\\Context',
+      ),
+    ),
+    'Magebit\\Faq\\Ui\\Component\\Listing\\Column\\FaqActions' => 
+    array (
+      'context' => 
+      array (
+        '_i_' => 'Magento\\Framework\\View\\Element\\UiComponent\\Context',
+      ),
+      'uiComponentFactory' => 
+      array (
+        '_i_' => 'Magento\\Framework\\View\\Element\\UiComponentFactory',
+      ),
+      'urlBuilder' => 
+      array (
+        '_i_' => 'Magento\\Framework\\Url',
+      ),
+      'components' => 
+      array (
+        '_v_' => 
+        array (
+        ),
+      ),
+      'data' => 
+      array (
+        '_v_' => 
+        array (
+        ),
+      ),
+    ),
+    'Magebit\\Faq\\Ui\\Component\\Listing\\DataProvider' => 
+    array (
+      'name' => 
+      array (
+        '_vn_' => true,
+      ),
+      'primaryFieldName' => 
+      array (
+        '_vn_' => true,
+      ),
+      'requestFieldName' => 
+      array (
+        '_vn_' => true,
+      ),
+      'collectionFactory' => 
+      array (
+        '_i_' => 'Magebit\\Faq\\Model\\ResourceModel\\Faq\\CollectionFactory',
+      ),
+      'meta' => 
+      array (
+        '_v_' => 
+        array (
+        ),
+      ),
+      'data' => 
+      array (
+        '_v_' => 
+        array (
+        ),
       ),
     ),
     'Magebit\\GridRender\\Controller\\Adminhtml\\Item\\NewAction\\Interceptor' => 
@@ -100620,6 +101004,17 @@ Line: %line%
         ),
       ),
     ),
+    'Magento\\Framework\\Api\\SearchResultsInterfaceFactory' => 
+    array (
+      'objectManager' => 
+      array (
+        '_i_' => 'Magento\\Framework\\ObjectManagerInterface',
+      ),
+      'instanceName' => 
+      array (
+        '_v_' => '\\Magento\\Framework\\Api\\SearchResultsInterface',
+      ),
+    ),
     'Magento\\Framework\\Api\\Search\\Document' => 
     array (
       'data' => 
@@ -125518,6 +125913,7 @@ Line: %line%
           'retriable_operation_listing_data_source' => 'Magento\\AsynchronousOperations\\Ui\\Component\\DataProvider\\Operation\\Retriable\\SearchResult',
           'failed_operation_modal_listing_data_source' => 'Magento\\AsynchronousOperations\\Ui\\Component\\DataProvider\\Operation\\Failed\\SearchResult',
           'retriable_operation_modal_listing_data_source' => 'Magento\\AsynchronousOperations\\Ui\\Component\\DataProvider\\Operation\\Retriable\\SearchResult',
+          'faq_listing_data_source' => 'Magebit\\Faq\\Model\\ResourceModel\\Faq\\Grid\\Collection',
           'magebit_gridrender_post_listing_data_source' => 'Magebit\\GridRender\\Model\\ResourceModel\\Post\\Grid\\Collection',
         ),
       ),
@@ -262986,6 +263382,19 @@ Line: %line%
     'Cm\\RedisSession\\Handler\\ConfigInterface' => 'Magento\\Framework\\Session\\SaveHandler\\Redis\\Config',
     'Cm\\RedisSession\\Handler\\LoggerInterface' => 'Magento\\Framework\\Session\\SaveHandler\\Redis\\Logger',
     'DateTimeInterface' => 'DateTime',
+    'Magebit\\Faq\\Api\\FaqRepositoryInterface' => 'Magebit\\Faq\\Model\\FaqRepository',
+    'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\Delete' => 'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\Delete\\Interceptor',
+    'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\Edit' => 'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\Edit\\Interceptor',
+    'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\InlineEdit' => 'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\InlineEdit\\Interceptor',
+    'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\MassDelete' => 'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\MassDelete\\Interceptor',
+    'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\MassDisable' => 'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\MassDisable\\Interceptor',
+    'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\MassEnable' => 'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\MassEnable\\Interceptor',
+    'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\NewAction' => 'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\NewAction\\Interceptor',
+    'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\Save' => 'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\Save\\Interceptor',
+    'Magebit\\Faq\\Controller\\Adminhtml\\Index\\Index' => 'Magebit\\Faq\\Controller\\Adminhtml\\Index\\Index\\Interceptor',
+    'Magebit\\Faq\\Controller\\Index\\Index' => 'Magebit\\Faq\\Controller\\Index\\Index\\Interceptor',
+    'Magebit\\Faq\\Model\\ResourceModel\\Faq\\Collection' => 'Magebit\\Faq\\Model\\ResourceModel\\Faq\\Collection\\Interceptor',
+    'Magebit\\Faq\\Model\\ResourceModel\\Faq\\Grid\\Collection' => 'Magebit\\Faq\\Model\\ResourceModel\\Faq\\Grid\\Collection\\Interceptor',
     'Magebit\\GridRender\\Controller\\Adminhtml\\Item\\NewAction' => 'Magebit\\GridRender\\Controller\\Adminhtml\\Item\\NewAction\\Interceptor',
     'Magebit\\GridRender\\Controller\\Adminhtml\\Item\\Save' => 'Magebit\\GridRender\\Controller\\Adminhtml\\Item\\Save\\Interceptor',
     'Magebit\\GridRender\\Controller\\Adminhtml\\Post\\Index' => 'Magebit\\GridRender\\Controller\\Adminhtml\\Post\\Index\\Interceptor',
