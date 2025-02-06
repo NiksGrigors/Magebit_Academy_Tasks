@@ -4,8 +4,9 @@ namespace Magebit\Faq\Controller\Adminhtml\Faq;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
+use Magento\Backend\Model\View\Result\Page;
 use Magento\Framework\View\Result\PageFactory;
-use Magebit\Faq\Model\FaqFactory;
+use Magebit\Faq\Api\FaqRepositoryInterface;
 use Magento\Framework\Registry;
 
 class Edit extends Action
@@ -13,23 +14,19 @@ class Edit extends Action
     public function __construct(
         Context $context,
         protected PageFactory $resultPageFactory,
-        protected FaqFactory $faqFactory,
+        protected FaqRepositoryInterface $faqRepository,
         protected Registry $coreRegistry
     ) {
         parent::__construct($context);
     }
 
-    public function execute(): \Magento\Backend\Model\View\Result\Page
+    public function execute(): Page
     {
         $id = $this->getRequest()->getParam('id');
-        $model = $this->faqFactory->create();
+        $model = null;
 
         if ($id) {
-            $model->load($id);
-            if (!$model->getId()) {
-                $this->messageManager->addErrorMessage(__('This FAQ no longer exists.'));
-                return $this->resultRedirectFactory->create()->setPath('*/*/');
-            }
+            $model = $this->faqRepository->getById($id);
         }
 
         $this->coreRegistry->register('faq_question', $model);

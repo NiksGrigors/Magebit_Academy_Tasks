@@ -8,10 +8,10 @@ class Interceptor extends \Magebit\Faq\Controller\Adminhtml\Faq\MassDelete imple
 {
     use \Magento\Framework\Interception\Interceptor;
 
-    public function __construct(\Magento\Backend\App\Action\Context $context, \Magento\Ui\Component\MassAction\Filter $filter, \Magebit\Faq\Model\ResourceModel\Faq\CollectionFactory $collectionFactory)
+    public function __construct(\Magento\Backend\App\Action\Context $context, \Magento\Ui\Component\MassAction\Filter $filter, \Magebit\Faq\Model\ResourceModel\Faq\CollectionFactory $collectionFactory, \Magebit\Faq\Api\FaqRepositoryInterface $faqRepository)
     {
         $this->___init();
-        parent::__construct($context, $filter, $collectionFactory);
+        parent::__construct($context, $filter, $collectionFactory, $faqRepository);
     }
 
     /**

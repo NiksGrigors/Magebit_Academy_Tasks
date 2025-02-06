@@ -8,10 +8,10 @@ class Interceptor extends \Magebit\Faq\Controller\Adminhtml\Faq\Delete implement
 {
     use \Magento\Framework\Interception\Interceptor;
 
-    public function __construct(\Magento\Backend\App\Action\Context $context, \Magebit\Faq\Model\FaqFactory $faqFactory)
+    public function __construct(\Magento\Backend\App\Action\Context $context, \Magebit\Faq\Api\FaqRepositoryInterface $faqRepository)
     {
         $this->___init();
-        parent::__construct($context, $faqFactory);
+        parent::__construct($context, $faqRepository);
     }
 
     /**

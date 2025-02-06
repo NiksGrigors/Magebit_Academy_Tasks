@@ -24,4 +24,5 @@
     </type>
 
     <preference for="Magebit\Faq\Api\FaqRepositoryInterface" type="Magebit\Faq\Model\FaqRepository" />
+    <preference for="Magebit\Faq\Api\FaqManagementInterface" type="Magebit\Faq\Model\FaqManagement" />
 </config>

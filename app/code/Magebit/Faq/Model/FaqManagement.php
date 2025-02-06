@@ -3,23 +3,18 @@ namespace Magebit\Faq\Model;
 
 use Magebit\Faq\Api\FaqRepositoryInterface;
 
-class FaqManagement
+class FaqManagement implements \Magebit\Faq\Api\FaqManagementInterface
 {
-    protected $faqRepository;
+    public function __construct(protected FaqRepositoryInterface $faqRepository) {}
 
-    public function __construct(FaqRepositoryInterface $faqRepository)
-    {
-        $this->faqRepository = $faqRepository;
-    }
-
-    public function enableQuestion($id)
+    public function enableQuestion($id): void
     {
         $faq = $this->faqRepository->getById($id);
         $faq->setStatus(1);
         $this->faqRepository->save($faq);
     }
 
-    public function disableQuestion($id)
+    public function disableQuestion($id): void
     {
         $faq = $this->faqRepository->getById($id);
         $faq->setStatus(0);
