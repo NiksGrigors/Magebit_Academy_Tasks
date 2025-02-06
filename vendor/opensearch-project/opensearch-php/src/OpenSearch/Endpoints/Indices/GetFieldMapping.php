@@ -21,7 +21,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints\Indices;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -33,10 +33,8 @@ class GetFieldMapping extends AbstractEndpoint
 
     public function getURI(): string
     {
-        if (isset($this->fields) !== true) {
-            throw new RuntimeException(
-                'fields is required for get_field_mapping'
-            );
+        if (!isset($this->fields) || $this->fields === '') {
+            throw new RuntimeException('fields is required for get_field_mapping');
         }
         $fields = $this->fields;
         $index = $this->index ?? null;
@@ -67,7 +65,7 @@ class GetFieldMapping extends AbstractEndpoint
         return 'GET';
     }
 
-    public function setFields($fields): GetFieldMapping
+    public function setFields($fields): static
     {
         if (isset($fields) !== true) {
             return $this;

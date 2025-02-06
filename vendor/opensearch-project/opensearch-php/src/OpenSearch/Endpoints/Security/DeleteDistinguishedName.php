@@ -15,7 +15,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints\Security;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -27,12 +27,11 @@ class DeleteDistinguishedName extends AbstractEndpoint
 
     public function getURI(): string
     {
-        if (isset($this->cluster_name) !== true) {
-            throw new RuntimeException(
-                'cluster_name is required for delete_distinguished_name'
-            );
+        if (!isset($this->cluster_name) || $this->cluster_name === '') {
+            throw new RuntimeException('cluster_name is required for delete_distinguished_name');
         }
         $cluster_name = $this->cluster_name;
+
         return "/_plugins/_security/api/nodesdn/$cluster_name";
     }
 
@@ -52,9 +51,9 @@ class DeleteDistinguishedName extends AbstractEndpoint
         return 'DELETE';
     }
 
-    public function setClusterName($cluster_name): DeleteDistinguishedName
+    public function setClusterName($cluster_name): static
     {
-        if (isset($cluster_name) !== true) {
+        if (is_null($cluster_name)) {
             return $this;
         }
         $this->cluster_name = $cluster_name;

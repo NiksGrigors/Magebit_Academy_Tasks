@@ -21,7 +21,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints\Snapshot;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -62,9 +62,9 @@ class CloneSnapshot extends AbstractEndpoint
         return 'PUT';
     }
 
-    public function setBody($body): CloneSnapshot
+    public function setBody($body): static
     {
-        if (isset($body) !== true) {
+        if (is_null($body)) {
             return $this;
         }
         $this->body = $body;
@@ -72,9 +72,9 @@ class CloneSnapshot extends AbstractEndpoint
         return $this;
     }
 
-    public function setRepository($repository): CloneSnapshot
+    public function setRepository($repository): static
     {
-        if (isset($repository) !== true) {
+        if (is_null($repository)) {
             return $this;
         }
         $this->repository = $repository;
@@ -82,9 +82,9 @@ class CloneSnapshot extends AbstractEndpoint
         return $this;
     }
 
-    public function setSnapshot($snapshot): CloneSnapshot
+    public function setSnapshot($snapshot): static
     {
-        if (isset($snapshot) !== true) {
+        if (is_null($snapshot)) {
             return $this;
         }
         $this->snapshot = $snapshot;
@@ -92,9 +92,9 @@ class CloneSnapshot extends AbstractEndpoint
         return $this;
     }
 
-    public function setTargetSnapshot($target_snapshot): CloneSnapshot
+    public function setTargetSnapshot($target_snapshot): static
     {
-        if (isset($target_snapshot) !== true) {
+        if (is_null($target_snapshot)) {
             return $this;
         }
         $this->target_snapshot = $target_snapshot;

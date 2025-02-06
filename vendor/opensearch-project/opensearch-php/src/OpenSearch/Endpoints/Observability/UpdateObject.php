@@ -15,7 +15,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints\Observability;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -50,9 +50,9 @@ class UpdateObject extends AbstractEndpoint
         return 'PUT';
     }
 
-    public function setBody($body): UpdateObject
+    public function setBody($body): static
     {
-        if (isset($body) !== true) {
+        if (is_null($body)) {
             return $this;
         }
         $this->body = $body;
@@ -60,9 +60,9 @@ class UpdateObject extends AbstractEndpoint
         return $this;
     }
 
-    public function setObjectId($object_id): UpdateObject
+    public function setObjectId($object_id): static
     {
-        if (isset($object_id) !== true) {
+        if (is_null($object_id)) {
             return $this;
         }
         $this->object_id = $object_id;

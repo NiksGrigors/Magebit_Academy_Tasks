@@ -21,7 +21,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -31,18 +31,15 @@ class Update extends AbstractEndpoint
 {
     public function getURI(): string
     {
-        if (isset($this->id) !== true) {
-            throw new RuntimeException(
-                'id is required for update'
-            );
+        if (!isset($this->id) || $this->id === '') {
+            throw new RuntimeException('id is required for update');
         }
         $id = $this->id;
-        if (isset($this->index) !== true) {
-            throw new RuntimeException(
-                'index is required for update'
-            );
+        if (!isset($this->index) || $this->index === '') {
+            throw new RuntimeException('index is required for update');
         }
         $index = $this->index;
+
         return "/$index/_update/$id";
     }
 
@@ -74,9 +71,9 @@ class Update extends AbstractEndpoint
         return 'POST';
     }
 
-    public function setBody($body): Update
+    public function setBody($body): static
     {
-        if (isset($body) !== true) {
+        if (is_null($body)) {
             return $this;
         }
         $this->body = $body;

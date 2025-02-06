@@ -8,8 +8,8 @@ use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 
 class Faq extends AbstractDb
 {
-    private const string TABLE_NAME = 'magebit_faq';
-    private const string PRIMARY_KEY = 'id';
+    private const TABLE_NAME = 'magebit_faq';
+    private const PRIMARY_KEY = 'id';
 
     protected function _construct(): void
     {

@@ -15,7 +15,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints\Security;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -27,12 +27,11 @@ class PatchRole extends AbstractEndpoint
 
     public function getURI(): string
     {
-        if (isset($this->role) !== true) {
-            throw new RuntimeException(
-                'role is required for patch_role'
-            );
+        if (!isset($this->role) || $this->role === '') {
+            throw new RuntimeException('role is required for patch_role');
         }
         $role = $this->role;
+
         return "/_plugins/_security/api/roles/$role";
     }
 
@@ -52,9 +51,9 @@ class PatchRole extends AbstractEndpoint
         return 'PATCH';
     }
 
-    public function setBody($body): PatchRole
+    public function setBody($body): static
     {
-        if (isset($body) !== true) {
+        if (is_null($body)) {
             return $this;
         }
         $this->body = $body;
@@ -62,9 +61,9 @@ class PatchRole extends AbstractEndpoint
         return $this;
     }
 
-    public function setRole($role): PatchRole
+    public function setRole($role): static
     {
-        if (isset($role) !== true) {
+        if (is_null($role)) {
             return $this;
         }
         $this->role = $role;

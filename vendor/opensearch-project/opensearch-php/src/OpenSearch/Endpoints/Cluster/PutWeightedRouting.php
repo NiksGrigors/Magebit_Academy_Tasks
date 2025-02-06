@@ -15,7 +15,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints\Cluster;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -50,9 +50,19 @@ class PutWeightedRouting extends AbstractEndpoint
         return 'PUT';
     }
 
-    public function setAttribute($attribute): PutWeightedRouting
+    public function setBody($body): static
     {
-        if (isset($attribute) !== true) {
+        if (is_null($body)) {
+            return $this;
+        }
+        $this->body = $body;
+
+        return $this;
+    }
+
+    public function setAttribute($attribute): static
+    {
+        if (is_null($attribute)) {
             return $this;
         }
         $this->attribute = $attribute;

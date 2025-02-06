@@ -21,7 +21,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -31,12 +31,11 @@ class GetScript extends AbstractEndpoint
 {
     public function getURI(): string
     {
-        if (isset($this->id) !== true) {
-            throw new RuntimeException(
-                'id is required for get_script'
-            );
+        if (!isset($this->id) || $this->id === '') {
+            throw new RuntimeException('id is required for get_script');
         }
         $id = $this->id;
+
         return "/_scripts/$id";
     }
 

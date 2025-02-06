@@ -24,11 +24,16 @@ namespace OpenSearch\Common;
 use Psr\Log\AbstractLogger;
 use Psr\Log\LoggerInterface;
 
+// @phpstan-ignore classConstant.deprecatedClass
+@trigger_error(EmptyLogger::class . ' is deprecated in 2.4.0 and will be removed in 3.0.0. Use Psr\Log\NullLogger instead', E_USER_DEPRECATED);
+
 /**
  * Class EmptyLogger
  *
  * Logger that doesn't do anything.  Similar to Monolog's NullHandler,
  * but avoids the overhead of partially loading Monolog
+ *
+ * @deprecated in 2.4.0 and will be removed in 3.0.0. Use Psr\Log\NullLogger instead.
  */
 class EmptyLogger extends AbstractLogger implements LoggerInterface
 {

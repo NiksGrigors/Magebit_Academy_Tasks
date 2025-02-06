@@ -56,9 +56,9 @@ class Reroute extends AbstractEndpoint
         return 'POST';
     }
 
-    public function setBody($body): Reroute
+    public function setBody($body): static
     {
-        if (isset($body) !== true) {
+        if (is_null($body)) {
             return $this;
         }
         $this->body = $body;

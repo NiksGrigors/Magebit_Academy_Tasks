@@ -21,7 +21,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints\Indices;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -56,7 +56,7 @@ class DeleteDataStream extends AbstractEndpoint
         return 'DELETE';
     }
 
-    public function setName($name): DeleteDataStream
+    public function setName($name): static
     {
         if (isset($name) !== true) {
             return $this;

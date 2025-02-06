@@ -15,7 +15,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints\Ml;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -50,9 +50,9 @@ class GetModelGroup extends AbstractEndpoint
         return 'GET';
     }
 
-    public function setModelGroupId($model_group_id): GetModelGroup
+    public function setModelGroupId($model_group_id): static
     {
-        if (isset($model_group_id) !== true) {
+        if (is_null($model_group_id)) {
             return $this;
         }
         $this->model_group_id = $model_group_id;

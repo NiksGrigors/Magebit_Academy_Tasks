@@ -11,8 +11,8 @@ use Magento\Ui\Component\Listing\Columns\Column;
 
 class FaqActions extends Column
 {
-    private const string URL_PATH_EDIT = 'faq/faq/edit';
-    private const string URL_PATH_DELETE = 'faq/faq/delete';
+    private const URL_PATH_EDIT = 'faq/faq/edit';
+    private const URL_PATH_DELETE = 'faq/faq/delete';
 
     public function __construct(
         ContextInterface $context,

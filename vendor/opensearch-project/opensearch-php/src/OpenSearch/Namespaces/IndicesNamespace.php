@@ -21,8 +21,6 @@ declare(strict_types=1);
 
 namespace OpenSearch\Namespaces;
 
-use OpenSearch\Namespaces\AbstractNamespace;
-
 /**
  * Class IndicesNamespace
  *
@@ -33,19 +31,19 @@ class IndicesNamespace extends AbstractNamespace
     /**
      * Adds a block to an index.
      *
-     * $params['block']                   = (string) The block to add (one of read, write, read_only or metadata)
-     * $params['index']                   = (array) A comma separated list of indices to add a block to
-     * $params['allow_no_indices']        = (boolean) Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes `_all` string or when no indices have been specified)
+     * $params['block']                   = (string) The block to add (one of `read`, `write`, `read_only` or `metadata`).
+     * $params['index']                   = (array) A comma separated list of indexes to add a block to.
+     * $params['allow_no_indices']        = (boolean) Whether to ignore if a wildcard indexes expression resolves into no concrete indexes. (This includes `_all` string or when no indexes have been specified).
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['expand_wildcards']        = (any) Whether to expand wildcard expression to concrete indices that are open, closed or both.
-     * $params['ignore_unavailable']      = (boolean) Whether specified concrete indices should be ignored when unavailable (missing or closed)
-     * $params['master_timeout']          = (string) Specify timeout for connection to master
+     * $params['expand_wildcards']        = (any) Whether to expand wildcard expression to concrete indexes that are open, closed or both.
+     * $params['ignore_unavailable']      = (boolean) Whether specified concrete indexes should be ignored when unavailable (missing or closed).
+     * $params['master_timeout']          = (string) Specify timeout for connection to cluster manager.
      * $params['timeout']                 = (string) Explicit operation timeout
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -55,23 +53,23 @@ class IndicesNamespace extends AbstractNamespace
         $block = $this->extractArgument($params, 'block');
         $index = $this->extractArgument($params, 'index');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\AddBlock');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\AddBlock::class);
         $endpoint->setParams($params);
         $endpoint->setBlock($block);
         $endpoint->setIndex($index);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Performs the analysis process on a text and return the tokens breakdown of the text.
      *
      * $params['index']       = (string) Index used to derive the analyzer. If specified, the `analyzer` or field parameter overrides this value. If no index is specified or the index does not have a default analyzer, the analyze API uses the standard analyzer.
-     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']       = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']       = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']      = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path'] = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path'] = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      * $params['body']        = (array) Define analyzer/tokenizer parameters and the text on which the analysis should be performed
      *
      * @param array $params Associative array of parameters
@@ -82,31 +80,31 @@ class IndicesNamespace extends AbstractNamespace
         $index = $this->extractArgument($params, 'index');
         $body = $this->extractArgument($params, 'body');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\Analyze');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\Analyze::class);
         $endpoint->setParams($params);
         $endpoint->setIndex($index);
         $endpoint->setBody($body);
 
         return $this->performRequest($endpoint);
     }
+
     /**
-     * Clears all or specific caches for one or more indices.
+     * Clears all or specific caches for one or more indexes.
      *
-     * $params['index']              = (array) Comma-separated list of data streams, indices, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indices, omit this parameter or use `*` or `_all`.
-     * $params['allow_no_indices']   = (boolean) If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices.This behavior applies even if the request targets other open indices.
+     * $params['index']              = (array) Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
+     * $params['allow_no_indices']   = (boolean) If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes.This behavior applies even if the request targets other open indexes.
      * $params['expand_wildcards']   = (any) Type of index that wildcard patterns can match.If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams.Supports comma-separated values, such as `open,hidden`.Valid values are: `all`, `open`, `closed`, `hidden`, `none`.
      * $params['fielddata']          = (boolean) If `true`, clears the fields cache.Use the `fields` parameter to clear the cache of specific fields only.
      * $params['fields']             = (any) Comma-separated list of field names used to limit the `fielddata` parameter.
-     * $params['file']               = (boolean) If true, clears the unused entries from the file cache on nodes with the Search role. (Default = false)
+     * $params['file']               = (boolean) If `true`, clears the unused entries from the file cache on nodes with the Search role. (Default = false)
      * $params['ignore_unavailable'] = (boolean) If `false`, the request returns an error if it targets a missing or closed index.
      * $params['query']              = (boolean) If `true`, clears the query cache.
      * $params['request']            = (boolean) If `true`, clears the request cache.
-     * $params['pretty']             = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']              = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']        = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']             = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']              = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']        = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']             = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']        = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']        = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -115,29 +113,29 @@ class IndicesNamespace extends AbstractNamespace
     {
         $index = $this->extractArgument($params, 'index');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\ClearCache');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\ClearCache::class);
         $endpoint->setParams($params);
         $endpoint->setIndex($index);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Clones an index.
      *
      * $params['index']                   = (string) Name of the source index to clone.
      * $params['target']                  = (string) Name of the target index to create.
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['master_timeout']          = (string) Period to wait for a connection to the master node.If no response is received before the timeout expires, the request fails and returns an error.
-     * $params['task_execution_timeout']  = (string) Explicit task execution timeout, only useful when wait_for_completion is false, defaults to 1h.
+     * $params['master_timeout']          = (string) Period to wait for a connection to the cluster-manager node.If no response is received before the timeout expires, the request fails and returns an error.
+     * $params['task_execution_timeout']  = (string) Explicit task execution timeout, only useful when `wait_for_completion` is false, defaults to `1h`.
      * $params['timeout']                 = (string) Period to wait for a response.If no response is received before the timeout expires, the request fails and returns an error.
      * $params['wait_for_active_shards']  = (any) The number of shard copies that must be active before proceeding with the operation.Set to `all` or any positive integer up to the total number of shards in the index (`number_of_replicas+1`).
      * $params['wait_for_completion']     = (boolean) Should this request wait until the operation has completed before returning. (Default = true)
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      * $params['body']                    = (array) The configuration for the target index (`settings` and `aliases`)
      *
      * @param array $params Associative array of parameters
@@ -149,8 +147,7 @@ class IndicesNamespace extends AbstractNamespace
         $target = $this->extractArgument($params, 'target');
         $body = $this->extractArgument($params, 'body');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\CloneIndices');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\CloneIndices::class);
         $endpoint->setParams($params);
         $endpoint->setIndex($index);
         $endpoint->setTarget($target);
@@ -158,22 +155,23 @@ class IndicesNamespace extends AbstractNamespace
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Closes an index.
      *
      * $params['index']                   = (array) Comma-separated list or wildcard expression of index names used to limit the request.
-     * $params['allow_no_indices']        = (boolean) If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices.This behavior applies even if the request targets other open indices.
+     * $params['allow_no_indices']        = (boolean) If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes.This behavior applies even if the request targets other open indexes.
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
      * $params['expand_wildcards']        = (any) Type of index that wildcard patterns can match.If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams.Supports comma-separated values, such as `open,hidden`.Valid values are: `all`, `open`, `closed`, `hidden`, `none`.
      * $params['ignore_unavailable']      = (boolean) If `false`, the request returns an error if it targets a missing or closed index.
-     * $params['master_timeout']          = (string) Period to wait for a connection to the master node.If no response is received before the timeout expires, the request fails and returns an error.
+     * $params['master_timeout']          = (string) Period to wait for a connection to the cluster-manager node.If no response is received before the timeout expires, the request fails and returns an error.
      * $params['timeout']                 = (string) Period to wait for a response.If no response is received before the timeout expires, the request fails and returns an error.
      * $params['wait_for_active_shards']  = (any) The number of shard copies that must be active before proceeding with the operation.Set to `all` or any positive integer up to the total number of shards in the index (`number_of_replicas+1`).
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -182,26 +180,26 @@ class IndicesNamespace extends AbstractNamespace
     {
         $index = $this->extractArgument($params, 'index');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\Close');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\Close::class);
         $endpoint->setParams($params);
         $endpoint->setIndex($index);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Creates an index with optional settings and mappings.
      *
      * $params['index']                   = (string) Name of the index you wish to create.
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['master_timeout']          = (string) Period to wait for a connection to the master node.If no response is received before the timeout expires, the request fails and returns an error.
+     * $params['master_timeout']          = (string) Period to wait for a connection to the cluster-manager node.If no response is received before the timeout expires, the request fails and returns an error.
      * $params['timeout']                 = (string) Period to wait for a response.If no response is received before the timeout expires, the request fails and returns an error.
      * $params['wait_for_active_shards']  = (any) The number of shard copies that must be active before proceeding with the operation. Set to `all` or any positive integer up to the total number of shards in the index (`number_of_replicas+1`).
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      * $params['body']                    = (array) The configuration for the index (`settings` and `mappings`)
      *
      * @param array $params Associative array of parameters
@@ -212,23 +210,23 @@ class IndicesNamespace extends AbstractNamespace
         $index = $this->extractArgument($params, 'index');
         $body = $this->extractArgument($params, 'body');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\Create');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\Create::class);
         $endpoint->setParams($params);
         $endpoint->setIndex($index);
         $endpoint->setBody($body);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Creates or updates a data stream.
      *
      * $params['name']        = (string) Name of the data stream, which must meet the following criteria: Lowercase only; Cannot include `\`, `/`, `*`, `?`, `"`, `<`, `>`, `|`, `,`, `#`, `:`, or a space character; Cannot start with `-`, `_`, `+`, or `.ds-`; Cannot be `.` or `..`; Cannot be longer than 255 bytes. Multi-byte characters count towards this limit faster.
-     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']       = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']       = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']      = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path'] = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path'] = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      * $params['body']        = (array) The data stream definition
      *
      * @param array $params Associative array of parameters
@@ -239,23 +237,23 @@ class IndicesNamespace extends AbstractNamespace
         $name = $this->extractArgument($params, 'name');
         $body = $this->extractArgument($params, 'body');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\CreateDataStream');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\CreateDataStream::class);
         $endpoint->setParams($params);
         $endpoint->setName($name);
         $endpoint->setBody($body);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Provides statistics on operations happening in a data stream.
      *
      * $params['name']        = (array) Comma-separated list of data streams used to limit the request. Wildcard expressions (`*`) are supported. To target all data streams in a cluster, omit this parameter or use `*`.
-     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']       = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']       = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']      = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path'] = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path'] = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -264,28 +262,28 @@ class IndicesNamespace extends AbstractNamespace
     {
         $name = $this->extractArgument($params, 'name');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\DataStreamsStats');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\DataStreamsStats::class);
         $endpoint->setParams($params);
         $endpoint->setName($name);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Deletes an index.
      *
-     * $params['index']                   = (array) Comma-separated list of indices to delete. You cannot specify index aliases. By default, this parameter does not support wildcards (`*`) or `_all`. To use wildcards or `_all`, set the `action.destructive_requires_name` cluster setting to `false`.
-     * $params['allow_no_indices']        = (boolean) If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices.This behavior applies even if the request targets other open indices. (Default = false)
+     * $params['index']                   = (array) Comma-separated list of indexes to delete. You cannot specify index aliases. By default, this parameter does not support wildcards (`*`) or `_all`. To use wildcards or `_all`, set the `action.destructive_requires_name` cluster setting to `false`.
+     * $params['allow_no_indices']        = (boolean) If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes.This behavior applies even if the request targets other open indexes. (Default = false)
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
      * $params['expand_wildcards']        = (any) Type of index that wildcard patterns can match.If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams.Supports comma-separated values, such as `open,hidden`.Valid values are: `all`, `open`, `closed`, `hidden`, `none`.
      * $params['ignore_unavailable']      = (boolean) If `false`, the request returns an error if it targets a missing or closed index. (Default = false)
-     * $params['master_timeout']          = (string) Period to wait for a connection to the master node.If no response is received before the timeout expires, the request fails and returns an error.
+     * $params['master_timeout']          = (string) Period to wait for a connection to the cluster-manager node.If no response is received before the timeout expires, the request fails and returns an error.
      * $params['timeout']                 = (string) Period to wait for a response.If no response is received before the timeout expires, the request fails and returns an error.
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -294,26 +292,26 @@ class IndicesNamespace extends AbstractNamespace
     {
         $index = $this->extractArgument($params, 'index');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\Delete');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\Delete::class);
         $endpoint->setParams($params);
         $endpoint->setIndex($index);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Deletes an alias.
      *
-     * $params['index']                   = (array) Comma-separated list of data streams or indices used to limit the request. Supports wildcards (`*`). (Required)
+     * $params['index']                   = (array) Comma-separated list of data streams or indexes used to limit the request. Supports wildcards (`*`). (Required)
      * $params['name']                    = (array) Comma-separated list of aliases to remove. Supports wildcards (`*`). To remove all aliases, use `*` or `_all`. (Required)
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['master_timeout']          = (string) Period to wait for a connection to the master node.If no response is received before the timeout expires, the request fails and returns an error.
+     * $params['master_timeout']          = (string) Period to wait for a connection to the cluster-manager node.If no response is received before the timeout expires, the request fails and returns an error.
      * $params['timeout']                 = (string) Period to wait for a response.If no response is received before the timeout expires, the request fails and returns an error.
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -323,23 +321,23 @@ class IndicesNamespace extends AbstractNamespace
         $index = $this->extractArgument($params, 'index');
         $name = $this->extractArgument($params, 'name');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\DeleteAlias');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\DeleteAlias::class);
         $endpoint->setParams($params);
         $endpoint->setIndex($index);
         $endpoint->setName($name);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Deletes a data stream.
      *
      * $params['name']        = (array) Comma-separated list of data streams to delete. Wildcard (`*`) expressions are supported.
-     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']       = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']       = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']      = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path'] = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path'] = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -348,25 +346,25 @@ class IndicesNamespace extends AbstractNamespace
     {
         $name = $this->extractArgument($params, 'name');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\DeleteDataStream');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\DeleteDataStream::class);
         $endpoint->setParams($params);
         $endpoint->setName($name);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Deletes an index template.
      *
      * $params['name']                    = (string) Name of the index template to delete. Wildcard (*) expressions are supported.
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['master_timeout']          = (string) Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error.
+     * $params['master_timeout']          = (string) Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails and returns an error.
      * $params['timeout']                 = (string) Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -375,25 +373,25 @@ class IndicesNamespace extends AbstractNamespace
     {
         $name = $this->extractArgument($params, 'name');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\DeleteIndexTemplate');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\DeleteIndexTemplate::class);
         $endpoint->setParams($params);
         $endpoint->setName($name);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Deletes an index template.
      *
      * $params['name']                    = (string) The name of the legacy index template to delete. Wildcard (`*`) expressions are supported.
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['master_timeout']          = (string) Period to wait for a connection to the master node.If no response is received before the timeout expires, the request fails and returns an error.
+     * $params['master_timeout']          = (string) Period to wait for a connection to the cluster-manager node.If no response is received before the timeout expires, the request fails and returns an error.
      * $params['timeout']                 = (string) Period to wait for a response.If no response is received before the timeout expires, the request fails and returns an error.
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -402,29 +400,29 @@ class IndicesNamespace extends AbstractNamespace
     {
         $name = $this->extractArgument($params, 'name');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\DeleteTemplate');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\DeleteTemplate::class);
         $endpoint->setParams($params);
         $endpoint->setName($name);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Returns information about whether a particular index exists.
      *
-     * $params['index']                   = (array) Comma-separated list of data streams, indices, and aliases. Supports wildcards (`*`).
-     * $params['allow_no_indices']        = (boolean) If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices.This behavior applies even if the request targets other open indices. (Default = false)
+     * $params['index']                   = (array) Comma-separated list of data streams, indexes, and aliases. Supports wildcards (`*`).
+     * $params['allow_no_indices']        = (boolean) If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes.This behavior applies even if the request targets other open indexes. (Default = false)
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
      * $params['expand_wildcards']        = (any) Type of index that wildcard patterns can match.If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams.Supports comma-separated values, such as `open,hidden`.Valid values are: `all`, `open`, `closed`, `hidden`, `none`.
      * $params['flat_settings']           = (boolean) If `true`, returns settings in flat format. (Default = false)
      * $params['ignore_unavailable']      = (boolean) If `false`, the request returns an error if it targets a missing or closed index. (Default = false)
      * $params['include_defaults']        = (boolean) If `true`, return all default settings in the response. (Default = false)
      * $params['local']                   = (boolean) If `true`, the request retrieves information from the local node only. (Default = false)
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return bool
@@ -436,27 +434,27 @@ class IndicesNamespace extends AbstractNamespace
         // manually make this verbose so we can check status code
         $params['client']['verbose'] = true;
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\Exists');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\Exists::class);
         $endpoint->setParams($params);
         $endpoint->setIndex($index);
 
-        return BooleanRequestWrapper::performRequest($endpoint, $this->transport);
+        return BooleanRequestWrapper::sendRequest($endpoint, $this->httpTransport);
     }
+
     /**
      * Returns information about whether a particular alias exists.
      *
      * $params['name']               = (array) Comma-separated list of aliases to check. Supports wildcards (`*`). (Required)
-     * $params['index']              = (array) Comma-separated list of data streams or indices used to limit the request. Supports wildcards (`*`). To target all data streams and indices, omit this parameter or use `*` or `_all`.
-     * $params['allow_no_indices']   = (boolean) If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices.This behavior applies even if the request targets other open indices.
+     * $params['index']              = (array) Comma-separated list of data streams or indexes used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
+     * $params['allow_no_indices']   = (boolean) If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes.This behavior applies even if the request targets other open indexes.
      * $params['expand_wildcards']   = (any) Type of index that wildcard patterns can match.If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams.Supports comma-separated values, such as `open,hidden`.Valid values are: `all`, `open`, `closed`, `hidden`, `none`.
-     * $params['ignore_unavailable'] = (boolean) If `false`, requests that include a missing data stream or index in the target indices or data streams return an error.
+     * $params['ignore_unavailable'] = (boolean) If `false`, requests that include a missing data stream or index in the target indexes or data streams return an error.
      * $params['local']              = (boolean) If `true`, the request retrieves information from the local node only. (Default = false)
-     * $params['pretty']             = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']              = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']        = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']             = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']              = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']        = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']             = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']        = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']        = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return bool
@@ -469,14 +467,14 @@ class IndicesNamespace extends AbstractNamespace
         // manually make this verbose so we can check status code
         $params['client']['verbose'] = true;
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\ExistsAlias');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\ExistsAlias::class);
         $endpoint->setParams($params);
         $endpoint->setName($name);
         $endpoint->setIndex($index);
 
-        return BooleanRequestWrapper::performRequest($endpoint, $this->transport);
+        return BooleanRequestWrapper::sendRequest($endpoint, $this->httpTransport);
     }
+
     /**
      * Returns information about whether a particular index template exists.
      *
@@ -484,12 +482,12 @@ class IndicesNamespace extends AbstractNamespace
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
      * $params['flat_settings']           = (boolean) Return settings in flat format. (Default = false)
      * $params['local']                   = (boolean) Return local information, do not retrieve the state from cluster-manager node. (Default = false)
-     * $params['master_timeout']          = (string) Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error.
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['master_timeout']          = (string) Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails and returns an error.
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return bool
@@ -501,13 +499,13 @@ class IndicesNamespace extends AbstractNamespace
         // manually make this verbose so we can check status code
         $params['client']['verbose'] = true;
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\ExistsIndexTemplate');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\ExistsIndexTemplate::class);
         $endpoint->setParams($params);
         $endpoint->setName($name);
 
-        return BooleanRequestWrapper::performRequest($endpoint, $this->transport);
+        return BooleanRequestWrapper::sendRequest($endpoint, $this->httpTransport);
     }
+
     /**
      * Returns information about whether a particular index template exists.
      *
@@ -515,12 +513,12 @@ class IndicesNamespace extends AbstractNamespace
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
      * $params['flat_settings']           = (boolean) Return settings in flat format. (Default = false)
      * $params['local']                   = (boolean) Return local information, do not retrieve the state from cluster-manager node. (Default = false)
-     * $params['master_timeout']          = (string) Explicit operation timeout for connection to master node
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['master_timeout']          = (string) Explicit operation timeout for connection to cluster-manager node
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return bool
@@ -532,27 +530,27 @@ class IndicesNamespace extends AbstractNamespace
         // manually make this verbose so we can check status code
         $params['client']['verbose'] = true;
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\ExistsTemplate');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\ExistsTemplate::class);
         $endpoint->setParams($params);
         $endpoint->setName($name);
 
-        return BooleanRequestWrapper::performRequest($endpoint, $this->transport);
+        return BooleanRequestWrapper::sendRequest($endpoint, $this->httpTransport);
     }
+
     /**
-     * Performs the flush operation on one or more indices.
+     * Performs the flush operation on one or more indexes.
      *
-     * $params['index']              = (array) Comma-separated list of data streams, indices, and aliases to flush. Supports wildcards (`*`). To flush all data streams and indices, omit this parameter or use `*` or `_all`.
-     * $params['allow_no_indices']   = (boolean) If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices.This behavior applies even if the request targets other open indices.
+     * $params['index']              = (array) Comma-separated list of data streams, indexes, and aliases to flush. Supports wildcards (`*`). To flush all data streams and indexes, omit this parameter or use `*` or `_all`.
+     * $params['allow_no_indices']   = (boolean) If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes.This behavior applies even if the request targets other open indexes.
      * $params['expand_wildcards']   = (any) Type of index that wildcard patterns can match.If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams.Supports comma-separated values, such as `open,hidden`.Valid values are: `all`, `open`, `closed`, `hidden`, `none`.
      * $params['force']              = (boolean) If `true`, the request forces a flush even if there are no changes to commit to the index.
      * $params['ignore_unavailable'] = (boolean) If `false`, the request returns an error if it targets a missing or closed index.
      * $params['wait_if_ongoing']    = (boolean) If `true`, the flush operation blocks until execution when another flush operation is running.If `false`, OpenSearch returns an error if you request a flush when another flush operation is running. (Default = true)
-     * $params['pretty']             = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']              = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']        = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']             = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']              = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']        = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']             = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']        = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']        = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -561,30 +559,30 @@ class IndicesNamespace extends AbstractNamespace
     {
         $index = $this->extractArgument($params, 'index');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\Flush');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\Flush::class);
         $endpoint->setParams($params);
         $endpoint->setIndex($index);
 
         return $this->performRequest($endpoint);
     }
+
     /**
-     * Performs the force merge operation on one or more indices.
+     * Performs the force merge operation on one or more indexes.
      *
-     * $params['index']                = (array) A comma-separated list of index names; use `_all` or empty string to perform the operation on all indices
-     * $params['allow_no_indices']     = (boolean) Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes `_all` string or when no indices have been specified)
-     * $params['expand_wildcards']     = (any) Whether to expand wildcard expression to concrete indices that are open, closed or both.
+     * $params['index']                = (array) A comma-separated list of index names; use `_all` or empty string to perform the operation on all indexes
+     * $params['allow_no_indices']     = (boolean) Whether to ignore if a wildcard indexes expression resolves into no concrete indexes. (This includes `_all` string or when no indexes have been specified)
+     * $params['expand_wildcards']     = (any) Whether to expand wildcard expression to concrete indexes that are open, closed or both.
      * $params['flush']                = (boolean) Specify whether the index should be flushed after performing the operation. (Default = true)
-     * $params['ignore_unavailable']   = (boolean) Whether specified concrete indices should be ignored when unavailable (missing or closed)
-     * $params['max_num_segments']     = (number) The number of larger segments into which smaller segments are merged.Set this parameter to 1 to merge all segments into one segment.The default behavior is to perform the merge as necessary.
+     * $params['ignore_unavailable']   = (boolean) Whether specified concrete indexes should be ignored when unavailable (missing or closed)
+     * $params['max_num_segments']     = (integer) The number of larger segments into which smaller segments are merged.Set this parameter to 1 to merge all segments into one segment.The default behavior is to perform the merge as necessary.
      * $params['only_expunge_deletes'] = (boolean) Specify whether the operation should only expunge deleted documents
      * $params['primary_only']         = (boolean) Specify whether the operation should only perform on primary shards. Defaults to false. (Default = false)
      * $params['wait_for_completion']  = (boolean) Should the request wait until the force merge is completed. (Default = true)
-     * $params['pretty']               = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']          = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']               = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']          = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']               = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']          = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']          = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -593,30 +591,30 @@ class IndicesNamespace extends AbstractNamespace
     {
         $index = $this->extractArgument($params, 'index');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\ForceMerge');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\ForceMerge::class);
         $endpoint->setParams($params);
         $endpoint->setIndex($index);
 
         return $this->performRequest($endpoint);
     }
+
     /**
-     * Returns information about one or more indices.
+     * Returns information about one or more indexes.
      *
-     * $params['index']                   = (array) Comma-separated list of data streams, indices, and index aliases used to limit the request. Wildcard expressions (*) are supported.
-     * $params['allow_no_indices']        = (boolean) If false, the request returns an error if any wildcard expression, index alias, or _all value targets onlymissing or closed indices. This behavior applies even if the request targets other open indices. For example,a request targeting foo*,bar* returns an error if an index starts with foo but no index starts with bar. (Default = false)
+     * $params['index']                   = (array) Comma-separated list of data streams, indexes, and index aliases used to limit the request. Wildcard expressions (*) are supported.
+     * $params['allow_no_indices']        = (boolean) If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets onlymissing or closed indexes. This behavior applies even if the request targets other open indexes. For example,a request targeting foo*,bar* returns an error if an index starts with foo but no index starts with bar. (Default = false)
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['expand_wildcards']        = (any) Type of index that wildcard expressions can match. If the request can target data streams, this argumentdetermines whether wildcard expressions match hidden data streams. Supports comma-separated values,such as open,hidden.
-     * $params['flat_settings']           = (boolean) If true, returns settings in flat format. (Default = false)
-     * $params['ignore_unavailable']      = (boolean) If false, requests that target a missing index return an error. (Default = false)
-     * $params['include_defaults']        = (boolean) If true, return all default settings in the response. (Default = false)
-     * $params['local']                   = (boolean) If true, the request retrieves information from the local node only. Defaults to false, which means information is retrieved from the master node. (Default = false)
-     * $params['master_timeout']          = (string) Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error.
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['expand_wildcards']        = (any) Type of index that wildcard expressions can match. If the request can target data streams, this argumentdetermines whether wildcard expressions match hidden data streams. Supports comma-separated values,such as `open,hidden`.
+     * $params['flat_settings']           = (boolean) If `true`, returns settings in flat format. (Default = false)
+     * $params['ignore_unavailable']      = (boolean) If `false`, requests that target a missing index return an error. (Default = false)
+     * $params['include_defaults']        = (boolean) If `true`, return all default settings in the response. (Default = false)
+     * $params['local']                   = (boolean) If `true`, the request retrieves information from the local node only. Defaults to false, which means information is retrieved from the cluster-manager node. (Default = false)
+     * $params['master_timeout']          = (string) Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails and returns an error.
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -625,27 +623,27 @@ class IndicesNamespace extends AbstractNamespace
     {
         $index = $this->extractArgument($params, 'index');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\Get');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\Get::class);
         $endpoint->setParams($params);
         $endpoint->setIndex($index);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Returns an alias.
      *
      * $params['name']               = (array) Comma-separated list of aliases to retrieve. Supports wildcards (`*`). To retrieve all aliases, omit this parameter or use `*` or `_all`.
-     * $params['index']              = (array) Comma-separated list of data streams or indices used to limit the request. Supports wildcards (`*`). To target all data streams and indices, omit this parameter or use `*` or `_all`.
-     * $params['allow_no_indices']   = (boolean) If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices.This behavior applies even if the request targets other open indices.
+     * $params['index']              = (array) Comma-separated list of data streams or indexes used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
+     * $params['allow_no_indices']   = (boolean) If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes.This behavior applies even if the request targets other open indexes.
      * $params['expand_wildcards']   = (any) Type of index that wildcard patterns can match.If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams.Supports comma-separated values, such as `open,hidden`.Valid values are: `all`, `open`, `closed`, `hidden`, `none`.
      * $params['ignore_unavailable'] = (boolean) If `false`, the request returns an error if it targets a missing or closed index.
      * $params['local']              = (boolean) If `true`, the request retrieves information from the local node only. (Default = false)
-     * $params['pretty']             = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']              = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']        = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']             = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']              = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']        = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']             = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']        = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']        = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -655,23 +653,23 @@ class IndicesNamespace extends AbstractNamespace
         $name = $this->extractArgument($params, 'name');
         $index = $this->extractArgument($params, 'index');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\GetAlias');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\GetAlias::class);
         $endpoint->setParams($params);
         $endpoint->setName($name);
         $endpoint->setIndex($index);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Returns data streams.
      *
      * $params['name']        = (array) Comma-separated list of data stream names used to limit the request. Wildcard (`*`) expressions are supported. If omitted, all data streams are returned.
-     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']       = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']       = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']      = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path'] = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path'] = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -680,28 +678,28 @@ class IndicesNamespace extends AbstractNamespace
     {
         $name = $this->extractArgument($params, 'name');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\GetDataStream');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\GetDataStream::class);
         $endpoint->setParams($params);
         $endpoint->setName($name);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Returns mapping for one or more fields.
      *
      * $params['fields']             = (array) Comma-separated list or wildcard expression of fields used to limit returned information. (Required)
-     * $params['index']              = (array) Comma-separated list of data streams, indices, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indices, omit this parameter or use `*` or `_all`.
-     * $params['allow_no_indices']   = (boolean) If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices.This behavior applies even if the request targets other open indices.
+     * $params['index']              = (array) Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
+     * $params['allow_no_indices']   = (boolean) If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes.This behavior applies even if the request targets other open indexes.
      * $params['expand_wildcards']   = (any) Type of index that wildcard patterns can match.If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams.Supports comma-separated values, such as `open,hidden`.Valid values are: `all`, `open`, `closed`, `hidden`, `none`.
      * $params['ignore_unavailable'] = (boolean) If `false`, the request returns an error if it targets a missing or closed index.
      * $params['include_defaults']   = (boolean) If `true`, return all default settings in the response.
      * $params['local']              = (boolean) If `true`, the request retrieves information from the local node only. (Default = false)
-     * $params['pretty']             = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']              = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']        = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']             = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']              = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']        = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']             = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']        = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']        = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -711,27 +709,27 @@ class IndicesNamespace extends AbstractNamespace
         $fields = $this->extractArgument($params, 'fields');
         $index = $this->extractArgument($params, 'index');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\GetFieldMapping');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\GetFieldMapping::class);
         $endpoint->setParams($params);
         $endpoint->setFields($fields);
         $endpoint->setIndex($index);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Returns an index template.
      *
      * $params['name']                    = (array) Name of the index template to retrieve. Wildcard (*) expressions are supported.
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['flat_settings']           = (boolean) If true, returns settings in flat format. (Default = false)
-     * $params['local']                   = (boolean) If true, the request retrieves information from the local node only. Defaults to false, which means information is retrieved from the master node. (Default = false)
-     * $params['master_timeout']          = (string) Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error.
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['flat_settings']           = (boolean) If `true`, returns settings in flat format. (Default = false)
+     * $params['local']                   = (boolean) If `true`, the request retrieves information from the local node only. Defaults to false, which means information is retrieved from the cluster-manager node. (Default = false)
+     * $params['master_timeout']          = (string) Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails and returns an error.
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -740,28 +738,28 @@ class IndicesNamespace extends AbstractNamespace
     {
         $name = $this->extractArgument($params, 'name');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\GetIndexTemplate');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\GetIndexTemplate::class);
         $endpoint->setParams($params);
         $endpoint->setName($name);
 
         return $this->performRequest($endpoint);
     }
+
     /**
-     * Returns mappings for one or more indices.
+     * Returns mappings for one or more indexes.
      *
-     * $params['index']                   = (array) Comma-separated list of data streams, indices, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indices, omit this parameter or use `*` or `_all`.
-     * $params['allow_no_indices']        = (boolean) If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices.This behavior applies even if the request targets other open indices.
+     * $params['index']                   = (array) Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
+     * $params['allow_no_indices']        = (boolean) If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes.This behavior applies even if the request targets other open indexes.
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
      * $params['expand_wildcards']        = (any) Type of index that wildcard patterns can match.If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams.Supports comma-separated values, such as `open,hidden`.Valid values are: `all`, `open`, `closed`, `hidden`, `none`.
      * $params['ignore_unavailable']      = (boolean) If `false`, the request returns an error if it targets a missing or closed index.
      * $params['local']                   = (boolean) If `true`, the request retrieves information from the local node only. (Default = false)
-     * $params['master_timeout']          = (string) Period to wait for a connection to the master node.If no response is received before the timeout expires, the request fails and returns an error.
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['master_timeout']          = (string) Period to wait for a connection to the cluster-manager node.If no response is received before the timeout expires, the request fails and returns an error.
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -770,31 +768,31 @@ class IndicesNamespace extends AbstractNamespace
     {
         $index = $this->extractArgument($params, 'index');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\GetMapping');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\GetMapping::class);
         $endpoint->setParams($params);
         $endpoint->setIndex($index);
 
         return $this->performRequest($endpoint);
     }
+
     /**
-     * Returns settings for one or more indices.
+     * Returns settings for one or more indexes.
      *
      * $params['name']                    = (array) Comma-separated list or wildcard expression of settings to retrieve.
-     * $params['index']                   = (array) Comma-separated list of data streams, indices, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indices, omit this parameter or use `*` or `_all`.
-     * $params['allow_no_indices']        = (boolean) If `false`, the request returns an error if any wildcard expression, indexalias, or `_all` value targets only missing or closed indices. Thisbehavior applies even if the request targets other open indices. Forexample, a request targeting `foo*,bar*` returns an error if an indexstarts with foo but no index starts with `bar`.
+     * $params['index']                   = (array) Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
+     * $params['allow_no_indices']        = (boolean) If `false`, the request returns an error if any wildcard expression, indexalias, or `_all` value targets only missing or closed indexes. Thisbehavior applies even if the request targets other open indexes. Forexample, a request targeting `foo*,bar*` returns an error if an indexstarts with foo but no index starts with `bar`.
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
      * $params['expand_wildcards']        = (any) Type of index that wildcard patterns can match.If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams.Supports comma-separated values, such as `open,hidden`.
      * $params['flat_settings']           = (boolean) If `true`, returns settings in flat format. (Default = false)
      * $params['ignore_unavailable']      = (boolean) If `false`, the request returns an error if it targets a missing or closed index.
      * $params['include_defaults']        = (boolean) If `true`, return all default settings in the response. (Default = false)
-     * $params['local']                   = (boolean) If `true`, the request retrieves information from the local node only. If`false`, information is retrieved from the master node. (Default = false)
-     * $params['master_timeout']          = (string) Period to wait for a connection to the master node. If no response isreceived before the timeout expires, the request fails and returns anerror.
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['local']                   = (boolean) If `true`, the request retrieves information from the local node only. If`false`, information is retrieved from the cluster-manager node. (Default = false)
+     * $params['master_timeout']          = (string) Period to wait for a connection to the cluster-manager node. If no response isreceived before the timeout expires, the request fails and returns anerror.
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -804,14 +802,14 @@ class IndicesNamespace extends AbstractNamespace
         $name = $this->extractArgument($params, 'name');
         $index = $this->extractArgument($params, 'index');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\GetSettings');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\GetSettings::class);
         $endpoint->setParams($params);
         $endpoint->setName($name);
         $endpoint->setIndex($index);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Returns an index template.
      *
@@ -819,12 +817,12 @@ class IndicesNamespace extends AbstractNamespace
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
      * $params['flat_settings']           = (boolean) If `true`, returns settings in flat format. (Default = false)
      * $params['local']                   = (boolean) If `true`, the request retrieves information from the local node only. (Default = false)
-     * $params['master_timeout']          = (string) Period to wait for a connection to the master node.If no response is received before the timeout expires, the request fails and returns an error.
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['master_timeout']          = (string) Period to wait for a connection to the cluster-manager node.If no response is received before the timeout expires, the request fails and returns an error.
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -833,25 +831,25 @@ class IndicesNamespace extends AbstractNamespace
     {
         $name = $this->extractArgument($params, 'name');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\GetTemplate');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\GetTemplate::class);
         $endpoint->setParams($params);
         $endpoint->setName($name);
 
         return $this->performRequest($endpoint);
     }
+
     /**
-     * The _upgrade API is no longer useful and will be removed.
+     * The `_upgrade` API is no longer useful and will be removed.
      *
-     * $params['index']              = (array) Comma-separated list of indices; use `_all` or empty string to perform the operation on all indices.
-     * $params['allow_no_indices']   = (boolean) Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes `_all` string or when no indices have been specified).
-     * $params['expand_wildcards']   = (any) Whether to expand wildcard expression to concrete indices that are open, closed or both.
-     * $params['ignore_unavailable'] = (boolean) Whether specified concrete indices should be ignored when unavailable (missing or closed).
-     * $params['pretty']             = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']              = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']        = (boolean) Whether to include the stack trace of returned errors.
+     * $params['index']              = (array) Comma-separated list of indexes; use `_all` or empty string to perform the operation on all indexes.
+     * $params['allow_no_indices']   = (boolean) Whether to ignore if a wildcard indexes expression resolves into no concrete indexes. (This includes `_all` string or when no indexes have been specified).
+     * $params['expand_wildcards']   = (any) Whether to expand wildcard expression to concrete indexes that are open, closed or both.
+     * $params['ignore_unavailable'] = (boolean) Whether specified concrete indexes should be ignored when unavailable (missing or closed).
+     * $params['pretty']             = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']              = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']        = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']             = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']        = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']        = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -860,31 +858,31 @@ class IndicesNamespace extends AbstractNamespace
     {
         $index = $this->extractArgument($params, 'index');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\GetUpgrade');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\GetUpgrade::class);
         $endpoint->setParams($params);
         $endpoint->setIndex($index);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Opens an index.
      *
-     * $params['index']                   = (array) Comma-separated list of data streams, indices, and aliases used to limit the request. Supports wildcards (`*`). By default, you must explicitly name the indices you using to limit the request. To limit a request using `_all`, `*`, or other wildcard expressions, change the `action.destructive_requires_name` setting to false. You can update this setting in the `opensearch.yml` file or using the cluster update settings API.
-     * $params['allow_no_indices']        = (boolean) If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices.This behavior applies even if the request targets other open indices.
+     * $params['index']                   = (array) Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). By default, you must explicitly name the indexes you using to limit the request. To limit a request using `_all`, `*`, or other wildcard expressions, change the `action.destructive_requires_name` setting to false. You can update this setting in the `opensearch.yml` file or using the cluster update settings API.
+     * $params['allow_no_indices']        = (boolean) If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes.This behavior applies even if the request targets other open indexes.
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
      * $params['expand_wildcards']        = (any) Type of index that wildcard patterns can match.If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams.Supports comma-separated values, such as `open,hidden`.Valid values are: `all`, `open`, `closed`, `hidden`, `none`.
      * $params['ignore_unavailable']      = (boolean) If `false`, the request returns an error if it targets a missing or closed index.
-     * $params['master_timeout']          = (string) Period to wait for a connection to the master node.If no response is received before the timeout expires, the request fails and returns an error.
-     * $params['task_execution_timeout']  = (string) Explicit task execution timeout, only useful when wait_for_completion is false, defaults to 1h.
+     * $params['master_timeout']          = (string) Period to wait for a connection to the cluster-manager node.If no response is received before the timeout expires, the request fails and returns an error.
+     * $params['task_execution_timeout']  = (string) Explicit task execution timeout, only useful when `wait_for_completion` is false, defaults to `1h`.
      * $params['timeout']                 = (string) Period to wait for a response.If no response is received before the timeout expires, the request fails and returns an error.
      * $params['wait_for_active_shards']  = (any) The number of shard copies that must be active before proceeding with the operation.Set to `all` or any positive integer up to the total number of shards in the index (`number_of_replicas+1`).
      * $params['wait_for_completion']     = (boolean) Should this request wait until the operation has completed before returning. (Default = true)
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -893,26 +891,26 @@ class IndicesNamespace extends AbstractNamespace
     {
         $index = $this->extractArgument($params, 'index');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\Open');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\Open::class);
         $endpoint->setParams($params);
         $endpoint->setIndex($index);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Creates or updates an alias.
      *
      * $params['name']                    = (string) Alias to update. If the alias doesn't exist, the request creates it. Index alias names support date math.
-     * $params['index']                   = (array) Comma-separated list of data streams or indices to add. Supports wildcards (`*`). Wildcard patterns that match both data streams and indices return an error.
+     * $params['index']                   = (array) Comma-separated list of data streams or indexes to add. Supports wildcards (`*`). Wildcard patterns that match both data streams and indexes return an error.
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['master_timeout']          = (string) Period to wait for a connection to the master node.If no response is received before the timeout expires, the request fails and returns an error.
+     * $params['master_timeout']          = (string) Period to wait for a connection to the cluster-manager node.If no response is received before the timeout expires, the request fails and returns an error.
      * $params['timeout']                 = (string) Period to wait for a response.If no response is received before the timeout expires, the request fails and returns an error.
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      * $params['body']                    = (array) The settings for the alias, such as `routing` or `filter`
      *
      * @param array $params Associative array of parameters
@@ -924,8 +922,7 @@ class IndicesNamespace extends AbstractNamespace
         $index = $this->extractArgument($params, 'index');
         $body = $this->extractArgument($params, 'body');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\PutAlias');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\PutAlias::class);
         $endpoint->setParams($params);
         $endpoint->setName($name);
         $endpoint->setIndex($index);
@@ -933,6 +930,7 @@ class IndicesNamespace extends AbstractNamespace
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Creates or updates an index template.
      *
@@ -940,12 +938,12 @@ class IndicesNamespace extends AbstractNamespace
      * $params['cause']                   = (string) User defined reason for creating/updating the index template. (Default = false)
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
      * $params['create']                  = (boolean) If `true`, this request cannot replace or update existing index templates. (Default = false)
-     * $params['master_timeout']          = (string) Operation timeout for connection to master node.
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['master_timeout']          = (string) Operation timeout for connection to cluster-manager node.
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      * $params['body']                    = (array) The template definition (Required)
      *
      * @param array $params Associative array of parameters
@@ -956,30 +954,30 @@ class IndicesNamespace extends AbstractNamespace
         $name = $this->extractArgument($params, 'name');
         $body = $this->extractArgument($params, 'body');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\PutIndexTemplate');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\PutIndexTemplate::class);
         $endpoint->setParams($params);
         $endpoint->setName($name);
         $endpoint->setBody($body);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Updates the index mappings.
      *
-     * $params['index']                   = (array) A comma-separated list of index names the mapping should be added to (supports wildcards); use `_all` or omit to add the mapping on all indices.
-     * $params['allow_no_indices']        = (boolean) If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices.This behavior applies even if the request targets other open indices.
+     * $params['index']                   = (array) A comma-separated list of index names the mapping should be added to (supports wildcards); use `_all` or omit to add the mapping on all indexes.
+     * $params['allow_no_indices']        = (boolean) If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes.This behavior applies even if the request targets other open indexes.
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
      * $params['expand_wildcards']        = (any) Type of index that wildcard patterns can match.If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams.Supports comma-separated values, such as `open,hidden`.Valid values are: `all`, `open`, `closed`, `hidden`, `none`.
      * $params['ignore_unavailable']      = (boolean) If `false`, the request returns an error if it targets a missing or closed index.
-     * $params['master_timeout']          = (string) Period to wait for a connection to the master node.If no response is received before the timeout expires, the request fails and returns an error.
+     * $params['master_timeout']          = (string) Period to wait for a connection to the cluster-manager node.If no response is received before the timeout expires, the request fails and returns an error.
      * $params['timeout']                 = (string) Period to wait for a response.If no response is received before the timeout expires, the request fails and returns an error.
      * $params['write_index_only']        = (boolean) If `true`, the mappings are applied only to the current write index for the target. (Default = false)
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      * $params['body']                    = (array) The mapping definition (Required)
      *
      * @param array $params Associative array of parameters
@@ -990,31 +988,31 @@ class IndicesNamespace extends AbstractNamespace
         $index = $this->extractArgument($params, 'index');
         $body = $this->extractArgument($params, 'body');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\PutMapping');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\PutMapping::class);
         $endpoint->setParams($params);
         $endpoint->setIndex($index);
         $endpoint->setBody($body);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Updates the index settings.
      *
-     * $params['index']                   = (array) Comma-separated list of data streams, indices, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indices, omit this parameter or use `*` or `_all`.
-     * $params['allow_no_indices']        = (boolean) If `false`, the request returns an error if any wildcard expression, indexalias, or `_all` value targets only missing or closed indices. Thisbehavior applies even if the request targets other open indices. Forexample, a request targeting `foo*,bar*` returns an error if an indexstarts with `foo` but no index starts with `bar`.
+     * $params['index']                   = (array) Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
+     * $params['allow_no_indices']        = (boolean) If `false`, the request returns an error if any wildcard expression, indexalias, or `_all` value targets only missing or closed indexes. Thisbehavior applies even if the request targets other open indexes. Forexample, a request targeting `foo*,bar*` returns an error if an indexstarts with `foo` but no index starts with `bar`.
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
      * $params['expand_wildcards']        = (any) Type of index that wildcard patterns can match. If the request can targetdata streams, this argument determines whether wildcard expressions matchhidden data streams. Supports comma-separated values, such as`open,hidden`.
      * $params['flat_settings']           = (boolean) If `true`, returns settings in flat format. (Default = false)
-     * $params['ignore_unavailable']      = (boolean) Whether specified concrete indices should be ignored when unavailable (missing or closed).
-     * $params['master_timeout']          = (string) Period to wait for a connection to the master node. If no response isreceived before the timeout expires, the request fails and returns anerror.
+     * $params['ignore_unavailable']      = (boolean) Whether specified concrete indexes should be ignored when unavailable (missing or closed).
+     * $params['master_timeout']          = (string) Period to wait for a connection to the cluster-manager node. If no response isreceived before the timeout expires, the request fails and returns anerror.
      * $params['preserve_existing']       = (boolean) If `true`, existing index settings remain unchanged. (Default = false)
      * $params['timeout']                 = (string) Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -1024,27 +1022,27 @@ class IndicesNamespace extends AbstractNamespace
         $index = $this->extractArgument($params, 'index');
         $body = $this->extractArgument($params, 'body');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\PutSettings');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\PutSettings::class);
         $endpoint->setParams($params);
         $endpoint->setIndex($index);
         $endpoint->setBody($body);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Creates or updates an index template.
      *
      * $params['name']                    = (string) The name of the template
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['create']                  = (boolean) If true, this request cannot replace or update existing index templates. (Default = false)
-     * $params['master_timeout']          = (string) Period to wait for a connection to the master node. If no response isreceived before the timeout expires, the request fails and returns an error.
-     * $params['order']                   = (number) Order in which OpenSearch applies this template if indexmatches multiple templates.Templates with lower 'order' values are merged first. Templates with higher'order' values are merged later, overriding templates with lower values.
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['create']                  = (boolean) If `true`, this request cannot replace or update existing index templates. (Default = false)
+     * $params['master_timeout']          = (string) Period to wait for a connection to the cluster-manager node. If no response isreceived before the timeout expires, the request fails and returns an error.
+     * $params['order']                   = (integer) Order in which OpenSearch applies this template if indexmatches multiple templates.Templates with lower 'order' values are merged first. Templates with higher'order' values are merged later, overriding templates with lower values.
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      * $params['body']                    = (array) The template definition (Required)
      *
      * @param array $params Associative array of parameters
@@ -1055,25 +1053,25 @@ class IndicesNamespace extends AbstractNamespace
         $name = $this->extractArgument($params, 'name');
         $body = $this->extractArgument($params, 'body');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\PutTemplate');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\PutTemplate::class);
         $endpoint->setParams($params);
         $endpoint->setName($name);
         $endpoint->setBody($body);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Returns information about ongoing index shard recoveries.
      *
-     * $params['index']       = (array) Comma-separated list of data streams, indices, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indices, omit this parameter or use `*` or `_all`.
+     * $params['index']       = (array) Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
      * $params['active_only'] = (boolean) If `true`, the response only includes ongoing shard recoveries. (Default = false)
      * $params['detailed']    = (boolean) If `true`, the response includes detailed information about shard recoveries. (Default = false)
-     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']       = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']       = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']      = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path'] = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path'] = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -1082,25 +1080,25 @@ class IndicesNamespace extends AbstractNamespace
     {
         $index = $this->extractArgument($params, 'index');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\Recovery');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\Recovery::class);
         $endpoint->setParams($params);
         $endpoint->setIndex($index);
 
         return $this->performRequest($endpoint);
     }
+
     /**
-     * Performs the refresh operation in one or more indices.
+     * Performs the refresh operation in one or more indexes.
      *
-     * $params['index']              = (array) Comma-separated list of data streams, indices, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indices, omit this parameter or use `*` or `_all`.
-     * $params['allow_no_indices']   = (boolean) If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices.This behavior applies even if the request targets other open indices.
+     * $params['index']              = (array) Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
+     * $params['allow_no_indices']   = (boolean) If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes.This behavior applies even if the request targets other open indexes.
      * $params['expand_wildcards']   = (any) Type of index that wildcard patterns can match.If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams.Supports comma-separated values, such as `open,hidden`.Valid values are: `all`, `open`, `closed`, `hidden`, `none`.
      * $params['ignore_unavailable'] = (boolean) If `false`, the request returns an error if it targets a missing or closed index.
-     * $params['pretty']             = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']              = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']        = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']             = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']              = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']        = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']             = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']        = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']        = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -1109,23 +1107,23 @@ class IndicesNamespace extends AbstractNamespace
     {
         $index = $this->extractArgument($params, 'index');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\Refresh');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\Refresh::class);
         $endpoint->setParams($params);
         $endpoint->setIndex($index);
 
         return $this->performRequest($endpoint);
     }
+
     /**
-     * Returns information about any matching indices, aliases, and data streams.
+     * Returns information about any matching indexes, aliases, and data streams.
      *
-     * $params['name']             = (array) Comma-separated name(s) or index pattern(s) of the indices, aliases, and data streams to resolve. Resources on remote clusters can be specified using the `<cluster>`:`<name>` syntax.
+     * $params['name']             = (array) Comma-separated name(s) or index pattern(s) of the indexes, aliases, and data streams to resolve. Resources on remote clusters can be specified using the `<cluster>`:`<name>` syntax.
      * $params['expand_wildcards'] = (any) Type of index that wildcard patterns can match.If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams.Supports comma-separated values, such as `open,hidden`.Valid values are: `all`, `open`, `closed`, `hidden`, `none`.
-     * $params['pretty']           = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']            = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']      = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']           = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']            = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']      = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']           = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']      = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']      = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -1134,13 +1132,13 @@ class IndicesNamespace extends AbstractNamespace
     {
         $name = $this->extractArgument($params, 'name');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\ResolveIndex');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\ResolveIndex::class);
         $endpoint->setParams($params);
         $endpoint->setName($name);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Updates an alias to point to a new index when the existing indexis considered to be too large or too old.
      *
@@ -1148,14 +1146,14 @@ class IndicesNamespace extends AbstractNamespace
      * $params['new_index']               = (string) Name of the index to create. Supports date math. Data streams do not support this parameter.
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
      * $params['dry_run']                 = (boolean) If `true`, checks whether the current index satisfies the specified conditions but does not perform a rollover. (Default = false)
-     * $params['master_timeout']          = (string) Period to wait for a connection to the master node.If no response is received before the timeout expires, the request fails and returns an error.
+     * $params['master_timeout']          = (string) Period to wait for a connection to the cluster-manager node.If no response is received before the timeout expires, the request fails and returns an error.
      * $params['timeout']                 = (string) Period to wait for a response.If no response is received before the timeout expires, the request fails and returns an error.
      * $params['wait_for_active_shards']  = (any) The number of shard copies that must be active before proceeding with the operation.Set to all or any positive integer up to the total number of shards in the index (`number_of_replicas+1`).
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      * $params['body']                    = (array) The conditions that needs to be met for executing rollover
      *
      * @param array $params Associative array of parameters
@@ -1167,8 +1165,7 @@ class IndicesNamespace extends AbstractNamespace
         $new_index = $this->extractArgument($params, 'new_index');
         $body = $this->extractArgument($params, 'body');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\Rollover');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\Rollover::class);
         $endpoint->setParams($params);
         $endpoint->setAlias($alias);
         $endpoint->setNewIndex($new_index);
@@ -1176,19 +1173,20 @@ class IndicesNamespace extends AbstractNamespace
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Provides low-level information about segments in a Lucene index.
      *
-     * $params['index']              = (array) Comma-separated list of data streams, indices, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indices, omit this parameter or use `*` or `_all`.
-     * $params['allow_no_indices']   = (boolean) If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices.This behavior applies even if the request targets other open indices.
+     * $params['index']              = (array) Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
+     * $params['allow_no_indices']   = (boolean) If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes.This behavior applies even if the request targets other open indexes.
      * $params['expand_wildcards']   = (any) Type of index that wildcard patterns can match.If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams.Supports comma-separated values, such as `open,hidden`.Valid values are: `all`, `open`, `closed`, `hidden`, `none`.
      * $params['ignore_unavailable'] = (boolean) If `false`, the request returns an error if it targets a missing or closed index.
      * $params['verbose']            = (boolean) If `true`, the request returns a verbose response. (Default = false)
-     * $params['pretty']             = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']              = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']        = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']             = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']              = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']        = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']             = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']        = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']        = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -1197,26 +1195,26 @@ class IndicesNamespace extends AbstractNamespace
     {
         $index = $this->extractArgument($params, 'index');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\Segments');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\Segments::class);
         $endpoint->setParams($params);
         $endpoint->setIndex($index);
 
         return $this->performRequest($endpoint);
     }
+
     /**
-     * Provides store information for shard copies of indices.
+     * Provides store information for shard copies of indexes.
      *
-     * $params['index']              = (array) List of data streams, indices, and aliases used to limit the request.
-     * $params['allow_no_indices']   = (boolean) If false, the request returns an error if any wildcard expression, index alias, or _allvalue targets only missing or closed indices. This behavior applies even if the requesttargets other open indices.
+     * $params['index']              = (array) List of data streams, indexes, and aliases used to limit the request.
+     * $params['allow_no_indices']   = (boolean) If `false`, the request returns an error if any wildcard expression, index alias, or `_all`value targets only missing or closed indexes. This behavior applies even if the requesttargets other open indexes.
      * $params['expand_wildcards']   = (any) Type of index that wildcard patterns can match. If the request can target data streams,this argument determines whether wildcard expressions match hidden data streams.
-     * $params['ignore_unavailable'] = (boolean) If true, missing or closed indices are not included in the response.
+     * $params['ignore_unavailable'] = (boolean) If `true`, missing or closed indexes are not included in the response.
      * $params['status']             = (any) List of shard health statuses used to limit the request.
-     * $params['pretty']             = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']              = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']        = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']             = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']              = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']        = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']             = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']        = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']        = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -1225,13 +1223,13 @@ class IndicesNamespace extends AbstractNamespace
     {
         $index = $this->extractArgument($params, 'index');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\ShardStores');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\ShardStores::class);
         $endpoint->setParams($params);
         $endpoint->setIndex($index);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Allow to shrink an existing index into a new index with fewer primary shards.
      *
@@ -1239,16 +1237,16 @@ class IndicesNamespace extends AbstractNamespace
      * $params['target']                  = (string) Name of the target index to create.
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
      * $params['copy_settings']           = (boolean) whether or not to copy settings from the source index. (Default = false)
-     * $params['master_timeout']          = (string) Period to wait for a connection to the master node.If no response is received before the timeout expires, the request fails and returns an error.
-     * $params['task_execution_timeout']  = (string) Explicit task execution timeout, only useful when wait_for_completion is false, defaults to 1h.
+     * $params['master_timeout']          = (string) Period to wait for a connection to the cluster-manager node.If no response is received before the timeout expires, the request fails and returns an error.
+     * $params['task_execution_timeout']  = (string) Explicit task execution timeout, only useful when `wait_for_completion` is false, defaults to `1h`.
      * $params['timeout']                 = (string) Period to wait for a response.If no response is received before the timeout expires, the request fails and returns an error.
      * $params['wait_for_active_shards']  = (any) The number of shard copies that must be active before proceeding with the operation.Set to `all` or any positive integer up to the total number of shards in the index (`number_of_replicas+1`).
      * $params['wait_for_completion']     = (boolean) Should this request wait until the operation has completed before returning. (Default = true)
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      * $params['body']                    = (array) The configuration for the target index (`settings` and `aliases`)
      *
      * @param array $params Associative array of parameters
@@ -1260,8 +1258,7 @@ class IndicesNamespace extends AbstractNamespace
         $target = $this->extractArgument($params, 'target');
         $body = $this->extractArgument($params, 'body');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\Shrink');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\Shrink::class);
         $endpoint->setParams($params);
         $endpoint->setIndex($index);
         $endpoint->setTarget($target);
@@ -1269,19 +1266,18 @@ class IndicesNamespace extends AbstractNamespace
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Simulate matching the given index name against the index templates in the system.
      *
      * $params['name']                    = (string) Index or template name to simulate
-     * $params['cause']                   = (string) User defined reason for dry-run creating the new template for simulation purposes. (Default = false)
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['create']                  = (boolean) If `true`, the template passed in the body is only used if no existingtemplates match the same index patterns. If `false`, the simulation usesthe template with the highest priority. Note that the template is notpermanently added or updated in either case; it is only used for thesimulation. (Default = false)
-     * $params['master_timeout']          = (string) Period to wait for a connection to the master node. If no response is receivedbefore the timeout expires, the request fails and returns an error.
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['master_timeout']          = (string) Period to wait for a connection to the cluster-manager node. If no response is receivedbefore the timeout expires, the request fails and returns an error.
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      * $params['body']                    = (array) New index template definition, which will be included in the simulation, as if it already exists in the system
      *
      * @param array $params Associative array of parameters
@@ -1292,27 +1288,27 @@ class IndicesNamespace extends AbstractNamespace
         $name = $this->extractArgument($params, 'name');
         $body = $this->extractArgument($params, 'body');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\SimulateIndexTemplate');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\SimulateIndexTemplate::class);
         $endpoint->setParams($params);
         $endpoint->setName($name);
         $endpoint->setBody($body);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Simulate resolving the given template name or body.
      *
      * $params['name']                    = (string) Name of the index template to simulate. To test a template configuration before you add it to the cluster, omit this parameter and specify the template configuration in the request body.
      * $params['cause']                   = (string) User defined reason for dry-run creating the new template for simulation purposes. (Default = false)
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['create']                  = (boolean) If true, the template passed in the body is only used if no existing templates match the same index patterns. If false, the simulation uses the template with the highest priority. Note that the template is not permanently added or updated in either case; it is only used for the simulation. (Default = false)
-     * $params['master_timeout']          = (string) Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error.
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['create']                  = (boolean) If `true`, the template passed in the body is only used if no existing templates match the same index patterns. If `false`, the simulation uses the template with the highest priority. Note that the template is not permanently added or updated in either case; it is only used for the simulation. (Default = false)
+     * $params['master_timeout']          = (string) Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails and returns an error.
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -1322,14 +1318,14 @@ class IndicesNamespace extends AbstractNamespace
         $name = $this->extractArgument($params, 'name');
         $body = $this->extractArgument($params, 'body');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\SimulateTemplate');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\SimulateTemplate::class);
         $endpoint->setParams($params);
         $endpoint->setName($name);
         $endpoint->setBody($body);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Allows you to split an existing index into a new index with more primary shards.
      *
@@ -1337,16 +1333,16 @@ class IndicesNamespace extends AbstractNamespace
      * $params['target']                  = (string) Name of the target index to create.
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
      * $params['copy_settings']           = (boolean) whether or not to copy settings from the source index. (Default = false)
-     * $params['master_timeout']          = (string) Period to wait for a connection to the master node.If no response is received before the timeout expires, the request fails and returns an error.
-     * $params['task_execution_timeout']  = (string) Explicit task execution timeout, only useful when wait_for_completion is false, defaults to 1h.
+     * $params['master_timeout']          = (string) Period to wait for a connection to the cluster-manager node.If no response is received before the timeout expires, the request fails and returns an error.
+     * $params['task_execution_timeout']  = (string) Explicit task execution timeout, only useful when `wait_for_completion` is false, defaults to `1h`.
      * $params['timeout']                 = (string) Period to wait for a response.If no response is received before the timeout expires, the request fails and returns an error.
      * $params['wait_for_active_shards']  = (any) The number of shard copies that must be active before proceeding with the operation.Set to `all` or any positive integer up to the total number of shards in the index (`number_of_replicas+1`).
      * $params['wait_for_completion']     = (boolean) Should this request wait until the operation has completed before returning. (Default = true)
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      * $params['body']                    = (array) The configuration for the target index (`settings` and `aliases`)
      *
      * @param array $params Associative array of parameters
@@ -1358,8 +1354,7 @@ class IndicesNamespace extends AbstractNamespace
         $target = $this->extractArgument($params, 'target');
         $body = $this->extractArgument($params, 'body');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\Split');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\Split::class);
         $endpoint->setParams($params);
         $endpoint->setIndex($index);
         $endpoint->setTarget($target);
@@ -1367,25 +1362,26 @@ class IndicesNamespace extends AbstractNamespace
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Provides statistics on operations happening in an index.
      *
      * $params['metric']                     = (array) Limit the information returned the specific metrics.
-     * $params['index']                      = (array) A comma-separated list of index names; use `_all` or empty string to perform the operation on all indices
-     * $params['completion_fields']          = (any) Comma-separated list or wildcard expressions of fields to include in fielddata and suggest statistics.
+     * $params['index']                      = (array) A comma-separated list of index names; use `_all` or empty string to perform the operation on all indexes
+     * $params['completion_fields']          = (any) Comma-separated list or wildcard expressions of fields to include in field data and suggest statistics.
      * $params['expand_wildcards']           = (any) Type of index that wildcard patterns can match. If the request can target data streams, this argumentdetermines whether wildcard expressions match hidden data streams. Supports comma-separated values,such as `open,hidden`.
-     * $params['fielddata_fields']           = (any) Comma-separated list or wildcard expressions of fields to include in fielddata statistics.
+     * $params['fielddata_fields']           = (any) Comma-separated list or wildcard expressions of fields to include in field data statistics.
      * $params['fields']                     = (any) Comma-separated list or wildcard expressions of fields to include in the statistics.
-     * $params['forbid_closed_indices']      = (boolean) If true, statistics are not collected from closed indices. (Default = true)
+     * $params['forbid_closed_indices']      = (boolean) If `true`, statistics are not collected from closed indexes. (Default = true)
      * $params['groups']                     = (any) Comma-separated list of search groups to include in the search statistics.
-     * $params['include_segment_file_sizes'] = (boolean) If true, the call reports the aggregated disk usage of each one of the Lucene index files (only applies if segment stats are requested). (Default = false)
-     * $params['include_unloaded_segments']  = (boolean) If true, the response includes information from segments that are not loaded into memory. (Default = false)
+     * $params['include_segment_file_sizes'] = (boolean) If `true`, the call reports the aggregated disk usage of each one of the Lucene index files (only applies if segment stats are requested). (Default = false)
+     * $params['include_unloaded_segments']  = (boolean) If `true`, the response includes information from segments that are not loaded into memory. (Default = false)
      * $params['level']                      = (enum) Indicates whether statistics are aggregated at the cluster, index, or shard level. (Options = cluster,indices,shards)
-     * $params['pretty']                     = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                      = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']                = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']                     = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                      = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']                = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                     = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']                = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']                = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -1395,25 +1391,25 @@ class IndicesNamespace extends AbstractNamespace
         $metric = $this->extractArgument($params, 'metric');
         $index = $this->extractArgument($params, 'index');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\Stats');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\Stats::class);
         $endpoint->setParams($params);
         $endpoint->setMetric($metric);
         $endpoint->setIndex($index);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Updates index aliases.
      *
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['master_timeout']          = (string) Period to wait for a connection to the master node.If no response is received before the timeout expires, the request fails and returns an error.
+     * $params['master_timeout']          = (string) Period to wait for a connection to the cluster-manager node.If no response is received before the timeout expires, the request fails and returns an error.
      * $params['timeout']                 = (string) Period to wait for a response.If no response is received before the timeout expires, the request fails and returns an error.
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      * $params['body']                    = (array) The definition of `actions` to perform (Required)
      *
      * @param array $params Associative array of parameters
@@ -1423,27 +1419,27 @@ class IndicesNamespace extends AbstractNamespace
     {
         $body = $this->extractArgument($params, 'body');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\UpdateAliases');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\UpdateAliases::class);
         $endpoint->setParams($params);
         $endpoint->setBody($body);
 
         return $this->performRequest($endpoint);
     }
+
     /**
-     * The _upgrade API is no longer useful and will be removed.
+     * The `_upgrade` API is no longer useful and will be removed.
      *
-     * $params['index']                 = (array) Comma-separated list of indices; use `_all` or empty string to perform the operation on all indices.
-     * $params['allow_no_indices']      = (boolean) Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes `_all` string or when no indices have been specified).
-     * $params['expand_wildcards']      = (any) Whether to expand wildcard expression to concrete indices that are open, closed or both.
-     * $params['ignore_unavailable']    = (boolean) Whether specified concrete indices should be ignored when unavailable (missing or closed).
-     * $params['only_ancient_segments'] = (boolean) If true, only ancient (an older Lucene major release) segments will be upgraded.
+     * $params['index']                 = (array) Comma-separated list of indexes; use `_all` or empty string to perform the operation on all indexes.
+     * $params['allow_no_indices']      = (boolean) Whether to ignore if a wildcard indexes expression resolves into no concrete indexes. (This includes `_all` string or when no indexes have been specified).
+     * $params['expand_wildcards']      = (any) Whether to expand wildcard expression to concrete indexes that are open, closed or both.
+     * $params['ignore_unavailable']    = (boolean) Whether specified concrete indexes should be ignored when unavailable (missing or closed).
+     * $params['only_ancient_segments'] = (boolean) If `true`, only ancient (an older Lucene major release) segments will be upgraded.
      * $params['wait_for_completion']   = (boolean) Should this request wait until the operation has completed before returning. (Default = false)
-     * $params['pretty']                = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                 = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']           = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']                = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                 = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']           = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']           = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']           = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -1452,22 +1448,22 @@ class IndicesNamespace extends AbstractNamespace
     {
         $index = $this->extractArgument($params, 'index');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\Upgrade');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\Upgrade::class);
         $endpoint->setParams($params);
         $endpoint->setIndex($index);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Allows a user to validate a potentially expensive query without executing it.
      *
-     * $params['index']              = (array) Comma-separated list of data streams, indices, and aliases to search. Supports wildcards (`*`). To search all data streams or indices, omit this parameter or use `*` or `_all`.
+     * $params['index']              = (array) Comma-separated list of data streams, indexes, and aliases to search. Supports wildcards (`*`). To search all data streams or indexes, omit this parameter or use `*` or `_all`.
      * $params['all_shards']         = (boolean) If `true`, the validation is executed on all shards instead of one random shard per index.
-     * $params['allow_no_indices']   = (boolean) If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices.This behavior applies even if the request targets other open indices.
+     * $params['allow_no_indices']   = (boolean) If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes.This behavior applies even if the request targets other open indexes.
      * $params['analyze_wildcard']   = (boolean) If `true`, wildcard and prefix queries are analyzed. (Default = false)
      * $params['analyzer']           = (string) Analyzer to use for the query string.This parameter can only be used when the `q` query string parameter is specified.
-     * $params['default_operator']   = (enum) The default operator for query string query: `AND` or `OR`. (Options = and,or)
+     * $params['default_operator']   = (enum) The default operator for query string query: `AND` or `OR`. (Options = and,AND,or,OR)
      * $params['df']                 = (string) Field to use as default where no field prefix is given in the query string.This parameter can only be used when the `q` query string parameter is specified.
      * $params['expand_wildcards']   = (any) Type of index that wildcard patterns can match.If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams.Supports comma-separated values, such as `open,hidden`.Valid values are: `all`, `open`, `closed`, `hidden`, `none`.
      * $params['explain']            = (boolean) If `true`, the response returns detailed information if an error has occurred.
@@ -1475,11 +1471,11 @@ class IndicesNamespace extends AbstractNamespace
      * $params['lenient']            = (boolean) If `true`, format-based query failures (such as providing text to a numeric field) in the query string will be ignored.
      * $params['q']                  = (string) Query in the Lucene query string syntax.
      * $params['rewrite']            = (boolean) If `true`, returns a more detailed explanation showing the actual Lucene query that will be executed.
-     * $params['pretty']             = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']              = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']        = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']             = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']              = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']        = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']             = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']        = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']        = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      * $params['body']               = (array) The query definition specified with the Query DSL
      *
      * @param array $params Associative array of parameters
@@ -1490,14 +1486,14 @@ class IndicesNamespace extends AbstractNamespace
         $index = $this->extractArgument($params, 'index');
         $body = $this->extractArgument($params, 'body');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\ValidateQuery');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\ValidateQuery::class);
         $endpoint->setParams($params);
         $endpoint->setIndex($index);
         $endpoint->setBody($body);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Alias function to getAlias()
      *
@@ -1518,8 +1514,7 @@ class IndicesNamespace extends AbstractNamespace
     {
         $index = $this->extractArgument($params, 'index');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Indices\RefreshSearchAnalyzers');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Indices\RefreshSearchAnalyzers::class);
         $endpoint->setParams($params);
         $endpoint->setIndex($index);
 

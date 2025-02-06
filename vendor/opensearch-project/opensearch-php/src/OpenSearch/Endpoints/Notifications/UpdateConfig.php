@@ -15,7 +15,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints\Notifications;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -50,9 +50,9 @@ class UpdateConfig extends AbstractEndpoint
         return 'PUT';
     }
 
-    public function setBody($body): UpdateConfig
+    public function setBody($body): static
     {
-        if (isset($body) !== true) {
+        if (is_null($body)) {
             return $this;
         }
         $this->body = $body;
@@ -60,9 +60,9 @@ class UpdateConfig extends AbstractEndpoint
         return $this;
     }
 
-    public function setConfigId($config_id): UpdateConfig
+    public function setConfigId($config_id): static
     {
-        if (isset($config_id) !== true) {
+        if (is_null($config_id)) {
             return $this;
         }
         $this->config_id = $config_id;

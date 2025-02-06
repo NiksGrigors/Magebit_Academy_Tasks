@@ -21,8 +21,6 @@ declare(strict_types=1);
 
 namespace OpenSearch\Namespaces;
 
-use OpenSearch\Namespaces\AbstractNamespace;
-
 /**
  * Class CatNamespace
  *
@@ -31,21 +29,21 @@ use OpenSearch\Namespaces\AbstractNamespace;
 class CatNamespace extends AbstractNamespace
 {
     /**
-     * Shows information about currently configured aliases to indices including filter and routing infos.
+     * Shows information about aliases currently configured to indexes, including filter and routing information.
      *
-     * $params['name']             = (array) A comma-separated list of aliases to retrieve. Supports wildcards (`*`).  To retrieve all aliases, omit this parameter or use `*` or `_all`.
-     * $params['expand_wildcards'] = (any) Whether to expand wildcard expression to concrete indices that are open, closed or both.
-     * $params['format']           = (string) A short version of the Accept header, e.g. json, yaml.
-     * $params['h']                = (array) Comma-separated list of column names to display.
-     * $params['help']             = (boolean) Return help information. (Default = false)
-     * $params['local']            = (boolean) Return local information, do not retrieve the state from cluster-manager node. (Default = false)
-     * $params['s']                = (array) Comma-separated list of column names or column aliases to sort by.
-     * $params['v']                = (boolean) Verbose mode. Display column headers. (Default = false)
-     * $params['pretty']           = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']            = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']      = (boolean) Whether to include the stack trace of returned errors.
+     * $params['name']             = (array)
+     * $params['expand_wildcards'] = (any)
+     * $params['format']           = (string) A short version of the `Accept` header, such as `json` or `yaml`.
+     * $params['h']                = (array) A comma-separated list of column names to display.
+     * $params['help']             = (boolean) Returns help information. (Default = false)
+     * $params['local']            = (boolean) Whether to return information from the local node only instead of from the cluster manager node. (Default = false)
+     * $params['s']                = (array) A comma-separated list of column names or column aliases to sort by.
+     * $params['v']                = (boolean) Enables verbose mode, which displays column headers. (Default = false)
+     * $params['pretty']           = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']            = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']      = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']           = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']      = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']      = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -54,57 +52,57 @@ class CatNamespace extends AbstractNamespace
     {
         $name = $this->extractArgument($params, 'name');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Cat\Aliases');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Cat\Aliases::class);
         $endpoint->setParams($params);
         $endpoint->setName($name);
 
         return $this->performRequest($endpoint);
     }
+
     /**
-     * Lists all active point-in-time segments.
+     * Lists all active CAT point-in-time segments.
      *
-     * $params['bytes']       = (enum) The unit in which to display byte values. (Options = b,g,gb,k,kb,m,mb,p,pb,t,tb)
-     * $params['format']      = (string) A short version of the Accept header, e.g. json, yaml.
-     * $params['h']           = (array) Comma-separated list of column names to display.
-     * $params['help']        = (boolean) Return help information. (Default = false)
-     * $params['s']           = (array) Comma-separated list of column names or column aliases to sort by.
-     * $params['v']           = (boolean) Verbose mode. Display column headers. (Default = false)
-     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']       = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors.
+     * $params['bytes']       = (any) The units used to display byte values.
+     * $params['format']      = (string) A short version of the `Accept` header, such as `json` or `yaml`.
+     * $params['h']           = (array) A comma-separated list of column names to display.
+     * $params['help']        = (boolean) Returns help information. (Default = false)
+     * $params['s']           = (array) A comma-separated list of column names or column aliases to sort by.
+     * $params['v']           = (boolean) Enables verbose mode, which displays column headers. (Default = false)
+     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']       = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']      = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path'] = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path'] = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
      */
     public function allPitSegments(array $params = [])
     {
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Cat\AllPitSegments');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Cat\AllPitSegments::class);
         $endpoint->setParams($params);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Provides a snapshot of how many shards are allocated to each data node and how much disk space they are using.
      *
-     * $params['node_id']                 = (array) Comma-separated list of node identifiers or names used to limit the returned information.
-     * $params['bytes']                   = (enum) The unit used to display byte values. (Options = b,g,gb,k,kb,m,mb,p,pb,t,tb)
-     * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['format']                  = (string) A short version of the Accept header, e.g. json, yaml.
-     * $params['h']                       = (array) Comma-separated list of column names to display.
-     * $params['help']                    = (boolean) Return help information. (Default = false)
-     * $params['local']                   = (boolean) Return local information, do not retrieve the state from cluster-manager node. (Default = false)
-     * $params['master_timeout']          = (string) Operation timeout for connection to master node.
-     * $params['s']                       = (array) Comma-separated list of column names or column aliases to sort by.
-     * $params['v']                       = (boolean) Verbose mode. Display column headers. (Default = false)
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['node_id']                 = (array) A comma-separated list of node IDs or names used to limit the returned information.
+     * $params['bytes']                   = (any) The units used to display byte values.
+     * $params['cluster_manager_timeout'] = (string) A timeout for connection to the cluster manager node.
+     * $params['format']                  = (string) A short version of the HTTP `Accept` header, such as `json` or `yaml`.
+     * $params['h']                       = (array) A comma-separated list of column names to display.
+     * $params['help']                    = (boolean) Returns help information. (Default = false)
+     * $params['local']                   = (boolean) Returns local information but does not retrieve the state from cluster-manager node. (Default = false)
+     * $params['master_timeout']          = (string) A timeout for connection to the cluster manager node.
+     * $params['s']                       = (array) A comma-separated list of column names or column aliases to sort by.
+     * $params['v']                       = (boolean) Enables verbose mode, which displays column headers. (Default = false)
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -113,55 +111,55 @@ class CatNamespace extends AbstractNamespace
     {
         $node_id = $this->extractArgument($params, 'node_id');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Cat\Allocation');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Cat\Allocation::class);
         $endpoint->setParams($params);
         $endpoint->setNodeId($node_id);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Returns information about the cluster-manager node.
      *
-     * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['format']                  = (string) A short version of the Accept header, e.g. json, yaml.
-     * $params['h']                       = (array) Comma-separated list of column names to display.
-     * $params['help']                    = (boolean) Return help information. (Default = false)
-     * $params['local']                   = (boolean) Return local information, do not retrieve the state from cluster-manager node. (Default = false)
-     * $params['master_timeout']          = (string) Operation timeout for connection to master node.
-     * $params['s']                       = (array) Comma-separated list of column names or column aliases to sort by.
-     * $params['v']                       = (boolean) Verbose mode. Display column headers. (Default = false)
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['cluster_manager_timeout'] = (string) A timeout for connection to the cluster manager node.
+     * $params['format']                  = (string) A short version of the HTTP `Accept` header, such as `json` or `yaml`.
+     * $params['h']                       = (array) A comma-separated list of column names to display.
+     * $params['help']                    = (boolean) Returns help information. (Default = false)
+     * $params['local']                   = (boolean) Returns local information but does not retrieve the state from the cluster manager node. (Default = false)
+     * $params['master_timeout']          = (string) A timeout for connection to the cluster manager node.
+     * $params['s']                       = (array) A comma-separated list of column names or column aliases to sort by.
+     * $params['v']                       = (boolean) Enables verbose mode, which displays column headers. (Default = false)
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
      */
     public function clusterManager(array $params = [])
     {
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Cat\ClusterManager');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Cat\ClusterManager::class);
         $endpoint->setParams($params);
 
         return $this->performRequest($endpoint);
     }
+
     /**
-     * Provides quick access to the document count of the entire cluster, or individual indices.
+     * Provides quick access to the document count of the entire cluster or of an individual index.
      *
-     * $params['index']       = (array) Comma-separated list of data streams, indices, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indices, omit this parameter or use `*` or `_all`.
-     * $params['format']      = (string) A short version of the Accept header, e.g. json, yaml.
-     * $params['h']           = (array) Comma-separated list of column names to display.
-     * $params['help']        = (boolean) Return help information. (Default = false)
-     * $params['s']           = (array) Comma-separated list of column names or column aliases to sort by.
-     * $params['v']           = (boolean) Verbose mode. Display column headers. (Default = false)
-     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']       = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors.
+     * $params['index']       = (array) Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
+     * $params['format']      = (string) A short version of the `Accept` header, such as `json` or `yaml`.
+     * $params['h']           = (array) A comma-separated list of column names to display.
+     * $params['help']        = (boolean) Returns help information. (Default = false)
+     * $params['s']           = (array) A comma-separated list of column names or column aliases to sort by.
+     * $params['v']           = (boolean) Enables verbose mode, which displays column headers. (Default = false)
+     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']       = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']      = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path'] = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path'] = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -170,28 +168,28 @@ class CatNamespace extends AbstractNamespace
     {
         $index = $this->extractArgument($params, 'index');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Cat\Count');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Cat\Count::class);
         $endpoint->setParams($params);
         $endpoint->setIndex($index);
 
         return $this->performRequest($endpoint);
     }
+
     /**
-     * Shows how much heap memory is currently being used by fielddata on every data node in the cluster.
+     * Shows how much heap memory is currently being used by field data on every data node in the cluster.
      *
-     * $params['fields']      = (array) Comma-separated list of fields used to limit returned information. To retrieve all fields, omit this parameter.
-     * $params['bytes']       = (enum) The unit used to display byte values. (Options = b,g,gb,k,kb,m,mb,p,pb,t,tb)
-     * $params['format']      = (string) A short version of the Accept header, e.g. json, yaml.
-     * $params['h']           = (array) Comma-separated list of column names to display.
-     * $params['help']        = (boolean) Return help information. (Default = false)
-     * $params['s']           = (array) Comma-separated list of column names or column aliases to sort by.
-     * $params['v']           = (boolean) Verbose mode. Display column headers. (Default = false)
-     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']       = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors.
+     * $params['fields']      = (array) A comma-separated list of fields used to limit the amount of returned information. To retrieve all fields, omit this parameter.
+     * $params['bytes']       = (any) The units used to display byte values.
+     * $params['format']      = (string) A short version of the `Accept` header, such as `json` or `yaml`.
+     * $params['h']           = (array) A comma-separated list of column names to display.
+     * $params['help']        = (boolean) Returns help information. (Default = false)
+     * $params['s']           = (array) A comma-separated list of column names or column aliases to sort by.
+     * $params['v']           = (boolean) Enables verbose mode, which displays column headers. (Default = false)
+     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']       = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']      = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path'] = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path'] = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -200,83 +198,83 @@ class CatNamespace extends AbstractNamespace
     {
         $fields = $this->extractArgument($params, 'fields');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Cat\Fielddata');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Cat\Fielddata::class);
         $endpoint->setParams($params);
         $endpoint->setFields($fields);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Returns a concise representation of the cluster health.
      *
-     * $params['format']      = (string) A short version of the Accept header, e.g. json, yaml.
-     * $params['h']           = (array) Comma-separated list of column names to display.
-     * $params['help']        = (boolean) Return help information. (Default = false)
-     * $params['s']           = (array) Comma-separated list of column names or column aliases to sort by.
-     * $params['time']        = (enum) The unit used to display time values. (Options = d,h,m,micros,ms,nanos,s)
-     * $params['ts']          = (boolean) If true, returns `HH:MM:SS` and Unix epoch timestamps. (Default = true)
-     * $params['v']           = (boolean) Verbose mode. Display column headers. (Default = false)
-     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']       = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors.
+     * $params['format']      = (string) A short version of the `Accept` header, such as `json` or `yaml`.
+     * $params['h']           = (array) A comma-separated list of column names to display.
+     * $params['help']        = (boolean) Returns help information. (Default = false)
+     * $params['s']           = (array) A comma-separated list of column names or column aliases to sort by.
+     * $params['time']        = (any) The unit used to display time values.
+     * $params['ts']          = (boolean) When `true`, returns `HH:MM:SS` and Unix epoch timestamps. (Default = true)
+     * $params['v']           = (boolean) Enables verbose mode, which displays column headers. (Default = false)
+     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']       = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']      = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path'] = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path'] = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
      */
     public function health(array $params = [])
     {
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Cat\Health');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Cat\Health::class);
         $endpoint->setParams($params);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Returns help for the Cat APIs.
      *
-     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']       = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']       = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']      = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path'] = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path'] = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
      */
     public function help(array $params = [])
     {
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Cat\Help');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Cat\Help::class);
         $endpoint->setParams($params);
 
         return $this->performRequest($endpoint);
     }
+
     /**
-     * Returns information about indices: number of primaries and replicas, document counts, disk size, ...
+     * Lists information related to indexes, that is, how much disk space they are using, how many shards they have, their health status, and so on.
      *
-     * $params['index']                     = (array) Comma-separated list of data streams, indices, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indices, omit this parameter or use `*` or `_all`.
-     * $params['bytes']                     = (enum) The unit used to display byte values. (Options = b,g,gb,k,kb,m,mb,p,pb,t,tb)
-     * $params['cluster_manager_timeout']   = (string) Operation timeout for connection to cluster-manager node.
-     * $params['expand_wildcards']          = (any) The type of index that wildcard patterns can match.
-     * $params['format']                    = (string) A short version of the Accept header, e.g. json, yaml.
-     * $params['h']                         = (array) Comma-separated list of column names to display.
-     * $params['health']                    = (enum) The health status used to limit returned indices. By default, the response includes indices of any health status. (Options = green,red,yellow)
-     * $params['help']                      = (boolean) Return help information. (Default = false)
-     * $params['include_unloaded_segments'] = (boolean) If true, the response includes information from segments that are not loaded into memory. (Default = false)
-     * $params['local']                     = (boolean) Return local information, do not retrieve the state from cluster-manager node. (Default = false)
-     * $params['master_timeout']            = (string) Operation timeout for connection to master node.
-     * $params['pri']                       = (boolean) If true, the response only includes information from primary shards. (Default = false)
-     * $params['s']                         = (array) Comma-separated list of column names or column aliases to sort by.
-     * $params['time']                      = (enum) The unit used to display time values. (Options = d,h,m,micros,ms,nanos,s)
-     * $params['v']                         = (boolean) Verbose mode. Display column headers. (Default = false)
-     * $params['pretty']                    = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                     = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']               = (boolean) Whether to include the stack trace of returned errors.
+     * $params['index']                     = (array) A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
+     * $params['bytes']                     = (any) The units used to display byte values.
+     * $params['cluster_manager_timeout']   = (string) The amount of time allowed to establish a connection to the cluster manager node.
+     * $params['expand_wildcards']          = (any)
+     * $params['format']                    = (string) A short version of the `Accept` header, such as `json` or `yaml`.
+     * $params['h']                         = (array) A comma-separated list of column names to display.
+     * $params['health']                    = (any) Limits indexes based on their health status. Supported values are `green`, `yellow`, and `red`.
+     * $params['help']                      = (boolean) Returns help information. (Default = false)
+     * $params['include_unloaded_segments'] = (boolean) Whether to include information from segments not loaded into memory. (Default = false)
+     * $params['local']                     = (boolean) Returns local information but does not retrieve the state from the cluster manager node. (Default = false)
+     * $params['master_timeout']            = (string) The amount of time allowed to establish a connection to the cluster manager node.
+     * $params['pri']                       = (boolean) When `true`, returns information only from the primary shards. (Default = false)
+     * $params['s']                         = (array) A comma-separated list of column names or column aliases to sort by.
+     * $params['time']                      = (any) Specifies the time units.
+     * $params['v']                         = (boolean) Enables verbose mode, which displays column headers. (Default = false)
+     * $params['pretty']                    = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                     = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']               = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                    = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']               = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']               = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -285,143 +283,143 @@ class CatNamespace extends AbstractNamespace
     {
         $index = $this->extractArgument($params, 'index');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Cat\Indices');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Cat\Indices::class);
         $endpoint->setParams($params);
         $endpoint->setIndex($index);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Returns information about the cluster-manager node.
      *
-     * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['format']                  = (string) A short version of the Accept header, e.g. json, yaml.
-     * $params['h']                       = (array) Comma-separated list of column names to display.
-     * $params['help']                    = (boolean) Return help information. (Default = false)
-     * $params['local']                   = (boolean) Return local information, do not retrieve the state from cluster-manager node. (Default = false)
-     * $params['master_timeout']          = (string) Operation timeout for connection to master node.
-     * $params['s']                       = (array) Comma-separated list of column names or column aliases to sort by.
-     * $params['v']                       = (boolean) Verbose mode. Display column headers. (Default = false)
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['cluster_manager_timeout'] = (string) The amount of time allowed to establish a connection to the cluster manager node.
+     * $params['format']                  = (string) A short version of the `Accept` header, such as `json` or `yaml`.
+     * $params['h']                       = (array) A comma-separated list of column names to display.
+     * $params['help']                    = (boolean) Returns help information. (Default = false)
+     * $params['local']                   = (boolean) Returns local information but does not retrieve the state from the cluster manager node. (Default = false)
+     * $params['master_timeout']          = (string) The amount of time allowed to establish a connection to the cluster manager node.
+     * $params['s']                       = (array) A comma-separated list of column names or column aliases to sort by.
+     * $params['v']                       = (boolean) Enables verbose mode, which displays column headers. (Default = false)
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
      */
     public function master(array $params = [])
     {
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Cat\Master');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Cat\Master::class);
         $endpoint->setParams($params);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Returns information about custom node attributes.
      *
-     * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['format']                  = (string) A short version of the Accept header, e.g. json, yaml.
-     * $params['h']                       = (array) Comma-separated list of column names to display.
-     * $params['help']                    = (boolean) Return help information. (Default = false)
-     * $params['local']                   = (boolean) Return local information, do not retrieve the state from cluster-manager node. (Default = false)
-     * $params['master_timeout']          = (string) Operation timeout for connection to master node.
-     * $params['s']                       = (array) Comma-separated list of column names or column aliases to sort by.
-     * $params['v']                       = (boolean) Verbose mode. Display column headers. (Default = false)
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['cluster_manager_timeout'] = (string) The amount of time allowed to establish a connection to the cluster manager node.
+     * $params['format']                  = (string) A short version of the `Accept` header, such as `json` or `yaml`.
+     * $params['h']                       = (array) A comma-separated list of column names to display.
+     * $params['help']                    = (boolean) Returns help information. (Default = false)
+     * $params['local']                   = (boolean) Returns local information but does not retrieve the state from the cluster manager node. (Default = false)
+     * $params['master_timeout']          = (string) The amount of time allowed to establish a connection to the cluster manager node.
+     * $params['s']                       = (array) A comma-separated list of column names or column aliases to sort by.
+     * $params['v']                       = (boolean) Enables verbose mode, which displays column headers. (Default = false)
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
      */
     public function nodeattrs(array $params = [])
     {
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Cat\NodeAttrs');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Cat\NodeAttrs::class);
         $endpoint->setParams($params);
 
         return $this->performRequest($endpoint);
     }
+
     /**
-     * Returns basic statistics about performance of cluster nodes.
+     * Returns basic statistics about the performance of cluster nodes.
      *
-     * $params['bytes']                   = (enum) The unit used to display byte values. (Options = b,g,gb,k,kb,m,mb,p,pb,t,tb)
-     * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['format']                  = (string) A short version of the Accept header, e.g. json, yaml.
-     * $params['full_id']                 = (any) If `true`, return the full node ID. If `false`, return the shortened node ID. (Default = )
-     * $params['h']                       = (array) Comma-separated list of column names to display.
-     * $params['help']                    = (boolean) Return help information. (Default = false)
-     * $params['local']                   = (boolean) Return local information, do not retrieve the state from cluster-manager node. (Default = false)
-     * $params['master_timeout']          = (string) Operation timeout for connection to master node.
-     * $params['s']                       = (array) Comma-separated list of column names or column aliases to sort by.
-     * $params['time']                    = (enum) The unit in which to display time values. (Options = d,h,m,micros,ms,nanos,s)
-     * $params['v']                       = (boolean) Verbose mode. Display column headers. (Default = false)
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['bytes']                   = (any) The units used to display byte values.
+     * $params['cluster_manager_timeout'] = (string) The amount of time allowed to establish a connection to the cluster manager node.
+     * $params['format']                  = (string) A short version of the `Accept` header, such as `json` or `yaml`.
+     * $params['full_id']                 = (any) When `true`, returns the full node ID. When `false`, returns the shortened node ID.
+     * $params['h']                       = (array) A comma-separated list of column names to display.
+     * $params['help']                    = (boolean) Returns help information. (Default = false)
+     * $params['local']                   = (boolean) Returns local information but does not retrieve the state from the cluster manager node. (Default = false)
+     * $params['master_timeout']          = (string) The amount of time allowed to establish a connection to the cluster manager node.
+     * $params['s']                       = (array) A comma-separated list of column names or column aliases to sort by.
+     * $params['time']                    = (any) Specifies the time units, for example, `5d` or `7h`. For more information, see [Supported units](https://opensearch.org/docs/latest/api-reference/units/).
+     * $params['v']                       = (boolean) Enables verbose mode, which displays column headers. (Default = false)
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
      */
     public function nodes(array $params = [])
     {
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Cat\Nodes');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Cat\Nodes::class);
         $endpoint->setParams($params);
 
         return $this->performRequest($endpoint);
     }
+
     /**
-     * Returns a concise representation of the cluster pending tasks.
+     * Returns a concise representation of the cluster's pending tasks.
      *
-     * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['format']                  = (string) A short version of the Accept header, e.g. json, yaml.
-     * $params['h']                       = (array) Comma-separated list of column names to display.
-     * $params['help']                    = (boolean) Return help information. (Default = false)
-     * $params['local']                   = (boolean) Return local information, do not retrieve the state from cluster-manager node. (Default = false)
-     * $params['master_timeout']          = (string) Operation timeout for connection to master node.
-     * $params['s']                       = (array) Comma-separated list of column names or column aliases to sort by.
-     * $params['time']                    = (enum) The unit in which to display time values. (Options = d,h,m,micros,ms,nanos,s)
-     * $params['v']                       = (boolean) Verbose mode. Display column headers. (Default = false)
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['cluster_manager_timeout'] = (string) The amount of time allowed to establish a connection to the cluster manager node.
+     * $params['format']                  = (string) A short version of the `Accept` header, such as `json` or `yaml`.
+     * $params['h']                       = (array) A comma-separated list of column names to display.
+     * $params['help']                    = (boolean) Returns help information. (Default = false)
+     * $params['local']                   = (boolean) Returns local information but does not retrieve the state from the cluster manager node. (Default = false)
+     * $params['master_timeout']          = (string) The amount of time allowed to establish a connection to the cluster manager node.
+     * $params['s']                       = (array) A comma-separated list of column names or column aliases to sort by.
+     * $params['time']                    = (any) Specifies the time units, for example, `5d` or `7h`. For more information, see [Supported units](https://opensearch.org/docs/latest/api-reference/units/).
+     * $params['v']                       = (boolean) Enables verbose mode, which displays column headers. (Default = false)
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
      */
     public function pendingTasks(array $params = [])
     {
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Cat\PendingTasks');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Cat\PendingTasks::class);
         $endpoint->setParams($params);
 
         return $this->performRequest($endpoint);
     }
+
     /**
-     * List segments for one or several PITs.
+     * Lists one or several CAT point-in-time segments.
      *
-     * $params['bytes']       = (enum) The unit in which to display byte values. (Options = b,g,gb,k,kb,m,mb,p,pb,t,tb)
-     * $params['format']      = (string) A short version of the Accept header, e.g. json, yaml.
-     * $params['h']           = (array) Comma-separated list of column names to display.
-     * $params['help']        = (boolean) Return help information. (Default = false)
-     * $params['s']           = (array) Comma-separated list of column names or column aliases to sort by.
-     * $params['v']           = (boolean) Verbose mode. Display column headers. (Default = false)
-     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']       = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors.
+     * $params['bytes']       = (any) The units used to display byte values.
+     * $params['format']      = (string) A short version of the `Accept` header, such as `json` or `yaml`.
+     * $params['h']           = (array) A comma-separated list of column names to display.
+     * $params['help']        = (boolean) Returns help information. (Default = false)
+     * $params['s']           = (array) A comma-separated list of column names or column aliases to sort by.
+     * $params['v']           = (boolean) Enables verbose mode, which displays column headers. (Default = false)
+     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']       = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']      = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path'] = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path'] = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -430,59 +428,59 @@ class CatNamespace extends AbstractNamespace
     {
         $body = $this->extractArgument($params, 'body');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Cat\PitSegments');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Cat\PitSegments::class);
         $endpoint->setParams($params);
         $endpoint->setBody($body);
 
         return $this->performRequest($endpoint);
     }
+
     /**
-     * Returns information about installed plugins across nodes node.
+     * Returns information about the names, components, and versions of the installed plugins.
      *
-     * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['format']                  = (string) A short version of the Accept header, e.g. json, yaml.
-     * $params['h']                       = (array) Comma-separated list of column names to display.
-     * $params['help']                    = (boolean) Return help information. (Default = false)
-     * $params['local']                   = (boolean) Return local information, do not retrieve the state from cluster-manager node. (Default = false)
-     * $params['master_timeout']          = (string) Operation timeout for connection to master node.
-     * $params['s']                       = (array) Comma-separated list of column names or column aliases to sort by.
-     * $params['v']                       = (boolean) Verbose mode. Display column headers. (Default = false)
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['cluster_manager_timeout'] = (string) The amount of time allowed to establish a connection to the cluster manager node.
+     * $params['format']                  = (string) A short version of the `Accept` header, such as `json` or `yaml`.
+     * $params['h']                       = (array) A comma-separated list of column names to display.
+     * $params['help']                    = (boolean) Returns help information. (Default = false)
+     * $params['local']                   = (boolean) Returns local information but does not retrieve the state from the cluster manager node. (Default = false)
+     * $params['master_timeout']          = (string) The amount of time allowed to establish a connection to the cluster manager node.
+     * $params['s']                       = (array) A comma-separated list of column names or column aliases to sort by.
+     * $params['v']                       = (boolean) Enables verbose mode, which displays column headers. (Default = false)
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
      */
     public function plugins(array $params = [])
     {
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Cat\Plugins');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Cat\Plugins::class);
         $endpoint->setParams($params);
 
         return $this->performRequest($endpoint);
     }
+
     /**
-     * Returns information about index shard recoveries, both on-going completed.
+     * Returns all completed and ongoing index and shard recoveries.
      *
-     * $params['index']       = (array) A comma-separated list of data streams, indices, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indices, omit this parameter or use `*` or `_all`.
+     * $params['index']       = (array) A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
      * $params['active_only'] = (boolean) If `true`, the response only includes ongoing shard recoveries. (Default = false)
-     * $params['bytes']       = (enum) The unit used to display byte values. (Options = b,g,gb,k,kb,m,mb,p,pb,t,tb)
-     * $params['detailed']    = (boolean) If `true`, the response includes detailed information about shard recoveries. (Default = false)
-     * $params['format']      = (string) A short version of the Accept header, e.g. json, yaml.
-     * $params['h']           = (array) Comma-separated list of column names to display.
-     * $params['help']        = (boolean) Return help information. (Default = false)
-     * $params['s']           = (array) Comma-separated list of column names or column aliases to sort by.
-     * $params['time']        = (enum) The unit in which to display time values. (Options = d,h,m,micros,ms,nanos,s)
-     * $params['v']           = (boolean) Verbose mode. Display column headers. (Default = false)
-     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']       = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors.
+     * $params['bytes']       = (any) The units used to display byte values.
+     * $params['detailed']    = (boolean) When `true`, includes detailed information about shard recoveries. (Default = false)
+     * $params['format']      = (string) A short version of the `Accept` header, such as `json` or `yaml`.
+     * $params['h']           = (array) A comma-separated list of column names to display.
+     * $params['help']        = (boolean) Returns help information. (Default = false)
+     * $params['s']           = (array) A comma-separated list of column names or column aliases to sort by.
+     * $params['time']        = (any) Specifies the time units, for example, `5d` or `7h`. For more information, see [Supported units](https://opensearch.org/docs/latest/api-reference/units/).
+     * $params['v']           = (boolean) Enables verbose mode, which displays column headers. (Default = false)
+     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']       = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']      = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path'] = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path'] = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -491,66 +489,66 @@ class CatNamespace extends AbstractNamespace
     {
         $index = $this->extractArgument($params, 'index');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Cat\Recovery');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Cat\Recovery::class);
         $endpoint->setParams($params);
         $endpoint->setIndex($index);
 
         return $this->performRequest($endpoint);
     }
+
     /**
-     * Returns information about snapshot repositories registered in the cluster.
+     * Returns information about all snapshot repositories for a cluster.
      *
-     * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['format']                  = (string) A short version of the Accept header, e.g. json, yaml.
-     * $params['h']                       = (array) Comma-separated list of column names to display.
-     * $params['help']                    = (boolean) Return help information. (Default = false)
-     * $params['local']                   = (boolean) Return local information, do not retrieve the state from cluster-manager node. (Default = false)
-     * $params['master_timeout']          = (string) Operation timeout for connection to master node.
-     * $params['s']                       = (array) Comma-separated list of column names or column aliases to sort by.
-     * $params['v']                       = (boolean) Verbose mode. Display column headers. (Default = false)
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['cluster_manager_timeout'] = (string) The amount of time allowed to establish a connection to the cluster manager node.
+     * $params['format']                  = (string) A short version of the `Accept` header, such as `json` or `yaml`.
+     * $params['h']                       = (array) A comma-separated list of column names to display.
+     * $params['help']                    = (boolean) Returns help information. (Default = false)
+     * $params['local']                   = (boolean) Returns local information but does not retrieve the state from the cluster manager node. (Default = false)
+     * $params['master_timeout']          = (string) The amount of time allowed to establish a connection to the cluster manager node.
+     * $params['s']                       = (array) A comma-separated list of column names or column aliases to sort by.
+     * $params['v']                       = (boolean) Enables verbose mode, which displays column headers. (Default = false)
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
      */
     public function repositories(array $params = [])
     {
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Cat\Repositories');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Cat\Repositories::class);
         $endpoint->setParams($params);
 
         return $this->performRequest($endpoint);
     }
+
     /**
-     * Returns information about both on-going and latest completed Segment Replication events.
+     * Returns information about active and last-completed segment replication events on each replica shard, including related shard-level metrics. These metrics provide information about how far behind the primary shard the replicas are lagging.
      *
-     * $params['index']              = (array) Comma-separated list or wildcard expression of index names to limit the returned information.
-     * $params['active_only']        = (boolean) If `true`, the response only includes ongoing segment replication events. (Default = false)
-     * $params['allow_no_indices']   = (boolean) Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes `_all` string or when no indices have been specified).
-     * $params['bytes']              = (enum) The unit in which to display byte values. (Options = b,g,gb,k,kb,m,mb,p,pb,t,tb)
-     * $params['completed_only']     = (boolean) If `true`, the response only includes latest completed segment replication events. (Default = false)
-     * $params['detailed']           = (boolean) If `true`, the response includes detailed information about segment replications. (Default = false)
-     * $params['expand_wildcards']   = (any) Whether to expand wildcard expression to concrete indices that are open, closed or both.
-     * $params['format']             = (string) A short version of the Accept header, e.g. json, yaml.
-     * $params['h']                  = (array) Comma-separated list of column names to display.
-     * $params['help']               = (boolean) Return help information. (Default = false)
-     * $params['ignore_throttled']   = (boolean) Whether specified concrete, expanded or aliased indices should be ignored when throttled.
-     * $params['ignore_unavailable'] = (boolean) Whether specified concrete indices should be ignored when unavailable (missing or closed).
-     * $params['s']                  = (array) Comma-separated list of column names or column aliases to sort by.
-     * $params['shards']             = (array) Comma-separated list of shards to display.
-     * $params['time']               = (enum) The unit in which to display time values. (Options = d,h,m,micros,ms,nanos,s)
-     * $params['timeout']            = (string) Operation timeout.
-     * $params['v']                  = (boolean) Verbose mode. Display column headers. (Default = false)
-     * $params['pretty']             = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']              = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']        = (boolean) Whether to include the stack trace of returned errors.
+     * $params['index']              = (array) A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
+     * $params['active_only']        = (boolean) When `true`, the response only includes ongoing segment replication events. (Default = false)
+     * $params['allow_no_indices']   = (boolean) Whether to ignore the index if a wildcard index expression resolves to no concrete indexes. This includes the `_all` string or when no indexes have been specified.
+     * $params['bytes']              = (any) The units used to display byte values.
+     * $params['completed_only']     = (boolean) When `true`, the response only includes the last-completed segment replication events. (Default = false)
+     * $params['detailed']           = (boolean) When `true`, the response includes additional metrics for each stage of a segment replication event. (Default = false)
+     * $params['expand_wildcards']   = (any)
+     * $params['format']             = (string) A short version of the `Accept` header, such as `json` or `yaml`.
+     * $params['h']                  = (array) A comma-separated list of column names to display.
+     * $params['help']               = (boolean) Returns help information. (Default = false)
+     * $params['ignore_throttled']   = (boolean) Whether specified concrete, expanded, or aliased indexes should be ignored when throttled.
+     * $params['ignore_unavailable'] = (boolean) Whether the specified concrete indexes should be ignored when missing or closed.
+     * $params['s']                  = (array) A comma-separated list of column names or column aliases to sort by.
+     * $params['shards']             = (array) A comma-separated list of shards to display.
+     * $params['time']               = (any) Specifies the time units, for example, `5d` or `7h`. For more information, see [Supported units](https://opensearch.org/docs/latest/api-reference/units/).
+     * $params['timeout']            = (string) The operation timeout.
+     * $params['v']                  = (boolean) Enables verbose mode, which displays column headers. (Default = false)
+     * $params['pretty']             = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']              = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']        = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']             = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']        = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']        = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -559,30 +557,30 @@ class CatNamespace extends AbstractNamespace
     {
         $index = $this->extractArgument($params, 'index');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Cat\SegmentReplication');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Cat\SegmentReplication::class);
         $endpoint->setParams($params);
         $endpoint->setIndex($index);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Provides low-level information about the segments in the shards of an index.
      *
-     * $params['index']                   = (array) A comma-separated list of data streams, indices, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indices, omit this parameter or use `*` or `_all`.
-     * $params['bytes']                   = (enum) The unit used to display byte values. (Options = b,g,gb,k,kb,m,mb,p,pb,t,tb)
-     * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['format']                  = (string) A short version of the Accept header, e.g. json, yaml.
-     * $params['h']                       = (array) Comma-separated list of column names to display.
-     * $params['help']                    = (boolean) Return help information. (Default = false)
-     * $params['master_timeout']          = (string) Operation timeout for connection to master node.
-     * $params['s']                       = (array) Comma-separated list of column names or column aliases to sort by.
-     * $params['v']                       = (boolean) Verbose mode. Display column headers. (Default = false)
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['index']                   = (array) A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
+     * $params['bytes']                   = (any) The units used to display byte values.
+     * $params['cluster_manager_timeout'] = (string) The amount of time allowed to establish a connection to the cluster manager node.
+     * $params['format']                  = (string) A short version of the `Accept` header, such as `json` or `yaml`.
+     * $params['h']                       = (array) A comma-separated list of column names to display.
+     * $params['help']                    = (boolean) Returns help information. (Default = false)
+     * $params['master_timeout']          = (string) The amount of time allowed to establish a connection to the cluster manager node.
+     * $params['s']                       = (array) A comma-separated list of column names or column aliases to sort by.
+     * $params['v']                       = (boolean) Enables verbose mode, which displays column headers. (Default = false)
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -591,32 +589,32 @@ class CatNamespace extends AbstractNamespace
     {
         $index = $this->extractArgument($params, 'index');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Cat\Segments');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Cat\Segments::class);
         $endpoint->setParams($params);
         $endpoint->setIndex($index);
 
         return $this->performRequest($endpoint);
     }
+
     /**
-     * Provides a detailed view of shard allocation on nodes.
+     * Lists the states of all primary and replica shards and how they are distributed.
      *
-     * $params['index']                   = (array) A comma-separated list of data streams, indices, and aliases used to limit the request. Supports wildcards (`*`). To target all data streams and indices, omit this parameter or use `*` or `_all`.
-     * $params['bytes']                   = (enum) The unit used to display byte values. (Options = b,g,gb,k,kb,m,mb,p,pb,t,tb)
-     * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['format']                  = (string) A short version of the Accept header, e.g. json, yaml.
-     * $params['h']                       = (array) Comma-separated list of column names to display.
-     * $params['help']                    = (boolean) Return help information. (Default = false)
-     * $params['local']                   = (boolean) Return local information, do not retrieve the state from cluster-manager node. (Default = false)
-     * $params['master_timeout']          = (string) Operation timeout for connection to master node.
-     * $params['s']                       = (array) Comma-separated list of column names or column aliases to sort by.
-     * $params['time']                    = (enum) The unit in which to display time values. (Options = d,h,m,micros,ms,nanos,s)
-     * $params['v']                       = (boolean) Verbose mode. Display column headers. (Default = false)
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['index']                   = (array)
+     * $params['bytes']                   = (any) The units used to display byte values.
+     * $params['cluster_manager_timeout'] = (string) The amount of time allowed to establish a connection to the cluster manager node.
+     * $params['format']                  = (string) A short version of the `Accept` header, such as `json` or `yaml`.
+     * $params['h']                       = (array) A comma-separated list of column names to display.
+     * $params['help']                    = (boolean) Returns help information. (Default = false)
+     * $params['local']                   = (boolean) Returns local information but does not retrieve the state from the cluster manager node. (Default = false)
+     * $params['master_timeout']          = (string) The amount of time allowed to establish a connection to the cluster manager node.
+     * $params['s']                       = (array) A comma-separated list of column names or column aliases to sort by.
+     * $params['time']                    = (any)
+     * $params['v']                       = (boolean) Enables verbose mode, which displays column headers. (Default = false)
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -625,31 +623,31 @@ class CatNamespace extends AbstractNamespace
     {
         $index = $this->extractArgument($params, 'index');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Cat\Shards');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Cat\Shards::class);
         $endpoint->setParams($params);
         $endpoint->setIndex($index);
 
         return $this->performRequest($endpoint);
     }
+
     /**
-     * Returns all snapshots in a specific repository.
+     * Lists all of the snapshots stored in a specific repository.
      *
      * $params['repository']              = (array) A comma-separated list of snapshot repositories used to limit the request. Accepts wildcard expressions. `_all` returns all repositories. If any repository fails during the request, OpenSearch returns an error.
-     * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['format']                  = (string) A short version of the Accept header, e.g. json, yaml.
-     * $params['h']                       = (array) Comma-separated list of column names to display.
-     * $params['help']                    = (boolean) Return help information. (Default = false)
-     * $params['ignore_unavailable']      = (boolean) If `true`, the response does not include information from unavailable snapshots. (Default = false)
-     * $params['master_timeout']          = (string) Operation timeout for connection to master node.
-     * $params['s']                       = (array) Comma-separated list of column names or column aliases to sort by.
-     * $params['time']                    = (enum) The unit in which to display time values. (Options = d,h,m,micros,ms,nanos,s)
-     * $params['v']                       = (boolean) Verbose mode. Display column headers. (Default = false)
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['cluster_manager_timeout'] = (string) The amount of time allowed to establish a connection to the cluster manager node.
+     * $params['format']                  = (string) A short version of the `Accept` header, such as `json` or `yaml`.
+     * $params['h']                       = (array) A comma-separated list of column names to display.
+     * $params['help']                    = (boolean) Returns help information. (Default = false)
+     * $params['ignore_unavailable']      = (boolean) When `true`, the response does not include information from unavailable snapshots. (Default = false)
+     * $params['master_timeout']          = (string) The amount of time allowed to establish a connection to the cluster manager node.
+     * $params['s']                       = (array) A comma-separated list of column names or column aliases to sort by.
+     * $params['time']                    = (any) Specifies the time units, for example, `5d` or `7h`. For more information, see [Supported units](https://opensearch.org/docs/latest/api-reference/units/).
+     * $params['v']                       = (boolean) Enables verbose mode, which displays column headers. (Default = false)
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -658,30 +656,30 @@ class CatNamespace extends AbstractNamespace
     {
         $repository = $this->extractArgument($params, 'repository');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Cat\Snapshots');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Cat\Snapshots::class);
         $endpoint->setParams($params);
         $endpoint->setRepository($repository);
 
         return $this->performRequest($endpoint);
     }
+
     /**
-     * Returns information about the tasks currently executing on one or more nodes in the cluster.
+     * Lists the progress of all tasks currently running on the cluster.
      *
-     * $params['actions']     = (array) The task action names, which are used to limit the response.
+     * $params['actions']     = (array) The task action names used to limit the response.
      * $params['detailed']    = (boolean) If `true`, the response includes detailed information about shard recoveries. (Default = false)
-     * $params['format']      = (string) A short version of the Accept header, e.g. json, yaml.
-     * $params['h']           = (array) Comma-separated list of column names to display.
-     * $params['help']        = (boolean) Return help information. (Default = false)
-     * $params['s']           = (array) Comma-separated list of column names or column aliases to sort by.
-     * $params['time']        = (enum) The unit in which to display time values. (Options = d,h,m,micros,ms,nanos,s)
-     * $params['v']           = (boolean) Verbose mode. Display column headers. (Default = false)
-     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']       = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors.
+     * $params['format']      = (string) A short version of the `Accept` header, such as `json` or `yaml`.
+     * $params['h']           = (array) A comma-separated list of column names to display.
+     * $params['help']        = (boolean) Returns help information. (Default = false)
+     * $params['s']           = (array) A comma-separated list of column names or column aliases to sort by.
+     * $params['time']        = (any) Specifies the time units, for example, `5d` or `7h`. For more information, see [Supported units](https://opensearch.org/docs/latest/api-reference/units/).
+     * $params['v']           = (boolean) Enables verbose mode, which displays column headers. (Default = false)
+     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']       = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']      = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path'] = (any) Comma-separated list of filters used to reduce the response.
-     * $params['node_id']     = (array) Comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node you're connecting to, leave empty to get information from all nodes.
+     * $params['filter_path'] = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
+     * $params['node_id']     = (array) A comma-separated list of node IDs or names used to limit the returned information. Use `_local` to return information from the node to which you're connecting, specify a specific node from which to get information, or keep the parameter empty to get information from all nodes.
      * $params['parent_task'] = (string) The parent task identifier, which is used to limit the response.
      *
      * @param array $params Associative array of parameters
@@ -689,29 +687,29 @@ class CatNamespace extends AbstractNamespace
      */
     public function tasks(array $params = [])
     {
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Cat\Tasks');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Cat\Tasks::class);
         $endpoint->setParams($params);
 
         return $this->performRequest($endpoint);
     }
+
     /**
-     * Returns information about existing templates.
+     * Lists the names, patterns, order numbers, and version numbers of index templates.
      *
      * $params['name']                    = (string) The name of the template to return. Accepts wildcard expressions. If omitted, all templates are returned.
-     * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['format']                  = (string) A short version of the Accept header, e.g. json, yaml.
-     * $params['h']                       = (array) Comma-separated list of column names to display.
-     * $params['help']                    = (boolean) Return help information. (Default = false)
-     * $params['local']                   = (boolean) Return local information, do not retrieve the state from cluster-manager node. (Default = false)
-     * $params['master_timeout']          = (string) Operation timeout for connection to master node.
-     * $params['s']                       = (array) Comma-separated list of column names or column aliases to sort by.
-     * $params['v']                       = (boolean) Verbose mode. Display column headers. (Default = false)
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['cluster_manager_timeout'] = (string) The amount of time allowed to establish a connection to the cluster manager node.
+     * $params['format']                  = (string) A short version of the `Accept` header, such as `json` or `yaml`.
+     * $params['h']                       = (array) A comma-separated list of column names to display.
+     * $params['help']                    = (boolean) Returns help information. (Default = false)
+     * $params['local']                   = (boolean) Returns local information but does not retrieve the state from the cluster manager node. (Default = false)
+     * $params['master_timeout']          = (string) The amount of time allowed to establish a connection to the cluster manager node.
+     * $params['s']                       = (array) A comma-separated list of column names or column aliases to sort by.
+     * $params['v']                       = (boolean) Enables verbose mode, which displays column headers. (Default = false)
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -720,31 +718,31 @@ class CatNamespace extends AbstractNamespace
     {
         $name = $this->extractArgument($params, 'name');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Cat\Templates');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Cat\Templates::class);
         $endpoint->setParams($params);
         $endpoint->setName($name);
 
         return $this->performRequest($endpoint);
     }
+
     /**
-     * Returns cluster-wide thread pool statistics per node.By default the active, queue and rejected statistics are returned for all thread pools.
+     * Returns cluster-wide thread pool statistics per node.By default the active, queued, and rejected statistics are returned for all thread pools.
      *
      * $params['thread_pool_patterns']    = (array) A comma-separated list of thread pool names used to limit the request. Accepts wildcard expressions.
-     * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['format']                  = (string) A short version of the Accept header, e.g. json, yaml.
-     * $params['h']                       = (array) Comma-separated list of column names to display.
-     * $params['help']                    = (boolean) Return help information. (Default = false)
-     * $params['local']                   = (boolean) Return local information, do not retrieve the state from cluster-manager node. (Default = false)
-     * $params['master_timeout']          = (string) Operation timeout for connection to master node.
-     * $params['s']                       = (array) Comma-separated list of column names or column aliases to sort by.
+     * $params['cluster_manager_timeout'] = (string) A timeout for connection to the cluster manager node.
+     * $params['format']                  = (string) A short version of the `Accept` header, such as `json` or `yaml`.
+     * $params['h']                       = (array) A comma-separated list of column names to display.
+     * $params['help']                    = (boolean) Returns help information. (Default = false)
+     * $params['local']                   = (boolean) Returns local information but does not retrieve the state from the cluster manager node. (Default = false)
+     * $params['master_timeout']          = (string) The amount of time allowed to establish a connection to the cluster manager node.
+     * $params['s']                       = (array) A comma-separated list of column names or column aliases to sort by.
      * $params['size']                    = (integer) The multiplier in which to display values.
-     * $params['v']                       = (boolean) Verbose mode. Display column headers. (Default = false)
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['v']                       = (boolean) Enables verbose mode, which displays column headers. (Default = false)
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -753,11 +751,11 @@ class CatNamespace extends AbstractNamespace
     {
         $thread_pool_patterns = $this->extractArgument($params, 'thread_pool_patterns');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Cat\ThreadPool');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Cat\ThreadPool::class);
         $endpoint->setParams($params);
         $endpoint->setThreadPoolPatterns($thread_pool_patterns);
 
         return $this->performRequest($endpoint);
     }
+
 }

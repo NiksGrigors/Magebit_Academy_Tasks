@@ -21,7 +21,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints\Indices;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -60,7 +60,7 @@ class ExistsTemplate extends AbstractEndpoint
         return 'HEAD';
     }
 
-    public function setName($name): ExistsTemplate
+    public function setName($name): static
     {
         if (isset($name) !== true) {
             return $this;

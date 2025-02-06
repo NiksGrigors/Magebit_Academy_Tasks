@@ -53,9 +53,9 @@ class PutSettings extends AbstractEndpoint
         return 'PUT';
     }
 
-    public function setBody($body): PutSettings
+    public function setBody($body): static
     {
-        if (isset($body) !== true) {
+        if (is_null($body)) {
             return $this;
         }
         $this->body = $body;

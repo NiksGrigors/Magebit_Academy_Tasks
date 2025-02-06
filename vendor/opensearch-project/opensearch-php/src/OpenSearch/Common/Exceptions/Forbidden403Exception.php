@@ -21,6 +21,16 @@ declare(strict_types=1);
 
 namespace OpenSearch\Common\Exceptions;
 
-class Forbidden403Exception extends \Exception implements OpenSearchException
+use OpenSearch\Exception\ForbiddenHttpException;
+
+// @phpstan-ignore classConstant.deprecatedClass
+@trigger_error(Forbidden403Exception::class . ' is deprecated in 2.4.0 and will be removed in 3.0.0. Use \OpenSearch\Exception\ForbiddenHttpException instead', E_USER_DEPRECATED);
+
+/**
+ * @deprecated in 2.4.0 and will be removed in 3.0.0.
+ *
+ * @see \OpenSearch\Exception\ForbiddenHttpException
+ */
+class Forbidden403Exception extends ForbiddenHttpException
 {
 }

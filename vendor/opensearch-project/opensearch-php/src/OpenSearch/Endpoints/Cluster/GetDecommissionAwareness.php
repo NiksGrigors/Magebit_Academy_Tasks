@@ -15,7 +15,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints\Cluster;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -50,9 +50,9 @@ class GetDecommissionAwareness extends AbstractEndpoint
         return 'GET';
     }
 
-    public function setAwarenessAttributeName($awareness_attribute_name): GetDecommissionAwareness
+    public function setAwarenessAttributeName($awareness_attribute_name): static
     {
-        if (isset($awareness_attribute_name) !== true) {
+        if (is_null($awareness_attribute_name)) {
             return $this;
         }
         $this->awareness_attribute_name = $awareness_attribute_name;

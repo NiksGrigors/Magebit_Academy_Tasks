@@ -3,12 +3,12 @@ namespace Magebit\Faq\Api\Data;
 
 interface FaqInterface
 {
-    const string ID = 'id';
-    const string QUESTION = 'question';
-    const string ANSWER = 'answer';
-    const string STATUS = 'status';
-    const string POSITION = 'position';
-    const string UPDATED_AT = 'updated_at';
+    const ID = 'id';
+    const QUESTION = 'question';
+    const ANSWER = 'answer';
+    const STATUS = 'status';
+    const POSITION = 'position';
+    const UPDATED_AT = 'updated_at';
 
     /**
      * Get ID

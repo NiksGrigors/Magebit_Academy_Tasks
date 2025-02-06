@@ -39,6 +39,7 @@ class Reindex extends AbstractEndpoint
             'max_docs',
             'refresh',
             'requests_per_second',
+            'require_alias',
             'scroll',
             'slices',
             'timeout',
@@ -57,9 +58,9 @@ class Reindex extends AbstractEndpoint
         return 'POST';
     }
 
-    public function setBody($body): Reindex
+    public function setBody($body): static
     {
-        if (isset($body) !== true) {
+        if (is_null($body)) {
             return $this;
         }
         $this->body = $body;

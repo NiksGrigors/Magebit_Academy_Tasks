@@ -15,8 +15,6 @@ declare(strict_types=1);
 
 namespace OpenSearch\Namespaces;
 
-use OpenSearch\Namespaces\AbstractNamespace;
-
 /**
  * Class NotificationsNamespace
  *
@@ -27,11 +25,11 @@ class NotificationsNamespace extends AbstractNamespace
     /**
      * Create channel configuration.
      *
-     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']       = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']       = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']      = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path'] = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path'] = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -40,22 +38,22 @@ class NotificationsNamespace extends AbstractNamespace
     {
         $body = $this->extractArgument($params, 'body');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Notifications\CreateConfig');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Notifications\CreateConfig::class);
         $endpoint->setParams($params);
         $endpoint->setBody($body);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Delete a channel configuration.
      *
      * $params['config_id']   = (string) The ID of the channel configuration to delete.
-     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']       = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']       = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']      = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path'] = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path'] = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -64,44 +62,44 @@ class NotificationsNamespace extends AbstractNamespace
     {
         $config_id = $this->extractArgument($params, 'config_id');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Notifications\DeleteConfig');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Notifications\DeleteConfig::class);
         $endpoint->setParams($params);
         $endpoint->setConfigId($config_id);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Delete multiple channel configurations.
      *
      * $params['config_id']      = (string) The ID of the channel configuration to delete.
      * $params['config_id_list'] = (string) A comma-separated list of channel IDs to delete.
-     * $params['pretty']         = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']          = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']    = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']         = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']          = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']    = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']         = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']    = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']    = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
      */
     public function deleteConfigs(array $params = [])
     {
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Notifications\DeleteConfigs');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Notifications\DeleteConfigs::class);
         $endpoint->setParams($params);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Get a specific channel configuration.
      *
      * $params['config_id']   = (string)
-     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']       = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']       = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']      = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path'] = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path'] = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -110,18 +108,20 @@ class NotificationsNamespace extends AbstractNamespace
     {
         $config_id = $this->extractArgument($params, 'config_id');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Notifications\GetConfig');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Notifications\GetConfig::class);
         $endpoint->setParams($params);
         $endpoint->setConfigId($config_id);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Get multiple channel configurations with filtering.
      *
      * $params['chime.url']                                    = (string)
      * $params['chime.url.keyword']                            = (string)
+     * $params['config_id']                                    = (string) Notification configuration ID.
+     * $params['config_id_list']                               = (array) Notification configuration IDs.
      * $params['config_type']                                  = (enum) Type of notification configuration. (Options = chime,email,email_group,microsoft_teams,ses_account,slack,smtp_account,sns,webhook)
      * $params['created_time_ms']                              = (integer)
      * $params['description']                                  = (string)
@@ -158,11 +158,11 @@ class NotificationsNamespace extends AbstractNamespace
      * $params['text_query']                                   = (string)
      * $params['webhook.url']                                  = (string)
      * $params['webhook.url.keyword']                          = (string)
-     * $params['pretty']                                       = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                                        = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']                                  = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']                                       = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                                        = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']                                  = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                                       = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']                                  = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']                                  = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -171,62 +171,62 @@ class NotificationsNamespace extends AbstractNamespace
     {
         $body = $this->extractArgument($params, 'body');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Notifications\GetConfigs');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Notifications\GetConfigs::class);
         $endpoint->setParams($params);
         $endpoint->setBody($body);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * List created notification channels.
      *
-     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']       = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']       = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']      = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path'] = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path'] = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
      */
     public function listChannels(array $params = [])
     {
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Notifications\ListChannels');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Notifications\ListChannels::class);
         $endpoint->setParams($params);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * List supported channel configurations.
      *
-     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']       = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']       = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']      = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path'] = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path'] = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
      */
     public function listFeatures(array $params = [])
     {
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Notifications\ListFeatures');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Notifications\ListFeatures::class);
         $endpoint->setParams($params);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Send a test notification.
      *
      * $params['config_id']   = (string)
-     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']       = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']       = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']      = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path'] = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path'] = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -235,22 +235,22 @@ class NotificationsNamespace extends AbstractNamespace
     {
         $config_id = $this->extractArgument($params, 'config_id');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Notifications\SendTest');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Notifications\SendTest::class);
         $endpoint->setParams($params);
         $endpoint->setConfigId($config_id);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Update channel configuration.
      *
      * $params['config_id']   = (string)
-     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']       = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']       = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']      = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path'] = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path'] = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -260,12 +260,12 @@ class NotificationsNamespace extends AbstractNamespace
         $config_id = $this->extractArgument($params, 'config_id');
         $body = $this->extractArgument($params, 'body');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Notifications\UpdateConfig');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Notifications\UpdateConfig::class);
         $endpoint->setParams($params);
         $endpoint->setConfigId($config_id);
         $endpoint->setBody($body);
 
         return $this->performRequest($endpoint);
     }
+
 }

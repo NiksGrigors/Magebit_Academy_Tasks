@@ -21,7 +21,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints\Indices;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -33,10 +33,8 @@ class ExistsAlias extends AbstractEndpoint
 
     public function getURI(): string
     {
-        if (isset($this->name) !== true) {
-            throw new RuntimeException(
-                'name is required for exists_alias'
-            );
+        if (!isset($this->name) || $this->name === '') {
+            throw new RuntimeException('name is required for exists_alias');
         }
         $name = $this->name;
         $index = $this->index ?? null;
@@ -66,7 +64,7 @@ class ExistsAlias extends AbstractEndpoint
         return 'HEAD';
     }
 
-    public function setName($name): ExistsAlias
+    public function setName($name): static
     {
         if (isset($name) !== true) {
             return $this;

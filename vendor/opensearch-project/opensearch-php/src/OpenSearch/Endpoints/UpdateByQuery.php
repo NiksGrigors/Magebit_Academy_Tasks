@@ -21,7 +21,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -31,12 +31,11 @@ class UpdateByQuery extends AbstractEndpoint
 {
     public function getURI(): string
     {
-        if (isset($this->index) !== true) {
-            throw new RuntimeException(
-                'index is required for update_by_query'
-            );
+        if (!isset($this->index) || $this->index === '') {
+            throw new RuntimeException('index is required for update_by_query');
         }
         $index = $this->index;
+
         return "/$index/_update_by_query";
     }
 
@@ -90,9 +89,9 @@ class UpdateByQuery extends AbstractEndpoint
         return 'POST';
     }
 
-    public function setBody($body): UpdateByQuery
+    public function setBody($body): static
     {
-        if (isset($body) !== true) {
+        if (is_null($body)) {
             return $this;
         }
         $this->body = $body;

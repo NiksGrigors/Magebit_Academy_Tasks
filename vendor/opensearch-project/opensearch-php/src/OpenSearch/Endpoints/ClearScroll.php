@@ -59,9 +59,9 @@ class ClearScroll extends AbstractEndpoint
         return 'DELETE';
     }
 
-    public function setBody($body): ClearScroll
+    public function setBody($body): static
     {
-        if (isset($body) !== true) {
+        if (is_null($body)) {
             return $this;
         }
         $this->body = $body;
@@ -69,7 +69,7 @@ class ClearScroll extends AbstractEndpoint
         return $this;
     }
 
-    public function setScrollId($scroll_id): ClearScroll
+    public function setScrollId($scroll_id): static
     {
         if (isset($scroll_id) !== true) {
             return $this;

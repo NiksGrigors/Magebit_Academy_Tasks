@@ -15,7 +15,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints\Query;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -50,9 +50,9 @@ class DatasourceRetrieve extends AbstractEndpoint
         return 'GET';
     }
 
-    public function setDatasourceName($datasource_name): DatasourceRetrieve
+    public function setDatasourceName($datasource_name): static
     {
-        if (isset($datasource_name) !== true) {
+        if (is_null($datasource_name)) {
             return $this;
         }
         $this->datasource_name = $datasource_name;

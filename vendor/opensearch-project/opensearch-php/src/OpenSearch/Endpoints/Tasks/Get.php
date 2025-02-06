@@ -21,7 +21,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints\Tasks;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -58,9 +58,9 @@ class Get extends AbstractEndpoint
         return 'GET';
     }
 
-    public function setTaskId($task_id): Get
+    public function setTaskId($task_id): static
     {
-        if (isset($task_id) !== true) {
+        if (is_null($task_id)) {
             return $this;
         }
         $this->task_id = $task_id;

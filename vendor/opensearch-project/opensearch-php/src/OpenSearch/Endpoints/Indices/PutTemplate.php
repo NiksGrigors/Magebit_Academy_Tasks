@@ -21,7 +21,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints\Indices;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -60,9 +60,9 @@ class PutTemplate extends AbstractEndpoint
         return 'PUT';
     }
 
-    public function setBody($body): PutTemplate
+    public function setBody($body): static
     {
-        if (isset($body) !== true) {
+        if (is_null($body)) {
             return $this;
         }
         $this->body = $body;
@@ -70,9 +70,9 @@ class PutTemplate extends AbstractEndpoint
         return $this;
     }
 
-    public function setName($name): PutTemplate
+    public function setName($name): static
     {
-        if (isset($name) !== true) {
+        if (is_null($name)) {
             return $this;
         }
         $this->name = $name;

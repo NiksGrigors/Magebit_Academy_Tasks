@@ -23,6 +23,12 @@ namespace OpenSearch\ConnectionPool\Selectors;
 
 use OpenSearch\Connections\ConnectionInterface;
 
+// @phpstan-ignore classConstant.deprecatedClass
+@trigger_error(StickyRoundRobinSelector::class . ' is deprecated in 2.4.0 and will be removed in 3.0.0.', E_USER_DEPRECATED);
+
+/**
+ * @deprecated in 2.4.0 and will be removed in 3.0.0.
+ */
 class StickyRoundRobinSelector implements SelectorInterface
 {
     /**
