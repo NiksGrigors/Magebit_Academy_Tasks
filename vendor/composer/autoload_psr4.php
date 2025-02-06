@@ -521,6 +521,7 @@ return array(
     'Jose\\Bundle\\JoseFramework\\' => array($vendorDir . '/web-token/jwt-framework/src/Bundle'),
     'Jose\\' => array($vendorDir . '/web-token/jwt-framework/src'),
     'JmesPath\\' => array($vendorDir . '/mtdowling/jmespath.php/src'),
+    'Http\\Discovery\\' => array($vendorDir . '/php-http/discovery/src'),
     'GuzzleHttp\\Stream\\' => array($vendorDir . '/ezimuel/guzzlestreams/src'),
     'GuzzleHttp\\Ring\\' => array($vendorDir . '/ezimuel/ringphp/src'),
     'GuzzleHttp\\Psr7\\' => array($vendorDir . '/guzzlehttp/psr7/src'),

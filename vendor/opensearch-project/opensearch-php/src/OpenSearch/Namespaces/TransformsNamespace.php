@@ -15,8 +15,6 @@ declare(strict_types=1);
 
 namespace OpenSearch\Namespaces;
 
-use OpenSearch\Namespaces\AbstractNamespace;
-
 /**
  * Class TransformsNamespace
  *
@@ -28,11 +26,11 @@ class TransformsNamespace extends AbstractNamespace
      * Delete an index transform.
      *
      * $params['id']          = (string) Transform to delete
-     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']       = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']       = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']      = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path'] = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path'] = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -41,22 +39,22 @@ class TransformsNamespace extends AbstractNamespace
     {
         $id = $this->extractArgument($params, 'id');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Transforms\Delete');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Transforms\Delete::class);
         $endpoint->setParams($params);
         $endpoint->setId($id);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Returns the status and metadata of a transform job.
      *
      * $params['id']          = (string) Transform to explain
-     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']       = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']       = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']      = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path'] = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path'] = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -65,22 +63,22 @@ class TransformsNamespace extends AbstractNamespace
     {
         $id = $this->extractArgument($params, 'id');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Transforms\Explain');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Transforms\Explain::class);
         $endpoint->setParams($params);
         $endpoint->setId($id);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Returns the status and metadata of a transform job.
      *
      * $params['id']          = (string) Transform to access
-     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']       = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']       = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']      = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path'] = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path'] = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -89,44 +87,47 @@ class TransformsNamespace extends AbstractNamespace
     {
         $id = $this->extractArgument($params, 'id');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Transforms\Get');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Transforms\Get::class);
         $endpoint->setParams($params);
         $endpoint->setId($id);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Returns a preview of what a transformed index would look like.
      *
-     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']       = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']       = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']      = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path'] = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path'] = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
      */
     public function preview(array $params = [])
     {
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Transforms\Preview');
+        $body = $this->extractArgument($params, 'body');
+
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Transforms\Preview::class);
         $endpoint->setParams($params);
+        $endpoint->setBody($body);
 
         return $this->performRequest($endpoint);
     }
+
     /**
-     * Create an index transform, or update a transform if if_seq_no and if_primary_term are provided.
+     * Create an index transform, or update a transform if `if_seq_no` and `if_primary_term` are provided.
      *
      * $params['id']              = (string) Transform to create/update
      * $params['if_primary_term'] = (number) Only perform the operation if the document has this primary term.
-     * $params['if_seq_no']       = (number) Only perform the operation if the document has this sequence number.
-     * $params['pretty']          = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']           = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']     = (boolean) Whether to include the stack trace of returned errors.
+     * $params['if_seq_no']       = (integer) Only perform the operation if the document has this sequence number.
+     * $params['pretty']          = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']           = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']     = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']          = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']     = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']     = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -136,14 +137,14 @@ class TransformsNamespace extends AbstractNamespace
         $id = $this->extractArgument($params, 'id');
         $body = $this->extractArgument($params, 'body');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Transforms\Put');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Transforms\Put::class);
         $endpoint->setParams($params);
         $endpoint->setId($id);
         $endpoint->setBody($body);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Returns the details of all transform jobs.
      *
@@ -152,32 +153,32 @@ class TransformsNamespace extends AbstractNamespace
      * $params['size']          = (number) Specifies the number of transforms to return. Default is `10`.
      * $params['sortDirection'] = (string) Specifies the direction to sort results in. Can be `ASC` or `DESC`. Default is `ASC`.
      * $params['sortField']     = (string) The field to sort results with.
-     * $params['pretty']        = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']         = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']   = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']        = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']         = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']   = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']        = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']   = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']   = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
      */
     public function search(array $params = [])
     {
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Transforms\Search');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Transforms\Search::class);
         $endpoint->setParams($params);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Start transform.
      *
      * $params['id']          = (string) Transform to start
-     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']       = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']       = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']      = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path'] = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path'] = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -186,22 +187,22 @@ class TransformsNamespace extends AbstractNamespace
     {
         $id = $this->extractArgument($params, 'id');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Transforms\Start');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Transforms\Start::class);
         $endpoint->setParams($params);
         $endpoint->setId($id);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Stop transform.
      *
      * $params['id']          = (string) Transform to stop
-     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']       = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']       = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']      = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path'] = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path'] = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -210,11 +211,11 @@ class TransformsNamespace extends AbstractNamespace
     {
         $id = $this->extractArgument($params, 'id');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Transforms\Stop');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Transforms\Stop::class);
         $endpoint->setParams($params);
         $endpoint->setId($id);
 
         return $this->performRequest($endpoint);
     }
+
 }

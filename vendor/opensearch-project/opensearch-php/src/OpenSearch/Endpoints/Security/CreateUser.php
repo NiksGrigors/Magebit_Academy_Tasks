@@ -15,7 +15,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints\Security;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -27,12 +27,11 @@ class CreateUser extends AbstractEndpoint
 
     public function getURI(): string
     {
-        if (isset($this->username) !== true) {
-            throw new RuntimeException(
-                'username is required for create_user'
-            );
+        if (!isset($this->username) || $this->username === '') {
+            throw new RuntimeException('username is required for create_user');
         }
         $username = $this->username;
+
         return "/_plugins/_security/api/internalusers/$username";
     }
 
@@ -52,9 +51,9 @@ class CreateUser extends AbstractEndpoint
         return 'PUT';
     }
 
-    public function setBody($body): CreateUser
+    public function setBody($body): static
     {
-        if (isset($body) !== true) {
+        if (is_null($body)) {
             return $this;
         }
         $this->body = $body;
@@ -62,9 +61,9 @@ class CreateUser extends AbstractEndpoint
         return $this;
     }
 
-    public function setUsername($username): CreateUser
+    public function setUsername($username): static
     {
-        if (isset($username) !== true) {
+        if (is_null($username)) {
             return $this;
         }
         $this->username = $username;

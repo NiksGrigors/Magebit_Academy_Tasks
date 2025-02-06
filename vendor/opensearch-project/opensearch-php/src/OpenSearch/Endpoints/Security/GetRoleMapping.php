@@ -15,7 +15,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints\Security;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -27,12 +27,11 @@ class GetRoleMapping extends AbstractEndpoint
 
     public function getURI(): string
     {
-        if (isset($this->role) !== true) {
-            throw new RuntimeException(
-                'role is required for get_role_mapping'
-            );
+        if (!isset($this->role) || $this->role === '') {
+            throw new RuntimeException('role is required for get_role_mapping');
         }
         $role = $this->role;
+
         return "/_plugins/_security/api/rolesmapping/$role";
     }
 
@@ -52,9 +51,9 @@ class GetRoleMapping extends AbstractEndpoint
         return 'GET';
     }
 
-    public function setRole($role): GetRoleMapping
+    public function setRole($role): static
     {
-        if (isset($role) !== true) {
+        if (is_null($role)) {
             return $this;
         }
         $this->role = $role;

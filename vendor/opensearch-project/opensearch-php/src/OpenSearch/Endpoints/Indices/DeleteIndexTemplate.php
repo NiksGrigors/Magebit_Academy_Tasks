@@ -21,7 +21,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints\Indices;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -59,9 +59,9 @@ class DeleteIndexTemplate extends AbstractEndpoint
         return 'DELETE';
     }
 
-    public function setName($name): DeleteIndexTemplate
+    public function setName($name): static
     {
-        if (isset($name) !== true) {
+        if (is_null($name)) {
             return $this;
         }
         $this->name = $name;

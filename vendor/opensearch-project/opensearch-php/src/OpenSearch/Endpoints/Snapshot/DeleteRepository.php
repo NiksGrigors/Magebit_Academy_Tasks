@@ -21,7 +21,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints\Snapshot;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -59,7 +59,7 @@ class DeleteRepository extends AbstractEndpoint
         return 'DELETE';
     }
 
-    public function setRepository($repository): DeleteRepository
+    public function setRepository($repository): static
     {
         if (isset($repository) !== true) {
             return $this;

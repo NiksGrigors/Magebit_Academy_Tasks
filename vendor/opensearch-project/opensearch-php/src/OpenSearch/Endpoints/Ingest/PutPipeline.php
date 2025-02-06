@@ -21,7 +21,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints\Ingest;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -57,9 +57,9 @@ class PutPipeline extends AbstractEndpoint
         return 'PUT';
     }
 
-    public function setBody($body): PutPipeline
+    public function setBody($body): static
     {
-        if (isset($body) !== true) {
+        if (is_null($body)) {
             return $this;
         }
         $this->body = $body;

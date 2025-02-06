@@ -21,8 +21,6 @@ declare(strict_types=1);
 
 namespace OpenSearch\Namespaces;
 
-use OpenSearch\Namespaces\AbstractNamespace;
-
 /**
  * Class SnapshotNamespace
  *
@@ -35,13 +33,13 @@ class SnapshotNamespace extends AbstractNamespace
      *
      * $params['repository']              = (string) Snapshot repository to clean up.
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['master_timeout']          = (string) Period to wait for a connection to the master node.
+     * $params['master_timeout']          = (string) Period to wait for a connection to the cluster-manager node.
      * $params['timeout']                 = (string) Period to wait for a response.
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -50,26 +48,26 @@ class SnapshotNamespace extends AbstractNamespace
     {
         $repository = $this->extractArgument($params, 'repository');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Snapshot\CleanupRepository');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Snapshot\CleanupRepository::class);
         $endpoint->setParams($params);
         $endpoint->setRepository($repository);
 
         return $this->performRequest($endpoint);
     }
+
     /**
-     * Clones indices from one snapshot into another snapshot in the same repository.
+     * Clones indexes from one snapshot into another snapshot in the same repository.
      *
      * $params['repository']              = (string) A repository name
      * $params['snapshot']                = (string) The name of the snapshot to clone from
      * $params['target_snapshot']         = (string) The name of the cloned snapshot to create
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['master_timeout']          = (string) Explicit operation timeout for connection to master node
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['master_timeout']          = (string) Explicit operation timeout for connection to cluster-manager node
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      * $params['body']                    = (array) The snapshot clone definition (Required)
      *
      * @param array $params Associative array of parameters
@@ -82,8 +80,7 @@ class SnapshotNamespace extends AbstractNamespace
         $target_snapshot = $this->extractArgument($params, 'target_snapshot');
         $body = $this->extractArgument($params, 'body');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Snapshot\CloneSnapshot');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Snapshot\CloneSnapshot::class);
         $endpoint->setParams($params);
         $endpoint->setRepository($repository);
         $endpoint->setSnapshot($snapshot);
@@ -92,19 +89,20 @@ class SnapshotNamespace extends AbstractNamespace
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Creates a snapshot in a repository.
      *
      * $params['repository']              = (string) Repository for the snapshot.
      * $params['snapshot']                = (string) Name of the snapshot. Must be unique in the repository.
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['master_timeout']          = (string) Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error.
+     * $params['master_timeout']          = (string) Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails and returns an error.
      * $params['wait_for_completion']     = (boolean) If `true`, the request returns a response when the snapshot is complete. If `false`, the request returns a response when the snapshot initializes. (Default = false)
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      * $params['body']                    = (array) The snapshot definition
      *
      * @param array $params Associative array of parameters
@@ -116,8 +114,7 @@ class SnapshotNamespace extends AbstractNamespace
         $snapshot = $this->extractArgument($params, 'snapshot');
         $body = $this->extractArgument($params, 'body');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Snapshot\Create');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Snapshot\Create::class);
         $endpoint->setParams($params);
         $endpoint->setRepository($repository);
         $endpoint->setSnapshot($snapshot);
@@ -125,19 +122,20 @@ class SnapshotNamespace extends AbstractNamespace
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Creates a repository.
      *
      * $params['repository']              = (string) A repository name
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['master_timeout']          = (string) Explicit operation timeout for connection to master node
+     * $params['master_timeout']          = (string) Explicit operation timeout for connection to cluster-manager node
      * $params['timeout']                 = (string) Explicit operation timeout
      * $params['verify']                  = (boolean) Whether to verify the repository after creation
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      * $params['body']                    = (array) The repository definition (Required)
      *
      * @param array $params Associative array of parameters
@@ -148,26 +146,26 @@ class SnapshotNamespace extends AbstractNamespace
         $repository = $this->extractArgument($params, 'repository');
         $body = $this->extractArgument($params, 'body');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Snapshot\CreateRepository');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Snapshot\CreateRepository::class);
         $endpoint->setParams($params);
         $endpoint->setRepository($repository);
         $endpoint->setBody($body);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Deletes a snapshot.
      *
      * $params['repository']              = (string) A repository name
      * $params['snapshot']                = (string) A comma-separated list of snapshot names
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['master_timeout']          = (string) Explicit operation timeout for connection to master node
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['master_timeout']          = (string) Explicit operation timeout for connection to cluster-manager node
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -177,26 +175,26 @@ class SnapshotNamespace extends AbstractNamespace
         $repository = $this->extractArgument($params, 'repository');
         $snapshot = $this->extractArgument($params, 'snapshot');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Snapshot\Delete');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Snapshot\Delete::class);
         $endpoint->setParams($params);
         $endpoint->setRepository($repository);
         $endpoint->setSnapshot($snapshot);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Deletes a repository.
      *
      * $params['repository']              = (array) Name of the snapshot repository to unregister. Wildcard (`*`) patterns are supported.
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['master_timeout']          = (string) Explicit operation timeout for connection to master node
+     * $params['master_timeout']          = (string) Explicit operation timeout for connection to cluster-manager node
      * $params['timeout']                 = (string) Explicit operation timeout
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -205,27 +203,27 @@ class SnapshotNamespace extends AbstractNamespace
     {
         $repository = $this->extractArgument($params, 'repository');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Snapshot\DeleteRepository');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Snapshot\DeleteRepository::class);
         $endpoint->setParams($params);
         $endpoint->setRepository($repository);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Returns information about a snapshot.
      *
      * $params['repository']              = (string) Comma-separated list of snapshot repository names used to limit the request. Wildcard (*) expressions are supported.
-     * $params['snapshot']                = (array) Comma-separated list of snapshot names to retrieve. Also accepts wildcards (*). - To get information about all snapshots in a registered repository, use a wildcard (*) or _all. - To get information about any snapshots that are currently running, use _current.
+     * $params['snapshot']                = (array) Comma-separated list of snapshot names to retrieve. Also accepts wildcards (`*`). - To get information about all snapshots in a registered repository, use a wildcard (`*`) or `_all`. - To get information about any snapshots that are currently running, use `_current`.
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['ignore_unavailable']      = (boolean) If false, the request returns an error for any snapshots that are unavailable. (Default = false)
-     * $params['master_timeout']          = (string) Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and returns an error.
-     * $params['verbose']                 = (boolean) If true, returns additional information about each snapshot such as the version of OpenSearch which took the snapshot, the start and end times of the snapshot, and the number of shards snapshotted.
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['ignore_unavailable']      = (boolean) If `false`, the request returns an error for any snapshots that are unavailable. (Default = false)
+     * $params['master_timeout']          = (string) Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails and returns an error.
+     * $params['verbose']                 = (boolean) If `true`, returns additional information about each snapshot such as the version of OpenSearch which took the snapshot, the start and end times of the snapshot, and the number of shards snapshotted.
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -235,26 +233,26 @@ class SnapshotNamespace extends AbstractNamespace
         $repository = $this->extractArgument($params, 'repository');
         $snapshot = $this->extractArgument($params, 'snapshot');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Snapshot\Get');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Snapshot\Get::class);
         $endpoint->setParams($params);
         $endpoint->setRepository($repository);
         $endpoint->setSnapshot($snapshot);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Returns information about a repository.
      *
      * $params['repository']              = (array) A comma-separated list of repository names
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
      * $params['local']                   = (boolean) Return local information, do not retrieve the state from cluster-manager node. (Default = false)
-     * $params['master_timeout']          = (string) Explicit operation timeout for connection to master node
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['master_timeout']          = (string) Explicit operation timeout for connection to cluster-manager node
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -263,26 +261,26 @@ class SnapshotNamespace extends AbstractNamespace
     {
         $repository = $this->extractArgument($params, 'repository');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Snapshot\GetRepository');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Snapshot\GetRepository::class);
         $endpoint->setParams($params);
         $endpoint->setRepository($repository);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Restores a snapshot.
      *
      * $params['repository']              = (string) A repository name
      * $params['snapshot']                = (string) A snapshot name
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['master_timeout']          = (string) Explicit operation timeout for connection to master node
+     * $params['master_timeout']          = (string) Explicit operation timeout for connection to cluster-manager node
      * $params['wait_for_completion']     = (boolean) Should this request wait until the operation has completed before returning (Default = false)
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      * $params['body']                    = (array) Details of what to restore
      *
      * @param array $params Associative array of parameters
@@ -294,8 +292,7 @@ class SnapshotNamespace extends AbstractNamespace
         $snapshot = $this->extractArgument($params, 'snapshot');
         $body = $this->extractArgument($params, 'body');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Snapshot\Restore');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Snapshot\Restore::class);
         $endpoint->setParams($params);
         $endpoint->setRepository($repository);
         $endpoint->setSnapshot($snapshot);
@@ -303,19 +300,20 @@ class SnapshotNamespace extends AbstractNamespace
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Returns information about the status of a snapshot.
      *
      * $params['repository']              = (string) A repository name
      * $params['snapshot']                = (array) A comma-separated list of snapshot names
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['ignore_unavailable']      = (boolean) Whether to ignore unavailable snapshots, defaults to false which means a SnapshotMissingException is thrown (Default = false)
-     * $params['master_timeout']          = (string) Explicit operation timeout for connection to master node
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['ignore_unavailable']      = (boolean) Whether to ignore unavailable snapshots, defaults to `false` which means a SnapshotMissingException is thrown (Default = false)
+     * $params['master_timeout']          = (string) Explicit operation timeout for connection to cluster-manager node
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -325,26 +323,26 @@ class SnapshotNamespace extends AbstractNamespace
         $repository = $this->extractArgument($params, 'repository');
         $snapshot = $this->extractArgument($params, 'snapshot');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Snapshot\Status');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Snapshot\Status::class);
         $endpoint->setParams($params);
         $endpoint->setRepository($repository);
         $endpoint->setSnapshot($snapshot);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Verifies a repository.
      *
      * $params['repository']              = (string) A repository name
      * $params['cluster_manager_timeout'] = (string) Operation timeout for connection to cluster-manager node.
-     * $params['master_timeout']          = (string) Explicit operation timeout for connection to master node
+     * $params['master_timeout']          = (string) Explicit operation timeout for connection to cluster-manager node
      * $params['timeout']                 = (string) Explicit operation timeout
-     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                   = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']                  = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                   = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']             = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                  = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']             = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']             = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -353,11 +351,11 @@ class SnapshotNamespace extends AbstractNamespace
     {
         $repository = $this->extractArgument($params, 'repository');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Snapshot\VerifyRepository');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Snapshot\VerifyRepository::class);
         $endpoint->setParams($params);
         $endpoint->setRepository($repository);
 
         return $this->performRequest($endpoint);
     }
+
 }

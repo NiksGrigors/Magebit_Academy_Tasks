@@ -43,9 +43,9 @@ class RegisterModelGroup extends AbstractEndpoint
         return 'POST';
     }
 
-    public function setBody($body): RegisterModelGroup
+    public function setBody($body): static
     {
-        if (isset($body) !== true) {
+        if (is_null($body)) {
             return $this;
         }
         $this->body = $body;

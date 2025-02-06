@@ -43,6 +43,7 @@ class GetComponentTemplate extends AbstractEndpoint
     {
         return [
             'cluster_manager_timeout',
+            'flat_settings',
             'local',
             'master_timeout',
             'pretty',
@@ -58,7 +59,7 @@ class GetComponentTemplate extends AbstractEndpoint
         return 'GET';
     }
 
-    public function setName($name): GetComponentTemplate
+    public function setName($name): static
     {
         if (isset($name) !== true) {
             return $this;

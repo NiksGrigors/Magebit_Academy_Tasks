@@ -21,7 +21,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints\Indices;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -43,9 +43,7 @@ class SimulateIndexTemplate extends AbstractEndpoint
     public function getParamWhitelist(): array
     {
         return [
-            'cause',
             'cluster_manager_timeout',
-            'create',
             'master_timeout',
             'pretty',
             'human',
@@ -60,9 +58,9 @@ class SimulateIndexTemplate extends AbstractEndpoint
         return 'POST';
     }
 
-    public function setBody($body): SimulateIndexTemplate
+    public function setBody($body): static
     {
-        if (isset($body) !== true) {
+        if (is_null($body)) {
             return $this;
         }
         $this->body = $body;
@@ -70,9 +68,9 @@ class SimulateIndexTemplate extends AbstractEndpoint
         return $this;
     }
 
-    public function setName($name): SimulateIndexTemplate
+    public function setName($name): static
     {
-        if (isset($name) !== true) {
+        if (is_null($name)) {
             return $this;
         }
         $this->name = $name;

@@ -25,6 +25,7 @@
   <component name="PhpCodeSniffer">
     <phpcs_settings>
       <phpcs_by_interpreter asDefaultInterpreter="true" interpreter_id="86560de9-a2fa-486d-8208-d51c4ae4760c" timeout="30000" />
+      <PhpCSConfiguration beautifier_path="$PROJECT_DIR$/vendor/bin/phpcbf" tool_path="$PROJECT_DIR$/vendor/bin/phpcs" />
     </phpcs_settings>
   </component>
   <component name="PhpIncludePathManager">
@@ -640,9 +641,10 @@
       <path value="$PROJECT_DIR$/vendor/magento/module-grouped-product-sample-data" />
       <path value="$PROJECT_DIR$/vendor/magento/module-configurable-sample-data" />
       <path value="$PROJECT_DIR$/vendor/magento/module-downloadable-sample-data" />
+      <path value="$PROJECT_DIR$/vendor/php-http/discovery" />
     </include_path>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="8.3">
+  <component name="PhpProjectSharedConfiguration" php_language_level="8.1">
     <option name="suggestChangeDefaultLanguageLevel" value="false" />
   </component>
   <component name="PhpStan">

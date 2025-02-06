@@ -21,7 +21,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -31,10 +31,8 @@ class TermVectors extends AbstractEndpoint
 {
     public function getURI(): string
     {
-        if (isset($this->index) !== true) {
-            throw new RuntimeException(
-                'index is required for termvectors'
-            );
+        if (!isset($this->index) || $this->index === '') {
+            throw new RuntimeException('index is required for termvectors');
         }
         $index = $this->index;
         $id = $this->id ?? null;
@@ -71,9 +69,9 @@ class TermVectors extends AbstractEndpoint
         return isset($this->body) ? 'POST' : 'GET';
     }
 
-    public function setBody($body): TermVectors
+    public function setBody($body): static
     {
-        if (isset($body) !== true) {
+        if (is_null($body)) {
             return $this;
         }
         $this->body = $body;

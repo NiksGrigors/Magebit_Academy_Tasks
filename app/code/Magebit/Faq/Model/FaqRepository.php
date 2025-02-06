@@ -8,6 +8,7 @@ use Magebit\Faq\Api\FaqRepositoryInterface;
 use Magebit\Faq\Model\ResourceModel\Faq as FaqResource;
 use Magebit\Faq\Model\ResourceModel\Faq\CollectionFactory;
 use Magento\Framework\Api\SearchCriteriaInterface;
+use Magento\Framework\Api\SearchResultsInterface;
 use Magento\Framework\Api\SearchResultsInterfaceFactory;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Exception\CouldNotSaveException;
@@ -87,9 +88,9 @@ class FaqRepository implements FaqRepositoryInterface
 
     /**
      * @param SearchCriteriaInterface $searchCriteria
-     * @return \Magento\Framework\Api\SearchResultsInterface
+     * @return SearchResultsInterface
      */
-    public function getList(SearchCriteriaInterface $searchCriteria): \Magento\Framework\Api\SearchResultsInterface
+    public function getList(SearchCriteriaInterface $searchCriteria): SearchResultsInterface
     {
         $collection = $this->collectionFactory->create();
         $searchResults = $this->searchResultsFactory->create();

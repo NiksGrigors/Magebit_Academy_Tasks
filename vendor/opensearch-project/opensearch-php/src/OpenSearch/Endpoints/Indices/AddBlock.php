@@ -21,7 +21,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints\Indices;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -63,9 +63,9 @@ class AddBlock extends AbstractEndpoint
         return 'PUT';
     }
 
-    public function setBlock($block): AddBlock
+    public function setBlock($block): static
     {
-        if (isset($block) !== true) {
+        if (is_null($block)) {
             return $this;
         }
         $this->block = $block;

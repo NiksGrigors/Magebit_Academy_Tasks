@@ -21,18 +21,22 @@ declare(strict_types=1);
 
 namespace OpenSearch\Connections;
 
+use Exception;
+use GuzzleHttp\Ring\Core;
+use GuzzleHttp\Ring\Exception\ConnectException;
+use GuzzleHttp\Ring\Exception\RingException;
 use OpenSearch\Client;
 use OpenSearch\Common\Exceptions\BadRequest400Exception;
 use OpenSearch\Common\Exceptions\Conflict409Exception;
 use OpenSearch\Common\Exceptions\Curl\CouldNotConnectToHost;
 use OpenSearch\Common\Exceptions\Curl\CouldNotResolveHostException;
 use OpenSearch\Common\Exceptions\Curl\OperationTimeoutException;
-use OpenSearch\Common\Exceptions\OpenSearchException;
 use OpenSearch\Common\Exceptions\Forbidden403Exception;
 use OpenSearch\Common\Exceptions\MaxRetriesException;
 use OpenSearch\Common\Exceptions\Missing404Exception;
 use OpenSearch\Common\Exceptions\NoDocumentsToGetException;
 use OpenSearch\Common\Exceptions\NoShardAvailableException;
+use OpenSearch\Common\Exceptions\OpenSearchException;
 use OpenSearch\Common\Exceptions\RequestTimeout408Exception;
 use OpenSearch\Common\Exceptions\RoutingMissingException;
 use OpenSearch\Common\Exceptions\ScriptLangNotSupportedException;
@@ -41,12 +45,14 @@ use OpenSearch\Common\Exceptions\TransportException;
 use OpenSearch\Common\Exceptions\Unauthorized401Exception;
 use OpenSearch\Serializers\SerializerInterface;
 use OpenSearch\Transport;
-use Exception;
-use GuzzleHttp\Ring\Core;
-use GuzzleHttp\Ring\Exception\ConnectException;
-use GuzzleHttp\Ring\Exception\RingException;
 use Psr\Log\LoggerInterface;
 
+// @phpstan-ignore classConstant.deprecatedClass
+@trigger_error(Connection::class . ' is deprecated in 2.4.0 and will be removed in 3.0.0.', E_USER_DEPRECATED);
+
+/**
+ * @deprecated in 2.4.0 and will be removed in 3.0.0.
+ */
 class Connection implements ConnectionInterface
 {
     /**
@@ -659,19 +665,19 @@ class Connection implements ConnectionInterface
 
         $responseBody = $this->convertBodyToString($response['body'], $statusCode, $exception);
         if ($statusCode === 401) {
-            $exception = new Unauthorized401Exception($responseBody, $statusCode);
+            $exception = new Unauthorized401Exception($responseBody);
         } elseif ($statusCode === 403) {
-            $exception = new Forbidden403Exception($responseBody, $statusCode);
+            $exception = new Forbidden403Exception($responseBody);
         } elseif ($statusCode === 404) {
-            $exception = new Missing404Exception($responseBody, $statusCode);
+            $exception = new Missing404Exception($responseBody);
         } elseif ($statusCode === 409) {
             $exception = new Conflict409Exception($responseBody, $statusCode);
         } elseif ($statusCode === 400 && strpos($responseBody, 'script_lang not supported') !== false) {
-            $exception = new ScriptLangNotSupportedException($responseBody. $statusCode);
+            $exception = new ScriptLangNotSupportedException($responseBody);
         } elseif ($statusCode === 408) {
-            $exception = new RequestTimeout408Exception($responseBody, $statusCode);
+            $exception = new RequestTimeout408Exception($responseBody);
         } else {
-            $exception = new BadRequest400Exception($responseBody, $statusCode);
+            $exception = new BadRequest400Exception($responseBody);
         }
 
         $this->logRequestFail($request, $response, $exception);
@@ -701,15 +707,14 @@ class Connection implements ConnectionInterface
         }
 
         if ($statusCode === 500 && strpos($responseBody, "RoutingMissingException") !== false) {
-            $exception = new RoutingMissingException($exception->getMessage(), $statusCode, $exception);
+            $exception = new RoutingMissingException($exception->getMessage(), [], 0, $exception);
         } elseif ($statusCode === 500 && preg_match('/ActionRequestValidationException.+ no documents to get/', $responseBody) === 1) {
-            $exception = new NoDocumentsToGetException($exception->getMessage(), $statusCode, $exception);
+            $exception = new NoDocumentsToGetException($exception->getMessage(), [], 0, $exception);
         } elseif ($statusCode === 500 && strpos($responseBody, 'NoShardAvailableActionException') !== false) {
-            $exception = new NoShardAvailableException($exception->getMessage(), $statusCode, $exception);
+            $exception = new NoShardAvailableException($exception->getMessage(), [], 0, $exception);
         } else {
             $exception = new ServerErrorResponseException(
                 $this->convertBodyToString($responseBody, $statusCode, $exception),
-                $statusCode
             );
         }
 

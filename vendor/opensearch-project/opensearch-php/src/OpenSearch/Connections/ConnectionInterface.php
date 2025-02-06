@@ -21,10 +21,14 @@ declare(strict_types=1);
 
 namespace OpenSearch\Connections;
 
-use OpenSearch\Serializers\SerializerInterface;
 use OpenSearch\Transport;
-use Psr\Log\LoggerInterface;
 
+// @phpstan-ignore classConstant.deprecatedInterface
+@trigger_error(ConnectionInterface::class . ' is deprecated in 2.4.0 and will be removed in 3.0.0.', E_USER_DEPRECATED);
+
+/**
+ * @deprecated in 2.4.0 and will be removed in 3.0.0.
+ */
 interface ConnectionInterface
 {
     /**

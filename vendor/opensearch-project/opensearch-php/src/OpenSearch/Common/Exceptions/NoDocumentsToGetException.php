@@ -21,6 +21,17 @@ declare(strict_types=1);
 
 namespace OpenSearch\Common\Exceptions;
 
-class NoDocumentsToGetException extends ServerErrorResponseException implements OpenSearchException
+@trigger_error(
+    // @phpstan-ignore classConstant.deprecatedClass
+    NoDocumentsToGetException::class . ' is deprecated in 2.4.0 and will be removed in 3.0.0. Use \OpenSearch\Exception\NoDocumentsToGetException instead.',
+    E_USER_DEPRECATED
+);
+
+/**
+ * @deprecated in 2.4.0 and will be removed in 3.0.0. Use \OpenSearch\Exception\NoDocumentsToGetException instead.
+ *
+ * @see \OpenSearch\Exception\ScriptLangNotSupportedException
+ */
+class NoDocumentsToGetException extends \OpenSearch\Exception\NoDocumentsToGetException
 {
 }

@@ -15,7 +15,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints\Cluster;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -50,9 +50,9 @@ class GetWeightedRouting extends AbstractEndpoint
         return 'GET';
     }
 
-    public function setAttribute($attribute): GetWeightedRouting
+    public function setAttribute($attribute): static
     {
-        if (isset($attribute) !== true) {
+        if (is_null($attribute)) {
             return $this;
         }
         $this->attribute = $attribute;

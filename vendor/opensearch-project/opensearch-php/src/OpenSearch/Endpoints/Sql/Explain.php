@@ -45,9 +45,9 @@ class Explain extends AbstractEndpoint
         return 'POST';
     }
 
-    public function setBody($body): Explain
+    public function setBody($body): static
     {
-        if (isset($body) !== true) {
+        if (is_null($body)) {
             return $this;
         }
         $this->body = $body;

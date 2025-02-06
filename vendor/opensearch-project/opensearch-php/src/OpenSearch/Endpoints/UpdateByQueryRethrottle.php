@@ -21,7 +21,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -33,12 +33,11 @@ class UpdateByQueryRethrottle extends AbstractEndpoint
 
     public function getURI(): string
     {
-        if (isset($this->task_id) !== true) {
-            throw new RuntimeException(
-                'task_id is required for update_by_query_rethrottle'
-            );
+        if (!isset($this->task_id) || $this->task_id === '') {
+            throw new RuntimeException('task_id is required for update_by_query_rethrottle');
         }
         $task_id = $this->task_id;
+
         return "/_update_by_query/$task_id/_rethrottle";
     }
 
@@ -59,9 +58,9 @@ class UpdateByQueryRethrottle extends AbstractEndpoint
         return 'POST';
     }
 
-    public function setTaskId($task_id): UpdateByQueryRethrottle
+    public function setTaskId($task_id): static
     {
-        if (isset($task_id) !== true) {
+        if (is_null($task_id)) {
             return $this;
         }
         $this->task_id = $task_id;

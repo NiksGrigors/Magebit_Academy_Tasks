@@ -21,7 +21,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints\DanglingIndices;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -60,9 +60,9 @@ class DeleteDanglingIndex extends AbstractEndpoint
         return 'DELETE';
     }
 
-    public function setIndexUuid($index_uuid): DeleteDanglingIndex
+    public function setIndexUuid($index_uuid): static
     {
-        if (isset($index_uuid) !== true) {
+        if (is_null($index_uuid)) {
             return $this;
         }
         $this->index_uuid = $index_uuid;

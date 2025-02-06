@@ -21,7 +21,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints\Indices;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -57,7 +57,7 @@ class ResolveIndex extends AbstractEndpoint
         return 'GET';
     }
 
-    public function setName($name): ResolveIndex
+    public function setName($name): static
     {
         if (isset($name) !== true) {
             return $this;

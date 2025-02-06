@@ -21,6 +21,12 @@ declare(strict_types=1);
 
 namespace OpenSearch\Common\Exceptions;
 
-class UnexpectedValueException extends \UnexpectedValueException implements OpenSearchException
+// @phpstan-ignore classConstant.deprecatedClass
+@trigger_error(UnexpectedValueException::class . ' is deprecated in 2.4.0 and will be removed in 3.0.0. Use \OpenSearch\Exception\UnexpectedValueException instead.', E_USER_DEPRECATED);
+
+/**
+ * @deprecated in 2.4.0 and will be removed in 3.0.0. Use \OpenSearch\Exception\UnexpectedValueException instead.
+ */
+class UnexpectedValueException extends \OpenSearch\Exception\UnexpectedValueException
 {
 }

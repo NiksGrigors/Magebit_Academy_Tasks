@@ -21,7 +21,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints\Cluster;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -59,9 +59,9 @@ class ExistsComponentTemplate extends AbstractEndpoint
         return 'HEAD';
     }
 
-    public function setName($name): ExistsComponentTemplate
+    public function setName($name): static
     {
-        if (isset($name) !== true) {
+        if (is_null($name)) {
             return $this;
         }
         $this->name = $name;

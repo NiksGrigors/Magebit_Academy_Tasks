@@ -15,7 +15,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -25,12 +25,11 @@ class CreatePit extends AbstractEndpoint
 {
     public function getURI(): string
     {
-        if (isset($this->index) !== true) {
-            throw new RuntimeException(
-                'index is required for create_pit'
-            );
+        if (!isset($this->index) || $this->index === '') {
+            throw new RuntimeException('index is required for create_pit');
         }
         $index = $this->index;
+
         return "/$index/_search/point_in_time";
     }
 

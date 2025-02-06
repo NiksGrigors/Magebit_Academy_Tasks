@@ -15,7 +15,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints\Knn;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -25,12 +25,11 @@ class Warmup extends AbstractEndpoint
 {
     public function getURI(): string
     {
-        if (isset($this->index) !== true) {
-            throw new RuntimeException(
-                'index is required for warmup'
-            );
+        if (!isset($this->index) || $this->index === '') {
+            throw new RuntimeException('index is required for warmup');
         }
         $index = $this->index;
+
         return "/_plugins/_knn/warmup/$index";
     }
 

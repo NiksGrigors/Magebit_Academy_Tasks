@@ -21,6 +21,14 @@ declare(strict_types=1);
 
 namespace OpenSearch\Common\Exceptions;
 
+// @phpstan-ignore classConstant.deprecatedClass
+@trigger_error(MaxRetriesException::class . ' is deprecated in 2.4.0 and will be removed in 3.0.0.', E_USER_DEPRECATED);
+
+/**
+ * @deprecated in 2.4.0 and will be removed in 3.0.0.
+ *
+ * @phpstan-ignore class.extendsDeprecatedClass
+ */
 class MaxRetriesException extends TransportException implements OpenSearchException
 {
 }

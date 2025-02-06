@@ -21,7 +21,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints\DataFrameTransformDeprecated;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 class UpdateTransform extends AbstractEndpoint
@@ -50,7 +50,7 @@ class UpdateTransform extends AbstractEndpoint
         return 'POST';
     }
 
-    public function setBody($body): UpdateTransform
+    public function setBody($body): static
     {
         if (isset($body) !== true) {
             return $this;
@@ -60,7 +60,7 @@ class UpdateTransform extends AbstractEndpoint
         return $this;
     }
 
-    public function setTransformId($transform_id): UpdateTransform
+    public function setTransformId($transform_id): static
     {
         if (isset($transform_id) !== true) {
             return $this;

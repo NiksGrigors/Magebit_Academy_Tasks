@@ -15,7 +15,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints\Security;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -27,12 +27,11 @@ class PatchActionGroup extends AbstractEndpoint
 
     public function getURI(): string
     {
-        if (isset($this->action_group) !== true) {
-            throw new RuntimeException(
-                'action_group is required for patch_action_group'
-            );
+        if (!isset($this->action_group) || $this->action_group === '') {
+            throw new RuntimeException('action_group is required for patch_action_group');
         }
         $action_group = $this->action_group;
+
         return "/_plugins/_security/api/actiongroups/$action_group";
     }
 
@@ -52,9 +51,9 @@ class PatchActionGroup extends AbstractEndpoint
         return 'PATCH';
     }
 
-    public function setBody($body): PatchActionGroup
+    public function setBody($body): static
     {
-        if (isset($body) !== true) {
+        if (is_null($body)) {
             return $this;
         }
         $this->body = $body;
@@ -62,9 +61,9 @@ class PatchActionGroup extends AbstractEndpoint
         return $this;
     }
 
-    public function setActionGroup($action_group): PatchActionGroup
+    public function setActionGroup($action_group): static
     {
-        if (isset($action_group) !== true) {
+        if (is_null($action_group)) {
             return $this;
         }
         $this->action_group = $action_group;

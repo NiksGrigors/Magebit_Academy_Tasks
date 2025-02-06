@@ -21,7 +21,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints\Indices;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -63,9 +63,9 @@ class CloneIndices extends AbstractEndpoint
         return 'PUT';
     }
 
-    public function setBody($body): CloneIndices
+    public function setBody($body): static
     {
-        if (isset($body) !== true) {
+        if (is_null($body)) {
             return $this;
         }
         $this->body = $body;
@@ -73,9 +73,9 @@ class CloneIndices extends AbstractEndpoint
         return $this;
     }
 
-    public function setTarget($target): CloneIndices
+    public function setTarget($target): static
     {
-        if (isset($target) !== true) {
+        if (is_null($target)) {
             return $this;
         }
         $this->target = $target;

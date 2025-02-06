@@ -21,7 +21,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints\Indices;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -34,10 +34,8 @@ class Rollover extends AbstractEndpoint
 
     public function getURI(): string
     {
-        if (isset($this->alias) !== true) {
-            throw new RuntimeException(
-                'alias is required for rollover'
-            );
+        if (!isset($this->alias) || $this->alias === '') {
+            throw new RuntimeException('alias is required for rollover');
         }
         $alias = $this->alias;
         $new_index = $this->new_index ?? null;
@@ -68,9 +66,9 @@ class Rollover extends AbstractEndpoint
         return 'POST';
     }
 
-    public function setBody($body): Rollover
+    public function setBody($body): static
     {
-        if (isset($body) !== true) {
+        if (is_null($body)) {
             return $this;
         }
         $this->body = $body;
@@ -78,9 +76,9 @@ class Rollover extends AbstractEndpoint
         return $this;
     }
 
-    public function setAlias($alias): Rollover
+    public function setAlias($alias): static
     {
-        if (isset($alias) !== true) {
+        if (is_null($alias)) {
             return $this;
         }
         $this->alias = $alias;
@@ -88,9 +86,9 @@ class Rollover extends AbstractEndpoint
         return $this;
     }
 
-    public function setNewIndex($new_index): Rollover
+    public function setNewIndex($new_index): static
     {
-        if (isset($new_index) !== true) {
+        if (is_null($new_index)) {
             return $this;
         }
         $this->new_index = $new_index;

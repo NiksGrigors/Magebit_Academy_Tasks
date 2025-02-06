@@ -99,9 +99,9 @@ class Search extends AbstractEndpoint
         return isset($this->body) ? 'POST' : 'GET';
     }
 
-    public function setBody($body): Search
+    public function setBody($body): static
     {
-        if (isset($body) !== true) {
+        if (is_null($body)) {
             return $this;
         }
         $this->body = $body;

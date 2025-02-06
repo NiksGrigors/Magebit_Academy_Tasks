@@ -21,7 +21,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints\Snapshot;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -60,9 +60,9 @@ class CreateRepository extends AbstractEndpoint
         return 'PUT';
     }
 
-    public function setBody($body): CreateRepository
+    public function setBody($body): static
     {
-        if (isset($body) !== true) {
+        if (is_null($body)) {
             return $this;
         }
         $this->body = $body;
@@ -70,9 +70,9 @@ class CreateRepository extends AbstractEndpoint
         return $this;
     }
 
-    public function setRepository($repository): CreateRepository
+    public function setRepository($repository): static
     {
-        if (isset($repository) !== true) {
+        if (is_null($repository)) {
             return $this;
         }
         $this->repository = $repository;

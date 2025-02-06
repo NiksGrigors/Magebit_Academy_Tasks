@@ -15,7 +15,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints\Knn;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -50,9 +50,9 @@ class DeleteModel extends AbstractEndpoint
         return 'DELETE';
     }
 
-    public function setModelId($model_id): DeleteModel
+    public function setModelId($model_id): static
     {
-        if (isset($model_id) !== true) {
+        if (is_null($model_id)) {
             return $this;
         }
         $this->model_id = $model_id;

@@ -1000,6 +1000,10 @@ class ComposerStaticInitba764dd07a4a7d44cfdcf0720e18d56b
             'Jose\\' => 5,
             'JmesPath\\' => 9,
         ),
+        'H' => 
+        array (
+            'Http\\Discovery\\' => 15,
+        ),
         'G' => 
         array (
             'GuzzleHttp\\Stream\\' => 18,
@@ -3123,6 +3127,10 @@ class ComposerStaticInitba764dd07a4a7d44cfdcf0720e18d56b
         'JmesPath\\' => 
         array (
             0 => __DIR__ . '/..' . '/mtdowling/jmespath.php/src',
+        ),
+        'Http\\Discovery\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-http/discovery/src',
         ),
         'GuzzleHttp\\Stream\\' => 
         array (

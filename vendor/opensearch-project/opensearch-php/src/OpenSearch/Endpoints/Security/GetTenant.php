@@ -15,7 +15,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints\Security;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -27,12 +27,11 @@ class GetTenant extends AbstractEndpoint
 
     public function getURI(): string
     {
-        if (isset($this->tenant) !== true) {
-            throw new RuntimeException(
-                'tenant is required for get_tenant'
-            );
+        if (!isset($this->tenant) || $this->tenant === '') {
+            throw new RuntimeException('tenant is required for get_tenant');
         }
         $tenant = $this->tenant;
+
         return "/_plugins/_security/api/tenants/$tenant";
     }
 
@@ -52,9 +51,9 @@ class GetTenant extends AbstractEndpoint
         return 'GET';
     }
 
-    public function setTenant($tenant): GetTenant
+    public function setTenant($tenant): static
     {
-        if (isset($tenant) !== true) {
+        if (is_null($tenant)) {
             return $this;
         }
         $this->tenant = $tenant;

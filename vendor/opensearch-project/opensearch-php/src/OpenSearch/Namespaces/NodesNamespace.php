@@ -21,8 +21,6 @@ declare(strict_types=1);
 
 namespace OpenSearch\Namespaces;
 
-use OpenSearch\Namespaces\AbstractNamespace;
-
 /**
  * Class NodesNamespace
  *
@@ -36,15 +34,15 @@ class NodesNamespace extends AbstractNamespace
      * $params['node_id']             = (array) Comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node you're connecting to, leave empty to get information from all nodes.
      * $params['ignore_idle_threads'] = (boolean) Don't show threads that are in known-idle places, such as waiting on a socket select or pulling from an empty task queue. (Default = true)
      * $params['interval']            = (string) The interval for the second sampling of threads.
-     * $params['snapshots']           = (integer) Number of samples of thread stacktrace. (Default = 10)
+     * $params['snapshots']           = (integer) Number of samples of thread stack trace. (Default = 10)
      * $params['threads']             = (integer) Specify the number of threads to provide information for. (Default = 3)
      * $params['timeout']             = (string) Operation timeout.
      * $params['type']                = (enum) The type to sample. (Options = block,cpu,wait)
-     * $params['pretty']              = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']               = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']         = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']              = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']               = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']         = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']              = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']         = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']         = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -53,26 +51,26 @@ class NodesNamespace extends AbstractNamespace
     {
         $node_id = $this->extractArgument($params, 'node_id');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Nodes\HotThreads');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Nodes\HotThreads::class);
         $endpoint->setParams($params);
         $endpoint->setNodeId($node_id);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Returns information about nodes in the cluster.
      *
-     * $params['node_id_or_metric'] = (any) Limits the information returned to a list of node IDs or specific metrics. Supports a comma-separated list, such as node1,node2 or http,ingest.
+     * $params['node_id_or_metric'] = (any) Limits the information returned to a list of node IDs or specific metrics. Supports a comma-separated list, such as `node1,node2` or `http,ingest`.
      * $params['metric']            = (array) Limits the information returned to the specific metrics. Supports a comma-separated list, such as http,ingest.
      * $params['node_id']           = (array) Comma-separated list of node IDs or names used to limit returned information.
-     * $params['flat_settings']     = (boolean) If true, returns settings in flat format. (Default = false)
+     * $params['flat_settings']     = (boolean) If `true`, returns settings in flat format. (Default = false)
      * $params['timeout']           = (string) Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
-     * $params['pretty']            = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']             = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']       = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']            = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']             = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']       = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']            = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']       = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']       = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -83,8 +81,7 @@ class NodesNamespace extends AbstractNamespace
         $metric = $this->extractArgument($params, 'metric');
         $node_id = $this->extractArgument($params, 'node_id');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Nodes\Info');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Nodes\Info::class);
         $endpoint->setParams($params);
         $endpoint->setNodeIdOrMetric($node_id_or_metric);
         $endpoint->setMetric($metric);
@@ -92,17 +89,18 @@ class NodesNamespace extends AbstractNamespace
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Reloads secure settings.
      *
      * $params['node_id']     = (array) The names of particular nodes in the cluster to target.
      * $params['timeout']     = (string) Period to wait for a response.If no response is received before the timeout expires, the request fails and returns an error.
-     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']       = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']       = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']      = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path'] = (any) Comma-separated list of filters used to reduce the response.
-     * $params['body']        = (array) An object containing the password for the opensearch keystore
+     * $params['filter_path'] = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
+     * $params['body']        = (array) An object containing the password for the OpenSearch keystore.
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -112,33 +110,33 @@ class NodesNamespace extends AbstractNamespace
         $node_id = $this->extractArgument($params, 'node_id');
         $body = $this->extractArgument($params, 'body');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Nodes\ReloadSecureSettings');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Nodes\ReloadSecureSettings::class);
         $endpoint->setParams($params);
         $endpoint->setNodeId($node_id);
         $endpoint->setBody($body);
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Returns statistical information about nodes in the cluster.
      *
      * $params['node_id']                    = (array) Comma-separated list of node IDs or names used to limit returned information.
      * $params['metric']                     = (array) Limit the information returned to the specified metrics
-     * $params['index_metric']               = (array) Limit the information returned for indices metric to the specific index metrics. It can be used only if indices (or all) metric is specified.
-     * $params['completion_fields']          = (any) Comma-separated list or wildcard expressions of fields to include in fielddata and suggest statistics.
-     * $params['fielddata_fields']           = (any) Comma-separated list or wildcard expressions of fields to include in fielddata statistics.
+     * $params['index_metric']               = (array) Limit the information returned for indexes metric to the specific index metrics. It can be used only if indexes (or all) metric is specified.
+     * $params['completion_fields']          = (any) Comma-separated list or wildcard expressions of fields to include in field data and suggest statistics.
+     * $params['fielddata_fields']           = (any) Comma-separated list or wildcard expressions of fields to include in field data statistics.
      * $params['fields']                     = (any) Comma-separated list or wildcard expressions of fields to include in the statistics.
      * $params['groups']                     = (array) Comma-separated list of search groups to include in the search statistics.
-     * $params['include_segment_file_sizes'] = (boolean) If true, the call reports the aggregated disk usage of each one of the Lucene index files (only applies if segment stats are requested). (Default = false)
+     * $params['include_segment_file_sizes'] = (boolean) If `true`, the call reports the aggregated disk usage of each one of the Lucene index files (only applies if segment stats are requested). (Default = false)
      * $params['level']                      = (enum) Indicates whether statistics are aggregated at the cluster, index, or shard level. (Options = cluster,indices,shards)
      * $params['timeout']                    = (string) Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
      * $params['types']                      = (array) A comma-separated list of document types for the indexing index metric.
-     * $params['pretty']                     = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']                      = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace']                = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']                     = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']                      = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace']                = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']                     = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path']                = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path']                = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -149,8 +147,7 @@ class NodesNamespace extends AbstractNamespace
         $metric = $this->extractArgument($params, 'metric');
         $index_metric = $this->extractArgument($params, 'index_metric');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Nodes\Stats');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Nodes\Stats::class);
         $endpoint->setParams($params);
         $endpoint->setNodeId($node_id);
         $endpoint->setMetric($metric);
@@ -158,17 +155,18 @@ class NodesNamespace extends AbstractNamespace
 
         return $this->performRequest($endpoint);
     }
+
     /**
      * Returns low-level information about REST actions usage on nodes.
      *
      * $params['node_id']     = (array) A comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node you're connecting to, leave empty to get information from all nodes
      * $params['metric']      = (array) Limits the information returned to the specific metrics. A comma-separated list of the following options: `_all`, `rest_actions`.
      * $params['timeout']     = (string) Period to wait for a response.If no response is received before the timeout expires, the request fails and returns an error.
-     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response.
-     * $params['human']       = (boolean) Whether to return human readable values for statistics.
-     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors.
+     * $params['pretty']      = (boolean) Whether to pretty format the returned JSON response. (Default = false)
+     * $params['human']       = (boolean) Whether to return human readable values for statistics. (Default = true)
+     * $params['error_trace'] = (boolean) Whether to include the stack trace of returned errors. (Default = false)
      * $params['source']      = (string) The URL-encoded request definition. Useful for libraries that do not accept a request body for non-POST requests.
-     * $params['filter_path'] = (any) Comma-separated list of filters used to reduce the response.
+     * $params['filter_path'] = (any) Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
      *
      * @param array $params Associative array of parameters
      * @return array
@@ -178,12 +176,12 @@ class NodesNamespace extends AbstractNamespace
         $node_id = $this->extractArgument($params, 'node_id');
         $metric = $this->extractArgument($params, 'metric');
 
-        $endpointBuilder = $this->endpoints;
-        $endpoint = $endpointBuilder('Nodes\Usage');
+        $endpoint = $this->endpointFactory->getEndpoint(\OpenSearch\Endpoints\Nodes\Usage::class);
         $endpoint->setParams($params);
         $endpoint->setNodeId($node_id);
         $endpoint->setMetric($metric);
 
         return $this->performRequest($endpoint);
     }
+
 }

@@ -3,6 +3,7 @@
 namespace Laminas\Session\Config;
 
 use Laminas\Session\Exception;
+use Laminas\Session\SaveHandler\SaveHandlerInterface;
 use SessionHandlerInterface;
 
 use function array_merge;
@@ -88,7 +89,7 @@ class SessionConfig extends StandardConfig
      * built-in save handler name, or the name of a SessionHandlerInterface
      * class being used as a save handler.
      *
-     * @var null|string
+     * @var null|string|SaveHandlerInterface
      */
     protected $saveHandler;
 

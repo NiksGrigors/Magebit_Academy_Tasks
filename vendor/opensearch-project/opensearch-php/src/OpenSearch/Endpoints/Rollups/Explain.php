@@ -15,7 +15,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints\Rollups;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -25,12 +25,11 @@ class Explain extends AbstractEndpoint
 {
     public function getURI(): string
     {
-        if (isset($this->id) !== true) {
-            throw new RuntimeException(
-                'id is required for explain'
-            );
+        if (!isset($this->id) || $this->id === '') {
+            throw new RuntimeException('id is required for explain');
         }
         $id = $this->id;
+
         return "/_plugins/_rollup/jobs/$id/_explain";
     }
 

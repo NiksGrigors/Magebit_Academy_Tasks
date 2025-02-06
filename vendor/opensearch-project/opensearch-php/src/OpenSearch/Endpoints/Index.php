@@ -21,7 +21,7 @@ declare(strict_types=1);
 
 namespace OpenSearch\Endpoints;
 
-use OpenSearch\Common\Exceptions\RuntimeException;
+use OpenSearch\Exception\RuntimeException;
 use OpenSearch\Endpoints\AbstractEndpoint;
 
 /**
@@ -31,10 +31,8 @@ class Index extends AbstractEndpoint
 {
     public function getURI(): string
     {
-        if (isset($this->index) !== true) {
-            throw new RuntimeException(
-                'index is required for index'
-            );
+        if (!isset($this->index) || $this->index === '') {
+            throw new RuntimeException('index is required for index');
         }
         $index = $this->index;
         $id = $this->id ?? null;
@@ -71,9 +69,9 @@ class Index extends AbstractEndpoint
         return 'POST';
     }
 
-    public function setBody($body): Index
+    public function setBody($body): static
     {
-        if (isset($body) !== true) {
+        if (is_null($body)) {
             return $this;
         }
         $this->body = $body;

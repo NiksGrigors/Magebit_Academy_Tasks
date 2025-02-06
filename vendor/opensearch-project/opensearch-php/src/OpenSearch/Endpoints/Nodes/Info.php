@@ -70,9 +70,9 @@ class Info extends AbstractEndpoint
         return 'GET';
     }
 
-    public function setNodeIdOrMetric($node_id_or_metric): Info
+    public function setNodeIdOrMetric($node_id_or_metric): static
     {
-        if (isset($node_id_or_metric) !== true) {
+        if (is_null($node_id_or_metric)) {
             return $this;
         }
         $this->node_id_or_metric = $node_id_or_metric;
@@ -80,7 +80,7 @@ class Info extends AbstractEndpoint
         return $this;
     }
 
-    public function setMetric($metric): Info
+    public function setMetric($metric): static
     {
         if (isset($metric) !== true) {
             return $this;
@@ -93,7 +93,7 @@ class Info extends AbstractEndpoint
         return $this;
     }
 
-    public function setNodeId($node_id): Info
+    public function setNodeId($node_id): static
     {
         if (isset($node_id) !== true) {
             return $this;
