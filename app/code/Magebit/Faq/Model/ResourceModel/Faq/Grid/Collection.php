@@ -31,10 +31,8 @@ class Collection extends FaqCollection implements SearchResultInterface
         AdapterInterface $connection = null,
         AbstractDb $resource = null
     ) {
-        // Pass required arguments to the parent constructor
         parent::__construct($entityFactory, $logger, $fetchStrategy, $eventManager, $connection, $resource);
 
-        // Initialize additional properties for the child class
         $this->_init($this->model, $this->resourceModel);
         $this->_eventPrefix = $this->eventPrefix;
         $this->_eventObject = $this->eventObject;
@@ -43,8 +41,6 @@ class Collection extends FaqCollection implements SearchResultInterface
 
 
     /**
-     * Get aggregation interface instance
-     *
      * @return AggregationInterface
      */
     public function getAggregations(): AggregationInterface
@@ -53,9 +49,7 @@ class Collection extends FaqCollection implements SearchResultInterface
     }
 
     /**
-     * Set aggregation interface instance
-     *
-     * @param AggregationInterface $aggregations
+     * @param $aggregations
      * @return $this
      */
     public function setAggregations($aggregations): static
@@ -65,8 +59,6 @@ class Collection extends FaqCollection implements SearchResultInterface
     }
 
     /**
-     * Get search criteria.
-     *
      * @return \Magento\Framework\Api\SearchCriteriaInterface|null
      */
     public function getSearchCriteria(): ?\Magento\Framework\Api\SearchCriteriaInterface
@@ -75,11 +67,8 @@ class Collection extends FaqCollection implements SearchResultInterface
     }
 
     /**
-     * Set search criteria.
-     *
-     * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria
+     * @param \Magento\Framework\Api\SearchCriteriaInterface|null $searchCriteria
      * @return $this
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function setSearchCriteria(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria = null): static
     {
@@ -87,8 +76,6 @@ class Collection extends FaqCollection implements SearchResultInterface
     }
 
     /**
-     * Get total count.
-     *
      * @return int
      */
     public function getTotalCount(): int
@@ -97,11 +84,8 @@ class Collection extends FaqCollection implements SearchResultInterface
     }
 
     /**
-     * Set total count.
-     *
-     * @param int $totalCount
+     * @param $totalCount
      * @return $this
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function setTotalCount($totalCount): static
     {
@@ -109,11 +93,8 @@ class Collection extends FaqCollection implements SearchResultInterface
     }
 
     /**
-     * Set items list.
-     *
-     * @param \Magento\Framework\Api\ExtensibleDataInterface[] $items
+     * @param array|null $items
      * @return $this
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function setItems(array $items = null): static
     {

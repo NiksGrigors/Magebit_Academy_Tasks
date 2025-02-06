@@ -21,6 +21,9 @@ class Save extends Action
         parent::__construct($context);
     }
 
+    /**
+     * @return ResultInterface
+     */
     public function execute(): ResultInterface
     {
         $resultRedirect = $this->resultRedirectFactory->create();

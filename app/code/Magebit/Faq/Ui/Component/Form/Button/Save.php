@@ -10,7 +10,9 @@ class Save implements ButtonProviderInterface
 {
     public function __construct(private Context $context) {}
 
-
+    /**
+     * @return array
+     */
     public function getButtonData(): array
     {
         return [
@@ -24,9 +26,12 @@ class Save implements ButtonProviderInterface
         ];
     }
 
+    /**
+     * @return array[]
+     */
     private function getOptions(): array
     {
-        $options = [
+        return [
             [
                 'id_hard' => 'save_and_close',
                 'label' => __('Save & Close'),
@@ -44,7 +49,5 @@ class Save implements ButtonProviderInterface
                 ],
             ]
         ];
-
-        return $options;
     }
 }

@@ -3,12 +3,12 @@ namespace Magebit\Faq\Api\Data;
 
 interface FaqInterface
 {
-    const ID = 'id';
-    const QUESTION = 'question';
-    const ANSWER = 'answer';
-    const STATUS = 'status';
-    const POSITION = 'position';
-    const UPDATED_AT = 'updated_at';
+    const string ID = 'id';
+    const string QUESTION = 'question';
+    const string ANSWER = 'answer';
+    const string STATUS = 'status';
+    const string POSITION = 'position';
+    const string UPDATED_AT = 'updated_at';
 
     /**
      * Get ID
@@ -30,7 +30,7 @@ interface FaqInterface
      * @param string $question
      * @return $this
      */
-    public function setQuestion($question): static;
+    public function setQuestion(string $question): static;
 
     /**
      * Get answer
@@ -45,7 +45,7 @@ interface FaqInterface
      * @param string $answer
      * @return $this
      */
-    public function setAnswer($answer): static;
+    public function setAnswer(string $answer): static;
 
     /**
      * Get status
@@ -60,7 +60,7 @@ interface FaqInterface
      * @param int $status
      * @return $this
      */
-    public function setStatus($status): static;
+    public function setStatus(int $status): static;
 
     /**
      * Get position
@@ -75,10 +75,10 @@ interface FaqInterface
      * @param int $position
      * @return $this
      */
-    public function setPosition($position): static;
+    public function setPosition(int $position): static;
 
     /**
-     * Get updated_at 
+     * Get updated_at
      *
      * @return string|null
      */

@@ -1,9 +1,19 @@
 <?php
+
 namespace Magebit\Faq\Api;
 
 interface FaqManagementInterface
 {
-    public function enableQuestion($id);
+    /**
+     * @param int $id
+     * @return void
+     */
+    public function enableQuestion(int $id): void;
 
-    public function disableQuestion($id);
+
+    /**
+     * @param int $id
+     * @return void
+     */
+    public function disableQuestion(int $id): void;
 }

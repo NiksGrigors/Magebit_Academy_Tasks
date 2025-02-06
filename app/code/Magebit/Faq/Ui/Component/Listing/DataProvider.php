@@ -20,7 +20,9 @@ class DataProvider extends AbstractDataProvider
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
     }
 
-
+    /**
+     * @return array[]
+     */
     public function getData(): array
     {
         $result = [];

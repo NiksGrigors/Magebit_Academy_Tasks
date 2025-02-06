@@ -2,26 +2,30 @@
 
 namespace Magebit\Faq\Controller\Adminhtml\Faq;
 
+use Magebit\Faq\Model\ResourceModel\Faq\CollectionFactory;
+use Magento\Backend\App\Action;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Backend\App\Action\Context;
+use Magento\Framework\Controller\ResultInterface;
 use Magento\Ui\Component\MassAction\Filter;
 use Magebit\Faq\Api\FaqRepositoryInterface;
-use Magebit\Faq\Api\Data\FaqInterface;
-use Magento\Framework\Exception\CouldNotDeleteException;
 
-class MassDelete extends \Magento\Backend\App\Action implements HttpPostActionInterface
+class MassDelete extends Action implements HttpPostActionInterface
 {
     public function __construct(
         Context $context,
         protected Filter $filter,
-        protected \Magebit\Faq\Model\ResourceModel\Faq\CollectionFactory $collectionFactory,
+        protected CollectionFactory $collectionFactory,
         protected FaqRepositoryInterface $faqRepository
     ) {
         parent::__construct($context);
     }
 
-    public function execute()
+    /**
+     * @return ResultInterface
+     */
+    public function execute(): ResultInterface
     {
         try {
             $selected = $this->getRequest()->getParam('selected');
@@ -43,7 +47,6 @@ class MassDelete extends \Magento\Backend\App\Action implements HttpPostActionIn
 
             $this->messageManager->addSuccessMessage(__('A total of %1 record(s) have been deleted.', $deleteCounter));
 
-            /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
             $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
             return $resultRedirect->setPath('*/index/');
         } catch (\Exception $e) {

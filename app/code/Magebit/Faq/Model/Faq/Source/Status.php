@@ -6,13 +6,13 @@ use Magento\Framework\Data\OptionSourceInterface;
 
 class Status implements OptionSourceInterface
 {
-    const STATUS_ENABLED = 1;
-    const STATUS_DISABLED = 0;
+    private const int STATUS_ENABLED = 1;
+    private const int STATUS_DISABLED = 0;
 
     /**
-     * @inheritdoc
+     * @return array[]
      */
-    public function toOptionArray()
+    public function toOptionArray(): array
     {
         return [
             [

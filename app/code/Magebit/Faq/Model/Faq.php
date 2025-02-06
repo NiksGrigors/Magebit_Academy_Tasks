@@ -11,51 +11,85 @@ class Faq extends AbstractModel implements FaqInterface
         $this->_init(\Magebit\Faq\Model\ResourceModel\Faq::class);
     }
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->getData(self::ID);
     }
 
+    /**
+     * @return string
+     */
     public function getQuestion(): string
     {
         return $this->getData(self::QUESTION);
     }
 
-    public function setQuestion($question): static
+    /**
+     * @param string $question
+     * @return $this
+     */
+    public function setQuestion(string $question): static
     {
         return $this->setData(self::QUESTION, $question);
     }
 
+    /**
+     * @return string
+     */
     public function getAnswer(): string
     {
         return $this->getData(self::ANSWER);
     }
 
-    public function setAnswer($answer): static
+    /**
+     * @param string $answer
+     * @return $this
+     */
+    public function setAnswer(string $answer): static
     {
         return $this->setData(self::ANSWER, $answer);
     }
 
+    /**
+     * @return int
+     */
     public function getStatus(): int
     {
         return $this->getData(self::STATUS);
     }
 
-    public function setStatus($status): static
+    /**
+     * @param int $status
+     * @return $this
+     */
+    public function setStatus(int $status): static
     {
         return $this->setData(self::STATUS, $status);
     }
 
+    /**
+     * @return int
+     */
     public function getPosition(): int
     {
         return $this->getData(self::POSITION);
     }
 
-    public function setPosition($position): static
+    /**
+     * @param int $position
+     * @return $this
+     */
+    public function setPosition(int $position): static
     {
         return $this->setData(self::POSITION, $position);
     }
 
+    /**
+     * @return string|null
+     */
     public function getUpdatedAt(): ?string
     {
         return $this->getData(self::UPDATED_AT);
