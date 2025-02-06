@@ -8,10 +8,10 @@ class Interceptor extends \Magebit\Faq\Controller\Adminhtml\Faq\Edit implements 
 {
     use \Magento\Framework\Interception\Interceptor;
 
-    public function __construct(\Magento\Backend\App\Action\Context $context, \Magento\Framework\View\Result\PageFactory $resultPageFactory, \Magebit\Faq\Model\FaqFactory $faqFactory, \Magento\Framework\Registry $coreRegistry)
+    public function __construct(\Magento\Backend\App\Action\Context $context, \Magento\Framework\View\Result\PageFactory $resultPageFactory, \Magebit\Faq\Api\FaqRepositoryInterface $faqRepository, \Magento\Framework\Registry $coreRegistry)
     {
         $this->___init();
-        parent::__construct($context, $resultPageFactory, $faqFactory, $coreRegistry);
+        parent::__construct($context, $resultPageFactory, $faqRepository, $coreRegistry);
     }
 
     /**

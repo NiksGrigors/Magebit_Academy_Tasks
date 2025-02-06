@@ -6,15 +6,17 @@ use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Backend\App\Action\Context;
 use Magento\Ui\Component\MassAction\Filter;
-use Magebit\Faq\Model\ResourceModel\Faq\CollectionFactory;
-
+use Magebit\Faq\Api\FaqRepositoryInterface;
+use Magebit\Faq\Api\Data\FaqInterface;
+use Magento\Framework\Exception\CouldNotDeleteException;
 
 class MassDelete extends \Magento\Backend\App\Action implements HttpPostActionInterface
 {
     public function __construct(
         Context $context,
         protected Filter $filter,
-        protected CollectionFactory $collectionFactory
+        protected \Magebit\Faq\Model\ResourceModel\Faq\CollectionFactory $collectionFactory,
+        protected FaqRepositoryInterface $faqRepository
     ) {
         parent::__construct($context);
     }
@@ -34,8 +36,8 @@ class MassDelete extends \Magento\Backend\App\Action implements HttpPostActionIn
             }
 
             $deleteCounter = 0;
-            foreach ($collection as $page) {
-                $page->delete();
+            foreach ($collection as $faq) {
+                $this->faqRepository->delete($faq);
                 $deleteCounter++;
             }
 
@@ -43,10 +45,9 @@ class MassDelete extends \Magento\Backend\App\Action implements HttpPostActionIn
 
             /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
             $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
-
             return $resultRedirect->setPath('*/index/');
         } catch (\Exception $e) {
-            $this->messageManager->addErrorMessage($e->getMessage());
+            $this->messageManager->addErrorMessage(__('Error occurred: %1', $e->getMessage()));
         }
     }
 }

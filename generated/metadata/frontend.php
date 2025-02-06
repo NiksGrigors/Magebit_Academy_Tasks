@@ -5102,9 +5102,9 @@
       array (
         '_i_' => 'Magento\\Backend\\App\\Action\\Context',
       ),
-      'faqFactory' => 
+      'faqRepository' => 
       array (
-        '_i_' => 'Magebit\\Faq\\Model\\FaqFactory',
+        '_i_' => 'Magebit\\Faq\\Model\\FaqRepository',
       ),
     ),
     'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\Edit\\Interceptor' => 
@@ -5117,9 +5117,9 @@
       array (
         '_i_' => 'Magento\\Framework\\View\\Result\\PageFactory',
       ),
-      'faqFactory' => 
+      'faqRepository' => 
       array (
-        '_i_' => 'Magebit\\Faq\\Model\\FaqFactory',
+        '_i_' => 'Magebit\\Faq\\Model\\FaqRepository',
       ),
       'coreRegistry' => 
       array (
@@ -5151,6 +5151,10 @@
       array (
         '_i_' => 'Magebit\\Faq\\Model\\ResourceModel\\Faq\\CollectionFactory',
       ),
+      'faqRepository' => 
+      array (
+        '_i_' => 'Magebit\\Faq\\Model\\FaqRepository',
+      ),
     ),
     'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\MassDisable\\Interceptor' => 
     array (
@@ -5166,6 +5170,10 @@
       array (
         '_i_' => 'Magebit\\Faq\\Model\\ResourceModel\\Faq\\CollectionFactory',
       ),
+      'faqManagement' => 
+      array (
+        '_i_' => 'Magebit\\Faq\\Model\\FaqManagement',
+      ),
     ),
     'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\MassEnable\\Interceptor' => 
     array (
@@ -5180,6 +5188,10 @@
       'collectionFactory' => 
       array (
         '_i_' => 'Magebit\\Faq\\Model\\ResourceModel\\Faq\\CollectionFactory',
+      ),
+      'faqManagement' => 
+      array (
+        '_i_' => 'Magebit\\Faq\\Model\\FaqManagement',
       ),
     ),
     'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\NewAction\\Interceptor' => 
@@ -263566,6 +263578,7 @@ Line: %line%
     'Cm\\RedisSession\\Handler\\ConfigInterface' => 'Magento\\Framework\\Session\\SaveHandler\\Redis\\Config',
     'Cm\\RedisSession\\Handler\\LoggerInterface' => 'Magento\\Framework\\Session\\SaveHandler\\Redis\\Logger',
     'DateTimeInterface' => 'DateTime',
+    'Magebit\\Faq\\Api\\FaqManagementInterface' => 'Magebit\\Faq\\Model\\FaqManagement',
     'Magebit\\Faq\\Api\\FaqRepositoryInterface' => 'Magebit\\Faq\\Model\\FaqRepository',
     'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\Delete' => 'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\Delete\\Interceptor',
     'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\Edit' => 'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\Edit\\Interceptor',

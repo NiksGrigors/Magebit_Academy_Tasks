@@ -1,9 +1,11 @@
 <?php
+
 namespace Magebit\Faq\Controller\Adminhtml\Faq;
 
 use Magento\Backend\App\Action\Context;
 use Magento\Ui\Component\MassAction\Filter;
 use Magebit\Faq\Model\ResourceModel\Faq\CollectionFactory;
+use Magebit\Faq\Api\FaqManagementInterface;
 use Magento\Framework\Controller\ResultFactory;
 
 class MassEnable extends \Magento\Backend\App\Action
@@ -11,7 +13,8 @@ class MassEnable extends \Magento\Backend\App\Action
     public function __construct(
         Context $context,
         protected Filter $filter,
-        protected CollectionFactory $collectionFactory
+        protected CollectionFactory $collectionFactory,
+        protected FaqManagementInterface $faqManagement
     ) {
         parent::__construct($context);
     }
@@ -22,8 +25,7 @@ class MassEnable extends \Magento\Backend\App\Action
         $collectionSize = $collection->getSize();
 
         foreach ($collection as $item) {
-            $item->setStatus(true);
-            $item->save();
+            $this->faqManagement->enableQuestion($item->getId());
         }
 
         $this->messageManager->addSuccess(__('A total of %1 element(s) have been enabled.', $collectionSize));
@@ -31,3 +33,5 @@ class MassEnable extends \Magento\Backend\App\Action
         return $this->resultFactory->create(ResultFactory::TYPE_REDIRECT)->setPath('*/index/');
     }
 }
+
+

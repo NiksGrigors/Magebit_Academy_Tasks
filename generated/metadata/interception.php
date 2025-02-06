@@ -354,6 +354,7 @@
   'Magebit\\DataPatch\\Setup\\Patch\\Data\\CreateCMSTestPages' => false,
   'Magebit\\Faq\\Api\\Data\\FaqInterface' => false,
   'Magebit\\Faq\\Api\\Data\\FaqInterfaceFactory' => false,
+  'Magebit\\Faq\\Api\\FaqManagementInterface' => false,
   'Magebit\\Faq\\Api\\FaqRepositoryInterface' => false,
   'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\Delete' => true,
   'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\Delete\\Interceptor' => false,
