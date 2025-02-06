@@ -79,7 +79,7 @@ class EditTest extends TestCase
         $this->assertEquals(
             1,
             Xpath::getElementsCountForXpath(self::SAVE_BUTTON_XPATH, $result),
-            'Customer Edit Button wasn\'t found in the page'
+            'Customer NewAction Button wasn\'t found in the page'
         );
     }
 }

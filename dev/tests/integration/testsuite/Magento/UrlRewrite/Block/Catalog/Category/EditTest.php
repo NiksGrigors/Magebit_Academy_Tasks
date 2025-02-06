@@ -19,7 +19,7 @@ use Magento\UrlRewrite\Model\UrlRewrite;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test for \Magento\UrlRewrite\Block\Catalog\Category\Edit
+ * Test for \Magento\UrlRewrite\Block\Catalog\Category\NewAction
  * @magentoAppArea adminhtml
  */
 class EditTest extends TestCase

@@ -144,7 +144,7 @@ class ViewTest extends TestCase
     }
 
     /**
-     * Edit url rewrite
+     * NewAction url rewrite
      *
      * @param int $storeId
      * @param string $pageIdentifier
@@ -174,7 +174,7 @@ class ViewTest extends TestCase
     }
 
     /**
-     * Edit test store
+     * NewAction test store
      *
      * @param int $storeId
      * @return void

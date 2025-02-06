@@ -8,7 +8,7 @@ namespace Magento\UrlRewrite\Block\Cms\Page;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test for \Magento\UrlRewrite\Block\Cms\Page\Edit
+ * Test for \Magento\UrlRewrite\Block\Cms\Page\NewAction
  * @magentoAppArea adminhtml
  */
 class EditTest extends TestCase

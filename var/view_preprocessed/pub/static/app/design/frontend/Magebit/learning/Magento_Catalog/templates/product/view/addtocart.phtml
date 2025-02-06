@@ -1,0 +1,14 @@
+<!-- quantity-adjuster template --><div id="product-quantity-adjuster" data-bind="scope: 'quantityAdjuster'"><div data-bind="template: { name: 'Magento_Catalog/qty-adjuster' }"></div></div><script type="text/x-magento-init">
+    {
+        "#product-quantity-adjuster": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "quantityAdjuster": {
+                        "component": "qtyAdjuster",
+                        "qty": 1,
+                        "availableStock": 10
+                    }
+                }
+            }
+        }
+    }</script><!-- Add to Cart Button --><div class="actions-toolbar"><?php echo $block->escapeUrl($block->getAddToCartUrl($block->getProduct())); ?> <form method="post" action="<?php echo $block->escapeUrl($block->getAddToCartUrl($block->getProduct())); ?>" class="add-to-cart-form"><button type="submit" class="action primary tocart" title="Add to Cart" id="add-to-cart-button"><span><?php echo __('Add to Cart'); ?></span></button></form></div>
