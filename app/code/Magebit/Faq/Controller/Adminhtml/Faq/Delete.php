@@ -19,6 +19,9 @@ class Delete extends Action
         parent::__construct($context);
     }
 
+    /**
+     * @return ResultInterface
+     */
     public function execute(): ResultInterface
     {
         $faqId = (int) $this->getRequest()->getParam('id');

@@ -8,21 +8,16 @@ use Magento\Backend\Block\Widget\Context;
 class Back implements ButtonProviderInterface
 {
     /**
-     * @var Context
-     */
-    private $context;
-
-    /**
      * Constructor
      *
      * @param Context $context
      */
-    public function __construct(Context $context)
-    {
-        $this->context = $context;
-    }
+    public function __construct(private Context $context) {}
 
-    public function getButtonData()
+    /**
+     * @return array
+     */
+    public function getButtonData(): array
     {
         return [
             'label' => __('Back'),

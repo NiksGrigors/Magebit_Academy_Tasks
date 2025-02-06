@@ -1,11 +1,13 @@
 <?php
 namespace Magebit\Faq\Controller\Index;
 
+use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
+use Magento\Framework\View\Result\Page;
 use Magento\Framework\View\Result\PageFactory;
 use Magebit\Faq\Model\ResourceModel\Faq\CollectionFactory;
 
-class Index extends \Magento\Framework\App\Action\Action
+class Index extends Action
 {
     public function __construct(
         Context $context,
@@ -15,7 +17,10 @@ class Index extends \Magento\Framework\App\Action\Action
         parent::__construct($context);
     }
 
-    public function execute(): \Magento\Framework\View\Result\Page
+    /**
+     * @return Page
+     */
+    public function execute(): Page
     {
         $resultPage = $this->pageFactory->create();
         $resultPage->getConfig()->getTitle()->set(__('Frequently Asked Questions'));

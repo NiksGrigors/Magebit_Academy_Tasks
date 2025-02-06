@@ -17,7 +17,9 @@ class InlineEdit extends Action
         parent::__construct($context);
     }
 
-
+    /**
+     * @return Json
+     */
     public function execute(): Json
 
     {

@@ -4,6 +4,7 @@ namespace Magebit\Faq\Model;
 
 use Magebit\Faq\Api\Data\FaqInterfaceFactory;
 use Magebit\Faq\Api\Data\FaqInterface;
+use Magebit\Faq\Api\FaqRepositoryInterface;
 use Magebit\Faq\Model\ResourceModel\Faq as FaqResource;
 use Magebit\Faq\Model\ResourceModel\Faq\CollectionFactory;
 use Magento\Framework\Api\SearchCriteriaInterface;
@@ -12,7 +13,7 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\CouldNotDeleteException;
 
-class FaqRepository implements \Magebit\Faq\Api\FaqRepositoryInterface
+class FaqRepository implements FaqRepositoryInterface
 {
     public function __construct(
         protected FaqResource $resource,
@@ -22,7 +23,12 @@ class FaqRepository implements \Magebit\Faq\Api\FaqRepositoryInterface
     ) {}
 
 
-    public function getById($id): FaqInterface
+    /**
+     * @param int $id
+     * @return FaqInterface
+     * @throws NoSuchEntityException
+     */
+    public function getById(int $id): FaqInterface
     {
         $faq = $this->faqFactory->create();
         $this->resource->load($faq, $id);
@@ -34,7 +40,11 @@ class FaqRepository implements \Magebit\Faq\Api\FaqRepositoryInterface
         return $faq;
     }
 
-
+    /**
+     * @param FaqInterface $faq
+     * @return FaqInterface
+     * @throws CouldNotSaveException
+     */
     public function save(FaqInterface $faq): FaqInterface
     {
         try {
@@ -47,7 +57,11 @@ class FaqRepository implements \Magebit\Faq\Api\FaqRepositoryInterface
         }
     }
 
-
+    /**
+     * @param FaqInterface $faq
+     * @return bool
+     * @throws CouldNotDeleteException
+     */
     public function delete(FaqInterface $faq): bool
     {
         try {
@@ -60,12 +74,21 @@ class FaqRepository implements \Magebit\Faq\Api\FaqRepositoryInterface
     }
 
 
-    public function deleteById($id): bool
+    /**
+     * @param int $id
+     * @return bool
+     * @throws CouldNotDeleteException
+     * @throws NoSuchEntityException
+     */
+    public function deleteById(int $id): bool
     {
         return $this->delete($this->getById($id));
     }
 
-
+    /**
+     * @param SearchCriteriaInterface $searchCriteria
+     * @return \Magento\Framework\Api\SearchResultsInterface
+     */
     public function getList(SearchCriteriaInterface $searchCriteria): \Magento\Framework\Api\SearchResultsInterface
     {
         $collection = $this->collectionFactory->create();

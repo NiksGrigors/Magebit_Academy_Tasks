@@ -7,6 +7,9 @@ use Magento\Framework\View\Result\Page;
 
 class NewAction extends Action
 {
+    /**
+     * @return Page
+     */
     public function execute(): Page
     {
         $resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);

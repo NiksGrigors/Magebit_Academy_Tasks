@@ -20,6 +20,9 @@ class Edit extends Action
         parent::__construct($context);
     }
 
+    /**
+     * @return Page
+     */
     public function execute(): Page
     {
         $id = $this->getRequest()->getParam('id');
