@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Magebit\Faq\Controller\Adminhtml\Faq;
 
 use Magento\Backend\App\Action;
@@ -25,7 +27,7 @@ class Edit extends Action
      */
     public function execute(): Page
     {
-        $id = $this->getRequest()->getParam('id');
+        $id = (int)$this->getRequest()->getParam('id');
         $model = null;
 
         if ($id) {

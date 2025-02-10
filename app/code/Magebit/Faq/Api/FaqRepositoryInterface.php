@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Magebit\Faq\Api;
 
 use Magebit\Faq\Api\Data\FaqInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Api\SearchResultsInterface;
+use Magento\Framework\Data\Collection;
 
 interface FaqRepositoryInterface
 {
@@ -16,9 +19,9 @@ interface FaqRepositoryInterface
 
     /**
      * @param FaqInterface $faq
-     * @return FaqInterface
+     *
      */
-    public function save(FaqInterface $faq): FaqInterface;
+    public function save(FaqInterface $faq);
 
     /**
      * @param FaqInterface $faq
@@ -37,4 +40,9 @@ interface FaqRepositoryInterface
      * @return SearchResultsInterface
      */
     public function getList(SearchCriteriaInterface $searchCriteria): SearchResultsInterface;
+
+    /**
+     * @return Collection
+     */
+    public function getFaqCollection(): Collection;
 }

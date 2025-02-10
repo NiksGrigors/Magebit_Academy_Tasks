@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Magebit\Faq\Controller\Adminhtml\Faq;
 
+use Magebit\Faq\Api\FaqRepositoryInterface;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\Controller\ResultInterface;
@@ -17,7 +20,8 @@ class MassEnable extends Action
         Context $context,
         protected Filter $filter,
         protected CollectionFactory $collectionFactory,
-        protected FaqManagementInterface $faqManagement
+        protected FaqManagementInterface $faqManagement,
+        protected FaqRepositoryInterface $faqRepository
     ) {
         parent::__construct($context);
     }

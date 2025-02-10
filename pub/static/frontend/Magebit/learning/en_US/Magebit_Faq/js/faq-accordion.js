@@ -1,0 +1,1 @@
+/var/www/magento/public/app/code/Magebit/Faq/view/frontend/web/js/faq-accordion.js

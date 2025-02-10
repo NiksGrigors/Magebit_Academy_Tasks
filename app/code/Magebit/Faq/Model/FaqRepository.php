@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Magebit\Faq\Model;
 
 use Magebit\Faq\Api\Data\FaqInterfaceFactory;
 use Magebit\Faq\Api\Data\FaqInterface;
 use Magebit\Faq\Api\FaqRepositoryInterface;
 use Magebit\Faq\Model\ResourceModel\Faq as FaqResource;
+use Magebit\Faq\Model\ResourceModel\Faq\Collection;
 use Magebit\Faq\Model\ResourceModel\Faq\CollectionFactory;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Api\SearchResultsInterface;
@@ -22,7 +25,6 @@ class FaqRepository implements FaqRepositoryInterface
         protected CollectionFactory $collectionFactory,
         protected SearchResultsInterfaceFactory $searchResultsFactory
     ) {}
-
 
     /**
      * @param int $id
@@ -49,13 +51,12 @@ class FaqRepository implements FaqRepositoryInterface
     public function save(FaqInterface $faq): FaqInterface
     {
         try {
-            $faqModel = $this->faqFactory->create();
-            $faqModel->setData($faq->getData());
-            $this->resource->save($faqModel);
-            return $faqModel;
+            $this->resource->save($faq);
         } catch (\Exception $e) {
             throw new CouldNotSaveException(__('Could not save the FAQ: %1', $e->getMessage()));
         }
+
+        return $faq;
     }
 
     /**
@@ -73,7 +74,6 @@ class FaqRepository implements FaqRepositoryInterface
 
         return true;
     }
-
 
     /**
      * @param int $id
@@ -95,7 +95,17 @@ class FaqRepository implements FaqRepositoryInterface
         $collection = $this->collectionFactory->create();
         $searchResults = $this->searchResultsFactory->create();
         $searchResults->setItems($collection->getItems());
-
         return $searchResults;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getFaqCollection(): Collection
+    {
+        return $this->collectionFactory
+            ->create()
+            ->setOrder('position', 'ASC')
+            ->addFieldToFilter('status', 1);
     }
 }

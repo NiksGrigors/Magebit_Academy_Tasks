@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Magebit\Faq\Model\ResourceModel\Faq;
 
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;

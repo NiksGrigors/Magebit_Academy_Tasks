@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Magebit\Faq\Api\Data;
 
 use Magebit\Faq\Model\Faq;

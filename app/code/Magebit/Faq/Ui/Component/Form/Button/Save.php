@@ -1,9 +1,11 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Magebit\Faq\Ui\Component\Form\Button;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 use Magento\Backend\Block\Widget\Context;
-use Magento\Framework\Registry;
 use Magento\Ui\Component\Control\Container;
 
 class Save implements ButtonProviderInterface

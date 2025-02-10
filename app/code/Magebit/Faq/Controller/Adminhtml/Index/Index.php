@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Magebit\Faq\Controller\Adminhtml\Index;
 
 use Magento\Backend\App\Action;
