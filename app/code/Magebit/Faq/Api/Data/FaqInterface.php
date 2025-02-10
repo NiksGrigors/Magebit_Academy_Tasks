@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Magebit\Faq\Api\Data;
 
 interface FaqInterface
@@ -15,7 +18,7 @@ interface FaqInterface
      *
      * @return int|null
      */
-    public function getId(): ?int;
+    public function getId(): int|null;
 
     /**
      * Get question

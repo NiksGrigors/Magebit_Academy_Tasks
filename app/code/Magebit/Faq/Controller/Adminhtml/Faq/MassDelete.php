@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Magebit\Faq\Controller\Adminhtml\Faq;
 
 use Magebit\Faq\Model\ResourceModel\Faq\CollectionFactory;

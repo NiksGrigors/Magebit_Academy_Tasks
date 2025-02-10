@@ -1,22 +1,30 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Magebit\Faq\Model;
 
 use Magebit\Faq\Api\Data\FaqInterface;
 use Magento\Framework\Model\AbstractModel;
+use Magebit\Faq\Model\ResourceModel\Faq as ResourceModel;
 
 class Faq extends AbstractModel implements FaqInterface
 {
     protected function _construct(): void
     {
-        $this->_init(\Magebit\Faq\Model\ResourceModel\Faq::class);
+        $this->_init(ResourceModel::class);
     }
 
     /**
      * @return int|null
      */
-    public function getId(): ?int
+    public function getId(): int|null
     {
-        return $this->getData(self::ID);
+        if ($this->getData(self::ID) === null) {
+            return null; //for creating new records
+        }
+
+        return (int)$this->getData(self::ID); //for existing records edit
     }
 
     /**

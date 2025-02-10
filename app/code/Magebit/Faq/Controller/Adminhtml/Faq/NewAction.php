@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Magebit\Faq\Controller\Adminhtml\Faq;
 
 use Magento\Backend\App\Action;
@@ -18,5 +21,4 @@ class NewAction extends Action
 
         return $resultPage;
     }
-
 }

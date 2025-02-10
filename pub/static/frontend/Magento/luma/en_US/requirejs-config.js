@@ -1117,6 +1117,17 @@ var config = {
 require.config(config);
 })();
 (function() {
+var config = {
+    map: {
+        '*': {
+            'faqAccordion': 'Magebit_Faq/js/faq-accordion'
+        }
+    }
+};
+
+require.config(config);
+})();
+(function() {
 /**
  * Config to pull in all the relevant Braintree JS SDKs
  * @type {

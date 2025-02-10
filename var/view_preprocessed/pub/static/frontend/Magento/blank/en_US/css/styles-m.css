@@ -11918,6 +11918,23 @@ fieldset[disabled] .block-event .slider-panel .slider .item .action.event {
 .block-cms-hierarchy-link-inline.widget {
   margin: 0;
 }
+.faq-title {
+  background-color: #f0f0f0;
+  padding: 10px;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  font-weight: bold;
+}
+.faq-content {
+  padding: 10px;
+  display: none;
+}
+.faq-item.ui-accordion .faq-content {
+  display: block;
+}
+.faq-container .faq-item .column.main {
+  width: 100%;
+}
 /**
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.

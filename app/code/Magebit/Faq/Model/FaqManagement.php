@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Magebit\Faq\Model;
 
 use Magebit\Faq\Api\FaqManagementInterface;

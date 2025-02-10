@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Magebit\Faq\Model\ResourceModel\Faq\Grid;
 
 use Magento\Framework\Api\Search\SearchResultInterface;
@@ -16,7 +18,6 @@ class Collection extends FaqCollection implements SearchResultInterface
      * @var AggregationInterface
      */
     protected $aggregations;
-
 
     public function __construct(
         \Magento\Framework\Data\Collection\EntityFactoryInterface $entityFactory,
@@ -38,7 +39,6 @@ class Collection extends FaqCollection implements SearchResultInterface
         $this->_eventObject = $this->eventObject;
         $this->setMainTable($this->mainTable);
     }
-
 
     /**
      * @return AggregationInterface
