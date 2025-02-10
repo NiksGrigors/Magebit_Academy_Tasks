@@ -7,6 +7,7 @@ namespace Magebit\Faq\Model\ResourceModel\Faq\Grid;
 use Magento\Framework\Api\Search\SearchResultInterface;
 use Magento\Framework\Api\Search\AggregationInterface;
 use Magebit\Faq\Model\ResourceModel\Faq\Collection as FaqCollection;
+use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\DB\Adapter\AdapterInterface;
 use Magento\Framework\Event\ManagerInterface;
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
@@ -59,18 +60,18 @@ class Collection extends FaqCollection implements SearchResultInterface
     }
 
     /**
-     * @return \Magento\Framework\Api\SearchCriteriaInterface|null
+     * @return SearchCriteriaInterface|null
      */
-    public function getSearchCriteria(): ?\Magento\Framework\Api\SearchCriteriaInterface
+    public function getSearchCriteria(): ?SearchCriteriaInterface
     {
         return null;
     }
 
     /**
-     * @param \Magento\Framework\Api\SearchCriteriaInterface|null $searchCriteria
+     * @param SearchCriteriaInterface|null $searchCriteria
      * @return $this
      */
-    public function setSearchCriteria(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria = null): static
+    public function setSearchCriteria(SearchCriteriaInterface $searchCriteria = null): static
     {
         return $this;
     }
