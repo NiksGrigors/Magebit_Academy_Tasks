@@ -22,4 +22,13 @@ class Interceptor extends \Magento\Customer\Block\Account\AuthenticationPopup im
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'getJsLayout');
         return $pluginInfo ? $this->___callPlugins('getJsLayout', func_get_args(), $pluginInfo) : parent::getJsLayout();
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toHtml()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'toHtml');
+        return $pluginInfo ? $this->___callPlugins('toHtml', func_get_args(), $pluginInfo) : parent::toHtml();
+    }
 }

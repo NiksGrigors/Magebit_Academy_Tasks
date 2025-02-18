@@ -22,4 +22,13 @@ class Interceptor extends \Magento\Shipping\Block\Tracking\Popup implements \Mag
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'formatDeliveryDateTime');
         return $pluginInfo ? $this->___callPlugins('formatDeliveryDateTime', func_get_args(), $pluginInfo) : parent::formatDeliveryDateTime($date, $time);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toHtml()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'toHtml');
+        return $pluginInfo ? $this->___callPlugins('toHtml', func_get_args(), $pluginInfo) : parent::toHtml();
+    }
 }

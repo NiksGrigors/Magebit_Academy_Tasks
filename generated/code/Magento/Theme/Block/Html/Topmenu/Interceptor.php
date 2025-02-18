@@ -31,4 +31,13 @@ class Interceptor extends \Magento\Theme\Block\Html\Topmenu implements \Magento\
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'getIdentities');
         return $pluginInfo ? $this->___callPlugins('getIdentities', func_get_args(), $pluginInfo) : parent::getIdentities();
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toHtml()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'toHtml');
+        return $pluginInfo ? $this->___callPlugins('toHtml', func_get_args(), $pluginInfo) : parent::toHtml();
+    }
 }

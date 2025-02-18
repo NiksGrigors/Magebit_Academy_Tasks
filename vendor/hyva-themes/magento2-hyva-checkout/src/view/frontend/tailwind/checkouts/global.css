@@ -1,0 +1,13 @@
+#hyva-checkout-main {
+    [x-cloak] {
+        display: none !important;
+    }
+
+    #quote-summary > .price-summary {
+        @apply bg-gray-100 p-6 rounded-lg space-y-6;
+    }
+}
+
+#hyva-checkout-main {
+    @apply flex flex-col
+}

@@ -22,4 +22,13 @@ class Interceptor extends \PayPal\Braintree\Block\Adminhtml\Virtual\Edit\Form im
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'getForm');
         return $pluginInfo ? $this->___callPlugins('getForm', func_get_args(), $pluginInfo) : parent::getForm();
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toHtml()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'toHtml');
+        return $pluginInfo ? $this->___callPlugins('toHtml', func_get_args(), $pluginInfo) : parent::toHtml();
+    }
 }

@@ -23,4 +23,22 @@ class CartExtension extends \Magento\Framework\Api\AbstractSimpleObject implemen
         $this->setData('shipping_assignments', $shippingAssignments);
         return $this;
     }
+
+    /**
+     * @return string|null
+     */
+    public function getCustomerComment()
+    {
+        return $this->_get('customer_comment');
+    }
+
+    /**
+     * @param string $customerComment
+     * @return $this
+     */
+    public function setCustomerComment($customerComment)
+    {
+        $this->setData('customer_comment', $customerComment);
+        return $this;
+    }
 }

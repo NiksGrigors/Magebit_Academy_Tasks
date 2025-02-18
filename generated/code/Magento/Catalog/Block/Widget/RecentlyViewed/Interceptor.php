@@ -1,0 +1,25 @@
+<?php
+namespace Magento\Catalog\Block\Widget\RecentlyViewed;
+
+/**
+ * Interceptor class for @see \Magento\Catalog\Block\Widget\RecentlyViewed
+ */
+class Interceptor extends \Magento\Catalog\Block\Widget\RecentlyViewed implements \Magento\Framework\Interception\InterceptorInterface
+{
+    use \Magento\Framework\Interception\Interceptor;
+
+    public function __construct(\Magento\Framework\View\Element\Template\Context $context, \Magento\Ui\Model\UiComponentGenerator $uiComponentGenerator, array $data = [])
+    {
+        $this->___init();
+        parent::__construct($context, $uiComponentGenerator, $data);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toHtml()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'toHtml');
+        return $pluginInfo ? $this->___callPlugins('toHtml', func_get_args(), $pluginInfo) : parent::toHtml();
+    }
+}

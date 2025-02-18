@@ -22,4 +22,13 @@ class Interceptor extends \Magento\Shipping\Block\Adminhtml\Create implements \M
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'getBackUrl');
         return $pluginInfo ? $this->___callPlugins('getBackUrl', func_get_args(), $pluginInfo) : parent::getBackUrl();
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toHtml()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'toHtml');
+        return $pluginInfo ? $this->___callPlugins('toHtml', func_get_args(), $pluginInfo) : parent::toHtml();
+    }
 }

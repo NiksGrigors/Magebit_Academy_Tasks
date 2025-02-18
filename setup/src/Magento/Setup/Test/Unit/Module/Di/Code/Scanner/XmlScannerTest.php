@@ -40,7 +40,7 @@ class XmlScannerTest extends TestCase
         $this->testFiles = [
             $testDir . '/app/code/Magento/SomeModule/etc/adminhtml/system.xml',
             $testDir . '/app/code/Magento/SomeModule/etc/di.xml',
-            $testDir . '/app/code/Magento/SomeModule/view/frontend/default.xml',
+            $testDir . '/app/code/Magento/SomeModule/view/frontend/cms_index_index.xml',
         ];
         require_once  __DIR__ . '/../../_files/app/code/Magento/SomeModule/Element.php';
         require_once  __DIR__ . '/../../_files/app/code/Magento/SomeModule/NestedElement.php';

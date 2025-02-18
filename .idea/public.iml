@@ -714,6 +714,12 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/magento/sample-data-media" />
       <excludeFolder url="file://$MODULE_DIR$/var" />
       <excludeFolder url="file://$MODULE_DIR$/vendor" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/dataSources" />
+      <excludeFolder url="file://$MODULE_DIR$/dev/tests/static/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/dev/tests/unit/tmp/Magento" />
+      <excludeFolder url="file://$MODULE_DIR$/dev/tests/unit/tmp/generated" />
+      <excludeFolder url="file://$MODULE_DIR$/dev/tests/unit/var" />
+      <excludeFolder url="file://$MODULE_DIR$/dev/tests/unit/var/allure-results" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

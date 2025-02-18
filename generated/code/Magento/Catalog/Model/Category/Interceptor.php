@@ -17,6 +17,15 @@ class Interceptor extends \Magento\Catalog\Model\Category implements \Magento\Fr
     /**
      * {@inheritdoc}
      */
+    public function getIdentities()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'getIdentities');
+        return $pluginInfo ? $this->___callPlugins('getIdentities', func_get_args(), $pluginInfo) : parent::getIdentities();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function save()
     {
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'save');

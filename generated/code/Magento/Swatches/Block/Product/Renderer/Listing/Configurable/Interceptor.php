@@ -26,6 +26,15 @@ class Interceptor extends \Magento\Swatches\Block\Product\Renderer\Listing\Confi
     /**
      * {@inheritdoc}
      */
+    public function toHtml()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'toHtml');
+        return $pluginInfo ? $this->___callPlugins('toHtml', func_get_args(), $pluginInfo) : parent::toHtml();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getImage($product, $imageId, $attributes = [])
     {
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'getImage');

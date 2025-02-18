@@ -1,0 +1,22 @@
+{
+  "name": "hyva-themes/magento2-hyva-checkout",
+  "description": "Hyvä Themes checkout module",
+  "type": "magento2-module",
+  "require": {
+      "php": ">=7.4 <8 || ^8.0 || ^8.1 || ^8.2 || ^8.3",
+      "magewirephp/magewire": "1.11.1",
+      "hyva-themes/magento2-theme-module": "^1.1.16"
+  },
+  "support": {
+      "docs": "https://docs.hyva.io/"
+  },
+  "license": "See LICENSE.md or https://hyva.io/license",
+  "autoload": {
+    "files": [
+      "src/registration.php"
+    ],
+    "psr-4": {
+      "Hyva\\Checkout\\": "src/"
+    }
+  }
+}

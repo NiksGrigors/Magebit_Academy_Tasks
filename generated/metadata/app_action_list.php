@@ -1,4 +1,5 @@
 <?php return array (
+  'hyva\\checkout\\controller\\index\\index' => 'Hyva\\Checkout\\Controller\\Index\\Index',
   'magebit\\faq\\controller\\adminhtml\\faq\\delete' => 'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\Delete',
   'magebit\\faq\\controller\\adminhtml\\faq\\edit' => 'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\Edit',
   'magebit\\faq\\controller\\adminhtml\\faq\\inlineedit' => 'Magebit\\Faq\\Controller\\Adminhtml\\Faq\\InlineEdit',

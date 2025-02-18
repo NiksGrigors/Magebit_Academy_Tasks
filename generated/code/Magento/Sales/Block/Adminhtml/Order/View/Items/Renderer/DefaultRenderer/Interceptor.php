@@ -22,4 +22,13 @@ class Interceptor extends \Magento\Sales\Block\Adminhtml\Order\View\Items\Render
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'canReturnItemToStock');
         return $pluginInfo ? $this->___callPlugins('canReturnItemToStock', func_get_args(), $pluginInfo) : parent::canReturnItemToStock($item);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toHtml()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'toHtml');
+        return $pluginInfo ? $this->___callPlugins('toHtml', func_get_args(), $pluginInfo) : parent::toHtml();
+    }
 }

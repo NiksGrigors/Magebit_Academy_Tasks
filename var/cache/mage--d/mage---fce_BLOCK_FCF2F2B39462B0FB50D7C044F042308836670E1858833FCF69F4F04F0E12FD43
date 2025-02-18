@@ -1,0 +1,731 @@
+a:4:{s:4:"hash";s:0:"";s:5:"mtime";i:1739888806;s:6:"expire";i:1739892406;s:4:"tags";s:695:"fce_CAT_C_47,fce_CAT_C_P_47,fce_CAT_C_29,fce_CAT_C_P_29,fce_CAT_C_30,fce_CAT_C_P_30,fce_CAT_C_32,fce_CAT_C_P_32,fce_CAT_C_33,fce_CAT_C_P_33,fce_CAT_C_34,fce_CAT_C_P_34,fce_CAT_C_35,fce_CAT_C_P_35,fce_CAT_C_31,fce_CAT_C_P_31,fce_CAT_C_36,fce_CAT_C_P_36,fce_CAT_C_37,fce_CAT_C_P_37,fce_CAT_C_20,fce_CAT_C_P_20,fce_CAT_C_21,fce_CAT_C_P_21,fce_CAT_C_23,fce_CAT_C_P_23,fce_CAT_C_24,fce_CAT_C_P_24,fce_CAT_C_25,fce_CAT_C_P_25,fce_CAT_C_26,fce_CAT_C_P_26,fce_CAT_C_22,fce_CAT_C_P_22,fce_CAT_C_27,fce_CAT_C_P_27,fce_CAT_C_28,fce_CAT_C_P_28,fce_CAT_C_12,fce_CAT_C_P_12,fce_CAT_C_13,fce_CAT_C_P_13,fce_CAT_C_14,fce_CAT_C_P_14,fce_CAT_C_15,fce_CAT_C_P_15,fce_CAT_C_46,fce_CAT_C_P_46,fce_BLOCK_HTML,fce_MAGE";}
+<nav
+    x-data="initMenuMobile_67b498a679a74()"
+    @load.window="setActiveMenu($root)"
+    @keydown.window.escape="closeMenu()"
+    class="z-20 order-2 sm:order-1 lg:order-2 navigation lg:hidden w-12 h-12"
+    aria-label="Site&#x20;navigation"
+    role="navigation"
+>
+    <!-- mobile -->
+    <button
+        x-ref="mobileMenuTrigger"
+        @click="openMenu()"
+        :class="{'overflow-x-hidden overflow-y-auto fixed top-0 left-0 w-full' : open}"
+        type="button"
+        aria-label="Open&#x20;menu"
+        aria-haspopup="menu"
+        :aria-expanded="open"
+        :hidden="open"
+    >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="p-3" width="48" height="48" :class="{ 'hidden' : open, 'block': !open }" aria-hidden="true">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+</svg>
+    </button>
+    <div
+        x-ref="mobileMenuNavLinks"
+        class="
+            fixed top-0 right-0 w-full h-full p-1 hidden
+            flex-col border-t border-container bg-container-lighter
+            overflow-y-auto overflow-x-hidden
+        "
+        :class="{ 'flex': open, 'hidden': !open }"
+        :aria-hidden="open ? 'false' : 'true'"
+        role="dialog"
+        aria-modal="true"
+    >
+        <ul
+            class="border-t flex flex-col gap-y-1 mt-16"
+            aria-label="Site&#x20;navigation&#x20;links"
+        >
+                            <li
+                    data-child-id="category-node-47-main"
+                    class="level-0"
+                >
+                    <div
+                        class="flex items-center transition-transform duration-150 ease-in-out transform"
+                        :class="{
+                            '-translate-x-full' : mobilePanelActiveId,
+                            'translate-x-0' : !mobilePanelActiveId
+                        }"
+                    >
+                        <a
+                            class="flex items-center w-full px-8 py-4 border-b cursor-pointer
+                                bg-container-lighter border-container level-0
+                            "
+                            href="http://magento.local/what-is-new.html"
+                            title="What&#x27;s&#x20;New"
+                        >
+                            What&#039;s New                        </a>
+                                            </div>
+                                    </li>
+                            <li
+                    data-child-id="category-node-29-main"
+                    class="level-0"
+                >
+                    <div
+                        class="flex items-center transition-transform duration-150 ease-in-out transform"
+                        :class="{
+                            '-translate-x-full' : mobilePanelActiveId,
+                            'translate-x-0' : !mobilePanelActiveId
+                        }"
+                    >
+                        <a
+                            class="flex items-center w-full px-8 py-4 border-b cursor-pointer
+                                bg-container-lighter border-container level-0
+                            "
+                            href="http://magento.local/women.html"
+                            title="Women"
+                        >
+                            Women                        </a>
+                                                    <button
+                                @click="openSubcategory('category-node-29')"
+                                class="absolute right-0 flex items-center justify-center w-11 h-11 mr-8 cursor-pointer
+                                bg-container-lighter border-container"
+                                aria-label="Open&#x20;Women&#x20;subcategories"
+                                aria-haspopup="true"
+                                :aria-expanded="mobilePanelActiveId === 'category-node-29'"
+                            >
+                                <div class="w-8 h-8 border rounded">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-full h-full p-1" width="24" height="24" aria-hidden="true">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+</svg>
+                                </div>
+                            </button>
+                                            </div>
+                                            <div
+                            data-child-id="category-node-29"
+                            class="absolute top-0 right-0 z-10 flex flex-col gap-1 w-full h-full p-1 bg-container-lighter"
+                            :class="{
+                                'hidden': mobilePanelActiveId !== 'category-node-29'
+                            }"
+                        >
+                            <ul
+                                class="mt-16 transition-transform duration-200 ease-in-out translate-x-full transform"
+                                :class="{
+                                    'translate-x-full' : mobilePanelActiveId !== 'category-node-29',
+                                    'translate-x-0' : mobilePanelActiveId === 'category-node-29',
+                                }"
+                                aria-label="Subcategories"
+                            >
+                                <li>
+                                    <button
+                                        type="button"
+                                        class="flex items-center px-8 py-4 border-b cursor-pointer bg-container border-container w-full border-t"
+                                        @click="backToMainCategories('category-node-29-main')"
+                                        aria-label="Back&#x20;to&#x20;main&#x20;categories"
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="24" height="24" aria-hidden="true">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+</svg>
+                                        <span class="ml-4">
+                                            Women                                        </span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <a
+                                        href="http://magento.local/women.html"
+                                        title="Women"
+                                        class="flex items-center w-full px-8 py-4 border-b cursor-pointer
+                                            bg-container-lighter border-container
+                                        "
+                                    >
+                                        <span class="ml-10">
+                                            View All                                        </span>
+                                    </a>
+                                </li>
+                                                                    <li>
+                                        <a
+                                            href="http://magento.local/women/tops-women.html"
+                                            title="Tops"
+                                            class="flex items-center w-full px-8 py-4 border-b cursor-pointer
+                                                bg-container-lighter border-container
+                                            "
+                                        >
+                                            <span class="ml-10 text-base text-gray-700">
+                                                Tops                                            </span>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a
+                                            href="http://magento.local/women/bottoms-women.html"
+                                            title="Bottoms"
+                                            class="flex items-center w-full px-8 py-4 border-b cursor-pointer
+                                                bg-container-lighter border-container
+                                            "
+                                        >
+                                            <span class="ml-10 text-base text-gray-700">
+                                                Bottoms                                            </span>
+                                        </a>
+                                    </li>
+                                                            </ul>
+                            <button
+                                @click="closeMenu()"
+                                class="absolute flex justify-end w-16 self-end mb-1 transition-none"
+                                aria-label="Close&#x20;menu"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="hidden p-4" width="64" height="64" :class="{ 'hidden' : !open, 'block': open }" aria-hidden="true">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+</svg>
+                            </button>
+                        </div>
+                                    </li>
+                            <li
+                    data-child-id="category-node-20-main"
+                    class="level-0"
+                >
+                    <div
+                        class="flex items-center transition-transform duration-150 ease-in-out transform"
+                        :class="{
+                            '-translate-x-full' : mobilePanelActiveId,
+                            'translate-x-0' : !mobilePanelActiveId
+                        }"
+                    >
+                        <a
+                            class="flex items-center w-full px-8 py-4 border-b cursor-pointer
+                                bg-container-lighter border-container level-0
+                            "
+                            href="http://magento.local/men.html"
+                            title="Men"
+                        >
+                            Men                        </a>
+                                                    <button
+                                @click="openSubcategory('category-node-20')"
+                                class="absolute right-0 flex items-center justify-center w-11 h-11 mr-8 cursor-pointer
+                                bg-container-lighter border-container"
+                                aria-label="Open&#x20;Men&#x20;subcategories"
+                                aria-haspopup="true"
+                                :aria-expanded="mobilePanelActiveId === 'category-node-20'"
+                            >
+                                <div class="w-8 h-8 border rounded">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-full h-full p-1" width="24" height="24" aria-hidden="true">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+</svg>
+                                </div>
+                            </button>
+                                            </div>
+                                            <div
+                            data-child-id="category-node-20"
+                            class="absolute top-0 right-0 z-10 flex flex-col gap-1 w-full h-full p-1 bg-container-lighter"
+                            :class="{
+                                'hidden': mobilePanelActiveId !== 'category-node-20'
+                            }"
+                        >
+                            <ul
+                                class="mt-16 transition-transform duration-200 ease-in-out translate-x-full transform"
+                                :class="{
+                                    'translate-x-full' : mobilePanelActiveId !== 'category-node-20',
+                                    'translate-x-0' : mobilePanelActiveId === 'category-node-20',
+                                }"
+                                aria-label="Subcategories"
+                            >
+                                <li>
+                                    <button
+                                        type="button"
+                                        class="flex items-center px-8 py-4 border-b cursor-pointer bg-container border-container w-full border-t"
+                                        @click="backToMainCategories('category-node-20-main')"
+                                        aria-label="Back&#x20;to&#x20;main&#x20;categories"
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="24" height="24" aria-hidden="true">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+</svg>
+                                        <span class="ml-4">
+                                            Men                                        </span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <a
+                                        href="http://magento.local/men.html"
+                                        title="Men"
+                                        class="flex items-center w-full px-8 py-4 border-b cursor-pointer
+                                            bg-container-lighter border-container
+                                        "
+                                    >
+                                        <span class="ml-10">
+                                            View All                                        </span>
+                                    </a>
+                                </li>
+                                                                    <li>
+                                        <a
+                                            href="http://magento.local/men/tops-men.html"
+                                            title="Tops"
+                                            class="flex items-center w-full px-8 py-4 border-b cursor-pointer
+                                                bg-container-lighter border-container
+                                            "
+                                        >
+                                            <span class="ml-10 text-base text-gray-700">
+                                                Tops                                            </span>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a
+                                            href="http://magento.local/men/bottoms-men.html"
+                                            title="Bottoms"
+                                            class="flex items-center w-full px-8 py-4 border-b cursor-pointer
+                                                bg-container-lighter border-container
+                                            "
+                                        >
+                                            <span class="ml-10 text-base text-gray-700">
+                                                Bottoms                                            </span>
+                                        </a>
+                                    </li>
+                                                            </ul>
+                            <button
+                                @click="closeMenu()"
+                                class="absolute flex justify-end w-16 self-end mb-1 transition-none"
+                                aria-label="Close&#x20;menu"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="hidden p-4" width="64" height="64" :class="{ 'hidden' : !open, 'block': open }" aria-hidden="true">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+</svg>
+                            </button>
+                        </div>
+                                    </li>
+                            <li
+                    data-child-id="category-node-12-main"
+                    class="level-0"
+                >
+                    <div
+                        class="flex items-center transition-transform duration-150 ease-in-out transform"
+                        :class="{
+                            '-translate-x-full' : mobilePanelActiveId,
+                            'translate-x-0' : !mobilePanelActiveId
+                        }"
+                    >
+                        <a
+                            class="flex items-center w-full px-8 py-4 border-b cursor-pointer
+                                bg-container-lighter border-container level-0
+                            "
+                            href="http://magento.local/gear.html"
+                            title="Gear"
+                        >
+                            Gear                        </a>
+                                                    <button
+                                @click="openSubcategory('category-node-12')"
+                                class="absolute right-0 flex items-center justify-center w-11 h-11 mr-8 cursor-pointer
+                                bg-container-lighter border-container"
+                                aria-label="Open&#x20;Gear&#x20;subcategories"
+                                aria-haspopup="true"
+                                :aria-expanded="mobilePanelActiveId === 'category-node-12'"
+                            >
+                                <div class="w-8 h-8 border rounded">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-full h-full p-1" width="24" height="24" aria-hidden="true">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+</svg>
+                                </div>
+                            </button>
+                                            </div>
+                                            <div
+                            data-child-id="category-node-12"
+                            class="absolute top-0 right-0 z-10 flex flex-col gap-1 w-full h-full p-1 bg-container-lighter"
+                            :class="{
+                                'hidden': mobilePanelActiveId !== 'category-node-12'
+                            }"
+                        >
+                            <ul
+                                class="mt-16 transition-transform duration-200 ease-in-out translate-x-full transform"
+                                :class="{
+                                    'translate-x-full' : mobilePanelActiveId !== 'category-node-12',
+                                    'translate-x-0' : mobilePanelActiveId === 'category-node-12',
+                                }"
+                                aria-label="Subcategories"
+                            >
+                                <li>
+                                    <button
+                                        type="button"
+                                        class="flex items-center px-8 py-4 border-b cursor-pointer bg-container border-container w-full border-t"
+                                        @click="backToMainCategories('category-node-12-main')"
+                                        aria-label="Back&#x20;to&#x20;main&#x20;categories"
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="24" height="24" aria-hidden="true">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+</svg>
+                                        <span class="ml-4">
+                                            Gear                                        </span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <a
+                                        href="http://magento.local/gear.html"
+                                        title="Gear"
+                                        class="flex items-center w-full px-8 py-4 border-b cursor-pointer
+                                            bg-container-lighter border-container
+                                        "
+                                    >
+                                        <span class="ml-10">
+                                            View All                                        </span>
+                                    </a>
+                                </li>
+                                                                    <li>
+                                        <a
+                                            href="http://magento.local/gear/bags.html"
+                                            title="Bags"
+                                            class="flex items-center w-full px-8 py-4 border-b cursor-pointer
+                                                bg-container-lighter border-container
+                                            "
+                                        >
+                                            <span class="ml-10 text-base text-gray-700">
+                                                Bags                                            </span>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a
+                                            href="http://magento.local/gear/fitness-equipment.html"
+                                            title="Fitness&#x20;Equipment"
+                                            class="flex items-center w-full px-8 py-4 border-b cursor-pointer
+                                                bg-container-lighter border-container
+                                            "
+                                        >
+                                            <span class="ml-10 text-base text-gray-700">
+                                                Fitness Equipment                                            </span>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a
+                                            href="http://magento.local/gear/watches.html"
+                                            title="Watches"
+                                            class="flex items-center w-full px-8 py-4 border-b cursor-pointer
+                                                bg-container-lighter border-container
+                                            "
+                                        >
+                                            <span class="ml-10 text-base text-gray-700">
+                                                Watches                                            </span>
+                                        </a>
+                                    </li>
+                                                            </ul>
+                            <button
+                                @click="closeMenu()"
+                                class="absolute flex justify-end w-16 self-end mb-1 transition-none"
+                                aria-label="Close&#x20;menu"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="hidden p-4" width="64" height="64" :class="{ 'hidden' : !open, 'block': open }" aria-hidden="true">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+</svg>
+                            </button>
+                        </div>
+                                    </li>
+                            <li
+                    data-child-id="category-node-46-main"
+                    class="level-0"
+                >
+                    <div
+                        class="flex items-center transition-transform duration-150 ease-in-out transform"
+                        :class="{
+                            '-translate-x-full' : mobilePanelActiveId,
+                            'translate-x-0' : !mobilePanelActiveId
+                        }"
+                    >
+                        <a
+                            class="flex items-center w-full px-8 py-4 border-b cursor-pointer
+                                bg-container-lighter border-container level-0
+                            "
+                            href="http://magento.local/sale.html"
+                            title="Sale"
+                        >
+                            Sale                        </a>
+                                            </div>
+                                    </li>
+                    </ul>
+        <button
+            @click="closeMenu()"
+            class="absolute flex justify-end w-16 self-end mb-1"
+            aria-label="Close&#x20;menu"
+            type="button"
+        >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="hidden p-4" width="64" height="64" :class="{ 'hidden' : !open, 'block': open }" aria-hidden="true">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+</svg>
+        </button>
+    </div>
+</nav>
+<script>
+    'use strict';
+
+    const initMenuMobile_67b498a679a74 = () => {
+        return {
+            mobilePanelActiveId: null,
+            open: false,
+            setActiveMenu(menuNode) {
+                Array.from(menuNode.querySelectorAll('a')).filter(link => {
+                    return link.href === window.location.href.split('?')[0];
+                }).map(item => {
+                    item.classList.add('underline');
+                    item.closest('li.level-0') &&
+                    item.closest('li.level-0').querySelector('a.level-0').classList.add('underline');
+                });
+            },
+            openMenu() {
+                this.open = true
+                this.$nextTick(() => hyva.trapFocus(this.$refs['mobileMenuNavLinks']));
+                // Prevent from body scrolling while mobile menu opened
+                document.body.style.overflow = 'hidden';
+            },
+            closeMenu() {
+                document.body.style.overflow = '';
+
+                if (this.open) {
+                    this.$nextTick(() => this.$refs['mobileMenuTrigger'].focus() || hyva.releaseFocus());
+                }
+
+                this.open = false
+                this.mobilePanelActiveId = null
+            },
+            openSubcategory(index) {
+                const menuNodeRef = document.querySelector('[data-child-id=' + index + ']')
+                this.mobilePanelActiveId = this.mobilePanelActiveId === index ? 0 : index
+                this.$nextTick(() => hyva.trapFocus(menuNodeRef))
+            },
+            backToMainCategories(index) {
+                const menuNodeRef = document.querySelector('[data-child-id=' + index + ']')
+                this.mobilePanelActiveId = 0
+                this.$nextTick(() => {
+                    hyva.trapFocus(this.$refs['mobileMenuNavLinks'])
+                    menuNodeRef.querySelector('a').focus()
+                })
+            }
+        }
+    }
+</script>
+<div x-data="initMenuDesktop_67b498a68aa82()"
+     class="z-20 order-2 sm:order-1 lg:order-2 navigation hidden lg:flex"
+>
+    <!-- desktop -->
+    <div x-ref="nav-desktop"
+         @load.window="setActiveMenu($root)"
+         class="hidden lg:block lg:px-8">
+        <nav
+            class="relative"
+            aria-label="Main&#x20;menu"
+        >
+            <ul class="flex justify-start flex-wrap gap-x-7 py-4">
+                                    <li class="relative level-0 border-b-2 border-transparent hover:border-primary data-[active]:border-primary"
+                        @mouseenter="hoverPanelActiveId = 'category-node-47'"
+                        @mouseleave="hoverPanelActiveId = 0"
+                        @keyup.escape="hoverPanelActiveId = 0"
+                    >
+                        <span class="flex items-center text-md">
+                            <a class="w-full text-base text-gray-700 level-0 py-2 px-0.5"
+                               href="http://magento.local/what-is-new.html"
+                               title="What&#x27;s&#x20;New"
+                               @focus="hoverPanelActiveId = 0"
+                            >
+                                What&#039;s New                            </a>
+                                                    </span>
+                                            </li>
+                                    <li class="relative level-0 border-b-2 border-transparent hover:border-primary data-[active]:border-primary"
+                        @mouseenter="hoverPanelActiveId = 'category-node-29'"
+                        @mouseleave="hoverPanelActiveId = 0"
+                        @keyup.escape="hoverPanelActiveId = 0"
+                    >
+                        <span class="flex items-center text-md">
+                            <a class="w-full text-base text-gray-700 level-0 py-2 px-0.5"
+                               href="http://magento.local/women.html"
+                               title="Women"
+                               @focus="hoverPanelActiveId = 0"
+                            >
+                                Women                            </a>
+                                                            <button
+                                    type="button"
+                                    data-sr-button-id="category-node-29"
+                                    :aria-expanded="hoverPanelActiveId === 'category-node-29' ? 'true' : 'false'"
+                                    @click="openMenuOnClick('category-node-29')"
+                                    class="rounded p-1 text-gray-500"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="flex self-center h-5 w-5" width="25" height="25" aria-hidden="true">
+  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+</svg>
+                                    <span class="sr-only">
+                                        Show submenu for Women category                                    </span>
+                                </button>
+                                                    </span>
+                                                    <ul
+                                class="absolute top-full z-10 hidden px-6 py-4 mt-0.5 -ml-6 shadow-lg bg-container-lighter/95"
+                                :class="{
+                                    'hidden' : hoverPanelActiveId !== 'category-node-29',
+                                    'block' : hoverPanelActiveId === 'category-node-29'
+                                }"
+                            >
+                                                                    <li>
+                                        <a href="http://magento.local/women/tops-women.html"
+                                           title="Tops"
+                                           class="block w-full px-3 py-1 my-1 whitespace-nowrap first:mt-0 hover:underline aria-[current=page]:underline"
+                                           @keyup.escape="$nextTick(() => document.querySelector('[data-sr-button-id=category\u002Dnode\u002D29]').focus())"
+                                        >
+                                            <span class="text-base text-gray-700">
+                                                Tops                                            </span>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a href="http://magento.local/women/bottoms-women.html"
+                                           title="Bottoms"
+                                           class="block w-full px-3 py-1 my-1 whitespace-nowrap first:mt-0 hover:underline aria-[current=page]:underline"
+                                           @keyup.escape="$nextTick(() => document.querySelector('[data-sr-button-id=category\u002Dnode\u002D29]').focus())"
+                                        >
+                                            <span class="text-base text-gray-700">
+                                                Bottoms                                            </span>
+                                        </a>
+                                    </li>
+                                                            </ul>
+                                            </li>
+                                    <li class="relative level-0 border-b-2 border-transparent hover:border-primary data-[active]:border-primary"
+                        @mouseenter="hoverPanelActiveId = 'category-node-20'"
+                        @mouseleave="hoverPanelActiveId = 0"
+                        @keyup.escape="hoverPanelActiveId = 0"
+                    >
+                        <span class="flex items-center text-md">
+                            <a class="w-full text-base text-gray-700 level-0 py-2 px-0.5"
+                               href="http://magento.local/men.html"
+                               title="Men"
+                               @focus="hoverPanelActiveId = 0"
+                            >
+                                Men                            </a>
+                                                            <button
+                                    type="button"
+                                    data-sr-button-id="category-node-20"
+                                    :aria-expanded="hoverPanelActiveId === 'category-node-20' ? 'true' : 'false'"
+                                    @click="openMenuOnClick('category-node-20')"
+                                    class="rounded p-1 text-gray-500"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="flex self-center h-5 w-5" width="25" height="25" aria-hidden="true">
+  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+</svg>
+                                    <span class="sr-only">
+                                        Show submenu for Men category                                    </span>
+                                </button>
+                                                    </span>
+                                                    <ul
+                                class="absolute top-full z-10 hidden px-6 py-4 mt-0.5 -ml-6 shadow-lg bg-container-lighter/95"
+                                :class="{
+                                    'hidden' : hoverPanelActiveId !== 'category-node-20',
+                                    'block' : hoverPanelActiveId === 'category-node-20'
+                                }"
+                            >
+                                                                    <li>
+                                        <a href="http://magento.local/men/tops-men.html"
+                                           title="Tops"
+                                           class="block w-full px-3 py-1 my-1 whitespace-nowrap first:mt-0 hover:underline aria-[current=page]:underline"
+                                           @keyup.escape="$nextTick(() => document.querySelector('[data-sr-button-id=category\u002Dnode\u002D20]').focus())"
+                                        >
+                                            <span class="text-base text-gray-700">
+                                                Tops                                            </span>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a href="http://magento.local/men/bottoms-men.html"
+                                           title="Bottoms"
+                                           class="block w-full px-3 py-1 my-1 whitespace-nowrap first:mt-0 hover:underline aria-[current=page]:underline"
+                                           @keyup.escape="$nextTick(() => document.querySelector('[data-sr-button-id=category\u002Dnode\u002D20]').focus())"
+                                        >
+                                            <span class="text-base text-gray-700">
+                                                Bottoms                                            </span>
+                                        </a>
+                                    </li>
+                                                            </ul>
+                                            </li>
+                                    <li class="relative level-0 border-b-2 border-transparent hover:border-primary data-[active]:border-primary"
+                        @mouseenter="hoverPanelActiveId = 'category-node-12'"
+                        @mouseleave="hoverPanelActiveId = 0"
+                        @keyup.escape="hoverPanelActiveId = 0"
+                    >
+                        <span class="flex items-center text-md">
+                            <a class="w-full text-base text-gray-700 level-0 py-2 px-0.5"
+                               href="http://magento.local/gear.html"
+                               title="Gear"
+                               @focus="hoverPanelActiveId = 0"
+                            >
+                                Gear                            </a>
+                                                            <button
+                                    type="button"
+                                    data-sr-button-id="category-node-12"
+                                    :aria-expanded="hoverPanelActiveId === 'category-node-12' ? 'true' : 'false'"
+                                    @click="openMenuOnClick('category-node-12')"
+                                    class="rounded p-1 text-gray-500"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="flex self-center h-5 w-5" width="25" height="25" aria-hidden="true">
+  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+</svg>
+                                    <span class="sr-only">
+                                        Show submenu for Gear category                                    </span>
+                                </button>
+                                                    </span>
+                                                    <ul
+                                class="absolute top-full z-10 hidden px-6 py-4 mt-0.5 -ml-6 shadow-lg bg-container-lighter/95"
+                                :class="{
+                                    'hidden' : hoverPanelActiveId !== 'category-node-12',
+                                    'block' : hoverPanelActiveId === 'category-node-12'
+                                }"
+                            >
+                                                                    <li>
+                                        <a href="http://magento.local/gear/bags.html"
+                                           title="Bags"
+                                           class="block w-full px-3 py-1 my-1 whitespace-nowrap first:mt-0 hover:underline aria-[current=page]:underline"
+                                           @keyup.escape="$nextTick(() => document.querySelector('[data-sr-button-id=category\u002Dnode\u002D12]').focus())"
+                                        >
+                                            <span class="text-base text-gray-700">
+                                                Bags                                            </span>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a href="http://magento.local/gear/fitness-equipment.html"
+                                           title="Fitness&#x20;Equipment"
+                                           class="block w-full px-3 py-1 my-1 whitespace-nowrap first:mt-0 hover:underline aria-[current=page]:underline"
+                                           @keyup.escape="$nextTick(() => document.querySelector('[data-sr-button-id=category\u002Dnode\u002D12]').focus())"
+                                        >
+                                            <span class="text-base text-gray-700">
+                                                Fitness Equipment                                            </span>
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a href="http://magento.local/gear/watches.html"
+                                           title="Watches"
+                                           class="block w-full px-3 py-1 my-1 whitespace-nowrap first:mt-0 hover:underline aria-[current=page]:underline"
+                                           @keyup.escape="$nextTick(() => document.querySelector('[data-sr-button-id=category\u002Dnode\u002D12]').focus())"
+                                        >
+                                            <span class="text-base text-gray-700">
+                                                Watches                                            </span>
+                                        </a>
+                                    </li>
+                                                            </ul>
+                                            </li>
+                                    <li class="relative level-0 border-b-2 border-transparent hover:border-primary data-[active]:border-primary"
+                        @mouseenter="hoverPanelActiveId = 'category-node-46'"
+                        @mouseleave="hoverPanelActiveId = 0"
+                        @keyup.escape="hoverPanelActiveId = 0"
+                    >
+                        <span class="flex items-center text-md">
+                            <a class="w-full text-base text-gray-700 level-0 py-2 px-0.5"
+                               href="http://magento.local/sale.html"
+                               title="Sale"
+                               @focus="hoverPanelActiveId = 0"
+                            >
+                                Sale                            </a>
+                                                    </span>
+                                            </li>
+                            </ul>
+        </nav>
+    </div>
+</div>
+<script>
+    'use strict';
+
+    const initMenuDesktop_67b498a68aa82 = () => {
+        return {
+            hoverPanelActiveId: null,
+            setActiveMenu(menuNode) {
+                Array.from(menuNode.querySelectorAll('a')).filter(link => {
+                    return link.href === window.location.href.split('?')[0];
+                }).map(item => {
+                    item.setAttribute('aria-current', 'page');
+                    item.closest('li.level-0').setAttribute('data-active', 'true');
+                });
+            },
+            openMenuOnClick(menuNode) {
+                if (menuNode === this.hoverPanelActiveId) {
+                    this.hoverPanelActiveId = 0;
+                } else {
+                    this.hoverPanelActiveId = menuNode
+                }
+            }
+        }
+    }
+</script>

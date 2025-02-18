@@ -22,4 +22,13 @@ class Interceptor extends \Magento\Sales\Block\Adminhtml\Order\View\Info impleme
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'getAddressEditLink');
         return $pluginInfo ? $this->___callPlugins('getAddressEditLink', func_get_args(), $pluginInfo) : parent::getAddressEditLink($address, $label);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toHtml()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'toHtml');
+        return $pluginInfo ? $this->___callPlugins('toHtml', func_get_args(), $pluginInfo) : parent::toHtml();
+    }
 }

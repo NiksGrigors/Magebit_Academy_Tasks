@@ -1,0 +1,22 @@
+<?php declare(strict_types=1);
+
+use Hyva\Theme\Model\ViewModelRegistry;
+use Magebit\ViewModelsExample\ViewModel\ProductDetails;
+use Magento\Directory\Block\Data;
+use Magento\Framework\Escaper;
+
+/** @var ViewModelRegistry $viewModels */
+/** @var ProductDetails $contactDetails */
+/** @var Escaper $escaper */
+
+$productDetails = $viewModels->require(ProductDetails::class);
+$product = $productDetails->getProduct();
+
+if ($product): ?>
+    <div class="custom-product">
+        <h2><?= $product->getName(); ?></h2>
+        <p>SKU: <?= $product->getSku(); ?></p>
+    </div>
+<?php else: ?>
+    <p>Product not found.</p>
+<?php endif; ?>

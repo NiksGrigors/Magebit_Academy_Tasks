@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:View/Layout:etc/page_configuration.xsd">
+    <head>
+        <link src="https://fonts.gstatic.com" rel="preconnect" src_type="url" />
+        <link src="https://fonts.googleapis.com" rel="preconnect" src_type="url" />
+    </head>
+    <body>
+        <referenceBlock name="content">
+            <block class="Magento\Framework\View\Element\Template" name="custom.block" template="Magento_Theme::content.phtml"/>
+        </referenceBlock>
+        <referenceBlock name="hero" remove="true"/>
+        <referenceBlock name="content-1" remove="true"/>
+        <referenceBlock name="slider-1" remove="true"/>
+        <referenceBlock name="slider-2" remove="true"/>
+    </body>
+</page>

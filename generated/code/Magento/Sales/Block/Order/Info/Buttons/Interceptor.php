@@ -1,0 +1,25 @@
+<?php
+namespace Magento\Sales\Block\Order\Info\Buttons;
+
+/**
+ * Interceptor class for @see \Magento\Sales\Block\Order\Info\Buttons
+ */
+class Interceptor extends \Magento\Sales\Block\Order\Info\Buttons implements \Magento\Framework\Interception\InterceptorInterface
+{
+    use \Magento\Framework\Interception\Interceptor;
+
+    public function __construct(\Magento\Framework\View\Element\Template\Context $context, \Magento\Framework\Registry $registry, \Magento\Framework\App\Http\Context $httpContext, array $data = [])
+    {
+        $this->___init();
+        parent::__construct($context, $registry, $httpContext, $data);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toHtml()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'toHtml');
+        return $pluginInfo ? $this->___callPlugins('toHtml', func_get_args(), $pluginInfo) : parent::toHtml();
+    }
+}

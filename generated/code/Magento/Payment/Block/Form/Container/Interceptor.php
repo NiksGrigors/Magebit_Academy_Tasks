@@ -22,4 +22,13 @@ class Interceptor extends \Magento\Payment\Block\Form\Container implements \Mage
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'getMethods');
         return $pluginInfo ? $this->___callPlugins('getMethods', func_get_args(), $pluginInfo) : parent::getMethods();
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toHtml()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'toHtml');
+        return $pluginInfo ? $this->___callPlugins('toHtml', func_get_args(), $pluginInfo) : parent::toHtml();
+    }
 }

@@ -31,4 +31,13 @@ class Interceptor extends \Magento\ConfigurableProduct\Block\Stockqty\Type\Confi
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'getStockQtyLeft');
         return $pluginInfo ? $this->___callPlugins('getStockQtyLeft', func_get_args(), $pluginInfo) : parent::getStockQtyLeft();
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toHtml()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'toHtml');
+        return $pluginInfo ? $this->___callPlugins('toHtml', func_get_args(), $pluginInfo) : parent::toHtml();
+    }
 }

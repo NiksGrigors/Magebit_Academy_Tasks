@@ -22,4 +22,13 @@ class Interceptor extends \Magento\AdobeIms\Block\Adminhtml\SignIn implements \M
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'getComponentJsonConfig');
         return $pluginInfo ? $this->___callPlugins('getComponentJsonConfig', func_get_args(), $pluginInfo) : parent::getComponentJsonConfig();
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toHtml()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'toHtml');
+        return $pluginInfo ? $this->___callPlugins('toHtml', func_get_args(), $pluginInfo) : parent::toHtml();
+    }
 }

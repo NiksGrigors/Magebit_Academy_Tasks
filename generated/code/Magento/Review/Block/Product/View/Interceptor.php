@@ -26,6 +26,15 @@ class Interceptor extends \Magento\Review\Block\Product\View implements \Magento
     /**
      * {@inheritdoc}
      */
+    public function getJsonConfig()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'getJsonConfig');
+        return $pluginInfo ? $this->___callPlugins('getJsonConfig', func_get_args(), $pluginInfo) : parent::getJsonConfig();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getQuantityValidators()
     {
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'getQuantityValidators');
@@ -39,5 +48,14 @@ class Interceptor extends \Magento\Review\Block\Product\View implements \Magento
     {
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'getImage');
         return $pluginInfo ? $this->___callPlugins('getImage', func_get_args(), $pluginInfo) : parent::getImage($product, $imageId, $attributes);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toHtml()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'toHtml');
+        return $pluginInfo ? $this->___callPlugins('toHtml', func_get_args(), $pluginInfo) : parent::toHtml();
     }
 }

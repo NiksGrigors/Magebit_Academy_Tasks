@@ -1,0 +1,35 @@
+<?php declare(strict_types=1);
+
+use Hyva\Theme\Model\ViewModelRegistry;
+use Hyva\Theme\ViewModel\HeroiconsSolid;
+use Magebit\SliderExample\ViewModel\ProductImages;
+
+/** @var ViewModelRegistry $viewModels; */
+$productImagesViewModel = $viewModels->require(ProductImages::class);
+$producImages = $productImagesViewModel->getProductImages();
+
+$heroIconsSolid = $viewModels->require(HeroiconsSolid::class);
+?>
+<div
+    x-data='{
+    selected: 0,
+    images: <?= json_encode($producImages) ?>
+}' class="max-w-screen-sm">
+    <template x-for="(image, index) in images">
+        <figure class="space-y-2" x-show="selected === index">
+            <img
+                :key="index"
+                class="h-128 w-full object-cover object-center" :src="image.src" :alt="image.alt">
+            <figcaption x-text="image.caption" class="text-xs text-gray-600"></figcaption>
+        </figure>
+    </template>
+    <div class="w-full flex items-center justify-end space-x-2 text-indigo-600 text-xs mt-4">
+        <button aria-label="Previous Image" class="p-1 focus:outline-none focus:shadow-outline rounded" :class="{ 'text-gray-400' : selected === 0 }" @click="selected > 0 ? selected-- : null">
+            <?= $heroIconsSolid->chevronLeftHtml('', 35,35) ?>
+        </button>
+        <button aria-label="Next Image" class="p-1 focus:outline-none focus:shadow-outline rounded" :class="{ 'text-gray-400' : selected === (images.length - 1) }" @click="selected < (images.length - 1) ? selected ++ : null">
+            <?= $heroIconsSolid->chevronRightHtml('', 35,35) ?>
+        </button>
+    </div>
+
+</div>

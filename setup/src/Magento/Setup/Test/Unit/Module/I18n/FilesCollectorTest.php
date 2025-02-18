@@ -33,7 +33,7 @@ class FilesCollectorTest extends TestCase
 
     public function testGetFilesWithoutMask()
     {
-        $expectedResult = [$this->_testDir . 'default.xml', $this->_testDir . 'file.js'];
+        $expectedResult = [$this->_testDir . 'cms_index_index.xml', $this->_testDir . 'file.js'];
         $files = $this->_filesCollector->getFiles([$this->_testDir]);
         $this->assertEquals($expectedResult, $files);
     }

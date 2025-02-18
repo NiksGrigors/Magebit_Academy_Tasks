@@ -22,4 +22,13 @@ class Interceptor extends \Magento\Checkout\Block\Cart\Sidebar implements \Magen
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'getConfig');
         return $pluginInfo ? $this->___callPlugins('getConfig', func_get_args(), $pluginInfo) : parent::getConfig();
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toHtml()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'toHtml');
+        return $pluginInfo ? $this->___callPlugins('toHtml', func_get_args(), $pluginInfo) : parent::toHtml();
+    }
 }

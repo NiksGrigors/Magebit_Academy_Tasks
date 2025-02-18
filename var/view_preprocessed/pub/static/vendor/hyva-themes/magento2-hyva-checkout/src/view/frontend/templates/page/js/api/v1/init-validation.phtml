@@ -1,0 +1,50 @@
+<?php /** * Hyvä Themes - https://hyva.io * Copyright © Hyvä Themes 2022-present. All rights reserved. * This product is licensed per Magento install * See https://hyva.io/license */ declare(strict_types=1); use Magento\Framework\Escaper; use Magento\Framework\View\Element\Template; /** @var Template $block */ /** @var Escaper $escaper */ /** * @Internal Prefer utilizing the "after" container for injecting additional code. */ ?> <script>
+    'use strict';
+
+    (() => {
+        window.addEventListener('checkout:validation:failure', event => {
+            const validations = event.detail.results || []
+            const validationsHavingElements = validations.filter(item => document.contains(item.validation.el))
+
+            <?php /* Scroll the first failed validation element into view if necessary. */ ?> validationsHavingElements.some(item => {
+                if (item.validation.options.scrollOnFailure && ! hyvaCheckout.viewport.isElementFullyVisible(item.validation.el)) {
+                    item.validation.el.scrollIntoView({
+                        behavior: 'smooth',
+                        inline: 'center'
+                    })
+
+                    <?php /* Stop after scrolling the first relevant element. */ ?> return true
+                }
+
+                <?php /* Continue checking other validations */ ?> return false
+            })
+        })
+
+        window.addEventListener('checkout:validation:exception', event => {
+            hyvaCheckout.message.console(
+                event.detail.exception instanceof Error && event.detail.exception.message.length !== 0
+                    ? event.detail.exception.message
+                    : '<?= $escaper->escapeJs(__('An unknown validation exception occurred.')) ?>'
+            )
+        })
+
+        window.addEventListener('checkout:validation:register', event => {
+            const validation = event.detail.validation
+            const element = validation.el
+
+            <?php /* Remove validation for DOM elements that have been removed from the main element. */ ?> if (element) {
+                const observer = new MutationObserver(mutations => {
+                    mutations.forEach(mutation => {
+                        mutation.removedNodes.forEach(node => {
+                            if (node === element || node.contains(element)) {
+                                hyvaCheckout.validation.remove(validation.name, validation.group)
+                                observer.disconnect()
+                            }
+                        })
+                    })
+                })
+
+                observer.observe(hyvaCheckout.main.getElement(), { childList: true, subtree: true })
+            }
+        })
+    })()</script><?= $block->getChildHtml('after') ?>

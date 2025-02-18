@@ -22,4 +22,13 @@ class Interceptor extends \Magento\Framework\App\Response\File implements \Magen
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'sendResponse');
         return $pluginInfo ? $this->___callPlugins('sendResponse', func_get_args(), $pluginInfo) : parent::sendResponse();
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function sendContent()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'sendContent');
+        return $pluginInfo ? $this->___callPlugins('sendContent', func_get_args(), $pluginInfo) : parent::sendContent();
+    }
 }

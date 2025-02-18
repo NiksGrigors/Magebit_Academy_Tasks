@@ -50,7 +50,7 @@ class DirectoryScannerTest extends TestCase
                 $this->_testDir . '/app/code/Magento/SomeModule/etc/adminhtml/system.xml',
                 $this->_testDir . '/app/code/Magento/SomeModule/etc/config.xml',
             ],
-            'view' => [$this->_testDir . '/app/code/Magento/SomeModule/view/frontend/default.xml'],
+            'view' => [$this->_testDir . '/app/code/Magento/SomeModule/view/frontend/cms_index_index.xml'],
             'design' => [$this->_testDir . '/app/design/adminhtml/Magento/backend/layout.xml'],
             'etc' => [$this->_testDir . '/app/etc/additional.xml', $this->_testDir . '/app/etc/config.xml'],
         ];

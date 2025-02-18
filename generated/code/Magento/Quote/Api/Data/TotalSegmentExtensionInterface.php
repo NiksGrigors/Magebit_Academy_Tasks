@@ -16,4 +16,15 @@ interface TotalSegmentExtensionInterface extends \Magento\Framework\Api\Extensio
      * @return $this
      */
     public function setTaxGrandtotalDetails($taxGrandtotalDetails);
+
+    /**
+     * @return \Hyva\Checkout\Api\Data\Quote\TaxDetailsExtensionAttributeInterface[]|null
+     */
+    public function getTaxDetails();
+
+    /**
+     * @param \Hyva\Checkout\Api\Data\Quote\TaxDetailsExtensionAttributeInterface[] $taxDetails
+     * @return $this
+     */
+    public function setTaxDetails($taxDetails);
 }

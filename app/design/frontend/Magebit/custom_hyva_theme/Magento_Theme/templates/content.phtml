@@ -1,0 +1,41 @@
+<div class="p-28 m-4 bg-gradient-to-r from-blue-500 to-purple-500">
+    <h1 class="text-2xl font-bold text-black">Tailwind CSS Demo</h1>
+</div>
+
+<div x-data="{ isOpen: true }">
+    <button x-on:click="isOpen = !isOpen">Toogle</button>
+    <h1 x-show="isOpen">Hello1 World</h1>
+</div>
+
+<div x-data="{ name: '' }">
+    <input type="text" x-model="name" />
+    <div x-text="name"/>
+</div>
+
+<div x-data="{ fruit: 'apple' }">
+    <button
+        x-on:click="
+            fruit = 'pear';
+            console.log($event.target.innerText);
+            $nextTick(() => { console.log($event.target.innerText) });
+        "
+        x-text="fruit"
+    ></button>
+</div>
+
+<!-- Focus on input field on init -->
+<div x-data="example()" x-init="init">
+    <input type="text" x-ref="exampleInput" x-model="exampleInput" /><br/>
+    In uppercase: <span x-text="exampleInput.toUpperCase()"></span>
+</div>
+
+<script>
+    function example() {
+        return {
+            exampleInput: '',
+            init: function() {
+                this.$refs.exampleInput.focus();
+            }
+        }
+    }
+</script>

@@ -17,6 +17,15 @@ class Interceptor extends \Magento\Swatches\Block\Product\Renderer\Configurable 
     /**
      * {@inheritdoc}
      */
+    public function toHtml()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'toHtml');
+        return $pluginInfo ? $this->___callPlugins('toHtml', func_get_args(), $pluginInfo) : parent::toHtml();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getJsonConfig()
     {
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'getJsonConfig');

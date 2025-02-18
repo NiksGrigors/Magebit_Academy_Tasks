@@ -31,4 +31,13 @@ class Interceptor extends \Magento\Bundle\Block\Adminhtml\Catalog\Product\Edit\T
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'setForm');
         return $pluginInfo ? $this->___callPlugins('setForm', func_get_args(), $pluginInfo) : parent::setForm($form);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toHtml()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'toHtml');
+        return $pluginInfo ? $this->___callPlugins('toHtml', func_get_args(), $pluginInfo) : parent::toHtml();
+    }
 }

@@ -1,0 +1,10 @@
+<script>
+    'use strict';
+
+    (() => {
+        if (typeof hyvaCheckout === 'object' && hyvaCheckout.storage) {
+            hyvaCheckout.storage.clear()
+        } else {
+            sessionStorage.removeItem('hyva_checkout')
+        }
+    })()</script>

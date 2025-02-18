@@ -22,4 +22,13 @@ class Interceptor extends \Magento\Sales\Block\Adminhtml\Order\Invoice\Create\Fo
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'canCreateShipment');
         return $pluginInfo ? $this->___callPlugins('canCreateShipment', func_get_args(), $pluginInfo) : parent::canCreateShipment();
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toHtml()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'toHtml');
+        return $pluginInfo ? $this->___callPlugins('toHtml', func_get_args(), $pluginInfo) : parent::toHtml();
+    }
 }

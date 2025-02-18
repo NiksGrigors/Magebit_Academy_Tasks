@@ -17,6 +17,15 @@ class Interceptor extends \Magento\Catalog\Block\Adminhtml\Product\Edit\Tab\Webs
     /**
      * {@inheritdoc}
      */
+    public function toHtml()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'toHtml');
+        return $pluginInfo ? $this->___callPlugins('toHtml', func_get_args(), $pluginInfo) : parent::toHtml();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getUrl($route = '', $params = [])
     {
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'getUrl');

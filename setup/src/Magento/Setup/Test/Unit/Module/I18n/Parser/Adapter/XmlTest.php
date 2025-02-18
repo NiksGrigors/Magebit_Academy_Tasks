@@ -49,7 +49,7 @@ class XmlTest extends TestCase
      */
     public function parseDataProvider()
     {
-        $default = str_replace('\\', '/', realpath(dirname(__FILE__))) . '/_files/default.xml';
+        $default = str_replace('\\', '/', realpath(dirname(__FILE__))) . '/_files/cms_index_index.xml';
         $defaultDi = str_replace('\\', '/', realpath(dirname(__FILE__))) . '/_files/default_di.xml';
 
         return [

@@ -642,6 +642,27 @@
       <path value="$PROJECT_DIR$/vendor/magento/module-configurable-sample-data" />
       <path value="$PROJECT_DIR$/vendor/magento/module-downloadable-sample-data" />
       <path value="$PROJECT_DIR$/vendor/php-http/discovery" />
+      <path value="$PROJECT_DIR$/vendor/magewirephp/magewire" />
+      <path value="$PROJECT_DIR$/vendor/rakit/validation" />
+      <path value="$PROJECT_DIR$/vendor/mollie/mollie-api-php" />
+      <path value="$PROJECT_DIR$/vendor/mollie/magento2" />
+      <path value="$PROJECT_DIR$/vendor/mollie/magento2-hyva-compatibility" />
+      <path value="$PROJECT_DIR$/vendor/hyva-themes/magento2-graphql-tokens" />
+      <path value="$PROJECT_DIR$/vendor/hyva-themes/magento2-luma-checkout" />
+      <path value="$PROJECT_DIR$/vendor/hyva-themes/magento2-hyva-checkout" />
+      <path value="$PROJECT_DIR$/vendor/hyva-themes/magento2-mollie-theme-bundle" />
+      <path value="$PROJECT_DIR$/vendor/hyva-themes/magento2-compat-module-fallback" />
+      <path value="$PROJECT_DIR$/vendor/hyva-themes/magento2-email-module" />
+      <path value="$PROJECT_DIR$/vendor/hyva-themes/magento2-theme-module" />
+      <path value="$PROJECT_DIR$/vendor/hyva-themes/magento2-default-theme" />
+      <path value="$PROJECT_DIR$/vendor/hyva-themes/magento2-order-cancellation-webapi" />
+      <path value="$PROJECT_DIR$/vendor/hyva-themes/magento2-graphql-view-model" />
+      <path value="$PROJECT_DIR$/vendor/hyva-themes/magento2-reset-theme" />
+      <path value="$PROJECT_DIR$/vendor/hyva-themes/magento2-theme-fallback" />
+      <path value="$PROJECT_DIR$/vendor/msp/common" />
+      <path value="$PROJECT_DIR$/vendor/msp/devtools" />
+      <path value="$PROJECT_DIR$/vendor/mage2tv/magento-cache-clean" />
+      <path value="$PROJECT_DIR$/vendor/hyva-themes/magento2-cms-tailwind-jit" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1">

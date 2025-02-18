@@ -78,7 +78,8 @@ return [
         'graphql_query_resolver_result' => 1,
         'full_page' => 1,
         'config_webservice' => 1,
-        'translate' => 1
+        'translate' => 1,
+        'hyva_checkout' => 1
     ],
     'downloadable_domains' => [
         'magento.local'

@@ -22,4 +22,13 @@ class Interceptor extends \Magento\Shipping\Block\Adminhtml\View implements \Mag
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'setLayout');
         return $pluginInfo ? $this->___callPlugins('setLayout', func_get_args(), $pluginInfo) : parent::setLayout($layout);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toHtml()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'toHtml');
+        return $pluginInfo ? $this->___callPlugins('toHtml', func_get_args(), $pluginInfo) : parent::toHtml();
+    }
 }

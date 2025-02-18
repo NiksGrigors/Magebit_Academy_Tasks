@@ -22,4 +22,13 @@ class Interceptor extends \Magento\Cms\Block\Adminhtml\Wysiwyg\Images\Content im
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'setLayout');
         return $pluginInfo ? $this->___callPlugins('setLayout', func_get_args(), $pluginInfo) : parent::setLayout($layout);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toHtml()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'toHtml');
+        return $pluginInfo ? $this->___callPlugins('toHtml', func_get_args(), $pluginInfo) : parent::toHtml();
+    }
 }

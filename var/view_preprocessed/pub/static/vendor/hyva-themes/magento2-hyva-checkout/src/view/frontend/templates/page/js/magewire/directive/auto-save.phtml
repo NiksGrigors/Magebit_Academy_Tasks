@@ -1,0 +1,47 @@
+<script>
+    Magewire.directive('auto-save', (element, directive, component) => {
+        const form = component.el instanceof HTMLFormElement ? component.el : document.getElementById(directive.value)
+
+        if (! (form instanceof HTMLFormElement)) {
+            console.error('Magewire: [wire:auto-save] form not found or invalid.', element)
+            return
+        }
+        if (! element.hasAttribute('wire:model.defer')) {
+            console.error('Magewire: [wire:model.defer] is required for [wire:auto-save] to function properly.', element)
+            return
+        }
+        if (! directive.modifiers.includes('self')) {
+            return
+        }
+
+        const sync = async () => {
+            if (! element.hasAttribute('data-validate')) {
+                component.fireMessage()
+                return
+            }
+
+            <?php /* Setup advanced form validation. */ ?> const validation = hyva.formValidation(form)
+            validation.setupField(element)
+
+            await validation.validateField(validation.fields[element.name]).then(result => {
+                if (result === true) {
+                    component.fireMessage()
+                }
+            })
+        }
+
+        const debounce = (func, delay) => {
+            let timeout
+
+            return (...args) => {
+                clearTimeout(timeout)
+
+                timeout = setTimeout(() => func.apply(this, args), delay)
+            }
+        }
+
+        const debounced = debounce(sync, directive.durationOr(1500))
+
+        element.addEventListener('keydown', debounced)
+        element.addEventListener('change', debounced)
+    })</script>

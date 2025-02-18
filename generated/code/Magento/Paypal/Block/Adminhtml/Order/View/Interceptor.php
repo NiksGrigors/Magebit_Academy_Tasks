@@ -22,4 +22,13 @@ class Interceptor extends \Magento\Paypal\Block\Adminhtml\Order\View implements 
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'addButton');
         return $pluginInfo ? $this->___callPlugins('addButton', func_get_args(), $pluginInfo) : parent::addButton($buttonId, $data, $level, $sortOrder, $region);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toHtml()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'toHtml');
+        return $pluginInfo ? $this->___callPlugins('toHtml', func_get_args(), $pluginInfo) : parent::toHtml();
+    }
 }

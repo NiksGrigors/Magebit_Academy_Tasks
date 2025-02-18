@@ -17,6 +17,15 @@ class Interceptor extends \Magento\Backend\Block\Store\Switcher implements \Mage
     /**
      * {@inheritdoc}
      */
+    public function toHtml()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'toHtml');
+        return $pluginInfo ? $this->___callPlugins('toHtml', func_get_args(), $pluginInfo) : parent::toHtml();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getUrl($route = '', $params = [])
     {
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'getUrl');

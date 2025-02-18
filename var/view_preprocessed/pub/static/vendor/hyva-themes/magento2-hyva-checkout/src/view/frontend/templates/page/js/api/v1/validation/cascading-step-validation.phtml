@@ -1,0 +1,17 @@
+<script>
+    'use strict';
+
+    (() => {
+        window.addEventListener('checkout:step:loaded', event => {
+            hyvaCheckout.storage.setValue(event.detail.route, false, 'cascading-step-data')
+        })
+        window.addEventListener('checkout:validation:success', event => {
+            hyvaCheckout.storage.setValue(event.detail.step, true, 'cascading-step-data')
+        })
+        window.addEventListener('checkout:validation:failure', event => {
+            hyvaCheckout.storage.setValue(event.detail.step, false, 'cascading-step-data')
+        })
+        window.addEventListener('checkout:validation:exception', event => {
+            hyvaCheckout.storage.setValue(event.detail.step, false, 'cascading-step-data')
+        })
+    })()</script>

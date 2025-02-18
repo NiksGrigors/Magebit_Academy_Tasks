@@ -1,0 +1,10 @@
+#hyva-checkout-main {
+    div.required > label > span {
+        @apply relative;
+
+        &:after {
+            content: '*';
+            @apply text-red-500 text-lg leading-none absolute -right-3 -top-1
+        }
+    }
+}

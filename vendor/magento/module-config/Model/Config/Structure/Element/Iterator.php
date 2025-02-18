@@ -58,11 +58,18 @@ class Iterator implements \Iterator
     {
         $this->_elements = $elements;
         $this->_scope = $scope;
+
         if (count($elements)) {
             $lastElement = end($elements);
-            $this->_lastId = $lastElement['id'];
+
+            if (isset($lastElement['id'])) { // ✅ Prevents Undefined Array Key Error
+                $this->_lastId = $lastElement['id'];
+            } else {
+                $this->_lastId = null; // Or handle this case differently
+            }
         }
     }
+
 
     /**
      * Return the current element

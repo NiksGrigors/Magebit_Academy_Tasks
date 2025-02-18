@@ -22,4 +22,13 @@ class Interceptor extends \Magento\Shipping\Block\Adminhtml\Order\Packaging impl
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'isDisplayGirthValue');
         return $pluginInfo ? $this->___callPlugins('isDisplayGirthValue', func_get_args(), $pluginInfo) : parent::isDisplayGirthValue();
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toHtml()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'toHtml');
+        return $pluginInfo ? $this->___callPlugins('toHtml', func_get_args(), $pluginInfo) : parent::toHtml();
+    }
 }

@@ -1,0 +1,10 @@
+<?php declare(strict_types=1); /** * Copyright © Willem Poortman 2021-present. All rights reserved. * * Please read the README and LICENSE files for more * details on copyrights and license information. * * ----------------------------- <3 ----------------------------- * @version 2.10.7 * @author Caleb Porzio (Laravel Livewire) * @link https://laravel-livewire.com/ * * @var Escaper $escaper * @var Template $block * @var Magewire $magewireScripts * @var ViewModelRegistry $viewModels */ use Magento\Framework\Escaper; use Magento\Framework\View\Element\Template; use Magewirephp\Magewire\ViewModel\Magewire; $magewireScripts = $block->getViewModel(); ?> <?php if ($magewireScripts->pageRequiresMagewire()): ?> <script>
+    document.addEventListener('livewire:available', (event) => {
+        const orig = Element.prototype.setAttribute;
+
+        Element.prototype.setAttribute = function patchLivewireSetAttribute(name, value) {
+            
+            if (window.Alpine && Alpine.version.substring(0, 1) === '2' && ! name) return;
+            orig.call(this, name, value);
+        }
+    })</script><script src="<?= $escaper->escapeUrl($block->getViewFileUrl('Magewirephp_Magewire::js/livewire.js')) ?>"></script><?php endif ?>

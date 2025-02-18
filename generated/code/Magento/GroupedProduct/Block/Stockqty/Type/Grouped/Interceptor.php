@@ -31,4 +31,13 @@ class Interceptor extends \Magento\GroupedProduct\Block\Stockqty\Type\Grouped im
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'getStockQtyLeft');
         return $pluginInfo ? $this->___callPlugins('getStockQtyLeft', func_get_args(), $pluginInfo) : parent::getStockQtyLeft();
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toHtml()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'toHtml');
+        return $pluginInfo ? $this->___callPlugins('toHtml', func_get_args(), $pluginInfo) : parent::toHtml();
+    }
 }

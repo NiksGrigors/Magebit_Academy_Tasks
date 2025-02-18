@@ -1,0 +1,16 @@
+@layer components {
+    .hyva_checkout-index-index {
+
+        .btn {
+            @apply shadow-none border text-center font-bold;
+
+            &[disabled] {
+                 @apply opacity-25 cursor-not-allowed
+            }
+        }
+
+        .btn-secondary {
+            @apply border-gray-400 bg-gray-200 text-gray-600 hover:bg-gray-100 hover:text-gray-700;
+        }
+    }
+}

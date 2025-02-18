@@ -15749,6 +15749,40 @@ dd.admin__payment-method-wrapper {
 .payment-services-hosted-fields-form .order-errors .admin__fieldset-wrapper .title {
   display: none;
 }
+.mollie-payments-section .heading {
+  background: url('../Hyva_MollieThemeBundle/images/mollie-logo-black-183x54.png') no-repeat 0 11.25%;
+  padding-left: 20rem;
+}
+.mollie-payments-section .heading .heading-title {
+  background-color: #0cf28e;
+  display: inline-block !important;
+  padding: 0.5rem;
+}
+.mollie-payments-section .heading ul {
+  margin-top: 1rem;
+  margin-left: 15px;
+}
+.mollie-payments-section .heading .heading-intro {
+  max-width: 80%;
+  padding-top: 1rem;
+}
+.mollie-payments-section .heading .heading-intro li {
+  padding-bottom: 0.5rem;
+}
+.mollie-payments-section .heading .heading-intro li strong {
+  display: inline;
+}
+.mollie-payments-section .heading .logos img {
+  width: 80px;
+  height: 53px;
+  padding-right: 1rem;
+}
+.mollie-payments-section .button-container {
+  float: right;
+}
+.mollie-payments-section .link-more {
+  margin-left: 5px;
+}
 .hosted-control {
   height: 3.4rem;
   position: relative;

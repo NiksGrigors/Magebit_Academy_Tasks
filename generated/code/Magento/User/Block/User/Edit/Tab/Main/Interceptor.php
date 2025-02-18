@@ -31,4 +31,13 @@ class Interceptor extends \Magento\User\Block\User\Edit\Tab\Main implements \Mag
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'getFormHtml');
         return $pluginInfo ? $this->___callPlugins('getFormHtml', func_get_args(), $pluginInfo) : parent::getFormHtml();
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toHtml()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'toHtml');
+        return $pluginInfo ? $this->___callPlugins('toHtml', func_get_args(), $pluginInfo) : parent::toHtml();
+    }
 }

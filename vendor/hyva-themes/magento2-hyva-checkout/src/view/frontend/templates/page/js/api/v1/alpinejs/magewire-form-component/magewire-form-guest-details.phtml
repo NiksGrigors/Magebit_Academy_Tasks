@@ -1,0 +1,15 @@
+<script>
+    'use strict';
+
+    function initMagewireFormForGuestDetails(form, wire) {
+        return Object.assign(
+            initMagewireForm(form, wire),
+
+            {
+                login() {
+                    this.validate().then(() => wire.trigger('login')).catch(() => {})
+                }
+            }
+        )
+    }
+</script>

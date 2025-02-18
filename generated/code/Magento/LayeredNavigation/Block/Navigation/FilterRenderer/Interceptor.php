@@ -22,4 +22,13 @@ class Interceptor extends \Magento\LayeredNavigation\Block\Navigation\FilterRend
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'render');
         return $pluginInfo ? $this->___callPlugins('render', func_get_args(), $pluginInfo) : parent::render($filter);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toHtml()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'toHtml');
+        return $pluginInfo ? $this->___callPlugins('toHtml', func_get_args(), $pluginInfo) : parent::toHtml();
+    }
 }

@@ -22,4 +22,13 @@ class Interceptor extends \Magento\Multishipping\Block\Checkout\Shipping impleme
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'getItemsBoxTextAfter');
         return $pluginInfo ? $this->___callPlugins('getItemsBoxTextAfter', func_get_args(), $pluginInfo) : parent::getItemsBoxTextAfter($addressEntity);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toHtml()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'toHtml');
+        return $pluginInfo ? $this->___callPlugins('toHtml', func_get_args(), $pluginInfo) : parent::toHtml();
+    }
 }

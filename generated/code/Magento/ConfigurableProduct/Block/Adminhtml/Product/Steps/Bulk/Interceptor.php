@@ -22,4 +22,13 @@ class Interceptor extends \Magento\ConfigurableProduct\Block\Adminhtml\Product\S
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'setTemplate');
         return $pluginInfo ? $this->___callPlugins('setTemplate', func_get_args(), $pluginInfo) : parent::setTemplate($template);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toHtml()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'toHtml');
+        return $pluginInfo ? $this->___callPlugins('toHtml', func_get_args(), $pluginInfo) : parent::toHtml();
+    }
 }

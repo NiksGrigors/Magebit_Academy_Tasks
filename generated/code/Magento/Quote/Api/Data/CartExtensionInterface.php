@@ -16,4 +16,15 @@ interface CartExtensionInterface extends \Magento\Framework\Api\ExtensionAttribu
      * @return $this
      */
     public function setShippingAssignments($shippingAssignments);
+
+    /**
+     * @return string|null
+     */
+    public function getCustomerComment();
+
+    /**
+     * @param string $customerComment
+     * @return $this
+     */
+    public function setCustomerComment($customerComment);
 }

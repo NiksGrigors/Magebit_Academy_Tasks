@@ -23,4 +23,22 @@ class TotalSegmentExtension extends \Magento\Framework\Api\AbstractSimpleObject 
         $this->setData('tax_grandtotal_details', $taxGrandtotalDetails);
         return $this;
     }
+
+    /**
+     * @return \Hyva\Checkout\Api\Data\Quote\TaxDetailsExtensionAttributeInterface[]|null
+     */
+    public function getTaxDetails()
+    {
+        return $this->_get('tax_details');
+    }
+
+    /**
+     * @param \Hyva\Checkout\Api\Data\Quote\TaxDetailsExtensionAttributeInterface[] $taxDetails
+     * @return $this
+     */
+    public function setTaxDetails($taxDetails)
+    {
+        $this->setData('tax_details', $taxDetails);
+        return $this;
+    }
 }

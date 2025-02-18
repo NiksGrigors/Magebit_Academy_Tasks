@@ -51,6 +51,16 @@ module.exports = {
         ],
         dsl: 'less'
     },
+    magebitcustomhyvatheme: {
+        area: 'frontend',
+        name: 'Magebit/custom_hyva_theme',
+        locale: 'en_GB',
+        files: [
+            'css/styles-m',
+            'css/styles-l'
+        ],
+        dsl: 'less'
+    },
     backend: {
         area: 'adminhtml',
         name: 'Magento/backend',

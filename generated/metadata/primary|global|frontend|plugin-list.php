@@ -59,6 +59,11 @@
         'sortOrder' => 0,
         'instance' => 'Magento\\LoginAsCustomerFrontendUi\\Plugin\\InvalidateExpiredSessionPlugin',
       ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
+      ),
     ),
     'Magento\\Framework\\Url\\SecurityInfo' => 
     array (
@@ -866,6 +871,11 @@
         'sortOrder' => 0,
         'instance' => 'Magento\\SendFriend\\Block\\Plugin\\Catalog\\Product\\View',
       ),
+      'polyfill_base_old_price' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\BaseOldPricePolyfill\\AddBaseOldPriceToProductViewBlockJson',
+      ),
     ),
     'Magento\\Catalog\\Model\\Product\\Action' => 
     array (
@@ -1409,6 +1419,11 @@
         'sortOrder' => 0,
         'instance' => 'Magento\\Tax\\Model\\Quote\\GrandTotalDetailsPlugin',
       ),
+      'Hyva_Checkout_Plugin_Magento_Quote_Model_Cart_TotalsConverter' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Checkout\\Plugin\\Magento\\Quote\\Model\\Cart\\TotalsConverter',
+      ),
     ),
     'Magento\\Sales\\Api\\OrderRepositoryInterface' => 
     array (
@@ -1464,12 +1479,28 @@
         'instance' => 'Magento\\Cron\\Model\\Backend\\Config\\Structure\\Converter',
       ),
     ),
+    'Magento\\Framework\\View\\TemplateEngine\\Php' => 
+    array (
+      'php_template_engine_plugin' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\TemplateEngine\\PhpPlugin',
+      ),
+    ),
     'Magento\\Framework\\App\\RouterInterface' => 
     array (
       'csp_aware_plugin' => 
       array (
         'sortOrder' => 0,
         'instance' => 'Magento\\Csp\\Plugin\\CspAwareControllerPlugin',
+      ),
+    ),
+    'Magento\\Deploy\\Package\\Package' => 
+    array (
+      'deploy_package_exclude_tailwind_from_deployment' => 
+      array (
+        'sortOrder' => 99999,
+        'instance' => 'Hyva\\Theme\\Plugin\\Deploy\\Package\\ExcludeTailwindPlugin',
       ),
     ),
     'Magento\\Framework\\View\\Asset\\GroupedCollection' => 
@@ -1575,6 +1606,16 @@
       array (
         'sortOrder' => 0,
         'instance' => 'Magento\\PageCache\\Plugin\\RegisterFormKeyFromCookie',
+      ),
+      'front-controller-hyva-header' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\FrontController\\HyvaHeaderPlugin',
+      ),
+      'Hyva_Checkout_Plugin_Magento_Framework_App_FrontControllerInterface' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Checkout\\Plugin\\Magento\\Framework\\App\\AddHyvaHeaderPlugin',
       ),
     ),
     'Magento\\Directory\\Model\\Currency' => 
@@ -2657,6 +2698,11 @@
         'sortOrder' => 0,
         'instance' => 'Magento\\InventoryInStorePickupMultishipping\\Plugin\\Quote\\RemoveInStorePickupDataInMultishippingModePlugin',
       ),
+      'Hyva_Checkout_Plugin_Magento_Quote_Api_CartRepository' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Checkout\\Plugin\\Magento\\Quote\\Api\\CartRepository',
+      ),
     ),
     'Magento\\Framework\\App\\Http' => 
     array (
@@ -2758,6 +2804,11 @@
         'sortOrder' => 50,
         'instance' => 'Magento\\Captcha\\Model\\Customer\\Plugin\\AjaxLogin',
       ),
+      'hyva_theme' => 
+      array (
+        'sortOrder' => 30,
+        'instance' => 'Hyva\\Theme\\Plugin\\Customer\\AjaxLoginFormkeyValidationPlugin',
+      ),
     ),
     'Magento\\Checkout\\Block\\Cart\\Sidebar' => 
     array (
@@ -2836,6 +2887,11 @@
       array (
         'sortOrder' => 0,
         'instance' => 'Magento\\Persistent\\Model\\Plugin\\CustomerData',
+      ),
+      'customerdata.customer' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\GraphqlTokens\\CustomerData\\CustomerPlugin',
       ),
     ),
     'Magento\\Catalog\\Model\\Product\\Gallery\\CreateHandler' => 
@@ -3168,12 +3224,190 @@
         'instance' => 'Magento\\Wishlist\\Controller\\Index\\Plugin',
       ),
     ),
+    'Magento\\Framework\\View\\File\\FileList\\Collator' => 
+    array (
+      'file_collator_plugin' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\File\\FileList\\CollatorPlugin',
+      ),
+    ),
+    'Magento\\Tax\\Pricing\\Render\\Adjustment' => 
+    array (
+      'fix_core_type_php81_error' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\Tax\\PriceAdjustmentRendererFixPlugin',
+      ),
+    ),
+    'Magento\\Framework\\App\\DeploymentConfig\\Writer' => 
+    array (
+      'hyva_theme' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\HyvaModulesConfig\\UpdateOnModuleStatusChange',
+      ),
+    ),
+    'Magento\\Deploy\\Console\\Command\\App\\ConfigImport\\Processor' => 
+    array (
+      'hyva_theme' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\HyvaModulesConfig\\UpdateOnModuleStatusChange',
+      ),
+    ),
+    'Magento\\Framework\\View\\Asset\\PreProcessor\\Minify' => 
+    array (
+      'hyva_theme' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\Theme\\DisableJsAndCssMinifierForHyvaPlugin',
+      ),
+    ),
+    'Magento\\Framework\\View\\Template\\Html\\Minifier' => 
+    array (
+      'hyva_theme' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => '\\Hyva\\Theme\\Plugin\\Theme\\DisableHtmlMinifierForHyvaPlugin',
+      ),
+    ),
+    'Magento\\Framework\\View\\Design\\Fallback\\Rule\\ModularSwitch' => 
+    array (
+      'hyva_email' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\Email\\Plugin\\FallbackRulePlugin',
+      ),
+      'hyva_compat_module_fallback' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\CompatModuleFallback\\Plugin\\ViewFileOverride',
+      ),
+    ),
+    'Magento\\Deploy\\Package\\PackageFile' => 
+    array (
+      'hyva_email' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\Email\\Plugin\\PackageFilePlugin',
+      ),
+    ),
+    'Magento\\Checkout\\CustomerData\\Cart' => 
+    array (
+      'customerdata.cart' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\GraphqlTokens\\CustomerData\\CartPlugin',
+      ),
+      'cart_private_data_tax' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\Weee\\Plugin\\Checkout\\CustomerData\\Cart',
+      ),
+      'Hyva_Checkout_Plugin_Magento_Checkout_CustomerData_Cart' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Checkout\\Plugin\\Magento\\Checkout\\CustomerData\\AddHyvaCheckoutPlugin',
+      ),
+    ),
+    'Mollie\\Payment\\Model\\MollieConfigProvider' => 
+    array (
+      'hyva_themes' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\MollieThemeBundle\\Plugin\\EnsureSectionDataGenerationWithoutMollieApiKey',
+      ),
+    ),
+    'Magento\\Framework\\View\\Layout' => 
+    array (
+      'mSPDevToolsLayout' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'MSP\\DevTools\\Plugin\\View\\LayoutPlugin',
+      ),
+      'customer-session-depersonalize' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Magento\\Customer\\Model\\Layout\\DepersonalizePlugin',
+      ),
+      'catalog-session-depersonalize' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Magento\\Catalog\\Model\\Layout\\DepersonalizePlugin',
+      ),
+      'checkout-session-depersonalize' => 
+      array (
+        'sortOrder' => 20,
+        'instance' => 'Magento\\Checkout\\Model\\Layout\\DepersonalizePlugin',
+      ),
+      'tax-session-depersonalize' => 
+      array (
+        'sortOrder' => 20,
+        'instance' => 'Magento\\Tax\\Model\\Layout\\DepersonalizePlugin',
+      ),
+      'layout-model-caching-unique-name' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\PageCache\\Model\\Layout\\LayoutPlugin',
+      ),
+      'core-session-depersonalize' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'Magento\\PageCache\\Model\\Layout\\DepersonalizePlugin',
+      ),
+      'persistent-session-depersonalize' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Magento\\Persistent\\Model\\Layout\\DepersonalizePlugin',
+      ),
+    ),
+    'Magento\\Framework\\Event\\ManagerInterface' => 
+    array (
+      'mSPDevToolsManagerInterface' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'MSP\\DevTools\\Plugin\\Event\\ManagerInterfacePlugin',
+      ),
+    ),
+    'Magento\\Framework\\HTTP\\PhpEnvironment\\Response' => 
+    array (
+      'mSPDevToolsResponse' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'MSP\\DevTools\\Plugin\\PhpEnvironment\\ResponsePlugin',
+      ),
+    ),
+    'Magento\\Framework\\View\\Element\\AbstractBlock' => 
+    array (
+      'mSPDevToolsAbstractBlock' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'MSP\\DevTools\\Plugin\\View\\Element\\AbstractBlockPlugin',
+      ),
+    ),
     'Magebit\\GridRender\\Controller\\Adminhtml\\Item\\Save' => 
     array (
       'magebit_gridrender_save_action_plugin' => 
       array (
         'sortOrder' => 0,
         'instance' => 'Magebit\\GridRender\\Plugin\\SaveActionPlugin',
+      ),
+    ),
+    'Magento\\Sales\\Api\\OrderStatusHistoryRepositoryInterface' => 
+    array (
+      'Hyva_Checkout_Plugin_Magento_Sales_Api_OrderStatusHistoryRepository' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Checkout\\Plugin\\Magento\\Sales\\Api\\OrderStatusHistoryRepository',
+      ),
+    ),
+    'Magento\\Sales\\Api\\Data\\OrderStatusHistoryInterface' => 
+    array (
+      'Hyva_Checkout_Plugin_Magento_Sales_Api_Data_OrderStatusHistoryInterface' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Checkout\\Plugin\\Magento\\Sales\\Api\\Data\\OrderStatusHistoryInterface',
       ),
     ),
     'Magento\\Framework\\View\\Asset\\Minification' => 
@@ -3260,44 +3494,6 @@
       array (
         'sortOrder' => -10,
         'instance' => 'Magento\\Theme\\Controller\\Result\\JsFooterPlugin',
-      ),
-    ),
-    'Magento\\Framework\\View\\Layout' => 
-    array (
-      'customer-session-depersonalize' => 
-      array (
-        'sortOrder' => 10,
-        'instance' => 'Magento\\Customer\\Model\\Layout\\DepersonalizePlugin',
-      ),
-      'catalog-session-depersonalize' => 
-      array (
-        'sortOrder' => 10,
-        'instance' => 'Magento\\Catalog\\Model\\Layout\\DepersonalizePlugin',
-      ),
-      'checkout-session-depersonalize' => 
-      array (
-        'sortOrder' => 20,
-        'instance' => 'Magento\\Checkout\\Model\\Layout\\DepersonalizePlugin',
-      ),
-      'tax-session-depersonalize' => 
-      array (
-        'sortOrder' => 20,
-        'instance' => 'Magento\\Tax\\Model\\Layout\\DepersonalizePlugin',
-      ),
-      'layout-model-caching-unique-name' => 
-      array (
-        'sortOrder' => 0,
-        'instance' => 'Magento\\PageCache\\Model\\Layout\\LayoutPlugin',
-      ),
-      'core-session-depersonalize' => 
-      array (
-        'sortOrder' => 1,
-        'instance' => 'Magento\\PageCache\\Model\\Layout\\DepersonalizePlugin',
-      ),
-      'persistent-session-depersonalize' => 
-      array (
-        'sortOrder' => 10,
-        'instance' => 'Magento\\Persistent\\Model\\Layout\\DepersonalizePlugin',
       ),
     ),
     'Magento\\Customer\\Controller\\AccountInterface' => 
@@ -3435,14 +3631,6 @@
         'instance' => 'Magento\\PageBuilder\\Plugin\\Catalog\\Block\\Product\\ProductsListPlugin',
       ),
     ),
-    'Magento\\Checkout\\CustomerData\\Cart' => 
-    array (
-      'cart_private_data_tax' => 
-      array (
-        'sortOrder' => 0,
-        'instance' => 'Magento\\Weee\\Plugin\\Checkout\\CustomerData\\Cart',
-      ),
-    ),
     'Magento\\Contact\\Block\\ContactForm' => 
     array (
       'set_view_model' => 
@@ -3530,6 +3718,11 @@
         'sortOrder' => 0,
         'instance' => 'Magento\\InventoryConfigurableProductFrontendUi\\Plugin\\ConfigurableProduct\\Block\\Product\\View\\Type\\AddAdditionalInfo',
       ),
+      'polyfill_base_old_price' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\BaseOldPricePolyfill\\AddBaseOldPriceToConfigurableProductOptions',
+      ),
     ),
     'Magento\\InventorySales\\Model\\AreProductsSalable' => 
     array (
@@ -3566,6 +3759,11 @@
       array (
         'sortOrder' => 0,
         'instance' => 'Magento\\Paypal\\Plugin\\CheckoutIndex',
+      ),
+      'Hyva_Checkout_Plugin_Magento_Checkout_Controller_Index_Index' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Checkout\\Plugin\\Magento\\Checkout\\Controller\\Index\\Index',
       ),
     ),
     'Magento\\Checkout\\Model\\Cart' => 
@@ -3719,6 +3917,91 @@
         'sortOrder' => 0,
         'instance' => 'Magento\\Wishlist\\Plugin\\Helper\\Product\\View',
       ),
+      'update_canonical_page_param_product_review' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\Catalog\\Helper\\Product\\ProductReviewPaginationCanonicalUrlFixPlugin',
+      ),
+    ),
+    'Magento\\Customer\\Controller\\Section\\Load' => 
+    array (
+      'customer_controller_section_load' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\Customer\\SectionLoadPlugin',
+      ),
+    ),
+    'Magento\\Catalog\\CustomerData\\CompareProducts' => 
+    array (
+      'add_images' => 
+      array (
+        'sortOrder' => 100,
+        'instance' => 'Hyva\\Theme\\Plugin\\CompareCustomerData\\AddImages',
+      ),
+    ),
+    'Magento\\PageCache\\Controller\\Block\\Esi' => 
+    array (
+      'add_view_model_cache_tags' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\PageCache\\AddViewModelCacheTagesToEsiResponse',
+      ),
+    ),
+    'Magento\\Framework\\View\\LayoutInterface' => 
+    array (
+      'save_double_cached_block_cache_tags' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\PageCache\\SaveTagsForCachedBlocks',
+      ),
+    ),
+    'Magento\\Theme\\Controller\\Result\\JsFooterPlugin' => 
+    array (
+      'disable_move_js_to_footer_on_some_pages' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\Theme\\DisableJsFooterPlugin',
+      ),
+    ),
+    'Magento\\PageBuilder\\Plugin\\Filter\\TemplatePlugin' => 
+    array (
+      'convertBackgroundImages_override' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\PageBuilder\\OverrideTemplatePlugin',
+      ),
+    ),
+    'Magento\\ConfigurableProduct\\Model\\Product\\Type\\Configurable\\Variations\\Prices' => 
+    array (
+      'polyfill_base_old_price' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\BaseOldPricePolyfill\\AddBaseOldPriceToConfigurableProductPriceVariations',
+      ),
+    ),
+    'Magento\\PaymentServicesPaypal\\Observer\\AddCheckoutComponents' => 
+    array (
+      'prevent_payment_services_breaking_section_data' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\AdobePaymentServices\\FixSectionDataIfPaymentServicesAreDisabled',
+      ),
+    ),
+    'Magento\\LoginAsCustomerFrontendUi\\Controller\\Login\\Index' => 
+    array (
+      'hyva_theme' => 
+      array (
+        'sortOrder' => 30,
+        'instance' => 'Hyva\\Theme\\Plugin\\LoginAsCustomer\\ImplyFrontendPostRequestPlugin',
+      ),
+    ),
+    'Hyva\\Checkout\\Model\\Config' => 
+    array (
+      'Hyva_Checkout_Plugin_Model_Config' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Checkout\\Plugin\\Model\\Config',
+      ),
     ),
     'Magento\\Catalog\\Block\\Product\\ListProduct' => 
     array (
@@ -3785,7 +4068,14 @@
     'Magento\\Framework\\App\\Response\\HttpInterface' => NULL,
     'Magento\\Framework\\ObjectManager\\ResetAfterRequestInterface' => NULL,
     'Magento\\Framework\\App\\ResponseInterface' => NULL,
-    'Magento\\Framework\\HTTP\\PhpEnvironment\\Response' => NULL,
+    'Magento\\Framework\\HTTP\\PhpEnvironment\\Response' => 
+    array (
+      'mSPDevToolsResponse' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'MSP\\DevTools\\Plugin\\PhpEnvironment\\ResponsePlugin',
+      ),
+    ),
     'Magento\\Framework\\App\\Response\\Http' => 
     array (
       'genericHeaderPlugin' => 
@@ -3797,6 +4087,11 @@
       array (
         'sortOrder' => 0,
         'instance' => 'Magento\\PageCache\\Model\\App\\Response\\HttpPlugin',
+      ),
+      'mSPDevToolsResponse' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'MSP\\DevTools\\Plugin\\PhpEnvironment\\ResponsePlugin',
       ),
     ),
     'Magento\\Framework\\App\\ActionInterface' => 
@@ -3835,6 +4130,11 @@
       array (
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
+      ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
       ),
     ),
     'Magento\\Framework\\Url\\SecurityInfoInterface' => NULL,
@@ -3925,6 +4225,16 @@
         'sortOrder' => 0,
         'instance' => 'Magento\\PageCache\\Plugin\\RegisterFormKeyFromCookie',
       ),
+      'front-controller-hyva-header' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\FrontController\\HyvaHeaderPlugin',
+      ),
+      'Hyva_Checkout_Plugin_Magento_Framework_App_FrontControllerInterface' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Checkout\\Plugin\\Magento\\Framework\\App\\AddHyvaHeaderPlugin',
+      ),
       'configHash' => 
       array (
         'sortOrder' => 50,
@@ -3947,6 +4257,16 @@
       array (
         'sortOrder' => 0,
         'instance' => 'Magento\\PageCache\\Plugin\\RegisterFormKeyFromCookie',
+      ),
+      'front-controller-hyva-header' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\FrontController\\HyvaHeaderPlugin',
+      ),
+      'Hyva_Checkout_Plugin_Magento_Framework_App_FrontControllerInterface' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Checkout\\Plugin\\Magento\\Framework\\App\\AddHyvaHeaderPlugin',
       ),
       'storeCookieValidate' => 
       array (
@@ -4011,6 +4331,11 @@
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
       ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
+      ),
       'contextPlugin' => 
       array (
         'sortOrder' => 10,
@@ -4058,6 +4383,11 @@
       array (
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
+      ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
       ),
       'contextPlugin' => 
       array (
@@ -4107,6 +4437,11 @@
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
       ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
+      ),
       'contextPlugin' => 
       array (
         'sortOrder' => 10,
@@ -4154,6 +4489,11 @@
       array (
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
+      ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
       ),
       'contextPlugin' => 
       array (
@@ -4208,6 +4548,11 @@
       array (
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
+      ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
       ),
       'contextPlugin' => 
       array (
@@ -4626,6 +4971,11 @@
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
       ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
+      ),
       'contextPlugin' => 
       array (
         'sortOrder' => 10,
@@ -4680,6 +5030,11 @@
       array (
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
+      ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
       ),
       'contextPlugin' => 
       array (
@@ -4863,14 +5218,33 @@
       ),
     ),
     'Magento\\Framework\\View\\Element\\BlockInterface' => NULL,
-    'Magento\\Framework\\View\\Element\\AbstractBlock' => NULL,
-    'Magento\\Framework\\View\\Element\\Template' => NULL,
+    'Magento\\Framework\\View\\Element\\AbstractBlock' => 
+    array (
+      'mSPDevToolsAbstractBlock' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'MSP\\DevTools\\Plugin\\View\\Element\\AbstractBlockPlugin',
+      ),
+    ),
+    'Magento\\Framework\\View\\Element\\Template' => 
+    array (
+      'mSPDevToolsAbstractBlock' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'MSP\\DevTools\\Plugin\\View\\Element\\AbstractBlockPlugin',
+      ),
+    ),
     'Magento\\Theme\\Block\\Html\\Topmenu' => 
     array (
       'catalogTopmenu' => 
       array (
         'sortOrder' => 0,
         'instance' => 'Magento\\Catalog\\Plugin\\Block\\Topmenu',
+      ),
+      'mSPDevToolsAbstractBlock' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'MSP\\DevTools\\Plugin\\View\\Element\\AbstractBlockPlugin',
       ),
     ),
     'Magento\\Framework\\Mview\\View\\StateInterface' => 
@@ -5227,6 +5601,11 @@
         'sortOrder' => 0,
         'instance' => 'Magento\\Swatches\\Model\\Plugin\\ProductImage',
       ),
+      'mSPDevToolsAbstractBlock' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'MSP\\DevTools\\Plugin\\View\\Element\\AbstractBlockPlugin',
+      ),
     ),
     'Magento\\Catalog\\Block\\Product\\View' => 
     array (
@@ -5244,6 +5623,16 @@
       array (
         'sortOrder' => 0,
         'instance' => 'Magento\\SendFriend\\Block\\Plugin\\Catalog\\Product\\View',
+      ),
+      'polyfill_base_old_price' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\BaseOldPricePolyfill\\AddBaseOldPriceToProductViewBlockJson',
+      ),
+      'mSPDevToolsAbstractBlock' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'MSP\\DevTools\\Plugin\\View\\Element\\AbstractBlockPlugin',
       ),
     ),
     'Magento\\Catalog\\Model\\Product\\Action' => 
@@ -5311,6 +5700,11 @@
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
       ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
+      ),
       'contextPlugin' => 
       array (
         'sortOrder' => 10,
@@ -5358,6 +5752,11 @@
       array (
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
+      ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
       ),
       'contextPlugin' => 
       array (
@@ -5417,6 +5816,11 @@
       array (
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
+      ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
       ),
       'contextPlugin' => 
       array (
@@ -5570,6 +5974,11 @@
         'sortOrder' => 0,
         'instance' => 'Magento\\InventoryInStorePickupMultishipping\\Plugin\\Quote\\RemoveInStorePickupDataInMultishippingModePlugin',
       ),
+      'Hyva_Checkout_Plugin_Magento_Quote_Api_CartRepository' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Checkout\\Plugin\\Magento\\Quote\\Api\\CartRepository',
+      ),
     ),
     'Magento\\Quote\\Model\\QuoteRepository' => 
     array (
@@ -5577,6 +5986,11 @@
       array (
         'sortOrder' => 0,
         'instance' => 'Magento\\InventoryInStorePickupMultishipping\\Plugin\\Quote\\RemoveInStorePickupDataInMultishippingModePlugin',
+      ),
+      'Hyva_Checkout_Plugin_Magento_Quote_Api_CartRepository' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Checkout\\Plugin\\Magento\\Quote\\Api\\CartRepository',
       ),
       'multishipping_quote_repository' => 
       array (
@@ -5775,6 +6189,11 @@
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
       ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
+      ),
       'contextPlugin' => 
       array (
         'sortOrder' => 10,
@@ -5822,6 +6241,11 @@
       array (
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
+      ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
       ),
       'contextPlugin' => 
       array (
@@ -5877,6 +6301,11 @@
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
       ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
+      ),
       'contextPlugin' => 
       array (
         'sortOrder' => 10,
@@ -5930,6 +6359,11 @@
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
       ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
+      ),
       'contextPlugin' => 
       array (
         'sortOrder' => 10,
@@ -5977,6 +6411,11 @@
       array (
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
+      ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
       ),
       'contextPlugin' => 
       array (
@@ -6031,6 +6470,11 @@
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
       ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
+      ),
       'contextPlugin' => 
       array (
         'sortOrder' => 10,
@@ -6078,6 +6522,11 @@
       array (
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
+      ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
       ),
       'contextPlugin' => 
       array (
@@ -6132,6 +6581,11 @@
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
       ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
+      ),
       'contextPlugin' => 
       array (
         'sortOrder' => 10,
@@ -6179,6 +6633,11 @@
       array (
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
+      ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
       ),
       'contextPlugin' => 
       array (
@@ -6233,6 +6692,11 @@
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
       ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
+      ),
       'contextPlugin' => 
       array (
         'sortOrder' => 10,
@@ -6280,6 +6744,11 @@
       array (
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
+      ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
       ),
       'contextPlugin' => 
       array (
@@ -6334,6 +6803,11 @@
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
       ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
+      ),
       'contextPlugin' => 
       array (
         'sortOrder' => 10,
@@ -6381,6 +6855,11 @@
       array (
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
+      ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
       ),
       'contextPlugin' => 
       array (
@@ -6435,6 +6914,11 @@
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
       ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
+      ),
       'contextPlugin' => 
       array (
         'sortOrder' => 10,
@@ -6482,6 +6966,11 @@
       array (
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
+      ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
       ),
       'contextPlugin' => 
       array (
@@ -6536,6 +7025,11 @@
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
       ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
+      ),
       'contextPlugin' => 
       array (
         'sortOrder' => 10,
@@ -6583,6 +7077,11 @@
       array (
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
+      ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
       ),
       'contextPlugin' => 
       array (
@@ -6637,6 +7136,11 @@
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
       ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
+      ),
       'contextPlugin' => 
       array (
         'sortOrder' => 10,
@@ -6689,6 +7193,11 @@
       array (
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
+      ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
       ),
       'contextPlugin' => 
       array (
@@ -6826,6 +7335,11 @@
         'sortOrder' => 0,
         'instance' => 'Magento\\Swatches\\Model\\Plugin\\ProductImage',
       ),
+      'mSPDevToolsAbstractBlock' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'MSP\\DevTools\\Plugin\\View\\Element\\AbstractBlockPlugin',
+      ),
     ),
     'Magento\\Catalog\\Block\\Product\\View\\Gallery' => 
     array (
@@ -6833,6 +7347,11 @@
       array (
         'sortOrder' => 0,
         'instance' => 'Magento\\Swatches\\Model\\Plugin\\ProductImage',
+      ),
+      'mSPDevToolsAbstractBlock' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'MSP\\DevTools\\Plugin\\View\\Element\\AbstractBlockPlugin',
       ),
     ),
     'Magento\\ProductVideo\\Block\\Product\\View\\Gallery' => 
@@ -6846,6 +7365,11 @@
       array (
         'sortOrder' => 0,
         'instance' => 'Magento\\ConfigurableProduct\\Block\\Plugin\\Product\\Media\\Gallery',
+      ),
+      'mSPDevToolsAbstractBlock' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'MSP\\DevTools\\Plugin\\View\\Element\\AbstractBlockPlugin',
       ),
     ),
     'Magento\\Catalog\\Model\\Product\\Type\\AbstractType' => 
@@ -6958,6 +7482,11 @@
         'sortOrder' => 0,
         'instance' => 'Magento\\Tax\\Model\\Quote\\GrandTotalDetailsPlugin',
       ),
+      'Hyva_Checkout_Plugin_Magento_Quote_Model_Cart_TotalsConverter' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Checkout\\Plugin\\Magento\\Quote\\Model\\Cart\\TotalsConverter',
+      ),
     ),
     'Magento\\Sales\\Api\\OrderRepositoryInterface' => 
     array (
@@ -7014,12 +7543,29 @@
         'instance' => 'Magento\\Cron\\Model\\Backend\\Config\\Structure\\Converter',
       ),
     ),
+    'Magento\\Framework\\View\\TemplateEngineInterface' => NULL,
+    'Magento\\Framework\\View\\TemplateEngine\\Php' => 
+    array (
+      'php_template_engine_plugin' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\TemplateEngine\\PhpPlugin',
+      ),
+    ),
     'Magento\\Framework\\App\\RouterInterface' => 
     array (
       'csp_aware_plugin' => 
       array (
         'sortOrder' => 0,
         'instance' => 'Magento\\Csp\\Plugin\\CspAwareControllerPlugin',
+      ),
+    ),
+    'Magento\\Deploy\\Package\\Package' => 
+    array (
+      'deploy_package_exclude_tailwind_from_deployment' => 
+      array (
+        'sortOrder' => 99999,
+        'instance' => 'Hyva\\Theme\\Plugin\\Deploy\\Package\\ExcludeTailwindPlugin',
       ),
     ),
     'Magento\\Framework\\View\\Asset\\Collection' => NULL,
@@ -7260,6 +7806,11 @@
       array (
         'sortOrder' => 0,
         'instance' => 'Magento\\Fedex\\Plugin\\Block\\Tracking\\PopupDeliveryDate',
+      ),
+      'mSPDevToolsAbstractBlock' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'MSP\\DevTools\\Plugin\\View\\Element\\AbstractBlockPlugin',
       ),
     ),
     'Magento\\Framework\\App\\PageCache\\IdentifierInterface' => NULL,
@@ -8167,6 +8718,11 @@
         'sortOrder' => 0,
         'instance' => 'Magento\\InventorySalesFrontendUi\\Plugin\\Block\\Stockqty\\AbstractStockqtyPlugin',
       ),
+      'mSPDevToolsAbstractBlock' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'MSP\\DevTools\\Plugin\\View\\Element\\AbstractBlockPlugin',
+      ),
     ),
     'Magento\\Setup\\Model\\FixtureGenerator\\EntityGeneratorFactory' => 
     array (
@@ -8412,6 +8968,11 @@
         'sortOrder' => 0,
         'instance' => 'Magento\\Vault\\Plugin\\PaymentMethodProcess',
       ),
+      'mSPDevToolsAbstractBlock' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'MSP\\DevTools\\Plugin\\View\\Element\\AbstractBlockPlugin',
+      ),
     ),
     'Magento\\Customer\\Controller\\Ajax\\Login' => 
     array (
@@ -8455,10 +9016,20 @@
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
       ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
+      ),
       'contextPlugin' => 
       array (
         'sortOrder' => 10,
         'instance' => 'Magento\\Store\\App\\Action\\Plugin\\Context',
+      ),
+      'hyva_theme' => 
+      array (
+        'sortOrder' => 30,
+        'instance' => 'Hyva\\Theme\\Plugin\\Customer\\AjaxLoginFormkeyValidationPlugin',
       ),
       'captcha_validation' => 
       array (
@@ -8466,7 +9037,14 @@
         'instance' => 'Magento\\Captcha\\Model\\Customer\\Plugin\\AjaxLogin',
       ),
     ),
-    'Magento\\Checkout\\Block\\Cart\\AbstractCart' => NULL,
+    'Magento\\Checkout\\Block\\Cart\\AbstractCart' => 
+    array (
+      'mSPDevToolsAbstractBlock' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'MSP\\DevTools\\Plugin\\View\\Element\\AbstractBlockPlugin',
+      ),
+    ),
     'Magento\\Checkout\\Block\\Cart\\Sidebar' => 
     array (
       'addAgreementsToMinicartConfig' => 
@@ -8478,6 +9056,11 @@
       array (
         'sortOrder' => 0,
         'instance' => 'Magento\\Customer\\Model\\Cart\\ConfigPlugin',
+      ),
+      'mSPDevToolsAbstractBlock' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'MSP\\DevTools\\Plugin\\View\\Element\\AbstractBlockPlugin',
       ),
       'login_captcha' => 
       array (
@@ -8556,6 +9139,11 @@
       array (
         'sortOrder' => 0,
         'instance' => 'Magento\\Persistent\\Model\\Plugin\\CustomerData',
+      ),
+      'customerdata.customer' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\GraphqlTokens\\CustomerData\\CustomerPlugin',
       ),
     ),
     'Magento\\Framework\\EntityManager\\Operation\\ExtensionInterface' => NULL,
@@ -8839,6 +9427,11 @@
     'Magento\\LayeredNavigation\\Block\\Navigation\\FilterRendererInterface' => NULL,
     'Magento\\LayeredNavigation\\Block\\Navigation\\FilterRenderer' => 
     array (
+      'mSPDevToolsAbstractBlock' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'MSP\\DevTools\\Plugin\\View\\Element\\AbstractBlockPlugin',
+      ),
       'swatches_layered_renderer' => 
       array (
         'sortOrder' => 1,
@@ -8890,6 +9483,16 @@
       array (
         'sortOrder' => 0,
         'instance' => 'Magento\\PageCache\\Plugin\\RegisterFormKeyFromCookie',
+      ),
+      'front-controller-hyva-header' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\FrontController\\HyvaHeaderPlugin',
+      ),
+      'Hyva_Checkout_Plugin_Magento_Framework_App_FrontControllerInterface' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Checkout\\Plugin\\Magento\\Framework\\App\\AddHyvaHeaderPlugin',
       ),
       'webapiContorllerRestAsync' => 
       array (
@@ -8962,6 +9565,11 @@
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
       ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
+      ),
       'contextPlugin' => 
       array (
         'sortOrder' => 10,
@@ -8971,6 +9579,186 @@
       array (
         'sortOrder' => 10,
         'instance' => 'Magento\\Wishlist\\Controller\\Index\\Plugin',
+      ),
+    ),
+    'Magento\\Framework\\View\\File\\FileList\\CollateInterface' => NULL,
+    'Magento\\Framework\\View\\File\\FileList\\Collator' => 
+    array (
+      'file_collator_plugin' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\File\\FileList\\CollatorPlugin',
+      ),
+    ),
+    'Magento\\Framework\\Pricing\\Render\\AdjustmentRenderInterface' => NULL,
+    'Magento\\Framework\\Pricing\\Render\\AbstractAdjustment' => 
+    array (
+      'mSPDevToolsAbstractBlock' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'MSP\\DevTools\\Plugin\\View\\Element\\AbstractBlockPlugin',
+      ),
+    ),
+    'Magento\\Tax\\Pricing\\Render\\Adjustment' => 
+    array (
+      'fix_core_type_php81_error' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\Tax\\PriceAdjustmentRendererFixPlugin',
+      ),
+      'mSPDevToolsAbstractBlock' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'MSP\\DevTools\\Plugin\\View\\Element\\AbstractBlockPlugin',
+      ),
+    ),
+    'Magento\\Framework\\App\\DeploymentConfig\\Writer' => 
+    array (
+      'hyva_theme' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\HyvaModulesConfig\\UpdateOnModuleStatusChange',
+      ),
+    ),
+    'Magento\\Deploy\\Console\\Command\\App\\ConfigImport\\Processor' => 
+    array (
+      'hyva_theme' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\HyvaModulesConfig\\UpdateOnModuleStatusChange',
+      ),
+    ),
+    'Magento\\Framework\\View\\Asset\\PreProcessorInterface' => NULL,
+    'Magento\\Framework\\View\\Asset\\PreProcessor\\Minify' => 
+    array (
+      'hyva_theme' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\Theme\\DisableJsAndCssMinifierForHyvaPlugin',
+      ),
+    ),
+    'Magento\\Framework\\View\\Template\\Html\\MinifierInterface' => NULL,
+    'Magento\\Framework\\View\\Template\\Html\\Minifier' => 
+    array (
+      'hyva_theme' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\Theme\\DisableHtmlMinifierForHyvaPlugin',
+      ),
+    ),
+    'Magento\\Framework\\View\\Design\\Fallback\\Rule\\RuleInterface' => NULL,
+    'Magento\\Framework\\View\\Design\\Fallback\\Rule\\ModularSwitch' => 
+    array (
+      'hyva_compat_module_fallback' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\CompatModuleFallback\\Plugin\\ViewFileOverride',
+      ),
+      'hyva_email' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\Email\\Plugin\\FallbackRulePlugin',
+      ),
+    ),
+    'Magento\\Framework\\View\\Asset' => NULL,
+    'Magento\\Deploy\\Package\\PackageFile' => 
+    array (
+      'hyva_email' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\Email\\Plugin\\PackageFilePlugin',
+      ),
+    ),
+    'Magento\\Checkout\\CustomerData\\Cart' => 
+    array (
+      'customerdata.cart' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\GraphqlTokens\\CustomerData\\CartPlugin',
+      ),
+      'cart_private_data_tax' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\Weee\\Plugin\\Checkout\\CustomerData\\Cart',
+      ),
+      'Hyva_Checkout_Plugin_Magento_Checkout_CustomerData_Cart' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Checkout\\Plugin\\Magento\\Checkout\\CustomerData\\AddHyvaCheckoutPlugin',
+      ),
+    ),
+    'Magento\\Checkout\\Model\\ConfigProviderInterface' => NULL,
+    'Mollie\\Payment\\Model\\MollieConfigProvider' => 
+    array (
+      'hyva_themes' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\MollieThemeBundle\\Plugin\\EnsureSectionDataGenerationWithoutMollieApiKey',
+      ),
+    ),
+    'Magento\\Framework\\Simplexml\\Config' => NULL,
+    'Magento\\Framework\\View\\LayoutInterface' => 
+    array (
+      'save_double_cached_block_cache_tags' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\PageCache\\SaveTagsForCachedBlocks',
+      ),
+    ),
+    'Magento\\Framework\\View\\Layout' => 
+    array (
+      'save_double_cached_block_cache_tags' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\PageCache\\SaveTagsForCachedBlocks',
+      ),
+      'layout-model-caching-unique-name' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\PageCache\\Model\\Layout\\LayoutPlugin',
+      ),
+      'mSPDevToolsLayout' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'MSP\\DevTools\\Plugin\\View\\LayoutPlugin',
+      ),
+      'core-session-depersonalize' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'Magento\\PageCache\\Model\\Layout\\DepersonalizePlugin',
+      ),
+      'customer-session-depersonalize' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Magento\\Customer\\Model\\Layout\\DepersonalizePlugin',
+      ),
+      'catalog-session-depersonalize' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Magento\\Catalog\\Model\\Layout\\DepersonalizePlugin',
+      ),
+      'persistent-session-depersonalize' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Magento\\Persistent\\Model\\Layout\\DepersonalizePlugin',
+      ),
+      'checkout-session-depersonalize' => 
+      array (
+        'sortOrder' => 20,
+        'instance' => 'Magento\\Checkout\\Model\\Layout\\DepersonalizePlugin',
+      ),
+      'tax-session-depersonalize' => 
+      array (
+        'sortOrder' => 20,
+        'instance' => 'Magento\\Tax\\Model\\Layout\\DepersonalizePlugin',
+      ),
+    ),
+    'Magento\\Framework\\Event\\ManagerInterface' => 
+    array (
+      'mSPDevToolsManagerInterface' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'MSP\\DevTools\\Plugin\\Event\\ManagerInterfacePlugin',
       ),
     ),
     'Magebit\\GridRender\\Controller\\Adminhtml\\Item\\Save' => 
@@ -9020,10 +9808,31 @@
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
       ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
+      ),
       'contextPlugin' => 
       array (
         'sortOrder' => 10,
         'instance' => 'Magento\\Store\\App\\Action\\Plugin\\Context',
+      ),
+    ),
+    'Magento\\Sales\\Api\\OrderStatusHistoryRepositoryInterface' => 
+    array (
+      'Hyva_Checkout_Plugin_Magento_Sales_Api_OrderStatusHistoryRepository' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Checkout\\Plugin\\Magento\\Sales\\Api\\OrderStatusHistoryRepository',
+      ),
+    ),
+    'Magento\\Sales\\Api\\Data\\OrderStatusHistoryInterface' => 
+    array (
+      'Hyva_Checkout_Plugin_Magento_Sales_Api_Data_OrderStatusHistoryInterface' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Checkout\\Plugin\\Magento\\Sales\\Api\\Data\\OrderStatusHistoryInterface',
       ),
     ),
     'Magento\\Framework\\View\\Asset\\Minification' => 
@@ -9134,46 +9943,6 @@
         'instance' => 'Magento\\PageCache\\Model\\Controller\\Result\\VarnishPlugin',
       ),
     ),
-    'Magento\\Framework\\Simplexml\\Config' => NULL,
-    'Magento\\Framework\\View\\LayoutInterface' => NULL,
-    'Magento\\Framework\\View\\Layout' => 
-    array (
-      'layout-model-caching-unique-name' => 
-      array (
-        'sortOrder' => 0,
-        'instance' => 'Magento\\PageCache\\Model\\Layout\\LayoutPlugin',
-      ),
-      'core-session-depersonalize' => 
-      array (
-        'sortOrder' => 1,
-        'instance' => 'Magento\\PageCache\\Model\\Layout\\DepersonalizePlugin',
-      ),
-      'customer-session-depersonalize' => 
-      array (
-        'sortOrder' => 10,
-        'instance' => 'Magento\\Customer\\Model\\Layout\\DepersonalizePlugin',
-      ),
-      'catalog-session-depersonalize' => 
-      array (
-        'sortOrder' => 10,
-        'instance' => 'Magento\\Catalog\\Model\\Layout\\DepersonalizePlugin',
-      ),
-      'persistent-session-depersonalize' => 
-      array (
-        'sortOrder' => 10,
-        'instance' => 'Magento\\Persistent\\Model\\Layout\\DepersonalizePlugin',
-      ),
-      'checkout-session-depersonalize' => 
-      array (
-        'sortOrder' => 20,
-        'instance' => 'Magento\\Checkout\\Model\\Layout\\DepersonalizePlugin',
-      ),
-      'tax-session-depersonalize' => 
-      array (
-        'sortOrder' => 20,
-        'instance' => 'Magento\\Tax\\Model\\Layout\\DepersonalizePlugin',
-      ),
-    ),
     'Magento\\Customer\\Controller\\AccountInterface' => 
     array (
       'customer_account' => 
@@ -9207,6 +9976,11 @@
       array (
         'sortOrder' => 0,
         'instance' => 'Magento\\Catalog\\Block\\Category\\Plugin\\PriceBoxTags',
+      ),
+      'mSPDevToolsAbstractBlock' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'MSP\\DevTools\\Plugin\\View\\Element\\AbstractBlockPlugin',
       ),
     ),
     'Magento\\Framework\\App\\ResourceConnection' => 
@@ -9297,6 +10071,11 @@
         'sortOrder' => 0,
         'instance' => 'Magento\\Swatches\\Model\\Plugin\\ProductImage',
       ),
+      'mSPDevToolsAbstractBlock' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'MSP\\DevTools\\Plugin\\View\\Element\\AbstractBlockPlugin',
+      ),
       'pagebuilder_product_list' => 
       array (
         'sortOrder' => 1,
@@ -9308,20 +10087,17 @@
         'instance' => 'Magento\\ConfigurableProduct\\Plugin\\CatalogWidget\\Block\\Product\\ProductsListPlugin',
       ),
     ),
-    'Magento\\Checkout\\CustomerData\\Cart' => 
-    array (
-      'cart_private_data_tax' => 
-      array (
-        'sortOrder' => 0,
-        'instance' => 'Magento\\Weee\\Plugin\\Checkout\\CustomerData\\Cart',
-      ),
-    ),
     'Magento\\Contact\\Block\\ContactForm' => 
     array (
       'set_view_model' => 
       array (
         'sortOrder' => 0,
         'instance' => 'Magento\\Contact\\Plugin\\UserDataProvider\\ViewModel',
+      ),
+      'mSPDevToolsAbstractBlock' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'MSP\\DevTools\\Plugin\\View\\Element\\AbstractBlockPlugin',
       ),
     ),
     'Magento\\Framework\\View\\TemplateEngineFactory' => 
@@ -9340,13 +10116,25 @@
         'instance' => 'Magento\\GroupedProduct\\Model\\Wishlist\\Product\\Item',
       ),
     ),
-    'Magento\\Sales\\Block\\Items\\AbstractItems' => NULL,
+    'Magento\\Sales\\Block\\Items\\AbstractItems' => 
+    array (
+      'mSPDevToolsAbstractBlock' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'MSP\\DevTools\\Plugin\\View\\Element\\AbstractBlockPlugin',
+      ),
+    ),
     'Magento\\Multishipping\\Block\\Checkout\\Shipping' => 
     array (
       'getItemsBoxTextAfter' => 
       array (
         'sortOrder' => 0,
         'instance' => 'Magento\\GiftMessage\\Block\\Message\\Multishipping\\Plugin\\ItemsBox',
+      ),
+      'mSPDevToolsAbstractBlock' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'MSP\\DevTools\\Plugin\\View\\Element\\AbstractBlockPlugin',
       ),
     ),
     'Magento\\Checkout\\Model\\Type\\Onepage' => 
@@ -9411,6 +10199,16 @@
         'sortOrder' => 0,
         'instance' => 'Magento\\InventoryConfigurableProductFrontendUi\\Plugin\\ConfigurableProduct\\Block\\Product\\View\\Type\\AddAdditionalInfo',
       ),
+      'polyfill_base_old_price' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\BaseOldPricePolyfill\\AddBaseOldPriceToConfigurableProductOptions',
+      ),
+      'mSPDevToolsAbstractBlock' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'MSP\\DevTools\\Plugin\\View\\Element\\AbstractBlockPlugin',
+      ),
     ),
     'Magento\\InventorySalesApi\\Api\\AreProductsSalableInterface' => NULL,
     'Magento\\InventorySales\\Model\\AreProductsSalable' => 
@@ -9462,6 +10260,11 @@
       array (
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
+      ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
       ),
       'contextPlugin' => 
       array (
@@ -9515,6 +10318,11 @@
       array (
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
+      ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
       ),
       'contextPlugin' => 
       array (
@@ -9574,6 +10382,11 @@
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
       ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
+      ),
       'contextPlugin' => 
       array (
         'sortOrder' => 10,
@@ -9632,6 +10445,11 @@
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
       ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
+      ),
       'contextPlugin' => 
       array (
         'sortOrder' => 10,
@@ -9679,6 +10497,11 @@
       array (
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
+      ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
       ),
       'contextPlugin' => 
       array (
@@ -9728,10 +10551,20 @@
         'sortOrder' => 0,
         'instance' => 'Magento\\Paypal\\Plugin\\CheckoutIndex',
       ),
+      'Hyva_Checkout_Plugin_Magento_Checkout_Controller_Index_Index' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Checkout\\Plugin\\Magento\\Checkout\\Controller\\Index\\Index',
+      ),
       'customer-app-action-executeController-context-plugin' => 
       array (
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
+      ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
       ),
       'contextPlugin' => 
       array (
@@ -9795,6 +10628,11 @@
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
       ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
+      ),
       'contextPlugin' => 
       array (
         'sortOrder' => 10,
@@ -9848,6 +10686,11 @@
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
       ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
+      ),
       'contextPlugin' => 
       array (
         'sortOrder' => 10,
@@ -9900,6 +10743,11 @@
       array (
         'sortOrder' => 10,
         'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
+      ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
       ),
       'contextPlugin' => 
       array (
@@ -9982,7 +10830,6 @@
         'instance' => 'Magento\\Paypal\\Model\\Express\\QuotePlugin',
       ),
     ),
-    'Magento\\Checkout\\Model\\ConfigProviderInterface' => NULL,
     'Magento\\Checkout\\Model\\DefaultConfigProvider' => 
     array (
       'mask_quote_id_substitutor' => 
@@ -10019,9 +10866,19 @@
         'sortOrder' => 0,
         'instance' => 'Magento\\ReCaptchaCheckoutSalesRule\\Plugin\\CouponSetLayoutPlugin',
       ),
+      'mSPDevToolsAbstractBlock' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'MSP\\DevTools\\Plugin\\View\\Element\\AbstractBlockPlugin',
+      ),
     ),
     'Magento\\Customer\\Block\\Account\\AuthenticationPopup' => 
     array (
+      'mSPDevToolsAbstractBlock' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'MSP\\DevTools\\Plugin\\View\\Element\\AbstractBlockPlugin',
+      ),
       'inject_recaptcha_in_authentication_popup' => 
       array (
         'sortOrder' => 1,
@@ -10060,6 +10917,276 @@
         'sortOrder' => 0,
         'instance' => 'Magento\\Wishlist\\Plugin\\Helper\\Product\\View',
       ),
+      'update_canonical_page_param_product_review' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\Catalog\\Helper\\Product\\ProductReviewPaginationCanonicalUrlFixPlugin',
+      ),
+    ),
+    'Magento\\Customer\\Controller\\Section\\Load' => 
+    array (
+      'storeCheck' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\Store\\App\\Action\\Plugin\\StoreCheck',
+      ),
+      'designLoader' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\Theme\\Plugin\\LoadDesignPlugin',
+      ),
+      'customerNotification' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\Customer\\Model\\Plugin\\CustomerNotification',
+      ),
+      'tax-app-action-dispatchController-context-plugin' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\Tax\\Model\\App\\Action\\ContextPlugin',
+      ),
+      'weee-app-action-dispatchController-context-plugin' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\Weee\\Model\\App\\Action\\ContextPlugin',
+      ),
+      'invalidate_expired_session_plugin' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\LoginAsCustomerFrontendUi\\Plugin\\InvalidateExpiredSessionPlugin',
+      ),
+      'catalog_app_action_dispatch_controller_context_plugin' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\Catalog\\Plugin\\Framework\\App\\Action\\ContextPlugin',
+      ),
+      'customer_controller_section_load' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\Customer\\SectionLoadPlugin',
+      ),
+      'customer-app-action-executeController-context-plugin' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
+      ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
+      ),
+      'contextPlugin' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Magento\\Store\\App\\Action\\Plugin\\Context',
+      ),
+    ),
+    'Magento\\Catalog\\CustomerData\\CompareProducts' => 
+    array (
+      'add_images' => 
+      array (
+        'sortOrder' => 100,
+        'instance' => 'Hyva\\Theme\\Plugin\\CompareCustomerData\\AddImages',
+      ),
+    ),
+    'Magento\\PageCache\\Controller\\Block' => 
+    array (
+      'storeCheck' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\Store\\App\\Action\\Plugin\\StoreCheck',
+      ),
+      'designLoader' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\Theme\\Plugin\\LoadDesignPlugin',
+      ),
+      'customerNotification' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\Customer\\Model\\Plugin\\CustomerNotification',
+      ),
+      'tax-app-action-dispatchController-context-plugin' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\Tax\\Model\\App\\Action\\ContextPlugin',
+      ),
+      'weee-app-action-dispatchController-context-plugin' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\Weee\\Model\\App\\Action\\ContextPlugin',
+      ),
+      'invalidate_expired_session_plugin' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\LoginAsCustomerFrontendUi\\Plugin\\InvalidateExpiredSessionPlugin',
+      ),
+      'catalog_app_action_dispatch_controller_context_plugin' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\Catalog\\Plugin\\Framework\\App\\Action\\ContextPlugin',
+      ),
+      'customer-app-action-executeController-context-plugin' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
+      ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
+      ),
+      'contextPlugin' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Magento\\Store\\App\\Action\\Plugin\\Context',
+      ),
+    ),
+    'Magento\\PageCache\\Controller\\Block\\Esi' => 
+    array (
+      'storeCheck' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\Store\\App\\Action\\Plugin\\StoreCheck',
+      ),
+      'designLoader' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\Theme\\Plugin\\LoadDesignPlugin',
+      ),
+      'customerNotification' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\Customer\\Model\\Plugin\\CustomerNotification',
+      ),
+      'tax-app-action-dispatchController-context-plugin' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\Tax\\Model\\App\\Action\\ContextPlugin',
+      ),
+      'weee-app-action-dispatchController-context-plugin' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\Weee\\Model\\App\\Action\\ContextPlugin',
+      ),
+      'invalidate_expired_session_plugin' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\LoginAsCustomerFrontendUi\\Plugin\\InvalidateExpiredSessionPlugin',
+      ),
+      'catalog_app_action_dispatch_controller_context_plugin' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\Catalog\\Plugin\\Framework\\App\\Action\\ContextPlugin',
+      ),
+      'add_view_model_cache_tags' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\PageCache\\AddViewModelCacheTagesToEsiResponse',
+      ),
+      'customer-app-action-executeController-context-plugin' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
+      ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
+      ),
+      'contextPlugin' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Magento\\Store\\App\\Action\\Plugin\\Context',
+      ),
+    ),
+    'Magento\\Theme\\Controller\\Result\\JsFooterPlugin' => 
+    array (
+      'disable_move_js_to_footer_on_some_pages' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\Theme\\DisableJsFooterPlugin',
+      ),
+    ),
+    'Magento\\PageBuilder\\Plugin\\Filter\\TemplatePlugin' => 
+    array (
+      'convertBackgroundImages_override' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\PageBuilder\\OverrideTemplatePlugin',
+      ),
+    ),
+    'Magento\\ConfigurableProduct\\Model\\Product\\Type\\Configurable\\Variations\\Prices' => 
+    array (
+      'polyfill_base_old_price' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\BaseOldPricePolyfill\\AddBaseOldPriceToConfigurableProductPriceVariations',
+      ),
+    ),
+    'Magento\\PaymentServicesPaypal\\Observer\\AddCheckoutComponents' => 
+    array (
+      'prevent_payment_services_breaking_section_data' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Theme\\Plugin\\AdobePaymentServices\\FixSectionDataIfPaymentServicesAreDisabled',
+      ),
+    ),
+    'Magento\\LoginAsCustomerFrontendUi\\Controller\\Login\\Index' => 
+    array (
+      'storeCheck' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\Store\\App\\Action\\Plugin\\StoreCheck',
+      ),
+      'designLoader' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\Theme\\Plugin\\LoadDesignPlugin',
+      ),
+      'customerNotification' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\Customer\\Model\\Plugin\\CustomerNotification',
+      ),
+      'tax-app-action-dispatchController-context-plugin' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\Tax\\Model\\App\\Action\\ContextPlugin',
+      ),
+      'weee-app-action-dispatchController-context-plugin' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\Weee\\Model\\App\\Action\\ContextPlugin',
+      ),
+      'invalidate_expired_session_plugin' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Magento\\LoginAsCustomerFrontendUi\\Plugin\\InvalidateExpiredSessionPlugin',
+      ),
+      'customer-app-action-executeController-context-plugin' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Magento\\Customer\\Model\\App\\Action\\ContextPlugin',
+      ),
+      'hyva_theme_fallback' => 
+      array (
+        'sortOrder' => 10,
+        'instance' => 'Hyva\\ThemeFallback\\Plugin\\ThemeFallbackPlugin',
+      ),
+      'hyva_theme' => 
+      array (
+        'sortOrder' => 30,
+        'instance' => 'Hyva\\Theme\\Plugin\\LoginAsCustomer\\ImplyFrontendPostRequestPlugin',
+      ),
+    ),
+    'Hyva\\Checkout\\Model\\Config' => 
+    array (
+      'Hyva_Checkout_Plugin_Model_Config' => 
+      array (
+        'sortOrder' => 0,
+        'instance' => 'Hyva\\Checkout\\Plugin\\Model\\Config',
+      ),
     ),
     'Magento\\Catalog\\Block\\Product\\ListProduct' => 
     array (
@@ -10072,6 +11199,11 @@
       array (
         'sortOrder' => 0,
         'instance' => 'PayPal\\Braintree\\Plugin\\ProductDetailsBlockPlugin',
+      ),
+      'mSPDevToolsAbstractBlock' => 
+      array (
+        'sortOrder' => 1,
+        'instance' => 'MSP\\DevTools\\Plugin\\View\\Element\\AbstractBlockPlugin',
       ),
     ),
   ),
@@ -10091,6 +11223,10 @@
         0 => 'execute_commit_callbacks',
       ),
     ),
+    'Magento\\Framework\\HTTP\\PhpEnvironment\\Response_sendContent___self' => 
+    array (
+      2 => 'mSPDevToolsResponse',
+    ),
     'Magento\\Framework\\App\\Response\\Http_sendResponse___self' => 
     array (
       1 => 
@@ -10098,6 +11234,10 @@
         0 => 'genericHeaderPlugin',
         1 => 'response-http-page-cache',
       ),
+    ),
+    'Magento\\Framework\\App\\Response\\Http_sendContent___self' => 
+    array (
+      2 => 'mSPDevToolsResponse',
     ),
     'Magento\\Framework\\App\\ActionInterface_execute___self' => 
     array (
@@ -10110,6 +11250,7 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
       ),
     ),
     'Magento\\Framework\\Url\\SecurityInfo_isSecure___self' => 
@@ -10181,6 +11322,8 @@
       4 => 
       array (
         0 => 'front-controller-varnish-cache',
+        1 => 'front-controller-hyva-header',
+        2 => 'Hyva_Checkout_Plugin_Magento_Framework_App_FrontControllerInterface',
       ),
       1 => 
       array (
@@ -10197,6 +11340,8 @@
       4 => 
       array (
         0 => 'front-controller-varnish-cache',
+        1 => 'front-controller-hyva-header',
+        2 => 'Hyva_Checkout_Plugin_Magento_Framework_App_FrontControllerInterface',
       ),
       1 => 
       array (
@@ -10218,6 +11363,7 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
       ),
     ),
     'Magento\\Framework\\App\\Action\\AbstractAction_dispatch___self' => 
@@ -10239,6 +11385,7 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
       ),
     ),
     'Magento\\Framework\\App\\Action\\Action_dispatch___self' => 
@@ -10260,6 +11407,7 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
       ),
     ),
     'Magento\\Backend\\App\\AbstractAction_dispatch___self' => 
@@ -10281,6 +11429,7 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
       ),
     ),
     'Magento\\Config\\Controller\\Adminhtml\\System\\AbstractConfig_dispatch___self' => 
@@ -10317,6 +11466,7 @@
       1 => 
       array (
         0 => 'customer-app-action-executeController-context-plugin',
+        1 => 'hyva_theme_fallback',
       ),
     ),
     'Magento\\Framework\\App\\Config\\Value_save___self' => 
@@ -10685,6 +11835,7 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
       ),
     ),
     'Magento\\User\\Controller\\Adminhtml\\Auth_dispatch___self' => 
@@ -10721,6 +11872,7 @@
       1 => 
       array (
         0 => 'customer-app-action-executeController-context-plugin',
+        1 => 'hyva_theme_fallback',
       ),
     ),
     'Magento\\Captcha\\Observer\\CheckUserLoginBackendObserver_execute___self' => 
@@ -10867,6 +12019,14 @@
         0 => 'set_page_layout_default_value',
       ),
     ),
+    'Magento\\Framework\\View\\Element\\AbstractBlock_toHtml___self' => 
+    array (
+      2 => 'mSPDevToolsAbstractBlock',
+    ),
+    'Magento\\Framework\\View\\Element\\Template_toHtml___self' => 
+    array (
+      2 => 'mSPDevToolsAbstractBlock',
+    ),
     'Magento\\Theme\\Block\\Html\\Topmenu_getHtml___self' => 
     array (
       1 => 
@@ -10880,6 +12040,10 @@
       array (
         0 => 'catalogTopmenu',
       ),
+    ),
+    'Magento\\Theme\\Block\\Html\\Topmenu_toHtml___self' => 
+    array (
+      2 => 'mSPDevToolsAbstractBlock',
     ),
     'Magento\\Framework\\Mview\\View\\StateInterface_setStatus___self' => 
     array (
@@ -11206,6 +12370,10 @@
         0 => 'add_product_object_to_image_data_array',
       ),
     ),
+    'Magento\\Catalog\\Block\\Product\\AbstractProduct_toHtml___self' => 
+    array (
+      2 => 'mSPDevToolsAbstractBlock',
+    ),
     'Magento\\Catalog\\Block\\Product\\View_getImage___self' => 
     array (
       1 => 
@@ -11226,6 +12394,17 @@
       array (
         0 => 'catalogProductViewCanEmailToFriend',
       ),
+    ),
+    'Magento\\Catalog\\Block\\Product\\View_getJsonConfig___self' => 
+    array (
+      4 => 
+      array (
+        0 => 'polyfill_base_old_price',
+      ),
+    ),
+    'Magento\\Catalog\\Block\\Product\\View_toHtml___self' => 
+    array (
+      2 => 'mSPDevToolsAbstractBlock',
     ),
     'Magento\\Catalog\\Model\\Product\\Action_updateAttributes___self' => 
     array (
@@ -11255,6 +12434,7 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
       ),
     ),
     'Magento\\Backend\\App\\Action_dispatch___self' => 
@@ -11276,6 +12456,7 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
       ),
     ),
     'Magento\\Catalog\\Controller\\Adminhtml\\Product\\Action\\Attribute_dispatch___self' => 
@@ -11297,6 +12478,7 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
       ),
       4 => 
       array (
@@ -11454,6 +12636,21 @@
       1 => 
       array (
         0 => 'remove_in_store_pickup_data',
+        1 => 'Hyva_Checkout_Plugin_Magento_Quote_Api_CartRepository',
+      ),
+    ),
+    'Magento\\Quote\\Api\\CartRepositoryInterface_get___self' => 
+    array (
+      4 => 
+      array (
+        0 => 'Hyva_Checkout_Plugin_Magento_Quote_Api_CartRepository',
+      ),
+    ),
+    'Magento\\Quote\\Api\\CartRepositoryInterface_getList___self' => 
+    array (
+      4 => 
+      array (
+        0 => 'Hyva_Checkout_Plugin_Magento_Quote_Api_CartRepository',
       ),
     ),
     'Magento\\Quote\\Model\\QuoteRepository_save___self' => 
@@ -11461,21 +12658,24 @@
       1 => 
       array (
         0 => 'remove_in_store_pickup_data',
-        1 => 'multishipping_quote_repository',
+        1 => 'Hyva_Checkout_Plugin_Magento_Quote_Api_CartRepository',
+        2 => 'multishipping_quote_repository',
       ),
     ),
     'Magento\\Quote\\Model\\QuoteRepository_get___self' => 
     array (
       4 => 
       array (
-        0 => 'multishipping_quote_repository',
+        0 => 'Hyva_Checkout_Plugin_Magento_Quote_Api_CartRepository',
+        1 => 'multishipping_quote_repository',
       ),
     ),
     'Magento\\Quote\\Model\\QuoteRepository_getList___self' => 
     array (
       4 => 
       array (
-        0 => 'multishipping_quote_repository',
+        0 => 'Hyva_Checkout_Plugin_Magento_Quote_Api_CartRepository',
+        1 => 'multishipping_quote_repository',
       ),
     ),
     'Magento\\Quote\\Model\\Quote\\Address_afterSave___self' => 
@@ -11642,6 +12842,7 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
       ),
     ),
     'Magento\\Sales\\Controller\\AbstractController\\View_dispatch___self' => 
@@ -11663,6 +12864,7 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
       ),
     ),
     'Magento\\Sales\\Controller\\AbstractController\\Creditmemo_dispatch___self' => 
@@ -11684,6 +12886,7 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
       ),
     ),
     'Magento\\Sales\\Controller\\Order\\Creditmemo_dispatch___self' => 
@@ -11706,6 +12909,7 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
       ),
     ),
     'Magento\\Sales\\Controller\\Order\\History_dispatch___self' => 
@@ -11728,6 +12932,7 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
       ),
     ),
     'Magento\\Sales\\Controller\\AbstractController\\Invoice_dispatch___self' => 
@@ -11749,6 +12954,7 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
       ),
     ),
     'Magento\\Sales\\Controller\\Order\\Invoice_dispatch___self' => 
@@ -11771,6 +12977,7 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
       ),
     ),
     'Magento\\Sales\\Controller\\AbstractController\\PrintAction_dispatch___self' => 
@@ -11792,6 +12999,7 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
       ),
     ),
     'Magento\\Sales\\Controller\\Order\\PrintAction_dispatch___self' => 
@@ -11814,6 +13022,7 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
       ),
     ),
     'Magento\\Sales\\Controller\\AbstractController\\PrintCreditmemo_dispatch___self' => 
@@ -11835,6 +13044,7 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
       ),
     ),
     'Magento\\Sales\\Controller\\Order\\PrintCreditmemo_dispatch___self' => 
@@ -11857,6 +13067,7 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
       ),
     ),
     'Magento\\Sales\\Controller\\AbstractController\\PrintInvoice_dispatch___self' => 
@@ -11878,6 +13089,7 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
       ),
     ),
     'Magento\\Sales\\Controller\\Order\\PrintInvoice_dispatch___self' => 
@@ -11900,6 +13112,7 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
       ),
     ),
     'Magento\\Sales\\Controller\\AbstractController\\PrintShipment_dispatch___self' => 
@@ -11921,6 +13134,7 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
       ),
     ),
     'Magento\\Sales\\Controller\\Order\\PrintShipment_dispatch___self' => 
@@ -11943,6 +13157,7 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
       ),
     ),
     'Magento\\Sales\\Controller\\AbstractController\\Reorder_dispatch___self' => 
@@ -11964,6 +13179,7 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
       ),
     ),
     'Magento\\Sales\\Controller\\Order\\Reorder_dispatch___self' => 
@@ -11986,6 +13202,7 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
       ),
     ),
     'Magento\\Sales\\Controller\\AbstractController\\Shipment_dispatch___self' => 
@@ -12007,6 +13224,7 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
       ),
     ),
     'Magento\\Sales\\Controller\\Order\\Shipment_dispatch___self' => 
@@ -12029,6 +13247,7 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
       ),
     ),
     'Magento\\Sales\\Controller\\Order\\View_dispatch___self' => 
@@ -12151,12 +13370,20 @@
         0 => 'add_product_object_to_image_data_array',
       ),
     ),
+    'Magento\\Catalog\\Block\\Product\\View\\AbstractView_toHtml___self' => 
+    array (
+      2 => 'mSPDevToolsAbstractBlock',
+    ),
     'Magento\\Catalog\\Block\\Product\\View\\Gallery_getImage___self' => 
     array (
       1 => 
       array (
         0 => 'add_product_object_to_image_data_array',
       ),
+    ),
+    'Magento\\Catalog\\Block\\Product\\View\\Gallery_toHtml___self' => 
+    array (
+      2 => 'mSPDevToolsAbstractBlock',
     ),
     'Magento\\ProductVideo\\Block\\Product\\View\\Gallery_getImage___self' => 
     array (
@@ -12171,6 +13398,10 @@
       array (
         0 => 'product_video_gallery',
       ),
+    ),
+    'Magento\\ProductVideo\\Block\\Product\\View\\Gallery_toHtml___self' => 
+    array (
+      2 => 'mSPDevToolsAbstractBlock',
     ),
     'Magento\\Catalog\\Model\\Product\\Type\\AbstractType_isPossibleBuyFromList___self' => 
     array (
@@ -12262,6 +13493,11 @@
       4 => 
       array (
         0 => 'add_tax_details',
+        1 => 'Hyva_Checkout_Plugin_Magento_Quote_Model_Cart_TotalsConverter',
+      ),
+      1 => 
+      array (
+        0 => 'Hyva_Checkout_Plugin_Magento_Quote_Model_Cart_TotalsConverter',
       ),
     ),
     'Magento\\Sales\\Api\\OrderRepositoryInterface_get___self' => 
@@ -12305,11 +13541,32 @@
         0 => 'cron_backend_config_structure_converter_plugin',
       ),
     ),
+    'Magento\\Framework\\View\\TemplateEngine\\Php_render___self' => 
+    array (
+      1 => 
+      array (
+        0 => 'php_template_engine_plugin',
+      ),
+    ),
     'Magento\\Framework\\App\\RouterInterface_match___self' => 
     array (
       4 => 
       array (
         0 => 'csp_aware_plugin',
+      ),
+    ),
+    'Magento\\Deploy\\Package\\Package_getFiles___self' => 
+    array (
+      4 => 
+      array (
+        0 => 'deploy_package_exclude_tailwind_from_deployment',
+      ),
+    ),
+    'Magento\\Deploy\\Package\\Package_getMap___self' => 
+    array (
+      4 => 
+      array (
+        0 => 'deploy_package_exclude_tailwind_from_deployment',
       ),
     ),
     'Magento\\Framework\\View\\Asset\\GroupedCollection_getFilteredProperties___self' => 
@@ -12505,6 +13762,10 @@
       array (
         0 => 'update_delivery_date_value',
       ),
+    ),
+    'Magento\\Shipping\\Block\\Tracking\\Popup_toHtml___self' => 
+    array (
+      2 => 'mSPDevToolsAbstractBlock',
     ),
     'Magento\\Framework\\App\\PageCache\\Identifier_getValue___self' => 
     array (
@@ -13216,6 +14477,10 @@
     array (
       2 => 'magentoInventorySalesFrontendUiAbstractStockqty',
     ),
+    'Magento\\CatalogInventory\\Block\\Stockqty\\AbstractStockqty_toHtml___self' => 
+    array (
+      2 => 'mSPDevToolsAbstractBlock',
+    ),
     'Magento\\Setup\\Model\\FixtureGenerator\\EntityGeneratorFactory_create___self' => 
     array (
       1 => 
@@ -13434,6 +14699,10 @@
         0 => 'PaymentMethodProcess',
       ),
     ),
+    'Magento\\Payment\\Block\\Form\\Container_toHtml___self' => 
+    array (
+      2 => 'mSPDevToolsAbstractBlock',
+    ),
     'Magento\\Customer\\Controller\\Ajax\\Login_execute___self' => 
     array (
       1 => 
@@ -13445,8 +14714,9 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
       ),
-      2 => 'captcha_validation',
+      2 => 'hyva_theme',
     ),
     'Magento\\Customer\\Controller\\Ajax\\Login_dispatch___self' => 
     array (
@@ -13456,6 +14726,14 @@
         1 => 'contextPlugin',
       ),
     ),
+    'Magento\\Customer\\Controller\\Ajax\\Login_execute_hyva_theme' => 
+    array (
+      2 => 'captcha_validation',
+    ),
+    'Magento\\Checkout\\Block\\Cart\\AbstractCart_toHtml___self' => 
+    array (
+      2 => 'mSPDevToolsAbstractBlock',
+    ),
     'Magento\\Checkout\\Block\\Cart\\Sidebar_getConfig___self' => 
     array (
       4 => 
@@ -13464,6 +14742,10 @@
         1 => 'customer_cart',
         2 => 'login_captcha',
       ),
+    ),
+    'Magento\\Checkout\\Block\\Cart\\Sidebar_toHtml___self' => 
+    array (
+      2 => 'mSPDevToolsAbstractBlock',
     ),
     'Magento\\Payment\\Model\\Checks\\Composite_isApplicable___self' => 
     array (
@@ -13524,6 +14806,13 @@
     'Magento\\Customer\\CustomerData\\Customer_getSectionData___self' => 
     array (
       2 => 'section_data',
+    ),
+    'Magento\\Customer\\CustomerData\\Customer_getSectionData_section_data' => 
+    array (
+      4 => 
+      array (
+        0 => 'customerdata.customer',
+      ),
     ),
     'Magento\\Catalog\\Model\\Product\\Gallery\\CreateHandler_execute___self' => 
     array (
@@ -13821,6 +15110,10 @@
         0 => 'save_swatches_option_params',
       ),
     ),
+    'Magento\\LayeredNavigation\\Block\\Navigation\\FilterRenderer_toHtml___self' => 
+    array (
+      2 => 'mSPDevToolsAbstractBlock',
+    ),
     'Magento\\LayeredNavigation\\Block\\Navigation\\FilterRenderer_render___self' => 
     array (
       2 => 'swatches_layered_renderer',
@@ -13876,6 +15169,8 @@
       4 => 
       array (
         0 => 'front-controller-varnish-cache',
+        1 => 'front-controller-hyva-header',
+        2 => 'Hyva_Checkout_Plugin_Magento_Framework_App_FrontControllerInterface',
       ),
       1 => 
       array (
@@ -13906,6 +15201,7 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
       ),
     ),
     'Magento\\Wishlist\\Controller\\AbstractIndex_dispatch___self' => 
@@ -13916,6 +15212,138 @@
         1 => 'contextPlugin',
         2 => 'authentication',
       ),
+    ),
+    'Magento\\Framework\\View\\File\\FileList\\Collator_collate___self' => 
+    array (
+      2 => 'file_collator_plugin',
+    ),
+    'Magento\\Framework\\Pricing\\Render\\AbstractAdjustment_toHtml___self' => 
+    array (
+      2 => 'mSPDevToolsAbstractBlock',
+    ),
+    'Magento\\Tax\\Pricing\\Render\\Adjustment_render___self' => 
+    array (
+      1 => 
+      array (
+        0 => 'fix_core_type_php81_error',
+      ),
+    ),
+    'Magento\\Tax\\Pricing\\Render\\Adjustment_getDataPriceType___self' => 
+    array (
+      2 => 'fix_core_type_php81_error',
+    ),
+    'Magento\\Tax\\Pricing\\Render\\Adjustment_toHtml___self' => 
+    array (
+      2 => 'mSPDevToolsAbstractBlock',
+    ),
+    'Magento\\Framework\\App\\DeploymentConfig\\Writer_saveConfig___self' => 
+    array (
+      4 => 
+      array (
+        0 => 'hyva_theme',
+      ),
+    ),
+    'Magento\\Framework\\App\\DeploymentConfig\\Writer_execute___self' => 
+    array (
+      4 => 
+      array (
+        0 => 'hyva_theme',
+      ),
+    ),
+    'Magento\\Deploy\\Console\\Command\\App\\ConfigImport\\Processor_saveConfig___self' => 
+    array (
+      4 => 
+      array (
+        0 => 'hyva_theme',
+      ),
+    ),
+    'Magento\\Deploy\\Console\\Command\\App\\ConfigImport\\Processor_execute___self' => 
+    array (
+      4 => 
+      array (
+        0 => 'hyva_theme',
+      ),
+    ),
+    'Magento\\Framework\\View\\Asset\\PreProcessor\\Minify_process___self' => 
+    array (
+      2 => 'hyva_theme',
+    ),
+    'Magento\\Framework\\View\\Template\\Html\\Minifier_minify___self' => 
+    array (
+      2 => 'hyva_theme',
+    ),
+    'Magento\\Framework\\View\\Design\\Fallback\\Rule\\ModularSwitch_getPatternDirs___self' => 
+    array (
+      4 => 
+      array (
+        0 => 'hyva_compat_module_fallback',
+        1 => 'hyva_email',
+      ),
+    ),
+    'Magento\\Deploy\\Package\\PackageFile_setPackage___self' => 
+    array (
+      1 => 
+      array (
+        0 => 'hyva_email',
+      ),
+    ),
+    'Magento\\Checkout\\CustomerData\\Cart_getSectionData___self' => 
+    array (
+      4 => 
+      array (
+        0 => 'customerdata.cart',
+        1 => 'cart_private_data_tax',
+        2 => 'Hyva_Checkout_Plugin_Magento_Checkout_CustomerData_Cart',
+      ),
+    ),
+    'Mollie\\Payment\\Model\\MollieConfigProvider_getConfig___self' => 
+    array (
+      2 => 'hyva_themes',
+    ),
+    'Magento\\Framework\\View\\LayoutInterface_getOutput___self' => 
+    array (
+      4 => 
+      array (
+        0 => 'save_double_cached_block_cache_tags',
+      ),
+    ),
+    'Magento\\Framework\\View\\Layout_getOutput___self' => 
+    array (
+      4 => 
+      array (
+        0 => 'save_double_cached_block_cache_tags',
+        1 => 'layout-model-caching-unique-name',
+      ),
+    ),
+    'Magento\\Framework\\View\\Layout_generateElements___self' => 
+    array (
+      4 => 
+      array (
+        0 => 'layout-model-caching-unique-name',
+        1 => 'core-session-depersonalize',
+        2 => 'customer-session-depersonalize',
+        3 => 'catalog-session-depersonalize',
+        4 => 'persistent-session-depersonalize',
+        5 => 'checkout-session-depersonalize',
+        6 => 'tax-session-depersonalize',
+      ),
+    ),
+    'Magento\\Framework\\View\\Layout_renderElement___self' => 
+    array (
+      2 => 'mSPDevToolsLayout',
+    ),
+    'Magento\\Framework\\View\\Layout_generateXml___self' => 
+    array (
+      1 => 
+      array (
+        0 => 'customer-session-depersonalize',
+        1 => 'checkout-session-depersonalize',
+        2 => 'tax-session-depersonalize',
+      ),
+    ),
+    'Magento\\Framework\\Event\\ManagerInterface_dispatch___self' => 
+    array (
+      2 => 'mSPDevToolsManagerInterface',
     ),
     'Magebit\\GridRender\\Controller\\Adminhtml\\Item\\Save_execute___self' => 
     array (
@@ -13948,6 +15376,35 @@
       1 => 
       array (
         0 => 'customer-app-action-executeController-context-plugin',
+        1 => 'hyva_theme_fallback',
+      ),
+    ),
+    'Magento\\Sales\\Api\\OrderStatusHistoryRepositoryInterface_get___self' => 
+    array (
+      4 => 
+      array (
+        0 => 'Hyva_Checkout_Plugin_Magento_Sales_Api_OrderStatusHistoryRepository',
+      ),
+    ),
+    'Magento\\Sales\\Api\\OrderStatusHistoryRepositoryInterface_getList___self' => 
+    array (
+      4 => 
+      array (
+        0 => 'Hyva_Checkout_Plugin_Magento_Sales_Api_OrderStatusHistoryRepository',
+      ),
+    ),
+    'Magento\\Sales\\Api\\OrderStatusHistoryRepositoryInterface_save___self' => 
+    array (
+      1 => 
+      array (
+        0 => 'Hyva_Checkout_Plugin_Magento_Sales_Api_OrderStatusHistoryRepository',
+      ),
+    ),
+    'Magento\\Sales\\Api\\Data\\OrderStatusHistoryInterface_getComment___self' => 
+    array (
+      4 => 
+      array (
+        0 => 'Hyva_Checkout_Plugin_Magento_Sales_Api_Data_OrderStatusHistoryInterface',
       ),
     ),
     'Magento\\Framework\\View\\Asset\\Minification_getExcludes___self' => 
@@ -14003,35 +15460,6 @@
         4 => 'result-varnish-cache',
       ),
     ),
-    'Magento\\Framework\\View\\Layout_generateElements___self' => 
-    array (
-      4 => 
-      array (
-        0 => 'layout-model-caching-unique-name',
-        1 => 'core-session-depersonalize',
-        2 => 'customer-session-depersonalize',
-        3 => 'catalog-session-depersonalize',
-        4 => 'persistent-session-depersonalize',
-        5 => 'checkout-session-depersonalize',
-        6 => 'tax-session-depersonalize',
-      ),
-    ),
-    'Magento\\Framework\\View\\Layout_getOutput___self' => 
-    array (
-      4 => 
-      array (
-        0 => 'layout-model-caching-unique-name',
-      ),
-    ),
-    'Magento\\Framework\\View\\Layout_generateXml___self' => 
-    array (
-      1 => 
-      array (
-        0 => 'customer-session-depersonalize',
-        1 => 'checkout-session-depersonalize',
-        2 => 'tax-session-depersonalize',
-      ),
-    ),
     'Magento\\Customer\\Controller\\AccountInterface_execute___self' => 
     array (
       2 => 'customer_account',
@@ -14060,6 +15488,10 @@
       array (
         0 => 'catalog_price_box_key',
       ),
+    ),
+    'Magento\\Framework\\Pricing\\Render\\PriceBox_toHtml___self' => 
+    array (
+      2 => 'mSPDevToolsAbstractBlock',
     ),
     'Magento\\Framework\\App\\ResourceConnection_getTableName___self' => 
     array (
@@ -14123,6 +15555,10 @@
         0 => 'add_product_object_to_image_data_array',
       ),
     ),
+    'Magento\\CatalogWidget\\Block\\Product\\ProductsList_toHtml___self' => 
+    array (
+      2 => 'mSPDevToolsAbstractBlock',
+    ),
     'Magento\\CatalogWidget\\Block\\Product\\ProductsList_createCollection___self' => 
     array (
       4 => 
@@ -14145,19 +15581,13 @@
         0 => 'pagebuilder_product_list',
       ),
     ),
-    'Magento\\Checkout\\CustomerData\\Cart_getSectionData___self' => 
-    array (
-      4 => 
-      array (
-        0 => 'cart_private_data_tax',
-      ),
-    ),
     'Magento\\Contact\\Block\\ContactForm_toHtml___self' => 
     array (
       1 => 
       array (
         0 => 'set_view_model',
       ),
+      2 => 'mSPDevToolsAbstractBlock',
     ),
     'Magento\\Framework\\View\\TemplateEngineFactory_create___self' => 
     array (
@@ -14180,12 +15610,20 @@
         0 => 'groupedProductWishlistProcessor',
       ),
     ),
+    'Magento\\Sales\\Block\\Items\\AbstractItems_toHtml___self' => 
+    array (
+      2 => 'mSPDevToolsAbstractBlock',
+    ),
     'Magento\\Multishipping\\Block\\Checkout\\Shipping_getItemsBoxTextAfter___self' => 
     array (
       4 => 
       array (
         0 => 'getItemsBoxTextAfter',
       ),
+    ),
+    'Magento\\Multishipping\\Block\\Checkout\\Shipping_toHtml___self' => 
+    array (
+      2 => 'mSPDevToolsAbstractBlock',
     ),
     'Magento\\Checkout\\Model\\Type\\Onepage_saveShippingMethod___self' => 
     array (
@@ -14232,7 +15670,12 @@
       4 => 
       array (
         0 => 'add_sales_channel_info',
+        1 => 'polyfill_base_old_price',
       ),
+    ),
+    'Magento\\ConfigurableProduct\\Block\\Product\\View\\Type\\Configurable_toHtml___self' => 
+    array (
+      2 => 'mSPDevToolsAbstractBlock',
     ),
     'Magento\\InventorySales\\Model\\AreProductsSalable_execute___self' => 
     array (
@@ -14249,6 +15692,7 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
       ),
     ),
     'Magento\\Checkout\\Controller\\Cart_dispatch___self' => 
@@ -14271,7 +15715,8 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
-        7 => 'multishipping_disabler',
+        7 => 'hyva_theme_fallback',
+        8 => 'multishipping_disabler',
       ),
     ),
     'Magento\\Checkout\\Controller\\Cart\\Add_dispatch___self' => 
@@ -14294,7 +15739,8 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
-        7 => 'multishipping_disabler',
+        7 => 'hyva_theme_fallback',
+        8 => 'multishipping_disabler',
       ),
     ),
     'Magento\\Checkout\\Controller\\Cart\\UpdatePost_dispatch___self' => 
@@ -14317,6 +15763,7 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
       ),
     ),
     'Magento\\Checkout\\Controller\\Action_dispatch___self' => 
@@ -14338,6 +15785,7 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
       ),
     ),
     'Magento\\Checkout\\Controller\\Onepage_dispatch___self' => 
@@ -14359,9 +15807,8 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'sdk_url_configuration',
-        7 => 'customer-app-action-executeController-context-plugin',
-        8 => 'multishipping_disabler',
       ),
+      2 => 'Hyva_Checkout_Plugin_Magento_Checkout_Controller_Index_Index',
     ),
     'Magento\\Checkout\\Controller\\Index\\Index_dispatch___self' => 
     array (
@@ -14369,6 +15816,15 @@
       array (
         0 => 'catalog_app_action_dispatch_controller_context_plugin',
         1 => 'contextPlugin',
+      ),
+    ),
+    'Magento\\Checkout\\Controller\\Index\\Index_execute_Hyva_Checkout_Plugin_Magento_Checkout_Controller_Index_Index' => 
+    array (
+      1 => 
+      array (
+        0 => 'customer-app-action-executeController-context-plugin',
+        1 => 'hyva_theme_fallback',
+        2 => 'multishipping_disabler',
       ),
     ),
     'Magento\\Checkout\\Model\\Cart_save___self' => 
@@ -14393,6 +15849,7 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
       ),
     ),
     'Magento\\Checkout\\Controller\\Sidebar\\UpdateItemQty_dispatch___self' => 
@@ -14415,6 +15872,7 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
       ),
     ),
     'Magento\\Checkout\\Controller\\Sidebar\\RemoveItem_dispatch___self' => 
@@ -14437,7 +15895,8 @@
         4 => 'weee-app-action-dispatchController-context-plugin',
         5 => 'invalidate_expired_session_plugin',
         6 => 'customer-app-action-executeController-context-plugin',
-        7 => 'multishipping_disabler',
+        7 => 'hyva_theme_fallback',
+        8 => 'multishipping_disabler',
       ),
     ),
     'Magento\\Checkout\\Controller\\Cart\\UpdateItemQty_dispatch___self' => 
@@ -14533,6 +15992,14 @@
         0 => 'reset_layout_after_for_recaptcha_coupon_plugin',
       ),
     ),
+    'Magento\\Checkout\\Block\\Cart\\Coupon_toHtml___self' => 
+    array (
+      2 => 'mSPDevToolsAbstractBlock',
+    ),
+    'Magento\\Customer\\Block\\Account\\AuthenticationPopup_toHtml___self' => 
+    array (
+      2 => 'mSPDevToolsAbstractBlock',
+    ),
     'Magento\\Customer\\Block\\Account\\AuthenticationPopup_getJsLayout___self' => 
     array (
       4 => 
@@ -14567,6 +16034,132 @@
       array (
         0 => 'pre_render_product_options_from_wishlist',
       ),
+      4 => 
+      array (
+        0 => 'update_canonical_page_param_product_review',
+      ),
+    ),
+    'Magento\\Customer\\Controller\\Section\\Load_execute___self' => 
+    array (
+      1 => 
+      array (
+        0 => 'storeCheck',
+        1 => 'designLoader',
+        2 => 'customerNotification',
+        3 => 'tax-app-action-dispatchController-context-plugin',
+        4 => 'weee-app-action-dispatchController-context-plugin',
+        5 => 'invalidate_expired_session_plugin',
+        6 => 'customer_controller_section_load',
+        7 => 'customer-app-action-executeController-context-plugin',
+        8 => 'hyva_theme_fallback',
+      ),
+    ),
+    'Magento\\Customer\\Controller\\Section\\Load_dispatch___self' => 
+    array (
+      1 => 
+      array (
+        0 => 'catalog_app_action_dispatch_controller_context_plugin',
+        1 => 'contextPlugin',
+      ),
+    ),
+    'Magento\\Catalog\\CustomerData\\CompareProducts_getSectionData___self' => 
+    array (
+      4 => 
+      array (
+        0 => 'add_images',
+      ),
+    ),
+    'Magento\\PageCache\\Controller\\Block_execute___self' => 
+    array (
+      1 => 
+      array (
+        0 => 'storeCheck',
+        1 => 'designLoader',
+        2 => 'customerNotification',
+        3 => 'tax-app-action-dispatchController-context-plugin',
+        4 => 'weee-app-action-dispatchController-context-plugin',
+        5 => 'invalidate_expired_session_plugin',
+        6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
+      ),
+    ),
+    'Magento\\PageCache\\Controller\\Block_dispatch___self' => 
+    array (
+      1 => 
+      array (
+        0 => 'catalog_app_action_dispatch_controller_context_plugin',
+        1 => 'contextPlugin',
+      ),
+    ),
+    'Magento\\PageCache\\Controller\\Block\\Esi_execute___self' => 
+    array (
+      1 => 
+      array (
+        0 => 'storeCheck',
+        1 => 'designLoader',
+        2 => 'customerNotification',
+        3 => 'tax-app-action-dispatchController-context-plugin',
+        4 => 'weee-app-action-dispatchController-context-plugin',
+        5 => 'invalidate_expired_session_plugin',
+        6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
+      ),
+      4 => 
+      array (
+        0 => 'add_view_model_cache_tags',
+      ),
+    ),
+    'Magento\\PageCache\\Controller\\Block\\Esi_dispatch___self' => 
+    array (
+      1 => 
+      array (
+        0 => 'catalog_app_action_dispatch_controller_context_plugin',
+        1 => 'contextPlugin',
+      ),
+    ),
+    'Magento\\Theme\\Controller\\Result\\JsFooterPlugin_afterRenderResult___self' => 
+    array (
+      2 => 'disable_move_js_to_footer_on_some_pages',
+    ),
+    'Magento\\PageBuilder\\Plugin\\Filter\\TemplatePlugin_afterFilter___self' => 
+    array (
+      2 => 'convertBackgroundImages_override',
+    ),
+    'Magento\\ConfigurableProduct\\Model\\Product\\Type\\Configurable\\Variations\\Prices_getFormattedPrices___self' => 
+    array (
+      4 => 
+      array (
+        0 => 'polyfill_base_old_price',
+      ),
+    ),
+    'Magento\\PaymentServicesPaypal\\Observer\\AddCheckoutComponents_execute___self' => 
+    array (
+      2 => 'prevent_payment_services_breaking_section_data',
+    ),
+    'Magento\\LoginAsCustomerFrontendUi\\Controller\\Login\\Index_execute___self' => 
+    array (
+      1 => 
+      array (
+        0 => 'storeCheck',
+        1 => 'designLoader',
+        2 => 'customerNotification',
+        3 => 'tax-app-action-dispatchController-context-plugin',
+        4 => 'weee-app-action-dispatchController-context-plugin',
+        5 => 'invalidate_expired_session_plugin',
+        6 => 'customer-app-action-executeController-context-plugin',
+        7 => 'hyva_theme_fallback',
+      ),
+      4 => 
+      array (
+        0 => 'hyva_theme',
+      ),
+    ),
+    'Hyva\\Checkout\\Model\\Config_getActiveCheckoutNamespace___self' => 
+    array (
+      4 => 
+      array (
+        0 => 'Hyva_Checkout_Plugin_Model_Config',
+      ),
     ),
     'Magento\\Catalog\\Block\\Product\\ListProduct_getImage___self' => 
     array (
@@ -14578,6 +16171,10 @@
     'Magento\\Catalog\\Block\\Product\\ListProduct_getProductDetailsHtml___self' => 
     array (
       2 => 'braintreeProductDetailsBlockPlugin',
+    ),
+    'Magento\\Catalog\\Block\\Product\\ListProduct_toHtml___self' => 
+    array (
+      2 => 'mSPDevToolsAbstractBlock',
     ),
   ),
 );
