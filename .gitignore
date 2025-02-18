@@ -9,3 +9,7 @@
 
 /dev/tools/grunt/configs/*
 !/dev/tools/grunt/configs/themes.js
+
+node_modules/
+node_modules/puppeteer/.local-chromium/
+
