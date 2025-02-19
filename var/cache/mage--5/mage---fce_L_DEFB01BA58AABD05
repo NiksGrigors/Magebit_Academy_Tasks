@@ -1,4 +1,4 @@
-a:4:{s:4:"hash";s:0:"";s:5:"mtime";i:1739888805;s:6:"expire";i:1826288805;s:4:"tags";s:37:"fce_LAYOUT_GENERAL_CACHE_TAG,fce_MAGE";}
+a:4:{s:4:"hash";s:0:"";s:5:"mtime";i:1739972786;s:6:"expire";i:1826372786;s:4:"tags";s:37:"fce_LAYOUT_GENERAL_CACHE_TAG,fce_MAGE";}
 <?xml version="1.0"?>
 <layouts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><handle id="catalog_category_view"><body/>
 </handle><handle id="catalogsearch_advanced_index"><body/>
@@ -10102,9 +10102,6 @@ a:4:{s:4:"hash";s:0:"";s:5:"mtime";i:1739888805;s:6:"expire";i:1826288805;s:4:"t
    <referenceBlock name="customer_account_dashboard_info" remove="true"/>
    <referenceBlock name="customer_account_dashboard_newsletter" remove="true"/>
    <referenceBlock name="customer_account_dashboard_address" remove="true"/>
-   <referenceContainer name="page.top">
-      <block class="Magento\Theme\Block\Html\Breadcrumbs" name="breadcrumbs" template="Magento_Theme::html/breadcrumbs.phtml"/>
-   </referenceContainer>
    <referenceBlock name="page.main.title">
       <action method="setPageTitle">
          <argument name="title" xsi:type="string">Mans Profils</argument>

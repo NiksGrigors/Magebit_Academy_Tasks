@@ -9,10 +9,6 @@
         <referenceBlock name="customer_account_dashboard_newsletter" remove="true"/>
         <referenceBlock name="customer_account_dashboard_address" remove="true"/>
 
-        <referenceContainer name="page.top">
-            <block class="Magento\Theme\Block\Html\Breadcrumbs" name="breadcrumbs" template="Magento_Theme::html/breadcrumbs.phtml"/>
-        </referenceContainer>
-
         <referenceBlock name="page.main.title">
             <action method="setPageTitle">
                 <argument name="title" xsi:type="string">Mans Profils</argument>

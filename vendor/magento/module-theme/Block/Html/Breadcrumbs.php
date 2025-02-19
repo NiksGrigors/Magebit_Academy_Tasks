@@ -121,4 +121,9 @@ class Breadcrumbs extends \Magento\Framework\View\Element\Template
 
         return parent::_toHtml();
     }
+
+    public function getCrumbs()
+{
+    return $this->_crumbs;
+}
 }
