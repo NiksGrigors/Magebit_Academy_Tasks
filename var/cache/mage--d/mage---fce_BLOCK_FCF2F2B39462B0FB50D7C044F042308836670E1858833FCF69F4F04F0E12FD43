@@ -1,6 +1,6 @@
-a:4:{s:4:"hash";s:0:"";s:5:"mtime";i:1739972786;s:6:"expire";i:1739976386;s:4:"tags";s:695:"fce_CAT_C_47,fce_CAT_C_P_47,fce_CAT_C_29,fce_CAT_C_P_29,fce_CAT_C_30,fce_CAT_C_P_30,fce_CAT_C_32,fce_CAT_C_P_32,fce_CAT_C_33,fce_CAT_C_P_33,fce_CAT_C_34,fce_CAT_C_P_34,fce_CAT_C_35,fce_CAT_C_P_35,fce_CAT_C_31,fce_CAT_C_P_31,fce_CAT_C_36,fce_CAT_C_P_36,fce_CAT_C_37,fce_CAT_C_P_37,fce_CAT_C_20,fce_CAT_C_P_20,fce_CAT_C_21,fce_CAT_C_P_21,fce_CAT_C_23,fce_CAT_C_P_23,fce_CAT_C_24,fce_CAT_C_P_24,fce_CAT_C_25,fce_CAT_C_P_25,fce_CAT_C_26,fce_CAT_C_P_26,fce_CAT_C_22,fce_CAT_C_P_22,fce_CAT_C_27,fce_CAT_C_P_27,fce_CAT_C_28,fce_CAT_C_P_28,fce_CAT_C_12,fce_CAT_C_P_12,fce_CAT_C_13,fce_CAT_C_P_13,fce_CAT_C_14,fce_CAT_C_P_14,fce_CAT_C_15,fce_CAT_C_P_15,fce_CAT_C_46,fce_CAT_C_P_46,fce_BLOCK_HTML,fce_MAGE";}
+a:4:{s:4:"hash";s:0:"";s:5:"mtime";i:1740032000;s:6:"expire";i:1740035600;s:4:"tags";s:695:"fce_CAT_C_47,fce_CAT_C_P_47,fce_CAT_C_29,fce_CAT_C_P_29,fce_CAT_C_30,fce_CAT_C_P_30,fce_CAT_C_32,fce_CAT_C_P_32,fce_CAT_C_33,fce_CAT_C_P_33,fce_CAT_C_34,fce_CAT_C_P_34,fce_CAT_C_35,fce_CAT_C_P_35,fce_CAT_C_31,fce_CAT_C_P_31,fce_CAT_C_36,fce_CAT_C_P_36,fce_CAT_C_37,fce_CAT_C_P_37,fce_CAT_C_20,fce_CAT_C_P_20,fce_CAT_C_21,fce_CAT_C_P_21,fce_CAT_C_23,fce_CAT_C_P_23,fce_CAT_C_24,fce_CAT_C_P_24,fce_CAT_C_25,fce_CAT_C_P_25,fce_CAT_C_26,fce_CAT_C_P_26,fce_CAT_C_22,fce_CAT_C_P_22,fce_CAT_C_27,fce_CAT_C_P_27,fce_CAT_C_28,fce_CAT_C_P_28,fce_CAT_C_12,fce_CAT_C_P_12,fce_CAT_C_13,fce_CAT_C_P_13,fce_CAT_C_14,fce_CAT_C_P_14,fce_CAT_C_15,fce_CAT_C_P_15,fce_CAT_C_46,fce_CAT_C_P_46,fce_BLOCK_HTML,fce_MAGE";}
 <nav
-    x-data="initMenuMobile_67b5e0b264f4e()"
+    x-data="initMenuMobile_67b6c8005ca39()"
     @load.window="setActiveMenu($root)"
     @keydown.window.escape="closeMenu()"
     class="z-20 order-2 sm:order-1 lg:order-2 navigation lg:hidden w-12 h-12"
@@ -441,7 +441,7 @@ a:4:{s:4:"hash";s:0:"";s:5:"mtime";i:1739972786;s:6:"expire";i:1739976386;s:4:"t
 <script>
     'use strict';
 
-    const initMenuMobile_67b5e0b264f4e = () => {
+    const initMenuMobile_67b6c8005ca39 = () => {
         return {
             mobilePanelActiveId: null,
             open: false,
@@ -486,7 +486,7 @@ a:4:{s:4:"hash";s:0:"";s:5:"mtime";i:1739972786;s:6:"expire";i:1739976386;s:4:"t
         }
     }
 </script>
-<div x-data="initMenuDesktop_67b5e0b268a78()"
+<div x-data="initMenuDesktop_67b6c8005fa1f()"
      class="z-20 order-2 sm:order-1 lg:order-2 navigation hidden lg:flex"
 >
     <!-- desktop -->
@@ -708,7 +708,7 @@ a:4:{s:4:"hash";s:0:"";s:5:"mtime";i:1739972786;s:6:"expire";i:1739976386;s:4:"t
 <script>
     'use strict';
 
-    const initMenuDesktop_67b5e0b268a78 = () => {
+    const initMenuDesktop_67b6c8005fa1f = () => {
         return {
             hoverPanelActiveId: null,
             setActiveMenu(menuNode) {

@@ -69,7 +69,7 @@ $jsonOrders = json_encode($ordersData);
                                 </a>
                                 <?php if ($this->helper(ReorderHelper::class)->canReorder($_order->getEntityId())) : ?>
                                     <a
-                                        href="#"
+                                        href="/checkout/cart/"
                                         data-post='<?= $this->helper(PostHelper::class)->getPostData($block->getReorderUrl($_order))?>'
                                         class="action order">
                                         <img src="<?= $block->getViewFileUrl('images/icons/Reorder.svg') ?>" class="w-5 h-5 inline-block mr-2" alt="Reorder">
