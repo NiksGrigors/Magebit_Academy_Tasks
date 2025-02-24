@@ -1,0 +1,59 @@
+<div class="account-nav border border-gray-300 bg-customGray">
+    <ul class="space-y-2">
+        <li class="h-15 flex items-center border-l-4 border-customRed bg-gradient-to-r from-paleRed to-customGray">
+            <a href="<?= $block->escapeUrl($block->getUrl('customer/account')) ?>" class="text-blue-600 p-6">
+                <?= $block->escapeHtml(__('MANS PROFILS')) ?>
+            </a>
+        </li>
+        <li class="h-15 flex items-center">
+            <a href="<?= $block->escapeUrl($block->getUrl('customer/address')) ?>" class="text-blue-600 p-6">
+                <?= $block->escapeHtml(__('ADREŠU GRĀMATA')) ?>
+            </a>
+        </li>
+        <li class="h-15 flex items-center">
+            <a href="<?= $block->escapeUrl($block->getUrl('sales/order/history')) ?>" class="text-blue-600 p-6">
+                <?= $block->escapeHtml(__('MANI PASŪTĪJUMI')) ?>
+            </a>
+        </li>
+        <li class="h-15 flex items-center">
+            <a href="<?= $block->escapeUrl($block->getUrl('customer/contracts')) ?>" class="text-blue-600 p-6">
+                <?= $block->escapeHtml(__('MANI LĪGUMI')) ?>
+            </a>
+        </li>
+        <li class="h-15 flex items-center">
+            <a href="<?= $block->escapeUrl($block->getUrl('customer/payment-methods')) ?>" class="text-blue-600 p-6">
+                <?= $block->escapeHtml(__('SAGLABĀTIE MAKSĀJUMA VEIDI')) ?>
+            </a>
+        </li>
+        <li class="h-15 flex items-center">
+            <a href="<?= $block->escapeUrl($block->getUrl('customer/privacy-settings')) ?>" class="text-blue-600 p-6">
+                <?= $block->escapeHtml(__('PRIVĀTUMA UZSTĀDĪJUMI')) ?>
+            </a>
+        </li>
+        <li class="h-15 flex items-center">
+            <a href="<?= $block->escapeUrl($block->getUrl('customer/company-info')) ?>" class="text-blue-600 p-6">
+                <?= $block->escapeHtml(__('UZŅĒMUMA INFORMĀCIJA')) ?>
+            </a>
+        </li>
+        <li class="h-15 flex items-center">
+            <a href="<?= $block->escapeUrl($block->getUrl('customer/company-users')) ?>" class="text-blue-600 p-6">
+                <?= $block->escapeHtml(__('UZŅĒMUMA LIETOTĀJI')) ?>
+            </a>
+        </li>
+        <li class="h-15 flex items-center">
+            <a href="<?= $block->escapeUrl($block->getUrl('customer/user-permissions')) ?>" class="text-blue-600 p-6">
+                <?= $block->escapeHtml(__('LIETOTĀJU TIESĪBAS')) ?>
+            </a>
+        </li>
+        <li class="h-15 flex items-center">
+            <a href="<?= $block->escapeUrl($block->getUrl('customer/credit-limit')) ?>" class="text-blue-600 p-6">
+                <?= $block->escapeHtml(__('KREDĪTLIMITS')) ?>
+            </a>
+        </li>
+        <li class="h-15 flex items-center">
+            <a href="<?= $block->escapeUrl($block->getUrl('customer/account/logout')) ?>" class="text-red-600 p-6">
+                <?= $block->escapeHtml(__('IZRAKSTĪTIES')) ?>
+            </a>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,112 @@
+<?php
+
+declare(strict_types=1);
+
+use Hyva\Theme\Model\ViewModelRegistry;
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+
+// phpcs:disable Generic.Files.LineLength.TooLong
+
+/** @var Template $block */
+/** @var Escaper $escaper */
+/** @var ViewModelRegistry $viewModels */
+
+
+$column = $block->getData('item');
+
+$buttonLabel = $column->getButton();
+$buttonUrl = $column->getButtonUrl();
+?>
+
+<script>
+    'use strict';
+
+    function initSliderComponent() {
+        return {
+            active: 0,
+            itemCount: 0,
+            getSlider() {
+                return this.$root.querySelector('.js_slides');
+            },
+            pageSize: 1,
+            pageFillers: 0,
+            calcPageSize() {
+                const slider = this.getSlider();
+                if (slider) {
+                    this.itemCount = slider.querySelectorAll('.js_slide').length;
+                    this.pageSize = Math.round(slider.clientWidth / slider.querySelector('.js_slide').clientWidth);
+                    this.pageFillers = (
+                        this.pageSize * Math.ceil(this.itemCount / this.pageSize)
+                    ) - this.itemCount;
+                }
+            },
+            calcActive() {
+                const slider = this.getSlider();
+                if (slider) {
+                    const sliderItems = this.itemCount + this.pageFillers;
+                    const calculatedActiveSlide = slider.scrollLeft / (slider.scrollWidth / sliderItems);
+                    this.active = Math.round(calculatedActiveSlide / this.pageSize) * this.pageSize;
+                }
+            },
+            scrollPrevious() {
+                this.scrollTo(this.active - this.pageSize);
+            },
+            scrollNext() {
+                this.scrollTo(this.active + this.pageSize);
+            },
+            scrollTo(idx) {
+                const slider = this.getSlider();
+                if (slider) {
+                    const slideWidth = slider.scrollWidth / (this.itemCount + this.pageFillers);
+                    slider.scrollLeft = Math.floor(slideWidth) * idx;
+                    this.active = idx;
+                }
+            }
+        }
+    }
+</script>
+
+<div class="flex items-center bg-sliderBlue">
+    <div class="flex-1 mr-8">
+        <p class="mt-2 block font-medium text-white text-34 pb-8 truncate pointer-events-none">
+            <?= $escaper->escapeHtml($column->getTitle()) ?>
+        </p>
+        <p class="mt-2 block text-base font-normal text-white font opacity-80 pointer-events-none">
+            <?= $escaper->escapeHtml($column->getDescription()) ?>
+        </p>
+        <div class="mt-4 flex space-x-4">
+            <button class="w-24 h-12 px-10 py-4 bg-white bg-opacity-10 text-white flex items-center justify-center"
+                    :class="{'opacity-25 pointer-events-none': active === 0}"
+                    @click="scrollPrevious()"
+                    :disabled="active === 0">
+                <img src="<?= $this->getViewFileUrl('images/icons/ic_arrow-left.svg'); ?>" alt="Back" class="w-4 h-4">
+            </button>
+            <button class="w-24 h-12 px-10 py-4 bg-white bg-opacity-10 text-white flex items-center justify-center"
+                    :class="{'opacity-25 pointer-events-none': active >= itemCount - pageSize}"
+                    @click="scrollNext()"
+                    :disabled="active >= itemCount - pageSize">
+                <img src="<?= $this->getViewFileUrl('images/icons/ic_arrow-right.svg'); ?>" alt="Forward" class="w-4 h-4">
+            </button>
+        </div>
+        <?php if ($buttonLabel && $buttonUrl): ?>
+            <div class="mt-4 sm:flex">
+                <a href="<?= $escaper->escapeHtmlAttr($escaper->escapeUrl($buttonUrl)) ?>"
+                class="inline-flex btn btn-primary">
+                    <?= $escaper->escapeHtml($buttonLabel) ?>
+                </a>
+            </div>
+        <?php endif; ?>
+    </div>
+    <div>
+        <a href="<?= $escaper->escapeUrl($column->getButtonUrl()) ?>"
+        class="block w-full rounded-lg overflow-hidden"
+        >
+            <img src="<?= $escaper->escapeUrl($column->getThumbnail()); ?>"
+                alt="<?= $escaper->escapeHtmlAttr($column->getTitle()) ?>"
+                loading="lazy"
+                class="object-cover w-full min-h-14"
+            >
+        </a>
+    </div>
+</div>

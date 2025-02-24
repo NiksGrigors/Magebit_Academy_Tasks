@@ -16,6 +16,15 @@ class Interceptor extends \Hyva\Theme\Plugin\File\FileList\CollatorPlugin implem
     /**
      * {@inheritdoc}
      */
+    public function aroundCollate(\Magento\Framework\View\File\FileList\Collator $subject, \Closure $next, $files, $filesOrigin)
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'aroundCollate');
+        return $pluginInfo ? $this->___callPlugins('aroundCollate', func_get_args(), $pluginInfo) : parent::aroundCollate($subject, $next, $files, $filesOrigin);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function collate($files, $filesOrigin)
     {
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'collate');

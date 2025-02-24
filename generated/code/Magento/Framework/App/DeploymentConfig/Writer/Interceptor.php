@@ -17,6 +17,15 @@ class Interceptor extends \Magento\Framework\App\DeploymentConfig\Writer impleme
     /**
      * {@inheritdoc}
      */
+    public function checkIfWritable()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'checkIfWritable');
+        return $pluginInfo ? $this->___callPlugins('checkIfWritable', func_get_args(), $pluginInfo) : parent::checkIfWritable();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function saveConfig(array $data, $override = false, $pool = null, array $comments = [], bool $lock = false)
     {
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'saveConfig');

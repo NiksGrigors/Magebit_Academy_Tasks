@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="customer.account.dashboard.info" remove="true"/>
+        <referenceBlock name="customer_account_dashboard_top" remove="true"/>
+        <referenceBlock name="customer_account_dashboard_hello" remove="true"/>
+        <referenceBlock name="customer_account_dashboard_info" remove="true"/>
+        <referenceBlock name="customer_account_dashboard_newsletter" remove="true"/>
+        <referenceBlock name="customer_account_dashboard_address" remove="true"/>
+
+        <referenceContainer name="page.wrapper">
+            <referenceBlock name="breadcrumbs">
+                <action method="setDelimiter">
+                    <argument name="delimiter" xsi:type="string"> &gt; </argument>
+                </action>
+                <action method="addCrumb">
+                    <argument name="crumbName" xsi:type="string">home</argument>
+                    <argument name="crumbInfo" xsi:type="array">
+                        <item name="label" xsi:type="string">Sākums</item>
+                        <item name="link" xsi:type="string">/</item>
+                    </argument>
+                </action>
+                <action method="addCrumb">
+                    <argument name="crumbName" xsi:type="string">my_profile</argument>
+                    <argument name="crumbInfo" xsi:type="array">
+                        <item name="label" xsi:type="string">Mans Profils</item>
+                        <item name="link" xsi:type="string"></item>
+                    </argument>
+                </action>
+            </referenceBlock>
+        </referenceContainer>
+
+        <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument name="title" xsi:type="string">Mans Profils</argument>
+            </action>
+        </referenceBlock>
+
+        <referenceContainer name="content">
+            <block class="Magento\Sales\Block\Order\Recent" name="customer.recent.orders" template="Magento_Sales::order/recent.phtml"/>
+        </referenceContainer>
+
+        <referenceBlock name="sidebar.main.account_nav">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Magento_Theme::html/custom_account_nav.phtml</argument>
+            </action>
+        </referenceBlock>
+    </body>
+</page>

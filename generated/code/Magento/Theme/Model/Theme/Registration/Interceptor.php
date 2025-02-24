@@ -17,9 +17,36 @@ class Interceptor extends \Magento\Theme\Model\Theme\Registration implements \Ma
     /**
      * {@inheritdoc}
      */
+    public function register()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'register');
+        return $pluginInfo ? $this->___callPlugins('register', func_get_args(), $pluginInfo) : parent::register();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getThemeFromDb($fullPath)
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'getThemeFromDb');
+        return $pluginInfo ? $this->___callPlugins('getThemeFromDb', func_get_args(), $pluginInfo) : parent::getThemeFromDb($fullPath);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function checkPhysicalThemes()
     {
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'checkPhysicalThemes');
         return $pluginInfo ? $this->___callPlugins('checkPhysicalThemes', func_get_args(), $pluginInfo) : parent::checkPhysicalThemes();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function checkAllowedThemeRelations()
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'checkAllowedThemeRelations');
+        return $pluginInfo ? $this->___callPlugins('checkAllowedThemeRelations', func_get_args(), $pluginInfo) : parent::checkAllowedThemeRelations();
     }
 }

@@ -17,6 +17,24 @@ class Interceptor extends \Magento\Framework\View\Template\Html\Minifier impleme
     /**
      * {@inheritdoc}
      */
+    public function getMinified($file)
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'getMinified');
+        return $pluginInfo ? $this->___callPlugins('getMinified', func_get_args(), $pluginInfo) : parent::getMinified($file);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPathToMinified($file)
+    {
+        $pluginInfo = $this->pluginList->getNext($this->subjectType, 'getPathToMinified');
+        return $pluginInfo ? $this->___callPlugins('getPathToMinified', func_get_args(), $pluginInfo) : parent::getPathToMinified($file);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function minify($file)
     {
         $pluginInfo = $this->pluginList->getNext($this->subjectType, 'minify');
