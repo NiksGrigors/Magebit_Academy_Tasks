@@ -56,6 +56,7 @@ if ($fadeAnimations = $block->getData('hyva_multi_field_fade_animations')) {
     }
 }
 ?>
+
 <div class="overflow-hidden p-4 bg-sliderBlue">
     <section
         <?php if ($containerBackground): ?>style="background: <?= $escaper->escapeHtmlAttr($containerBackground) ?>"<?php endif; ?>
@@ -78,7 +79,6 @@ if ($fadeAnimations = $block->getData('hyva_multi_field_fade_animations')) {
             $itemsTemplate = 'Hyva_Widgets::widget/slider/multifield-item.phtml';
             ?>
             <?= $sliderViewModel->getSliderForItems($itemsTemplate, $multiFieldSteps)->toHtml() ?>
-
         </div>
     </section>
 </div>
